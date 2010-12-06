@@ -25,7 +25,7 @@ import net.sf.kerner.utils.factory.Factory;
  * direct and indirect implementations of {@link java.util.Collection
  * Collection}.
  * 
- * @autor <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-03
  * @param E
  *            type of elements within the collection

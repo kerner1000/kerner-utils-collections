@@ -74,7 +74,7 @@ public class MapUtils {
 	}
 
 	/**
-	 * Just like {@link #initMapWithValues(map, keys, values, true)}
+	 * The same as {@code #initMapWithValues(map, keys, values, true)}
 	 */
 	public static <M, V> void initMapWithValues(Map<M, V> map,
 			Collection<? extends M> keys, Collection<? extends V> values) {
