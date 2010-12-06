@@ -8,6 +8,7 @@
   <properties>
 		<jdk.version>1.5</jdk.version>
 	</properties>
+	<url>http://kerner-utils-co.sourceforge.net/</url>
 	<developers>
 		<developer>
 			<id>kerner</id>
