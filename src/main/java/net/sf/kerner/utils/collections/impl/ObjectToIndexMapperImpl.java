@@ -64,14 +64,6 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 
 	// Protected //
 
-	protected void checkIndex(Object key) {
-		if (map.containsKey(key)) {
-			// all good
-		} else
-			throw new NoSuchElementException("no element for row index [" + key
-					+ "]");
-	}
-
 	// Public //
 
 	// Override //
