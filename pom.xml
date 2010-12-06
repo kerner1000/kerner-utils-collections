@@ -26,26 +26,26 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>git://kerner-utils.git.sourceforge.net/gitroot/kerner-utils-collections/kerner-utils-collections 
+		<url>git://kerner-utils.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co
 		</url>
-		<connection>scm:git:git://kerner-utils-collections.git.sourceforge.net/gitroot/kerner-utils-collections/kerner-utils-collections</connection>
-		<developerConnection>scm:git:ssh://akerner@kerner-utils-collections.git.sourceforge.net/gitroot/kerner-utils-collections/kerner-utils-collections</developerConnection>
+		<connection>scm:git:git://kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</connection>
+		<developerConnection>scm:git:ssh://akerner@kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</developerConnection>
 	</scm>
 	<distributionManagement>
 		<site>
-			<id>sourceforge-kerner-utils-collections</id>
-			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-collections/htdocs</url>
+			<id>sourceforge-kerner-utils-co</id>
+			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-co/htdocs</url>
 		</site>
 		<repository>
-			<id>sourceforge-kerner-utils-collections</id>
-			<name>SourceForge kerner-utils-collections</name>
-			<url>sftp://frs.sourceforge.net:/home/pfs/project/k/ke/kerner-utils-collections/releases
+			<id>sourceforge-kerner-utils-co</id>
+			<name>SourceForge kerner-utils-co</name>
+			<url>sftp://frs.sourceforge.net:/home/pfs/project/k/ke/kerner-utils-co/releases
 			</url>
 		</repository>
 		<snapshotRepository>
-			<id>sourceforge-kerner-utils-collections</id>
-			<name>SourceForge kerner-utils-collections</name>
-			<url>sftp://frs.sourceforge.net:/home/pfs/project/k/ke/kerner-utils-collections/snapshots
+			<id>sourceforge-kerner-utils-co</id>
+			<name>SourceForge kerner-utils-co</name>
+			<url>sftp://frs.sourceforge.net:/home/pfs/project/k/ke/kerner-utils-co/snapshots
 			</url>
 		</snapshotRepository>
 	</distributionManagement>
