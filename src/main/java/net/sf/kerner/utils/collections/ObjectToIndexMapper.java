@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
@@ -57,16 +58,58 @@ import java.util.Set;
  */
 public interface ObjectToIndexMapper {
 	
+	/**
+	 * 
+	 * Check weather given object maps to any index.
+	 *
+	 * @param key object that is checked to be a valid key in this {@code ObjectToIndexMapper}
+	 * @return true, if given object is a valid key; false otherwise
+	 */
 	boolean containsKey(Object key);
 	
+	/**
+	 * 
+	 * Check weather given index is mapped by any object.
+	 *
+	 * @param index index that is checked to be a valid value in this {@code ObjectToIndexMapper}
+	 * @return true, if given index is a valid value; false otherwise
+	 */
 	boolean containsValue(int index);
 
+	/**
+	 * 
+	 * Get index that is mapped by given object identifier.
+	 *
+	 * @param key object that maps to index
+	 * @return index that is mapped
+	 * 
+	 * @throws NoSuchElementException if key is not registered to this {@code ObjectToIndexMapper}
+	 */
 	int get(Object key);
 
+	/**
+	 * 
+	 * Get object identifier that maps to given index.
+	 *
+	 * @param index index for which mapping object is returned
+	 * @return object that maps to given index
+	 */
 	Object getValue(int index);
 	
+	/**
+	 * 
+	 * Get a {@code Collection} that contains all values of this {@code ObjectToIndexMapper}, meaning all indices that are mapped by objects.
+	 *
+	 * @return a {@code Collection} that contains all values of this {@code ObjectToIndexMapper}
+	 */
 	Collection<? extends Integer> values();
 
+	/**
+	 * 
+	 * Get a {@code Set} that contains all keys of this {@code ObjectToIndexMapper}, meaning all objects that map to indices.
+	 *
+	 * @return a {@code Set} that contains all keys of this {@code ObjectToIndexMapper}
+	 */
 	Set<? extends Object> keySet();
 
 }
