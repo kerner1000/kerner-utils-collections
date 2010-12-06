@@ -96,6 +96,8 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	}
 
 	public Object getValue(int index) {
+		if(index < 0)
+			throw new IllegalArgumentException("index [" + index + "]");
 		for (Entry<Object, Integer> e : map.entrySet()) {
 			if (e.getValue().equals(Integer.valueOf(index)))
 				return e.getKey();
