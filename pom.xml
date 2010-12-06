@@ -25,6 +25,30 @@
 			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
+	<scm>
+		<url>git://kerner-utils.git.sourceforge.net/gitroot/kerner-utils-collections/kerner-utils-collections 
+		</url>
+		<connection>scm:git:git://kerner-utils-collections.git.sourceforge.net/gitroot/kerner-utils-collections/kerner-utils-collections</connection>
+		<developerConnection>scm:git:ssh://akerner@kerner-utils-collections.git.sourceforge.net/gitroot/kerner-utils-collections/kerner-utils-collections</developerConnection>
+	</scm>
+	<distributionManagement>
+		<site>
+			<id>sourceforge-kerner-utils-collections</id>
+			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-collections/htdocs</url>
+		</site>
+		<repository>
+			<id>sourceforge-kerner-utils-collections</id>
+			<name>SourceForge kerner-utils-collections</name>
+			<url>sftp://frs.sourceforge.net:/home/pfs/project/k/ke/kerner-utils-collections/releases
+			</url>
+		</repository>
+		<snapshotRepository>
+			<id>sourceforge-kerner-utils-collections</id>
+			<name>SourceForge kerner-utils-collections</name>
+			<url>sftp://frs.sourceforge.net:/home/pfs/project/k/ke/kerner-utils-collections/snapshots
+			</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
