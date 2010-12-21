@@ -19,6 +19,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
+import net.sf.kerner.utils.Utils;
+import net.sf.kerner.utils.collections.CollectionFactory;
+import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+
 /**
  * 
  * Utility class for {@link java.util.Map Map} related stuff.
@@ -79,6 +83,94 @@ public class MapUtils {
 	public static <M, V> void initMapWithValues(Map<M, V> map,
 			Collection<? extends M> keys, Collection<? extends V> values) {
 		initMapWithValues(map, keys, values, true);
+	}
+	
+	/**
+	 * 
+	 * 
+	 * Given a {@link java.util.Map Map} of collections, add the given element
+	 * to the {@link java.util.Collection Collection} associated with given key.
+	 * If for this key is no {@code Collection} registered, a new one will be
+	 * created. The given element will be then added to this new
+	 * {@code Collection}. The new {@code Collection} will be associated with
+	 * given key.
+	 * <p>
+	 * Element that is added may be null, if underlying collection allows null
+	 * elements.
+	 * </p>
+	 * 
+	 * @param <M>
+	 *            type of keys in given {@code Map}
+	 * @param <E>
+	 *            type of values in {@code Collection}s contained in given
+	 *            {@code Map}
+	 * @param map
+	 *            {@code Map} that contains {@code Collection} to which element
+	 *            is added
+	 * @param key
+	 *            key for {@code Collection} to which element is added
+	 * @param element
+	 *            element that is added
+	 * @param factory
+	 *            {@code CollectionFactory} that is used to create a new
+	 *            {@code Collection} if there is no value for given key yet
+	 * 
+	 * @see java.util.Map Map
+	 * @see java.util.Collection Collection
+	 * @see net.sf.kerner.utils.collections.CollectionFactory CollectionFactory
+	 * 
+	 * @throws NullPointerException
+	 *             if {@code map} or {@code key} is null
+	 */
+	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map,
+			M key, E element, CollectionFactory<E> factory) {
+		Utils.checkForNull(map, factory);
+		Collection<E> col = map.get(key);
+		if (col == null) {
+			col = factory.create();
+			map.put(key, col);
+		}
+		col.add(element);
+	}
+	
+	/**
+	 * 
+	 * 
+	 * Given a {@link java.util.Map Map} of collections, add the given element
+	 * to the {@link java.util.Collection Collection} associated with given key.
+	 * If for this key is no {@code Collection} registered, a new one will be
+	 * created. The given element will be then added to this new
+	 * {@code Collection}. The new {@code Collection} will be associated with
+	 * given key.
+	 * <p>
+	 * Element that is added may be null, if underlying collection allows null
+	 * elements.
+	 * </p>
+	 * 
+	 * @param <M>
+	 *            type of keys in given {@code Map}
+	 * @param <E>
+	 *            type of values in {@code Collection}s contained in given
+	 *            {@code Map}
+	 * @param map
+	 *            {@code Map} that contains {@code Collection} to which element
+	 *            is added
+	 * @param key
+	 *            key for {@code Collection} to which element is added
+	 * @param element
+	 *            element that is added
+	 * 
+	 * @see java.util.Map Map
+	 * @see java.util.Collection Collection
+	 * 
+	 * 
+	 * @throws NullPointerException
+	 *             if {@code map} or {@code key} is null
+	 */
+	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map,
+			M key, E element) {
+		Utils.checkForNull(map, key);
+		addToCollectionsMap(map, key, element, new ArrayListFactory<E>());
 	}
 
 }
