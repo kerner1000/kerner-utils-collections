@@ -18,10 +18,12 @@ package net.sf.kerner.utils.collections.map;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.CollectionFactory;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.counter.Counter;
 
 /**
  * 
@@ -84,7 +86,7 @@ public class MapUtils {
 			Collection<? extends M> keys, Collection<? extends V> values) {
 		initMapWithValues(map, keys, values, true);
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -132,7 +134,7 @@ public class MapUtils {
 		}
 		col.add(element);
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -171,6 +173,40 @@ public class MapUtils {
 			M key, E element) {
 		Utils.checkForNull(map, key);
 		addToCollectionsMap(map, key, element, new ArrayListFactory<E>());
+	}
+
+	/**
+	 * 
+	 * Reduce the number of elements in given {@link java.uitl.Map Map} to at
+	 * most given size.
+	 * 
+	 * @param <K>
+	 *            type of keys in given {@code Map}
+	 * @param <V>
+	 *            type of values in given {@code Map}
+	 * @param map
+	 *            {@code Map} that is trimmed
+	 * @param factory
+	 *            {@link net.sf.kerner.utils.factory.Factory Factory} that is
+	 *            used to instantiate returning {@code Map}
+	 * @param size
+	 *            number of elements returning [@code Map} contains (at most)
+	 * @return the new {@code Map} that has been trimmed
+	 */
+	public static <K, V> Map<K, V> trimMapToSize(Map<K, V> map,
+			MapFactory<K, V> factory, int size) {
+		Utils.checkForNull(map, factory);
+		if (size < 1 || map.size() <= size)
+			return map;
+		final Map<K, V> result = factory.create();
+		final Counter c = new Counter();
+		for (Entry<K, V> e : map.entrySet()) {
+			if (c.getCount() > size) {
+				break;
+			}
+			result.put(e.getKey(), e.getValue());
+		}
+		return result;
 	}
 
 }
