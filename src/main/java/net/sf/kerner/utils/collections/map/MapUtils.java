@@ -205,6 +205,7 @@ public class MapUtils {
 				break;
 			}
 			result.put(e.getKey(), e.getValue());
+			c.count();
 		}
 		return result;
 	}
