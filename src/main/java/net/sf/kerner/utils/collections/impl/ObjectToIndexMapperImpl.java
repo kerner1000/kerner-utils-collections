@@ -50,7 +50,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	/**
 	 * 
 	 */
-	public ObjectToIndexMapperImpl(Collection<Object> keys) {
+	public ObjectToIndexMapperImpl(Collection<? extends Object> keys) {
 		final Collection<Integer> values = new LinkedHashSet<Integer>();
 		synchronized (ObjectToIndexMapperImpl.class) {
 			for (int i = 0; i < keys.size(); i++) {
