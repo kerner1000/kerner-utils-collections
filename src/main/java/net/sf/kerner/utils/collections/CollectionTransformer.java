@@ -17,8 +17,6 @@ package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
 
-import net.sf.kerner.utils.transformer.Transformer;
-
 /**
  * 
  * A {@code CollectionTransformer} converts one object of type {@code Collection<? extends T>} to another object
@@ -37,13 +35,15 @@ import net.sf.kerner.utils.transformer.Transformer;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-04
+ * @version 2011-05-11
  * 
  * @param <T>
  *            type of elements in input collection
  * @param <V>
  *            type of elements in output collection
  */
-public interface CollectionTransformer<T,V> extends Transformer<Collection<? extends T>,Collection<? super V>>{
+public interface CollectionTransformer<T,V> {
+	
+	Collection<V> transformCollection(Collection<? extends T> element);
 
 }
