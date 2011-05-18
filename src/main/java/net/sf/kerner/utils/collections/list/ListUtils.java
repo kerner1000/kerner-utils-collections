@@ -15,7 +15,10 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.list;
 
+import java.util.Arrays;
 import java.util.List;
+
+import net.sf.kerner.utils.collections.list.impl.ToStringListTransformer;
 
 /**
  * 
@@ -60,6 +63,10 @@ public class ListUtils {
 		for (int i = 0; i <= iterations; i++) {
 			list.add(e);
 		}
+	}
+	
+	public static List<String> toStringList(Object...objects){
+		return new ToStringListTransformer().transformCollection(Arrays.asList(objects));
 	}
 
 }
