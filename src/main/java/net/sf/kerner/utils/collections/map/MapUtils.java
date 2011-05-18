@@ -30,12 +30,26 @@ import net.sf.kerner.utils.counter.Counter;
  * Utility class for {@link java.util.Map Map} related stuff.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-03
+ * @version 2011-05-18
  * 
  */
 public class MapUtils {
 
 	private MapUtils() {
+	}
+	
+	public static <K, V> void initMapWithValue(Map<K, V> map,
+			Collection<? extends K> keys, V value, boolean clean) {
+		if (clean)
+			map.clear();
+		for (K k : keys) {
+			map.put(k, value);
+		}
+	}
+	
+	public static <K, V> void initMapWithValue(Map<K, V> map,
+			Collection<? extends K> keys, V value) {
+		initMapWithValue(map, keys, value, true);
 	}
 
 	/**
