@@ -34,7 +34,7 @@ public class ArrayListFactory<E> implements ListFactory<E> {
 	/** 
 	 * 
 	 */
-	public List<E> create() {
+	public List<E> createCollection() {
 		return new ArrayList<E>();
 	}
 

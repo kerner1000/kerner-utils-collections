@@ -37,7 +37,7 @@ public interface SetFactory<E> extends CollectionFactory<E> {
 	/**
 	 * Create a new {@link java.util.Set Set}.
 	 */
-	Set<E> create();
+	Set<E> createCollection();
 	
 	/**
 	 * Create a new {@link java.util.Set Set} containing all given elements.

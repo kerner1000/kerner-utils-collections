@@ -31,7 +31,7 @@ import net.sf.kerner.utils.factory.Factory;
  *            type of elements within the collection
  * 
  */
-public interface CollectionFactory<E> extends Factory<Collection<? extends E>> {
+public interface CollectionFactory<E> {
 
 	/**
 	 * 
@@ -39,7 +39,7 @@ public interface CollectionFactory<E> extends Factory<Collection<? extends E>> {
 	 * 
 	 * @return new {@code Collection}
 	 */
-	Collection<E> create();
+	Collection<E> createCollection();
 
 	/**
 	 * 

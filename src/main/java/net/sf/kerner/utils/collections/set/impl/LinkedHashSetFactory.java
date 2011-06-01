@@ -37,7 +37,7 @@ public class LinkedHashSetFactory<E> implements SetFactory<E> {
 	/** 
 	 * 
 	 */
-	public Set<E> create() {
+	public Set<E> createCollection() {
 		return new LinkedHashSet<E>();
 	}
 

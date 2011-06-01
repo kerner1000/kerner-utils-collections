@@ -37,7 +37,7 @@ public interface ListFactory<E> extends CollectionFactory<E> {
 	/**
 	 * Create a new {@link java.util.List List}.
 	 */
-	List<E> create();
+	List<E> createCollection();
 
 	/**
 	 * Create a new {@link java.util.List List} containing all given elements.

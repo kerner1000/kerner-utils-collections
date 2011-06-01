@@ -143,7 +143,7 @@ public class MapUtils {
 		Utils.checkForNull(map, factory);
 		Collection<E> col = map.get(key);
 		if (col == null) {
-			col = factory.create();
+			col = factory.createCollection();
 			map.put(key, col);
 		}
 		col.add(element);
