@@ -17,16 +17,14 @@ package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
 
-import net.sf.kerner.utils.factory.Factory;
-
 /**
  * 
- * A {@code CollectionFactory} provides factory methods to retrieve all kind of
+ * A {@code CollectionFactory} provides factory methods to retrieve a new instance of all kind of
  * direct and indirect implementations of {@link java.util.Collection
  * Collection}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-03
+ * @version 2011-06-03
  * @param E
  *            type of elements within the collection
  * 
@@ -35,7 +33,7 @@ public interface CollectionFactory<E> {
 
 	/**
 	 * 
-	 * Get a new implementation for specified {@code Collection}.
+	 * Get a new instance for specified {@code Collection}.
 	 * 
 	 * @return new {@code Collection}
 	 */
@@ -43,7 +41,7 @@ public interface CollectionFactory<E> {
 
 	/**
 	 * 
-	 * Get a new implementation for specified {@code Collection} containing all
+	 * Get a new instance for specified {@code Collection} containing all
 	 * given elements.
 	 * 
 	 * @param elements
