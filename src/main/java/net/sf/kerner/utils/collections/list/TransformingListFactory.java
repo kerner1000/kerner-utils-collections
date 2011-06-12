@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface TransformingListFactory<S, E> {
 	
+	List<E> createCollection();
+	
 	List<E> createCollection(Collection<? extends S> elements);
 
 }
