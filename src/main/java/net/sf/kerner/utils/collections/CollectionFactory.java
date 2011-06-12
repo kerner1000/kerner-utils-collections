@@ -48,6 +48,6 @@ public interface CollectionFactory<E> {
 	 *            that are contained in new collection
 	 * @return new {@code Collection}
 	 */
-	Collection<E> createCollection(Collection<? extends E> elements);
+	Collection<E> createCollection(Collection<? extends E> template);
 
 }

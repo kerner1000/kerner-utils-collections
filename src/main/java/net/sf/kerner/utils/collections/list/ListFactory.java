@@ -42,6 +42,6 @@ public interface ListFactory<E> extends CollectionFactory<E> {
 	/**
 	 * Create a new {@link java.util.List List} containing all given elements.
 	 */
-	List<E> createCollection(Collection<? extends E> elements);
+	List<E> createCollection(Collection<? extends E> template);
 
 }
