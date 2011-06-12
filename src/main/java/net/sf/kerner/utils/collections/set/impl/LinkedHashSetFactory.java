@@ -41,11 +41,10 @@ public class LinkedHashSetFactory<E> implements SetFactory<E> {
 		return new LinkedHashSet<E>();
 	}
 
-	/** 
-	 * 
-	 */
-	public Set<E> createCollection(Collection<? extends E> elements) {
-		return new LinkedHashSet<E>(elements);
+	public Set<E> createCollection(Collection<? extends E> template) {
+		return new LinkedHashSet<E>(template);
 	}
+
+	
 
 }

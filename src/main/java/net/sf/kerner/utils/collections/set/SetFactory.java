@@ -42,6 +42,6 @@ public interface SetFactory<E> extends CollectionFactory<E> {
 	/**
 	 * Create a new {@link java.util.Set Set} containing all given elements.
 	 */
-	Set<E> createCollection(Collection<? extends E> elements);
+	Set<E> createCollection(Collection<? extends E> template);
 
 }
