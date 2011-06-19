@@ -16,8 +16,10 @@ limitations under the License.
 package net.sf.kerner.utils.collections.list;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.impl.ToStringListTransformer;
 
 /**
@@ -31,6 +33,24 @@ import net.sf.kerner.utils.collections.list.impl.ToStringListTransformer;
 public class ListUtils {
 	
 	private ListUtils(){}
+	
+	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2, ListFactory<C> factory){
+		final List<C> result = factory.createCollection();
+		Iterator<? extends C> i1 = c1.iterator();
+		Iterator<? extends C> i2 = c2.iterator();
+		while(i1.hasNext()){
+			result.add(i1.next());
+			if(i2.hasNext())
+				result.add(i2.next());	
+		}
+		while(i2.hasNext())
+			result.add(i2.next());
+		return result;
+	}
+	
+	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2){
+		return meld(c1, c2, new ArrayListFactory<C>());
+	}
 	
 	/**
 	 * 
