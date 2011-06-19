@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.list.ListFactory;
@@ -25,22 +26,19 @@ import net.sf.kerner.utils.collections.list.ListFactory;
  * returns instances of {@link java.util.ArrayList ArrayList}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-20
+ * @version 2011-06-18
  * 
  */
-public class ArrayListFactory<E> extends AbstractListFactory<E> implements ListFactory<E> {
+public class ArrayListFactory<E> implements ListFactory<E> {
 
-	public ArrayListFactory() {
-		super();
-	}
-
-	public ArrayListFactory(List<? extends E> template) {
-		super(template);
-	}
-
-	@Override
-	protected List<E> getListImpl() {
+	public List<E> createCollection() {
 		return new ArrayList<E>();
 	}
+
+	public List<E> createCollection(Collection<? extends E> template) {
+		return new ArrayList<E>(template);
+	}
+
+	
 
 }

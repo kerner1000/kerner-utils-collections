@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface ListTransformer<T, V> {
 	
-	List<V> transformCollection(List<? extends T> element);
+	List<V> transformList(List<? extends T> element);
 
 }
