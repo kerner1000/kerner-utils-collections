@@ -7,8 +7,9 @@ import java.util.Iterator;
 import net.sf.kerner.utils.StringUtils;
 
 public class CollectionUtils {
-	
-	private CollectionUtils(){}
+
+	private CollectionUtils() {
+	}
 	
 	public static String toString(Iterable<?> elements){
 		final StringBuilder b = new StringBuilder();
