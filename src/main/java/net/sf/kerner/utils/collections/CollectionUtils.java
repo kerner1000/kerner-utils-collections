@@ -5,10 +5,22 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 import net.sf.kerner.utils.StringUtils;
+import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 
 public class CollectionUtils {
 
 	private CollectionUtils() {
+	}
+	
+	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2, CollectionFactory<C> factory){
+		final Collection<C> result = factory.createCollection();
+		result.addAll(c1);
+		result.addAll(c2);
+		return result;
+	}
+	
+	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2){
+		return append(c1, c2, new ArrayListFactory<C>());
 	}
 	
 	public static String toString(Iterable<?> elements){
