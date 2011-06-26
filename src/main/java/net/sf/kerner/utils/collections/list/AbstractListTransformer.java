@@ -8,7 +8,7 @@ import net.sf.kerner.utils.transformer.Transformer;
 public abstract class AbstractListTransformer<T, V> implements Transformer<T, V>,
 		ListTransformer<T, V> {
 
-	private final ListFactory<V> factory;
+	protected final ListFactory<V> factory;
 
 	public AbstractListTransformer(ListFactory<V> factory) {
 		super();
@@ -19,6 +19,9 @@ public abstract class AbstractListTransformer<T, V> implements Transformer<T, V>
 		this(new ArrayListFactory<V>());
 	}
 
+	/**
+	 * if {@code element == null}, empty list is returned.
+	 */
 	public synchronized List<V> transformList(List<? extends T> element) {
 		final List<V> result = factory.createCollection();
 		if(element != null)
