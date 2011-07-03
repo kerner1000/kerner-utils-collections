@@ -24,6 +24,8 @@ public class CollectionUtils {
 	}
 	
 	public static String toString(Iterable<?> elements){
+		if(!elements.iterator().hasNext())
+			return "";
 		final StringBuilder b = new StringBuilder();
 		b.append(StringUtils.NEW_LINE_STRING);
 		final Iterator<?> i = elements.iterator();
