@@ -13,14 +13,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.collections.list.impl.ToStringListTransformer;
+import net.sf.kerner.utils.collections.list.ListFactory;
 
 /**
  * 
@@ -39,9 +38,15 @@ public class ListUtils {
 		Iterator<? extends C> i1 = c1.iterator();
 		Iterator<? extends C> i2 = c2.iterator();
 		while(i1.hasNext()){
-			result.add(i1.next());
-			if(i2.hasNext())
-				result.add(i2.next());	
+			C c11 = i1.next();
+			result.add(c11);
+			if(i2.hasNext()){
+				C c22 = i2.next();
+				if(c11.equals(c22)){
+					// System.err.println("skipping " + c22);
+				} else
+				result.add(c22);
+			}
 		}
 		while(i2.hasNext())
 			result.add(i2.next());

@@ -26,6 +26,9 @@ public abstract class AbstractListTransformer<T, V> implements Transformer<T, V>
 		final List<V> result = factory.createCollection();
 		if(element != null)
 		for (T t : element) {
+//			if(t == null)
+//				result.add(null);
+//			else
 			result.add(transform(t));
 		}
 		return result;
