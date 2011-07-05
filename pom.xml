@@ -7,7 +7,7 @@
 </parent>
   <groupId>net.sf.kerner-utils-collections</groupId>
   <artifactId>kerner-utils-collections</artifactId>
-  <version>0.2.6-SNAPSHOT</version>
+  <version>0.3.0</version>
   <name>Kerner-Utils-Collections</name>
   <description>Commonly used utility classes (java.util.Collections related)</description>
   <properties>
