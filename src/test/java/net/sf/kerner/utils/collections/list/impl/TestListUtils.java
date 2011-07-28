@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.list.impl;
 
 import static org.junit.Assert.*;
 
