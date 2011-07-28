@@ -33,35 +33,75 @@ public class TestListUtils {
 	}
 
 	@Test
-	public final void testMeldListOfQextendsCListOfQextendsC01() {
+	public final void testMeld01() {
 		List<String> l1 = Arrays.asList("a", "b");
 		List<String> l2 = Arrays.asList("c", "d");
 		List<String> l3 = Arrays.asList("a", "c", "b", "d");
-		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2).toArray());
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, true).toArray());
 	}
 	
 	@Test
-	public final void testMeldListOfQextendsCListOfQextendsC02() {
+	public final void testMeld02() {
 		List<String> l1 = Arrays.asList("a", "b");
 		List<String> l2 = Arrays.asList("a", "c");
 		List<String> l3 = Arrays.asList("a", "b", "c");
-		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2).toArray());
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, true).toArray());
 	}
 	
 	@Test
-	public final void testMeldListOfQextendsCListOfQextendsC03() {
+	public final void testMeld03() {
 		List<String> l1 = Arrays.asList("a", "b");
 		List<String> l2 = Arrays.asList("a", "c");
 		List<String> l3 = Arrays.asList("a", "b", "c");
-		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2).toArray());
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, true).toArray());
 	}
 	
 	@Test
-	public final void testMeldListOfQextendsCListOfQextendsC04() {
+	public final void testMeld04() {
 		List<String> l1 = Arrays.asList("a", "b");
 		List<String> l2 = Arrays.asList(null, "c");
 		List<String> l3 = Arrays.asList("a", null, "b", "c");
-		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2).toArray());
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, true).toArray());
+	}
+	
+	@Test
+	public final void testMeld04b() {
+		List<String> l1 = Arrays.asList("a", "b");
+		List<String> l2 = Arrays.asList(null, "c");
+		List<String> l3 = Arrays.asList("a", "b", "c");
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, false).toArray());
+	}
+	
+	@Test
+	public final void testMeld05() {
+		List<String> l1 = Arrays.asList(null, null);
+		List<String> l2 = Arrays.asList(null, null);
+		List<String> l3 = Arrays.asList(null, null);
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, true).toArray());
+	}
+	
+	@Test
+	public final void testMeld05b() {
+		List<String> l1 = Arrays.asList(null, null);
+		List<String> l2 = Arrays.asList(null, null);
+		List<String> l3 = Arrays.asList();
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, false).toArray());
+	}
+	
+	@Test
+	public final void testMeld06() {
+		List<String> l1 = Arrays.asList(null, null);
+		List<String> l2 = Arrays.asList("a", null);
+		List<String> l3 = Arrays.asList(null, "a", null);
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, true).toArray());
+	}
+	
+	@Test
+	public final void testMeld06b() {
+		List<String> l1 = Arrays.asList(null, null);
+		List<String> l2 = Arrays.asList("a", null);
+		List<String> l3 = Arrays.asList("a");
+		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, false).toArray());
 	}
 
 	@Ignore

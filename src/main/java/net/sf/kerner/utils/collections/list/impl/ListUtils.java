@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -26,37 +26,94 @@ import net.sf.kerner.utils.collections.list.ListFactory;
  * Utility class for {@link java.util.List List} related stuff.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-03
+ * @version 2011-07-28
  * 
  */
 public class ListUtils {
-	
-	private ListUtils(){}
-	
-	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2, ListFactory<C> factory){
+
+	private ListUtils() {
+		// Singleton
+	}
+
+	/**
+	 * 
+	 * Combine two {@link java.util.List Lists} into one. </p> Elements, that
+	 * have same position in both lists and are equal to each other are filtered
+	 * out. </p> If {@code nullIsValue == true} {@code null} values will be
+	 * treated as valid values, whereas <br> {@code null equals null}.
+	 * 
+	 * @param <C>
+	 * @param c1
+	 *            first list
+	 * @param c2
+	 *            second list
+	 * @param factory
+	 *            {@code net.sf.kerner.utils.collections.list.ListFactory ListFactory}
+	 *            that provides instance of returning list
+	 * @param nullIsValue
+	 *            if true, null is considered to be a valid value
+	 * @return a new {@link java.util.List List}
+	 */
+	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2,
+			ListFactory<C> factory, boolean nullIsValue) {
 		final List<C> result = factory.createCollection();
 		Iterator<? extends C> i1 = c1.iterator();
 		Iterator<? extends C> i2 = c2.iterator();
-		while(i1.hasNext()){
-			C c11 = i1.next();
-			result.add(c11);
-			if(i2.hasNext()){
-				C c22 = i2.next();
-				if(c11.equals(c22)){
-					// System.err.println("skipping " + c22);
-				} else
-				result.add(c22);
+
+		while (i1.hasNext()) {
+			C e1 = i1.next();
+
+			if (e1 == null && !nullIsValue) {
+				// null not valid value, don't add
+			} else {
+				result.add(e1);
+			}
+
+			if (i2.hasNext()) {
+				C e2 = i2.next();
+
+				if (e2 == null) {
+					if (nullIsValue) {
+						if (e1 == null) {
+							// null already there, skip
+						} else {
+							result.add(e2);
+						}
+					} else {
+						// null not valid, skip
+					}
+				} else {
+					// e2 != null
+					if (e1 == null) {
+						result.add(e2);
+					} else if (e1.equals(e2)) {
+						// skip
+					} else {
+						result.add(e2);
+					}
+				}
 			}
 		}
-		while(i2.hasNext())
-			result.add(i2.next());
+		while (i2.hasNext()) {
+			C e2 = i2.next();
+			if (e2 != null || nullIsValue) {
+				result.add(e2);
+			}
+		}
 		return result;
 	}
-	
-	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2){
-		return meld(c1, c2, new ArrayListFactory<C>());
+
+	/**
+	 * 
+	 * Same as {@link ListUtils#meld(List, List, ListFactory, boolean)}, using
+	 * an {@link ArrayListFactory ArrayListFactory}.
+	 * 
+	 */
+	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2,
+			boolean nullIsValue) {
+		return meld(c1, c2, new ArrayListFactory<C>(), nullIsValue);
 	}
-	
+
 	/**
 	 * 
 	 * 
@@ -67,8 +124,8 @@ public class ListUtils {
 	 * </pre>
 	 * 
 	 * elements to this {@code List}, resulting in a new list size of
-	 * {@code numElements}. If {@code numElements < list.size()}, this
-	 * method does nothing.
+	 * {@code numElements}. If {@code numElements < list.size()}, this method
+	 * does nothing.
 	 * 
 	 * @param <E>
 	 *            type of element that is used for filling this {@code List}
@@ -78,7 +135,7 @@ public class ListUtils {
 	 *            new {@link java.util.List#size()} of this {@code List}
 	 * @param e
 	 *            element which is used to fill the list
-	 *            
+	 * 
 	 * @see java.util.List
 	 */
 	public static <E> void fill(List<E> list, int numElements, E e) {
@@ -89,9 +146,10 @@ public class ListUtils {
 			list.add(e);
 		}
 	}
-	
-	public static List<String> toStringList(Object...objects){
-		return new ToStringListTransformer().transformCollection(Arrays.asList(objects));
+
+	public static List<String> toStringList(Object... objects) {
+		return new ToStringListTransformer().transformCollection(Arrays
+				.asList(objects));
 	}
 
 }
