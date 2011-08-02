@@ -14,8 +14,7 @@ public class CollectionUtils {
 	}
 	
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2, CollectionFactory<C> factory){
-		final Collection<C> result = factory.createCollection();
-		result.addAll(c1);
+		final Collection<C> result = factory.createCollection(c1);
 		result.addAll(c2);
 		return result;
 	}
