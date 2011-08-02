@@ -1,10 +1,11 @@
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.impl;
 
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 
 import net.sf.kerner.utils.StringUtils;
+import net.sf.kerner.utils.collections.CollectionFactory;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 
 public class CollectionUtils {
