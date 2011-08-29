@@ -25,6 +25,7 @@ import java.util.Set;
 
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.map.MapUtils;
+import net.sf.kerner.utils.math.MathUtils;
 
 /**
  * 
@@ -114,4 +115,11 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		return map.keySet();
 	}
 
+	public int getMaxIndex() {
+		return MathUtils.max(map.values().toArray(new Integer[map.values().size()]));
+	}
+	
+	public int getSize() {
+		return map.values().size();
+	}
 }

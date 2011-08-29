@@ -111,5 +111,9 @@ public interface ObjectToIndexMapper {
 	 * @return a {@code Set} that contains all keys of this {@code ObjectToIndexMapper}
 	 */
 	Set<? extends Object> keySet();
+	
+	int getSize();
+	
+	int getMaxIndex();
 
 }
