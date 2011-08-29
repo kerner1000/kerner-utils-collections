@@ -16,9 +16,11 @@ limitations under the License.
 package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.impl.CollectionUtils;
 import net.sf.kerner.utils.collections.list.ListFactory;
 
 /**
@@ -26,7 +28,7 @@ import net.sf.kerner.utils.collections.list.ListFactory;
  * Utility class for {@link java.util.List List} related stuff.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-07-28
+ * @version 2011-08-29
  * 
  */
 public class ListUtils {
@@ -150,6 +152,10 @@ public class ListUtils {
 	public static List<String> toStringList(Object... objects) {
 		return new ToStringListTransformer().transformCollection(Arrays
 				.asList(objects));
+	}
+	
+	public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2){
+		return (List<L>) CollectionUtils.append(c1, c2, new ArrayListFactory<L>());
 	}
 
 }
