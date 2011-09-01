@@ -153,9 +153,10 @@ public class ListUtils {
 		return new ToStringListTransformer().transformCollection(Arrays
 				.asList(objects));
 	}
-	
-	public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2){
-		return (List<L>) CollectionUtils.append(c1, c2, new ArrayListFactory<L>());
-	}
 
+	public static <L> List<L> append(Collection<? extends L> c1,
+			Collection<? extends L> c2) {
+		return (List<L>) CollectionUtils.append(c1, c2,
+				new ArrayListFactory<L>());
+	}
 }
