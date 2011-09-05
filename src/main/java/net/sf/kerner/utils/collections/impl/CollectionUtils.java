@@ -68,5 +68,15 @@ public class CollectionUtils {
 		
 		return result;
 	}
+	
+	public static boolean nullCollection(Collection<?> col){
+		if(col == null)
+			return true;
+		for(Object o : col){
+			if(o != null)
+				return false;
+		}
+		return true;
+	}
 
 }
