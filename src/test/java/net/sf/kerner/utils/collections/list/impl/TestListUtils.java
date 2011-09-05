@@ -1,11 +1,10 @@
 package net.sf.kerner.utils.collections.list.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
-
-import net.sf.kerner.utils.collections.list.impl.ListUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -102,6 +101,16 @@ public class TestListUtils {
 		List<String> l2 = Arrays.asList("a", null);
 		List<String> l3 = Arrays.asList("a");
 		assertArrayEquals(l3.toArray(), ListUtils.meld(l1, l2, false).toArray());
+	}
+	
+	@Test
+	public final void testMeld07() {
+		List<Double> l1 = Arrays.asList(0.1, 0.2, 0.4);
+		List<Double> l2 = Arrays.asList(null, 0.3);
+		List<Double> l3 = Arrays.asList(0.1,0.2,0.3,0.4);
+		List<Double> l4 = ListUtils.meld(l1, l2, false);
+		System.err.println(l4);
+		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
 
 	@Ignore
