@@ -41,8 +41,10 @@ public class ListUtils {
 	 * 
 	 * Combine two {@link java.util.List Lists} into one. </p> Elements, that
 	 * have same position in both lists and are equal to each other are filtered
-	 * out. </p> If {@code nullIsValue == true} {@code null} values will be
-	 * treated as valid values, whereas <br> {@code null equals null}.
+	 * out. </p> {@code null equals null}. {@code null} is kept in list only, if
+	 * at this position in both list elemnt is {@code null} or other list does
+	 * not have this position. </p> Resulting list size is always equal to size
+	 * of longer list.
 	 * 
 	 * @param <C>
 	 * @param c1
@@ -50,57 +52,45 @@ public class ListUtils {
 	 * @param c2
 	 *            second list
 	 * @param factory
-	 *            {@code net.sf.kerner.utils.collections.list.ListFactory ListFactory}
-	 *            that provides instance of returning list
-	 * @param nullIsValue
-	 *            if true, null is considered to be a valid value
+	 *            {@link net.sf.kerner.utils.collections.list.ListFactory
+	 *            ListFactory} that provides instance of returning list
 	 * @return a new {@link java.util.List List}
 	 */
 	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2,
-			ListFactory<C> factory, boolean nullIsValue) {
+			ListFactory<C> factory) {
 		final List<C> result = factory.createCollection();
 		Iterator<? extends C> i1 = c1.iterator();
 		Iterator<? extends C> i2 = c2.iterator();
 
 		while (i1.hasNext()) {
-			C e1 = i1.next();
-
-			if (e1 == null && !nullIsValue) {
-				// null not valid value, don't add
-			} else {
-				result.add(e1);
-			}
-
+			final C e1 = i1.next();
 			if (i2.hasNext()) {
-				C e2 = i2.next();
+				final C e2 = i2.next();
 
-				if (e2 == null) {
-					if (nullIsValue) {
-						if (e1 == null) {
-							// null already there, skip
-						} else {
-							result.add(e2);
-						}
-					} else {
-						// null not valid, skip
-					}
-				} else {
-					// e2 != null
-					if (e1 == null) {
-						result.add(e2);
-					} else if (e1.equals(e2)) {
-						// skip
-					} else {
-						result.add(e2);
-					}
+				if (e1 == null && e2 == null)
+					result.add(null);
+
+				else if (e1 == null)
+					result.add(e2);
+
+				else if (e2 == null)
+					result.add(e1);
+
+				else if (e1.equals(e2))
+					result.add(e1);
+
+				else {
+					result.add(e1);
+					result.add(e2);
 				}
-			}
+
+			} else
+				result.add(e1);
 		}
+
 		while (i2.hasNext()) {
-			C e2 = i2.next();
-			if (e2 != null || nullIsValue) {
-				result.add(e2);
-			}
+			final C e2 = i2.next();
+			result.add(e2);
 		}
 		return result;
 	}
@@ -111,9 +101,8 @@ public class ListUtils {
 	 * an {@link ArrayListFactory ArrayListFactory}.
 	 * 
 	 */
-	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2,
-			boolean nullIsValue) {
-		return meld(c1, c2, new ArrayListFactory<C>(), nullIsValue);
+	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2) {
+		return meld(c1, c2, new ArrayListFactory<C>());
 	}
 
 	/**
@@ -150,14 +139,20 @@ public class ListUtils {
 	}
 
 	public static List<String> toStringList(Object... objects) {
-		return new ToStringListTransformer().transformCollection(Arrays
-				.asList(objects));
+		return new ToStringListTransformer().transformCollection(Arrays.asList(objects));
 	}
 
-	public static <L> List<L> append(Collection<? extends L> c1,
-			Collection<? extends L> c2) {
-		return (List<L>) CollectionUtils.append(c1, c2,
-				new ArrayListFactory<L>());
+	public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2) {
+		return (List<L>) CollectionUtils.append(c1, c2, new ArrayListFactory<L>());
+	}
+
+	public static <V> List<V> trimm(List<V> list, ListFactory<V> factory) {
+		final List<V> result = factory.createCollection();
+		for (V o : list) {
+			if (o != null)
+				result.add(o);
+		}
+		return result;
 	}
 
 }
