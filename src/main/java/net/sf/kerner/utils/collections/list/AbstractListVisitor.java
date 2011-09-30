@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.DefaultVisitor;
 import net.sf.kerner.utils.collections.Filter;
+import net.sf.kerner.utils.collections.Visitor;
 
-public abstract class AbstractListVisitor<E> implements ListWalker<E>, DefaultVisitor<E> {
+public abstract class AbstractListVisitor<V, E> implements ListWalker<E>, Visitor<V, E> {
 	
 	protected final Collection<Filter<E>> filters = new ArrayList<Filter<E>>();
 	
@@ -36,7 +36,7 @@ public abstract class AbstractListVisitor<E> implements ListWalker<E>, DefaultVi
 				}
 			}
 			if(take)
-			visit(e);
+			handleVisit(visit(e));
 		}
 		afterWalk();
 	}
@@ -44,5 +44,7 @@ public abstract class AbstractListVisitor<E> implements ListWalker<E>, DefaultVi
 	public void afterWalk(){
 		
 	}
+	
+	protected abstract void handleVisit(V v);
 
 }
