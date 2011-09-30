@@ -18,6 +18,7 @@ public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
 		this.factory = factory;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public V get(Object key) {
 		if(decorated.containsKey(key)){
 			// ok
@@ -29,6 +30,11 @@ public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
 	}
 	
 	// Delegate //
+	
+	@Override
+	public String toString() {
+		return decorated.toString();
+	}
 
 	public int size() {
 		return decorated.size();
