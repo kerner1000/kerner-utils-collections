@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.Visitor;
 
 public abstract class AbstractListVisitor<V, E> implements ListWalker<E>, ListVisitor<V, E> {
 
