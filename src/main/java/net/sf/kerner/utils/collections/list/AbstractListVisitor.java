@@ -7,9 +7,11 @@ import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Filter;
 
-public abstract class AbstractListVisitor<V, E> implements ListWalker<E>, ListVisitor<V, E> {
+public abstract class AbstractListVisitor<V, E> implements ListWalker<E> {
 
 	protected final Collection<Filter<E>> filters = new ArrayList<Filter<E>>();
+
+	protected final Collection<ListVisitor<V, E>> visitors = new ArrayList<ListVisitor<V, E>>();
 
 	protected volatile ListIterator<? extends E> iterator;
 
@@ -21,6 +23,14 @@ public abstract class AbstractListVisitor<V, E> implements ListWalker<E>, ListVi
 		filters.clear();
 	}
 
+	public synchronized void addVisitor(ListVisitor<V, E> visitor) {
+		visitors.add(visitor);
+	}
+
+	public synchronized void clearVisitors() {
+		visitors.clear();
+	}
+
 	public void beforeWalk() {
 
 	}
@@ -30,18 +40,21 @@ public abstract class AbstractListVisitor<V, E> implements ListWalker<E>, ListVi
 		synchronized (iterator) {
 			beforeWalk();
 			while (iterator.hasNext()) {
-					final E e = iterator.next();
-					boolean take = true;
-					for (Filter<E> f : filters) {
-						if (f.visit(e)) {
-							// take
-						} else {
-							take = false;
-							break;
-						}
+				final E e = iterator.next();
+				boolean take = true;
+				for (Filter<E> f : filters) {
+					if (f.visit(e)) {
+						// take
+					} else {
+						take = false;
+						break;
 					}
-					if (take)
-						handleVisit(visit(e));
+				}
+				if (take) {
+					for (ListVisitor<V, E> v : visitors) {
+						v.visit(e);
+					}
+				}
 			}
 			afterWalk();
 		}
@@ -50,11 +63,8 @@ public abstract class AbstractListVisitor<V, E> implements ListWalker<E>, ListVi
 	public void afterWalk() {
 
 	}
-	
+
 	public ListIterator<? extends E> getIterator() {
 		return iterator;
 	}
-
-	protected abstract void handleVisit(V v);
-
 }
