@@ -5,13 +5,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
 
+import net.sf.kerner.utils.collections.DefaultVisitor;
 import net.sf.kerner.utils.collections.Filter;
+import net.sf.kerner.utils.collections.Visitor;
 
-public abstract class AbstractListVisitor<V, E> implements ListWalker<E> {
+public class ListWalkerImpl<V, E> implements ListWalker<E> {
 
 	protected final Collection<Filter<E>> filters = new ArrayList<Filter<E>>();
 
-	protected final Collection<ListVisitor<V, E>> visitors = new ArrayList<ListVisitor<V, E>>();
+	protected final Collection<DefaultVisitor<E>> visitors = new ArrayList<DefaultVisitor<E>>();
 
 	protected volatile ListIterator<? extends E> iterator;
 
@@ -23,7 +25,7 @@ public abstract class AbstractListVisitor<V, E> implements ListWalker<E> {
 		filters.clear();
 	}
 
-	public synchronized void addVisitor(ListVisitor<V, E> visitor) {
+	public synchronized void addVisitor(DefaultVisitor<E> visitor) {
 		visitors.add(visitor);
 	}
 
@@ -51,7 +53,7 @@ public abstract class AbstractListVisitor<V, E> implements ListWalker<E> {
 					}
 				}
 				if (take) {
-					for (ListVisitor<V, E> v : visitors) {
+					for (DefaultVisitor<E> v : visitors) {
 						v.visit(e);
 					}
 				}

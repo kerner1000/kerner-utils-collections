@@ -2,10 +2,11 @@ package net.sf.kerner.utils.collections.list;
 
 import java.util.List;
 
+import net.sf.kerner.utils.collections.DefaultVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.transformer.Transformer;
 
-public abstract class AbstractListTransformer<T, V> extends AbstractListVisitor<V, T> implements
+public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
 		Transformer<T, V>, ListTransformer<T, V> {
 
 	protected final ListFactory<V> factory;
@@ -15,6 +16,13 @@ public abstract class AbstractListTransformer<T, V> extends AbstractListVisitor<
 	public AbstractListTransformer(ListFactory<V> factory) {
 		super();
 		this.factory = factory;
+		super.addVisitor(new DefaultVisitor<T>() {
+
+			public Void visit(T element) {
+				result.add(transform(element));
+				return null;
+			};
+		});
 	}
 
 	public AbstractListTransformer() {
@@ -26,14 +34,6 @@ public abstract class AbstractListTransformer<T, V> extends AbstractListVisitor<
 		super.beforeWalk();
 		result = factory.createCollection();
 	}
-	
-	protected void handleVisit(V v) {
-		result.add(v);
-	};
-
-	public V visit(T element) {
-		return transform(element);
-	};
 
 	/**
 	 * if {@code element == null}, empty list is returned.
