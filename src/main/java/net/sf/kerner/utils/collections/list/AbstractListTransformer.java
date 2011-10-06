@@ -6,7 +6,7 @@ import net.sf.kerner.utils.collections.DefaultVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.transformer.Transformer;
 
-public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
+public abstract class AbstractListTransformer<T, V> extends ListWalkerImpl<T> implements
 		Transformer<T, V>, ListTransformer<T, V> {
 
 	protected final ListFactory<V> factory;

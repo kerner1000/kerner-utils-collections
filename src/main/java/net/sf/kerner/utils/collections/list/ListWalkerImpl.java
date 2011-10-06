@@ -9,7 +9,7 @@ import net.sf.kerner.utils.collections.DefaultVisitor;
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.Visitor;
 
-public class ListWalkerImpl<V, E> implements ListWalker<E> {
+public class ListWalkerImpl<E> implements ListWalker<E> {
 
 	protected final Collection<Filter<E>> filters = new ArrayList<Filter<E>>();
 
