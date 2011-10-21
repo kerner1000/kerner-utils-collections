@@ -15,10 +15,16 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.map;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.SortedMap;
 
 import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.CollectionFactory;
@@ -37,18 +43,17 @@ public class MapUtils {
 
 	private MapUtils() {
 	}
-	
-	public static <K, V> void initMapWithValue(Map<K, V> map,
-			Collection<? extends K> keys, V value, boolean clean) {
+
+	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys,
+			V value, boolean clean) {
 		if (clean)
 			map.clear();
 		for (K k : keys) {
 			map.put(k, value);
 		}
 	}
-	
-	public static <K, V> void initMapWithValue(Map<K, V> map,
-			Collection<? extends K> keys, V value) {
+
+	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys, V value) {
 		initMapWithValue(map, keys, value, true);
 	}
 
@@ -79,9 +84,8 @@ public class MapUtils {
 	 * @see java.util.Map
 	 * @see java.util.Collection
 	 */
-	public static <K, V> void initMapWithValues(Map<K, V> map,
-			Collection<? extends K> keys, Collection<? extends V> values,
-			boolean clean) {
+	public static <K, V> void initMapWithValues(Map<K, V> map, Collection<? extends K> keys,
+			Collection<? extends V> values, boolean clean) {
 		if (clean)
 			map.clear();
 		final Iterator<? extends V> valIt = values.iterator();
@@ -96,8 +100,8 @@ public class MapUtils {
 	/**
 	 * The same as {@code #initMapWithValues(map, keys, values, true)}
 	 */
-	public static <M, V> void initMapWithValues(Map<M, V> map,
-			Collection<? extends M> keys, Collection<? extends V> values) {
+	public static <M, V> void initMapWithValues(Map<M, V> map, Collection<? extends M> keys,
+			Collection<? extends V> values) {
 		initMapWithValues(map, keys, values, true);
 	}
 
@@ -138,8 +142,8 @@ public class MapUtils {
 	 * @throws NullPointerException
 	 *             if {@code map} or {@code key} is null
 	 */
-	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map,
-			M key, E element, CollectionFactory<E> factory) {
+	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map, M key, E element,
+			CollectionFactory<E> factory) {
 		Utils.checkForNull(map, factory);
 		Collection<E> col = map.get(key);
 		if (col == null) {
@@ -183,8 +187,7 @@ public class MapUtils {
 	 * @throws NullPointerException
 	 *             if {@code map} or {@code key} is null
 	 */
-	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map,
-			M key, E element) {
+	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map, M key, E element) {
 		Utils.checkForNull(map, key);
 		addToCollectionsMap(map, key, element, new ArrayListFactory<E>());
 	}
@@ -207,8 +210,7 @@ public class MapUtils {
 	 *            number of elements returning [@code Map} contains (at most)
 	 * @return the new {@code Map} that has been trimmed
 	 */
-	public static <K, V> Map<K, V> trimMapToSize(Map<K, V> map,
-			MapFactory<K, V> factory, int size) {
+	public static <K, V> Map<K, V> trimMapToSize(Map<K, V> map, MapFactory<K, V> factory, int size) {
 		Utils.checkForNull(map, factory);
 		if (size < 1 || map.size() <= size)
 			return map;
@@ -222,6 +224,34 @@ public class MapUtils {
 			c.count();
 		}
 		return result;
+	}
+
+	public static <K, V> Map<V, K> invert(Map<K, V> map, MapFactory<V, K> factory) {
+		Utils.checkForNull(map, factory);
+		final Map<V, K> result = factory.create();
+		for (Entry<K, V> e : map.entrySet()) {
+			result.put(e.getValue(), e.getKey());
+		}
+		return result;
+	}
+
+	public static <K, V> Map<K, V> sort(Map<K, V> map,
+			MapFactory<K, V> factory, Comparator<Map.Entry<K, V>> c) {
+		List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
+		Collections.sort(list, c);
+		Map<K, V> result = factory.create();
+		for (Map.Entry<K, V> entry : list) {
+			result.put(entry.getKey(), entry.getValue());
+		}
+		return result;
+	}
+	
+	public static <K, V> Map<K, V> sortByValue(final Map<K, V> map,
+			final MapFactory<K, V> factory, final Comparator<? super V> c) {
+		return sort(map, factory, new Comparator<Entry<K, V>>(){
+			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+				return c.compare(o1.getValue(), o2.getValue());
+			}});
 	}
 
 }
