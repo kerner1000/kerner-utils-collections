@@ -2,7 +2,6 @@ package net.sf.kerner.utils.collections.list;
 
 import java.util.List;
 
-import net.sf.kerner.utils.collections.DefaultVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.transformer.Transformer;
 
@@ -16,12 +15,11 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerImpl<T> im
 	public AbstractListTransformer(ListFactory<V> factory) {
 		super();
 		this.factory = factory;
-		super.addVisitor(new DefaultVisitor<T>() {
-
+		super.addVisitor(new DefaultListVisitorImpl<T>() {
 			public Void visit(T element) {
 				result.add(transform(element));
 				return null;
-			};
+			}
 		});
 	}
 

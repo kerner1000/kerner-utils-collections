@@ -1,12 +1,23 @@
 package net.sf.kerner.utils.collections.list;
 
 import java.util.List;
-import java.util.ListIterator;
+
+import net.sf.kerner.utils.collections.Filter;
 
 public interface ListWalker<E> {
 	
+	void beforeWalk();
+	
 	void walk(List<? extends E> list);
 	
-	ListIterator<? extends E> getIterator();
+	void afterWalk();
+	
+	void addFilter(Filter<E> filter);
+	
+	void clearFilters();
+	
+	void addVisitor(DefaultListVisitor<E> visitor);
+	
+	void clearVisitors();
 
 }
