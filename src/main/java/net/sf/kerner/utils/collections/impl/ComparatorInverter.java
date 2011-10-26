@@ -2,11 +2,11 @@ package net.sf.kerner.utils.collections.impl;
 
 import java.util.Comparator;
 
-public class ReverseComparator<T> implements Comparator<T>{
+public class ComparatorInverter<T> implements Comparator<T>{
 	
 	private final Comparator<T> c;
 	
-	public ReverseComparator(Comparator<T> c) {
+	public ComparatorInverter(Comparator<T> c) {
 		this.c = c;
 	}
 
