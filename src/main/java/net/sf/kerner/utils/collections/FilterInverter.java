@@ -15,6 +15,8 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections;
 
+import net.sf.kerner.utils.Utils;
+
 /**
  * 
  * Simple class to invert the filtering logic of another {@link Filter}.
@@ -42,6 +44,7 @@ public class FilterInverter<E> implements Filter<E>{
 	
 	public FilterInverter(Filter<E> filter) {
 		super();
+		Utils.checkForNull(filter);
 		this.filter = filter;
 	}
 
