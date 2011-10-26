@@ -3,12 +3,25 @@ package net.sf.kerner.utils.collections.impl;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.collections.CollectionFactory;
+import net.sf.kerner.utils.collections.Visitor;
+import net.sf.kerner.utils.collections.list.ListVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.factory.Factory;
 
 public class CollectionUtils {
+
+	public static String DEFAULT_OBJECT_SEPARATOR = ", ";
+
+	public static Visitor<String, Object> DEFAULT_VISITOR = new Visitor<String, Object>() {
+
+		public String visit(Object element) {
+			return element.toString();
+		}
+	};
 
 	private CollectionUtils() {
 	}
@@ -20,10 +33,14 @@ public class CollectionUtils {
 	 * given by first {@code Collection}'s {@link Iterator} followed by second
 	 * {@code Collection}'s {@link Iterator}.
 	 * 
-	 * @param <C> Type of {@link Collection}s
-	 * @param c1 first {@link Collection}
-	 * @param c2 second {@link Collection}
-	 * @param factory {@link Factory} to create new {@code Collection}
+	 * @param <C>
+	 *            Type of {@link Collection}s
+	 * @param c1
+	 *            first {@link Collection}
+	 * @param c2
+	 *            second {@link Collection}
+	 * @param factory
+	 *            {@link Factory} to create new {@code Collection}
 	 * @return new {@code Collection}
 	 */
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2,
@@ -111,6 +128,39 @@ public class CollectionUtils {
 				return false;
 		}
 		return true;
+	}
+	
+	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor, String objectSeparator) {
+		final StringBuilder sb = new StringBuilder();
+		final Iterator<? extends O> it = iterable.iterator(); 
+		while(it.hasNext()){
+			sb.append(visitor.visit(it.next()));
+			if(it.hasNext())
+			sb.append(objectSeparator);
+		}
+		return sb.toString();
+	}
+	
+	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> visitor, String objectSeparator) {
+		final StringBuilder sb = new StringBuilder();
+		while(it.hasNext()){
+			sb.append(visitor.visit(it.next(), it));
+			if(it.hasNext())
+			sb.append(objectSeparator);
+		}
+		return sb.toString();
+	}
+	
+	public static <O> String toString(Iterable<? extends O> it, Visitor<String, O> s) {
+		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
+	}
+	
+	public static <O> String toString(Iterable<? extends O> it, String objectSeparator) {
+		return toString(it, DEFAULT_VISITOR, objectSeparator);
+	}
+	
+	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> s) {
+		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 
 }
