@@ -54,7 +54,7 @@ import java.util.Comparator;
  * @param <T>
  *            type of objects which are compared
  */
-public abstract class ComparatorNull<T> implements Comparator<T> {
+public class ComparatorNull<T extends Comparable<T>> implements Comparator<T> {
 
 	public int compare(T o1, T o2) {
 		if (o1 == null && o2 == null)
@@ -68,7 +68,9 @@ public abstract class ComparatorNull<T> implements Comparator<T> {
 
 	/**
 	 * 
-	 * Delegate method to compare objects in case both are not {@code null}.
+	 * Delegate method to compare objects in case both are not {@code null}. By
+	 * default, this method returns {@code o1#compareTo(o2)}. Override if custom
+	 * behavior is desired.
 	 * 
 	 * @param o1
 	 *            first object
@@ -77,6 +79,8 @@ public abstract class ComparatorNull<T> implements Comparator<T> {
 	 * @return a negative integer, zero, or a positive integer as the first
 	 *         argument is less than, equal to, or greater than the second
 	 */
-	public abstract int compareNonNull(T o1, T o2);
+	public int compareNonNull(T o1, T o2) {
+		return o1.compareTo(o2);
+	}
 
 }
