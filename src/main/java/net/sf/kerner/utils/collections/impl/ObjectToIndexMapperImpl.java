@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import net.sf.kerner.utils.ArrayUtils;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.map.MapUtils;
 import net.sf.kerner.utils.math.MathUtils;
@@ -116,7 +117,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	}
 
 	public int getMaxIndex() {
-		return MathUtils.max(map.values().toArray(new Integer[map.values().size()]));
+		return (int) MathUtils.max(ArrayUtils.toPrimitive(map.values().toArray(new Double[map.values().size()])));
 	}
 	
 	public int getSize() {
