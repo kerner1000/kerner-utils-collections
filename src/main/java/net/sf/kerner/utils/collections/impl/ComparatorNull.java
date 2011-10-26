@@ -78,10 +78,12 @@ public class ComparatorNull<T> implements Comparator<T> {
 	 *            second object
 	 * @return a negative integer, zero, or a positive integer as the first
 	 *         argument is less than, equal to, or greater than the second
+	 * @throws ClassCastException
+	 *             if one or both objects do not implement comparable
 	 */
 	@SuppressWarnings("unchecked")
 	public int compareNonNull(T o1, T o2) {
-		return ((Comparable<T>)o1).compareTo(o2);
+		return ((Comparable<T>) o1).compareTo(o2);
 	}
 
 }
