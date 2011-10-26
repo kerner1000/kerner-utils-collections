@@ -2,6 +2,8 @@ package net.sf.kerner.utils.collections;
 
 import static org.junit.Assert.*;
 
+import net.sf.kerner.utils.collections.impl.FilterInverter;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
