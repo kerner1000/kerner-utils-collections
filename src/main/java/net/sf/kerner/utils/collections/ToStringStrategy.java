@@ -15,6 +15,8 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections;
 
+import net.sf.kerner.utils.collections.impl.AbstractToStringStrategy;
+
 /**
  * 
  * {@code strategy} to obtain a string representation of an object.
