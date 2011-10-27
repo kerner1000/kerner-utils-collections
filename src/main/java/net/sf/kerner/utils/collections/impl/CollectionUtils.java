@@ -1,3 +1,18 @@
+/**********************************************************************
+Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ ***********************************************************************/
+
 package net.sf.kerner.utils.collections.impl;
 
 import java.util.Collection;
@@ -50,6 +65,11 @@ public class CollectionUtils {
 		return result;
 	}
 
+	/**
+	 * 
+	 * Same as {@link #append(c1, c2, new ArrayListFactory)}
+	 * 
+	 */
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2) {
 		return append(c1, c2, new ArrayListFactory<C>());
 	}
@@ -78,9 +98,20 @@ public class CollectionUtils {
 		return b.toString();
 	}
 
+	/**
+	 * 
+	 * Retrieve highest element contained in a collection.
+	 * 
+	 * @param <T>
+	 *            type of elements
+	 * @param elements
+	 *            collection of elements from which highest is returned
+	 * @param c
+	 *            {@link Comparator} to find highest
+	 * @return highest element
+	 */
 	public static <T> T getHighest(Collection<? extends T> elements, Comparator<T> c) {
 		T result = null;
-
 		for (T e : elements) {
 			if (result == null) {
 				result = e;
@@ -90,24 +121,23 @@ public class CollectionUtils {
 					result = e;
 			}
 		}
-
 		return result;
 	}
 
+	/**
+	 * 
+	 * Retrieve lowest element contained in a collection.
+	 * 
+	 * @param <T>
+	 *            type of elements
+	 * @param elements
+	 *            collection of elements from which lowest is returned
+	 * @param c
+	 *            {@link Comparator} to find lowest
+	 * @return lowest element
+	 */
 	public static <T> T getLowest(Collection<? extends T> elements, Comparator<T> c) {
-		T result = null;
-
-		for (T e : elements) {
-			if (result == null) {
-				result = e;
-			} else {
-				int i = c.compare(e, result);
-				if (i < 0)
-					result = e;
-			}
-		}
-
-		return result;
+		return getHighest(elements, new ComparatorInverter<T>(c));
 	}
 
 	/**
@@ -129,36 +159,56 @@ public class CollectionUtils {
 		}
 		return true;
 	}
-	
-	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor, String objectSeparator) {
+
+	/**
+	 * 
+	 * Retrieve a string representation of a collection of objects. each objects
+	 * string representation is obtained by {@code visitor} which will visit
+	 * every element one after another. Each object's string representation is
+	 * separated by {@code objectSeparator}.
+	 * 
+	 * @param <O>
+	 *            type of elements
+	 * @param iterable
+	 *            {@link Iterable} that provides elements
+	 * @param visitor
+	 *            {@link Visitor} to obtain each elements string representation
+	 * @param objectSeparator
+	 *            String to separate objects from each other
+	 * @return string representation of all elements provided by
+	 *         {@code iterable}
+	 */
+	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor,
+			String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
-		final Iterator<? extends O> it = iterable.iterator(); 
-		while(it.hasNext()){
+		final Iterator<? extends O> it = iterable.iterator();
+		while (it.hasNext()) {
 			sb.append(visitor.visit(it.next()));
-			if(it.hasNext())
-			sb.append(objectSeparator);
+			if (it.hasNext())
+				sb.append(objectSeparator);
 		}
 		return sb.toString();
 	}
-	
-	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> visitor, String objectSeparator) {
+
+	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> visitor,
+			String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			sb.append(visitor.visit(it.next(), it));
-			if(it.hasNext())
-			sb.append(objectSeparator);
+			if (it.hasNext())
+				sb.append(objectSeparator);
 		}
 		return sb.toString();
 	}
-	
+
 	public static <O> String toString(Iterable<? extends O> it, Visitor<String, O> s) {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
-	
+
 	public static <O> String toString(Iterable<? extends O> it, String objectSeparator) {
 		return toString(it, DEFAULT_VISITOR, objectSeparator);
 	}
-	
+
 	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> s) {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
