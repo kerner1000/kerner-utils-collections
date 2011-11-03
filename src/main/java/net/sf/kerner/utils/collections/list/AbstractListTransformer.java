@@ -3,6 +3,7 @@ package net.sf.kerner.utils.collections.list;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.collections.list.impl.ListWalkerImpl;
 import net.sf.kerner.utils.transformer.Transformer;
 
 public abstract class AbstractListTransformer<T, V> extends ListWalkerImpl<T> implements

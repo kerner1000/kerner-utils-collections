@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Filter;
+import net.sf.kerner.utils.collections.list.DefaultListVisitor;
+import net.sf.kerner.utils.collections.list.ListWalker;
 
 public class ListWalkerImpl<E> implements ListWalker<E> {
 

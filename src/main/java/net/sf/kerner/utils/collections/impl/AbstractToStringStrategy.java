@@ -61,7 +61,10 @@ public abstract class AbstractToStringStrategy<E> implements ToStringStrategy<E>
 	public String toString() {
 		if (e == null)
 			return "null";
-		return visit(e);
+		final String r = visit(e);
+		if (r == null)
+			return "null";
+		return r;
 	}
 
 }
