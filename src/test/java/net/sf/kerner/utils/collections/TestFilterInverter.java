@@ -1,7 +1,7 @@
 package net.sf.kerner.utils.collections;
 
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import net.sf.kerner.utils.collections.impl.FilterInverter;
 
 import org.junit.After;
