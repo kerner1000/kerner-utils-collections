@@ -1,11 +1,10 @@
 package net.sf.kerner.utils.collections.list.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.DefaultListVisitor;
