@@ -3,6 +3,7 @@ package net.sf.kerner.utils.collections.list;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.collections.list.impl.DefaultListVisitorImpl;
 import net.sf.kerner.utils.collections.list.impl.ListWalkerDefault;
 import net.sf.kerner.utils.transformer.Transformer;
 

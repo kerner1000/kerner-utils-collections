@@ -1,6 +1,8 @@
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.ListIterator;
+
+import net.sf.kerner.utils.collections.list.DefaultListVisitor;
 
 public class DefaultListVisitorImpl<E> implements DefaultListVisitor<E>{
 	
