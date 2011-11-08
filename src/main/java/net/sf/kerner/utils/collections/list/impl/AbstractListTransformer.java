@@ -1,10 +1,9 @@
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.List;
 
-import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.collections.list.impl.DefaultListVisitorImpl;
-import net.sf.kerner.utils.collections.list.impl.ListWalkerDefault;
+import net.sf.kerner.utils.collections.list.ListFactory;
+import net.sf.kerner.utils.collections.list.ListTransformer;
 import net.sf.kerner.utils.transformer.Transformer;
 
 public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
@@ -30,7 +29,7 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
 	}
 
 	@Override
-	public void beforeWalk() {
+	public synchronized void beforeWalk() {
 		super.beforeWalk();
 		result = factory.createCollection();
 	}

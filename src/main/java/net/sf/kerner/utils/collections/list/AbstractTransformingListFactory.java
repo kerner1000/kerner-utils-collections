@@ -3,6 +3,8 @@ package net.sf.kerner.utils.collections.list;
 import java.util.Collection;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.list.impl.AbstractListTransformer;
+
 public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V> implements ListFactory<V> {
 
 	public AbstractTransformingListFactory() {

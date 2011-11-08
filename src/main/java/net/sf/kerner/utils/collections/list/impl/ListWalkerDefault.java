@@ -37,26 +37,24 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 
 	}
 
-	public void walk(List<? extends E> list) {
+	public synchronized void walk(List<? extends E> list) {
 		iterator = list.listIterator();
-		synchronized (iterator) {
-			beforeWalk();
-			while (iterator.hasNext()) {
-				final E e = iterator.next();
-				boolean take = true;
-				for (Filter<E> f : filters) {
-					if (f.visit(e)) {
-						// take
-					} else {
-						take = false;
-						break;
-					}
+		beforeWalk();
+		while (iterator.hasNext()) {
+			final E e = iterator.next();
+			boolean take = true;
+			for (Filter<E> f : filters) {
+				if (f.visit(e)) {
+					// take
+				} else {
+					take = false;
+					break;
 				}
-				if (take) {
-					for (DefaultListVisitor<E> v : visitors) {
-						v.visit(e);
-						v.visit(e, iterator);
-					}
+			}
+			if (take) {
+				for (DefaultListVisitor<E> v : visitors) {
+					v.visit(e);
+					v.visit(e, iterator);
 				}
 			}
 			afterWalk();
