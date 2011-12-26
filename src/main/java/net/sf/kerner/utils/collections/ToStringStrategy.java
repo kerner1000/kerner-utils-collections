@@ -42,6 +42,6 @@ import net.sf.kerner.utils.collections.impl.AbstractToStringStrategy;
  *            type of object
  * 
  */
-public interface ToStringStrategy extends Visitor<String, Object> {
+public interface ToStringStrategy<E> extends Visitor<String, E> {
 
 }

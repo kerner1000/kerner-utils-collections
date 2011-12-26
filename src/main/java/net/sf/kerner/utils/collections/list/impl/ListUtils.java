@@ -143,7 +143,7 @@ public class ListUtils {
 		return new ToStringListTransformer().transformCollection(Arrays.asList(objects));
 	}
 	
-	public static List<String> toStringList(ToStringStrategy strategy, Object... objects) {
+	public static List<String> toStringList(ToStringStrategy<Object> strategy, Object... objects) {
 		return new ToStringListTransformer(strategy).transformCollection(Arrays.asList(objects));
 	}
 

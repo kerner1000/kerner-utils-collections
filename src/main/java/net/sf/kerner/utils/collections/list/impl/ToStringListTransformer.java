@@ -9,20 +9,20 @@ import net.sf.kerner.utils.collections.ToStringStrategy;
 
 public class ToStringListTransformer implements CollectionTransformer<Object, String> {
 	
-	public final static ToStringStrategy DEFAULT_TO_STRING_STRATEGY = new ToStringStrategy() {
+	public final static ToStringStrategy<Object> DEFAULT_TO_STRING_STRATEGY = new ToStringStrategy<Object>() {
 
 		public String visit(Object element) {
 			return element.toString();
 		}
 	};
 	
-	private final ToStringStrategy s;
+	private final ToStringStrategy<Object> s;
 	
 	public ToStringListTransformer() {
 		s = DEFAULT_TO_STRING_STRATEGY;
 	}
 	
-	public ToStringListTransformer(ToStringStrategy s) {
+	public ToStringListTransformer(ToStringStrategy<Object> s) {
 		this.s = s;
 	}
 

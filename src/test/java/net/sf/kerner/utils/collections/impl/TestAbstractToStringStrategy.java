@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class TestAbstractToStringStrategy {
 	
-	private AbstractToStringStrategy s;
+	private AbstractToStringStrategy<?> s;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,7 +30,7 @@ public class TestAbstractToStringStrategy {
 
 	@Test
 	public final void test01() {
-		s = new AbstractToStringStrategy(1) {
+		s = new AbstractToStringStrategy<Object>(1) {
 			public String visit(Object element) {
 				return element.toString();
 			}
@@ -40,7 +40,7 @@ public class TestAbstractToStringStrategy {
 
 	@Test
 	public final void test02() {
-		s = new AbstractToStringStrategy(1) {
+		s = new AbstractToStringStrategy<Object>(1) {
 			public String visit(Object element) {
 				return null;
 			}
@@ -50,7 +50,7 @@ public class TestAbstractToStringStrategy {
 	
 	@Test
 	public final void test03() {
-		s = new AbstractToStringStrategy(null) {
+		s = new AbstractToStringStrategy<Object>(null) {
 			public String visit(Object element) {
 				return null;
 			}
