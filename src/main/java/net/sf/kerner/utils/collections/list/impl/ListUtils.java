@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.ToStringStrategy;
 import net.sf.kerner.utils.collections.impl.CollectionUtils;
 import net.sf.kerner.utils.collections.list.ListFactory;
 
@@ -140,6 +141,10 @@ public class ListUtils {
 
 	public static List<String> toStringList(Object... objects) {
 		return new ToStringListTransformer().transformCollection(Arrays.asList(objects));
+	}
+	
+	public static List<String> toStringList(ToStringStrategy<Object> strategy, Object... objects) {
+		return new ToStringListTransformer(strategy).transformCollection(Arrays.asList(objects));
 	}
 
 	public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2) {
