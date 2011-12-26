@@ -139,12 +139,12 @@ public class ListUtils {
 		}
 	}
 
-	public static List<String> toStringList(Collection<?> elements) {
-		return new ToStringListTransformer().transformCollection(elements);
+	public static <E> List<String> toStringList(Collection<E> elements) {
+		return new ToStringListTransformer<E>().transformCollection(elements);
 	}
 	
-	public static List<String> toStringList(ToStringStrategy<Object> strategy, Collection<?> elements) {
-		return new ToStringListTransformer(strategy).transformCollection(elements);
+	public static <E> List<String> toStringList(ToStringStrategy<E> strategy, Collection<E> elements) {
+		return new ToStringListTransformer<E>(strategy).transformCollection(elements);
 	}
 
 	public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2) {
