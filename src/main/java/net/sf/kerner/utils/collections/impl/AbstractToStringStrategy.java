@@ -41,9 +41,9 @@ import net.sf.kerner.utils.collections.ToStringStrategy;
  * @param <E>
  *            type of object
  */
-public abstract class AbstractToStringStrategy<E> implements ToStringStrategy<E> {
+public abstract class AbstractToStringStrategy implements ToStringStrategy {
 
-	protected final E e;
+	protected final Object e;
 
 	/**
 	 * 
@@ -52,7 +52,7 @@ public abstract class AbstractToStringStrategy<E> implements ToStringStrategy<E>
 	 * @param e
 	 *            object that will be visited on call of {@link #toString()}
 	 */
-	public AbstractToStringStrategy(E e) {
+	public AbstractToStringStrategy(Object e) {
 		super();
 		this.e = e;
 	}
