@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -23,6 +23,8 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import java.util.Iterator;
+
 import net.sf.kerner.utils.ArrayUtils;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.map.MapUtils;
@@ -30,12 +32,10 @@ import net.sf.kerner.utils.math.MathUtils;
 
 /**
  * 
- * Default implementation for
- * {@link net.sf.kerner.utils.collections.ObjectToIndexMapper
- * ObjectToIndexMapper}.
+ * Default implementation for {@link ObjectToIndexMapper}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-03
+ * @version 2012-01-13
  * 
  */
 public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
@@ -47,19 +47,12 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	 */
 	protected final Map<Object, Integer> map = new LinkedHashMap<Object, Integer>();
 
-	// Constructor //
-
-	/**
-	 * 
-	 */
 	public ObjectToIndexMapperImpl(Collection<? extends Object> keys) {
 		final Collection<Integer> values = new LinkedHashSet<Integer>();
-		synchronized (ObjectToIndexMapperImpl.class) {
-			for (int i = 0; i < keys.size(); i++) {
-				values.add(Integer.valueOf(i));
-			}
-			MapUtils.initMapWithValues(map, keys, values);
+		for (int i = 0; i < keys.size(); i++) {
+			values.add(Integer.valueOf(i));
 		}
+		MapUtils.initMapWithValues(map, keys, values);
 	}
 
 	// Private //
@@ -85,19 +78,17 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		if (result != null) {
 			return result;
 		} else
-			throw new NoSuchElementException("no element for row index [" + key
-					+ "]");
+			throw new NoSuchElementException("no such key [" + key + "]");
 	}
 
 	public Object getValue(int index) {
-		if(index < 0)
+		if (index < 0)
 			throw new IllegalArgumentException("index [" + index + "]");
 		for (Entry<Object, Integer> e : map.entrySet()) {
 			if (e.getValue().equals(Integer.valueOf(index)))
 				return e.getKey();
 		}
-		throw new NoSuchElementException("no element for row index [" + index
-				+ "]");
+		throw new NoSuchElementException("no such index [" + index + "]");
 	}
 
 	public boolean containsKey(Object key) {
@@ -117,10 +108,30 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	}
 
 	public int getMaxIndex() {
-		return (int) MathUtils.max(ArrayUtils.toPrimitive(map.values().toArray(new Double[map.values().size()])));
+		return MathUtils.max((map.values().toArray(new Integer[map.values().size()]))).intValue();
 	}
-	
+
 	public int getSize() {
 		return map.values().size();
+	}
+
+	public boolean isEmpty() {
+		return getSize() == 0;
+	}
+
+	public void addMapping(Object key, int value) {
+//		final Iterator<Entry<Object, Integer>> it = map.entrySet().iterator();
+//		while(it.hasNext()){
+//			final Entry<Object, Integer> e = it.next();
+//			if (e.getValue().equals(Integer.valueOf(value))){
+//				it.remove();
+//				break;
+//			}
+//		}
+		map.put(key, value);
+	}
+
+	public void addMapping(Object key) {
+		map.put(key, getMaxIndex() + 1);		
 	}
 }
