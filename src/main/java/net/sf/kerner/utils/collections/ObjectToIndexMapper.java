@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
