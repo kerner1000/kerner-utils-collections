@@ -15,13 +15,12 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.impl;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.map.MapUtils;
@@ -32,7 +31,7 @@ import net.sf.kerner.utils.math.MathUtils;
  * Default implementation for {@link ObjectToIndexMapper}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-13
+ * @version 2012-01-25
  * 
  */
 public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
@@ -44,8 +43,8 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	 */
 	protected final Map<Object, Integer> map = new LinkedHashMap<Object, Integer>();
 
-	public ObjectToIndexMapperImpl(Collection<? extends Object> keys) {
-		final Collection<Integer> values = new LinkedHashSet<Integer>();
+	public ObjectToIndexMapperImpl(List<? extends Object> keys) {
+		final List<Integer> values = new ArrayList<Integer>();
 		for (int i = 0; i < keys.size(); i++) {
 			values.add(Integer.valueOf(i));
 		}
@@ -96,12 +95,12 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		return map.containsValue(Integer.valueOf(index));
 	}
 
-	public Collection<? extends Integer> values() {
-		return map.values();
+	public List<Integer> values() {
+		return new ArrayList<Integer>(map.values());
 	}
 
-	public Set<? extends Object> keySet() {
-		return map.keySet();
+	public List<Object> keys() {
+		return new ArrayList<Object>(map.keySet());
 	}
 
 	public int getMaxIndex() {

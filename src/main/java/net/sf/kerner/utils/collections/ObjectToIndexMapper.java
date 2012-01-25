@@ -16,9 +16,9 @@ limitations under the License.
 package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 /**
  * 
@@ -59,7 +59,7 @@ import java.util.Set;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-13
+ * @version 2012-01-25
  * @see Collection
  * @see List
  * @see Map
@@ -114,24 +114,24 @@ public interface ObjectToIndexMapper {
 
 	/**
 	 * 
-	 * Get a {@code Collection} that contains all values of this
+	 * Get a {@code List} that contains all values of this
 	 * {@code ObjectToIndexMapper}, meaning all indices that are mapped by
 	 * objects.
 	 * 
-	 * @return a {@code Collection} that contains all values of this
+	 * @return a {@code List} that contains all values of this
 	 *         {@code ObjectToIndexMapper}
 	 */
-	Collection<? extends Integer> values();
+	List<Integer> values();
 
 	/**
 	 * 
-	 * Get a {@code Set} that contains all keys of this
+	 * Get a {@code List} that contains all keys of this
 	 * {@code ObjectToIndexMapper}, meaning all objects that map to indices.
 	 * 
-	 * @return a {@code Set} that contains all keys of this
+	 * @return a {@code List} that contains all keys of this
 	 *         {@code ObjectToIndexMapper}
 	 */
-	Set<? extends Object> keySet();
+	List<Object> keys();
 
 	int getSize();
 
