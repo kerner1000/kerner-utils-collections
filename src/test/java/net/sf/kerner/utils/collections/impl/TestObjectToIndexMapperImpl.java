@@ -20,9 +20,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -61,9 +61,9 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testObjectToIndexMapperImpl() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		mapper = new ObjectToIndexMapperImpl(keys);
-		assertEquals(0, mapper.keySet().size());
+		assertEquals(0, mapper.keys().size());
 		assertEquals(0, mapper.values().size());
 	}
 	
@@ -72,11 +72,11 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testObjectToIndexMapperImpl01() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
-		assertEquals(2, mapper.keySet().size());
+		assertEquals(2, mapper.keys().size());
 		assertEquals(2, mapper.values().size());
 	}
 
@@ -85,7 +85,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testGet() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -98,7 +98,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test(expected=NoSuchElementException.class)
 	public final void testGet01() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -110,7 +110,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testGetValue() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -123,7 +123,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test(expected=IllegalArgumentException.class)
 	public final void testGetValue01() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -135,7 +135,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test(expected=NoSuchElementException.class)
 	public final void testGetValue02() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -147,7 +147,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testContainsKey() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -161,7 +161,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testContainsValue() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -175,7 +175,7 @@ public class TestObjectToIndexMapperImpl {
 	 */
 	@Test
 	public final void testValues() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
@@ -183,15 +183,15 @@ public class TestObjectToIndexMapperImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#keySet()}.
+	 * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#keys()}.
 	 */
 	@Test
-	public final void testKeySet() {
-		Set<Object> keys = new LinkedHashSet<Object>();
+	public final void testkeys() {
+		List<Object> keys = new ArrayList<Object>();
 		keys.add("eins");
 		keys.add("zwei");
 		mapper = new ObjectToIndexMapperImpl(keys);
-		assertArrayEquals(keys.toArray(), mapper.keySet().toArray());
+		assertArrayEquals(keys.toArray(), mapper.keys().toArray());
 	}
 
 }
