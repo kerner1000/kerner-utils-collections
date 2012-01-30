@@ -15,6 +15,7 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.list;
 
+import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Visitor;
