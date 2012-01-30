@@ -22,6 +22,8 @@ import java.util.ListIterator;
 
 import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.collections.CollectionFactory;
+import net.sf.kerner.utils.collections.CollectionView;
+import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.Visitor;
 import net.sf.kerner.utils.collections.list.ListVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
@@ -236,5 +238,28 @@ public class CollectionUtils {
 //	public static <C> Collection<Collection<C>> split(Collection<C> col, int numElements) {
 //		return split(col, numElements, new ArrayListFactory<Collection<C>>(), new ArrayListFactory<C>());
 //	}
+	
+	public <C> void filterCollection(Collection<C> collection, Filter<C> filter){
+		final Iterator<C> it = collection.iterator();
+		while(it.hasNext()){
+			final C cc = it.next();
+			if(filter.visit(cc)){
+				
+			} else {
+				it.remove();
+			}
+		}
+	}
+	
+	public <C> Collection<C> filterCollection(Collection<C> collection, Filter<C> filter, CollectionFactory<C> factory){
+		final Collection<C> result = factory.createCollection(collection);
+		filterCollection(result, filter);
+		return result;
+	}
+	
+	public <C> CollectionView<C> getCollectionView(Collection<C> collection, Filter<C> filter){
+		final CollectionView<C> result = new CollectionViewDefault<C>(collection, filter);
+		return result;
+	}
 
 }
