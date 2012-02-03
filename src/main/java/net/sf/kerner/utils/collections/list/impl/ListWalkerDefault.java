@@ -15,8 +15,6 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 
 	protected final Collection<DefaultListVisitor<E>> visitors = new ArrayList<DefaultListVisitor<E>>();
 
-	protected volatile ListIterator<? extends E> iterator;
-
 	public synchronized void addFilter(Filter<E> filter) {
 		filters.add(filter);
 	}
@@ -38,10 +36,9 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 	}
 
 	public synchronized void walk(List<? extends E> list) {
-		iterator = list.listIterator();
 		beforeWalk();
-		while (iterator.hasNext()) {
-			final E e = iterator.next();
+		for(int i=0; i<list.size();i++){
+			final E e = list.get(i);
 			boolean take = true;
 			for (Filter<E> f : filters) {
 				if (f.visit(e)) {
@@ -53,8 +50,8 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 			}
 			if (take) {
 				for (DefaultListVisitor<E> v : visitors) {
+					v.visit(e, i);
 					v.visit(e);
-					v.visit(e, iterator);
 				}
 			}
 			afterWalk();

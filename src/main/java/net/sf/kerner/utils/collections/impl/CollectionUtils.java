@@ -15,6 +15,7 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -27,6 +28,7 @@ import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.Visitor;
 import net.sf.kerner.utils.collections.list.ListVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.collections.list.impl.ArrayListView;
 import net.sf.kerner.utils.factory.Factory;
 
 public class CollectionUtils {
@@ -196,7 +198,8 @@ public class CollectionUtils {
 			String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
 		while (it.hasNext()) {
-			sb.append(visitor.visit(it.next(), it));
+			final int index = it.nextIndex();
+			sb.append(visitor.visit(it.next(), index));
 			if (it.hasNext())
 				sb.append(objectSeparator);
 		}
@@ -239,27 +242,20 @@ public class CollectionUtils {
 //		return split(col, numElements, new ArrayListFactory<Collection<C>>(), new ArrayListFactory<C>());
 //	}
 	
-	public <C> void filterCollection(Collection<C> collection, Filter<C> filter){
-		final Iterator<C> it = collection.iterator();
-		while(it.hasNext()){
-			final C cc = it.next();
-			if(filter.visit(cc)){
-				
-			} else {
-				it.remove();
-			}
-		}
-	}
-	
-	public <C> Collection<C> filterCollection(Collection<C> collection, Filter<C> filter, CollectionFactory<C> factory){
-		final Collection<C> result = factory.createCollection(collection);
-		filterCollection(result, filter);
+	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter, CollectionFactory<C> factory){
+		final Collection<C> result = factory.createCollection();
+		for(C c : collection)
+			if(filter.visit(c))
+				result.add(c);
 		return result;
 	}
 	
-	public <C> CollectionView<C> getCollectionView(Collection<C> collection, Filter<C> filter){
-		final CollectionView<C> result = new CollectionViewDefault<C>(collection, filter);
-		return result;
+	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter){
+		return filterCollection(collection, filter, new ArrayListFactory<C>());
+	}
+	
+	public static <C> CollectionView<C> getCollectionView(Collection<? extends C> collection, Filter<C> filter){
+		return new ArrayListView<C>(collection, filter);
 	}
 
 }
