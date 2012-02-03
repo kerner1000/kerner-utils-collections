@@ -94,7 +94,7 @@ public class TestListWalkerDefault {
 				c1.count();
 				return null;
 			};
-			public Void visit(Integer e, java.util.ListIterator<? extends Integer> iterator) {
+			public Void visit(Integer e, int index) {
 				c2.count();
 				return null;};
 		};
@@ -115,7 +115,7 @@ public class TestListWalkerDefault {
 				c1.count();
 				return null;
 			};
-			public Void visit(Integer e, java.util.ListIterator<? extends Integer> iterator) {
+			public Void visit(Integer e, int index) {
 				c2.count();
 				return null;};
 		};

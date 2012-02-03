@@ -11,7 +11,7 @@ public class DefaultListVisitorImpl<E> implements DefaultListVisitor<E>{
 		return null;
 	}
 
-	public Void visit(E e, ListIterator<? extends E> iterator) {
+	public Void visit(E e, int index) {
 		// do nothing by default
 		return null;
 	}

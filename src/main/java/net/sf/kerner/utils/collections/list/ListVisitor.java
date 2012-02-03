@@ -54,11 +54,9 @@ public interface ListVisitor<R, E> extends Visitor<R, E> {
 	 * 
 	 * @param element
 	 *            element to visit
-	 * @param iterator
-	 *            {@link ListIterator} that gives direct access to {@link List}
-	 *            that contains elements which are visited
+	 * 
 	 * @return result of visit
 	 */
-	R visit(E e, ListIterator<? extends E> iterator);
+	R visit(E element, int index);
 
 }
