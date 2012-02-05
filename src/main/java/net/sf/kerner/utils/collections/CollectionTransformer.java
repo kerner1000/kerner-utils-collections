@@ -19,8 +19,9 @@ import java.util.Collection;
 
 /**
  * 
- * A {@code CollectionTransformer} converts one object of type {@code Collection<? extends T>} to another object
- * of type {@code Collection<? super V>}.
+ * A {@code CollectionTransformer} converts one object of type
+ * {@code Collection<? extends T>} to another object of type
+ * {@code Collection<? super V>}.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -42,8 +43,8 @@ import java.util.Collection;
  * @param <V>
  *            type of elements in output collection
  */
-public interface CollectionTransformer<T,V> {
-	
+public interface CollectionTransformer<T, V> {
+
 	Collection<V> transformCollection(Collection<? extends T> element);
 
 }

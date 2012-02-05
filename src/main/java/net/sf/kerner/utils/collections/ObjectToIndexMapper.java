@@ -140,7 +140,7 @@ public interface ObjectToIndexMapper {
 	boolean isEmpty();
 
 	void addMapping(Object key);
-	
+
 	void addMapping(Object key, int index);
 
 }

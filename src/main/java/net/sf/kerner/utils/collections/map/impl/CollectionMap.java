@@ -10,17 +10,17 @@ import net.sf.kerner.utils.collections.map.MapFactory;
 import net.sf.kerner.utils.collections.map.MapUtils;
 
 public class CollectionMap<K, V> {
-	
+
 	private final Map<K, Collection<V>> map;
-	
+
 	private final CollectionFactory<V> collectionFactory;
-	
-	public CollectionMap(MapFactory<K, Collection<V>> mapFactory, CollectionFactory<V> collectionFactory){
+
+	public CollectionMap(MapFactory<K, Collection<V>> mapFactory, CollectionFactory<V> collectionFactory) {
 		this.map = mapFactory.create();
 		this.collectionFactory = collectionFactory;
 	}
-	
-	public CollectionMap(){
+
+	public CollectionMap() {
 		this(new LinkedHashMapFactory<K, Collection<V>>(), new ArrayListFactory<V>());
 	}
 
@@ -37,8 +37,8 @@ public class CollectionMap<K, V> {
 	}
 
 	public boolean containsValue(Object value) {
-		for(Collection<V> v : map.values()){
-			if(v.contains(value))
+		for (Collection<V> v : map.values()) {
+			if (v.contains(value))
 				return true;
 		}
 		return false;
@@ -54,16 +54,16 @@ public class CollectionMap<K, V> {
 
 	public boolean remove(Object key) {
 		boolean result = false;
-		for(Collection<V> c : map.values()){
+		for (Collection<V> c : map.values()) {
 			boolean b = c.remove(key);
-			if(b)
+			if (b)
 				result = b;
 		}
 		return result;
 	}
 
 	public void putAll(Map<? extends K, ? extends V> m) {
-		for(java.util.Map.Entry<? extends K, ? extends V> e : m.entrySet()){
+		for (java.util.Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
 			this.put(e.getKey(), e.getValue());
 		}
 	}
@@ -78,7 +78,7 @@ public class CollectionMap<K, V> {
 
 	public Collection<V> values() {
 		final Collection<V> result = collectionFactory.createCollection();
-		for(Collection<V> c : map.values()){
+		for (Collection<V> c : map.values()) {
 			result.addAll(c);
 		}
 		return result;

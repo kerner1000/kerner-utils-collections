@@ -12,9 +12,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestIteratorToEnumerationTransformer {
-	
+
 	@SuppressWarnings("rawtypes")
-	private IteratorToEnumerationTransformer t; 
+	private IteratorToEnumerationTransformer t;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -26,7 +26,7 @@ public class TestIteratorToEnumerationTransformer {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 	}
 
 	@After

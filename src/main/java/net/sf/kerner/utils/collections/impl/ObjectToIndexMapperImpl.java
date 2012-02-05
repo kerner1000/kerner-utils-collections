@@ -116,18 +116,19 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	}
 
 	public void addMapping(Object key, int value) {
-//		final Iterator<Entry<Object, Integer>> it = map.entrySet().iterator();
-//		while(it.hasNext()){
-//			final Entry<Object, Integer> e = it.next();
-//			if (e.getValue().equals(Integer.valueOf(value))){
-//				it.remove();
-//				break;
-//			}
-//		}
+		// final Iterator<Entry<Object, Integer>> it =
+		// map.entrySet().iterator();
+		// while(it.hasNext()){
+		// final Entry<Object, Integer> e = it.next();
+		// if (e.getValue().equals(Integer.valueOf(value))){
+		// it.remove();
+		// break;
+		// }
+		// }
 		map.put(key, value);
 	}
 
 	public void addMapping(Object key) {
-		map.put(key, getMaxIndex() + 1);		
+		map.put(key, getMaxIndex() + 1);
 	}
 }

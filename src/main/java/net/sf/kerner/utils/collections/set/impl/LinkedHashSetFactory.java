@@ -30,7 +30,8 @@ import net.sf.kerner.utils.collections.set.SetFactory;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-16
  * 
- * @param <E> type of elements contained by the {@code Set}
+ * @param <E>
+ *            type of elements contained by the {@code Set}
  */
 public class LinkedHashSetFactory<E> implements SetFactory<E> {
 
@@ -44,7 +45,5 @@ public class LinkedHashSetFactory<E> implements SetFactory<E> {
 	public Set<E> createCollection(Collection<? extends E> template) {
 		return new LinkedHashSet<E>(template);
 	}
-
-	
 
 }

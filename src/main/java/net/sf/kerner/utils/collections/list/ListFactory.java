@@ -30,7 +30,8 @@ import net.sf.kerner.utils.collections.CollectionFactory;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-02
  * 
- * @param <E> type of elements contained by the {@code List}
+ * @param <E>
+ *            type of elements contained by the {@code List}
  */
 public interface ListFactory<E> extends CollectionFactory<E> {
 

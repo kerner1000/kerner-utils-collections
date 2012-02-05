@@ -26,33 +26,36 @@ import java.util.Set;
 
 /**
  * 
- * An instance of {@link Properties} that keeps properties sorted by string representation of keys.
+ * An instance of {@link Properties} that keeps properties sorted by string
+ * representation of keys.
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-27
- *
+ * 
  */
 public class PropertiesSorted extends Properties {
 
 	private static final long serialVersionUID = -3190096405009723488L;
-	
+
 	private final static IteratorToEnumerationTransformer<Object> t = new IteratorToEnumerationTransformer<Object>();
 
 	@Override
 	public synchronized Enumeration<Object> keys() {
 		return t.transform(keySet().iterator());
 	}
-	
+
 	@Override
 	public synchronized Set<Object> keySet() {
 		Set<Object> keys = super.keySet();

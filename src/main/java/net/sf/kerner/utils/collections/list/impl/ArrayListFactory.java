@@ -39,6 +39,4 @@ public class ArrayListFactory<E> implements ListFactory<E> {
 		return new ArrayList<E>(template);
 	}
 
-	
-
 }

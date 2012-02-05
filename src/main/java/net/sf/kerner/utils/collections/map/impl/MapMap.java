@@ -2,7 +2,6 @@ package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,7 +20,7 @@ public class MapMap<T, K, V> {
 		this.map = map;
 		this.factory = factory;
 	}
-	
+
 	public MapMap(Map<T, Map<K, V>> map) {
 		this(map, new LinkedHashMapFactory<K, V>());
 	}
@@ -37,18 +36,18 @@ public class MapMap<T, K, V> {
 	public boolean containsKey1(T key) {
 		return map.containsKey(key);
 	}
-	
+
 	public boolean containsKey2(K key) {
-		for(Map<K, V> v : map.values()){
-			if(v.keySet().contains(key))
+		for (Map<K, V> v : map.values()) {
+			if (v.keySet().contains(key))
 				return true;
 		}
 		return false;
 	}
 
 	public boolean containsValue(V value) {
-		for(Map<K, V> v : map.values()){
-			if(v.values().contains(value))
+		for (Map<K, V> v : map.values()) {
+			if (v.values().contains(value))
 				return true;
 		}
 		return false;
@@ -62,12 +61,12 @@ public class MapMap<T, K, V> {
 		MapUtils.addToMapMap(map, key1, key2, value, factory);
 	}
 
-	public Map<K,V> remove1(T key1) {
+	public Map<K, V> remove1(T key1) {
 		return map.remove(key1);
 	}
-	
+
 	public void remove2(K key2) {
-		for(Map<K, V> c : map.values()){
+		for (Map<K, V> c : map.values()) {
 			c.remove(key2);
 		}
 	}
@@ -79,10 +78,10 @@ public class MapMap<T, K, V> {
 	public Set<T> keySet1() {
 		return map.keySet();
 	}
-	
+
 	public List<K> keyList2() {
 		final List<K> result = new ArrayList<K>();
-		for(Map<K, V> v : map.values()){
+		for (Map<K, V> v : map.values()) {
 			result.addAll(v.keySet());
 		}
 		return result;
@@ -91,10 +90,10 @@ public class MapMap<T, K, V> {
 	public Collection<V> values(K key) {
 		return map.get(key).values();
 	}
-	
+
 	public Collection<V> values() {
 		final Collection<V> result = new ArrayList<V>();
-		for(Map<K, V> c : map.values()){
+		for (Map<K, V> c : map.values()) {
 			result.addAll(c.values());
 		}
 		return result;
@@ -116,7 +115,5 @@ public class MapMap<T, K, V> {
 	public String toString() {
 		return map.toString();
 	}
-	
-	
 
 }
