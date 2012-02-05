@@ -3,7 +3,6 @@ package net.sf.kerner.utils.collections.list.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.DefaultListVisitor;
@@ -37,7 +36,7 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 
 	public synchronized void walk(List<? extends E> list) {
 		beforeWalk();
-		for(int i=0; i<list.size();i++){
+		for (int i = 0; i < list.size(); i++) {
 			final E e = list.get(i);
 			boolean take = true;
 			for (Filter<E> f : filters) {

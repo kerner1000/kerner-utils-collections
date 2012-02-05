@@ -94,16 +94,18 @@ public class TestListWalkerDefault {
 				c1.count();
 				return null;
 			};
+
 			public Void visit(Integer e, int index) {
 				c2.count();
-				return null;};
+				return null;
+			};
 		};
 		w.addVisitor(v);
 		w.walk(l);
 		assertEquals(l.size(), c1.getCount());
 		assertEquals(l.size(), c2.getCount());
 	}
-	
+
 	@Test
 	public final void testWalk04() {
 		w = new ListWalkerDefault<Integer>();
@@ -115,16 +117,19 @@ public class TestListWalkerDefault {
 				c1.count();
 				return null;
 			};
+
 			public Void visit(Integer e, int index) {
 				c2.count();
-				return null;};
+				return null;
+			};
 		};
-		w.addFilter(new Filter<Integer>(){
+		w.addFilter(new Filter<Integer>() {
 			public Boolean visit(Integer element) {
-				if(element <= 4)
+				if (element <= 4)
 					return false;
 				return true;
-			}});
+			}
+		});
 		w.addVisitor(v);
 		w.walk(l);
 		assertEquals(l.size() / 2, c1.getCount());

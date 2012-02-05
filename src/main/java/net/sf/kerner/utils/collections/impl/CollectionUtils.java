@@ -15,7 +15,6 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -217,43 +216,48 @@ public class CollectionUtils {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 
-//	public static <C> Collection<Collection<C>> split(Collection<C> col, int numElements,
-//			CollectionFactory<Collection<C>> factory, CollectionFactory<C> factory2) {
-//		final Collection<Collection<C>> result = factory.createCollection();
-//		Collection<C> tmp = factory2.createCollection();
-//		int i = 0;
-//		final Iterator<C> it = col.iterator();
-//		while (it.hasNext()) {
-//			while (i <= numElements) {
-//
-//				tmp.add(it.next());
-//				i++;
-//
-//			}
-//			result.add(tmp);
-//			i = 0;
-//			tmp = factory2.createCollection();
-//		}
-//		return result;
-//	}
-//	
-//	public static <C> Collection<Collection<C>> split(Collection<C> col, int numElements) {
-//		return split(col, numElements, new ArrayListFactory<Collection<C>>(), new ArrayListFactory<C>());
-//	}
-	
-	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter, CollectionFactory<C> factory){
+	// public static <C> Collection<Collection<C>> split(Collection<C> col, int
+	// numElements,
+	// CollectionFactory<Collection<C>> factory, CollectionFactory<C> factory2)
+	// {
+	// final Collection<Collection<C>> result = factory.createCollection();
+	// Collection<C> tmp = factory2.createCollection();
+	// int i = 0;
+	// final Iterator<C> it = col.iterator();
+	// while (it.hasNext()) {
+	// while (i <= numElements) {
+	//
+	// tmp.add(it.next());
+	// i++;
+	//
+	// }
+	// result.add(tmp);
+	// i = 0;
+	// tmp = factory2.createCollection();
+	// }
+	// return result;
+	// }
+	//
+	// public static <C> Collection<Collection<C>> split(Collection<C> col, int
+	// numElements) {
+	// return split(col, numElements, new ArrayListFactory<Collection<C>>(), new
+	// ArrayListFactory<C>());
+	// }
+
+	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter,
+			CollectionFactory<C> factory) {
 		final Collection<C> result = factory.createCollection();
-		for(C c : collection)
-			if(filter.visit(c))
+		for (C c : collection)
+			if (filter.visit(c))
 				result.add(c);
 		return result;
 	}
-	
-	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter){
+
+	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter) {
 		return filterCollection(collection, filter, new ArrayListFactory<C>());
 	}
-	
-	public static <C> CollectionView<C> getCollectionView(Collection<? extends C> collection, Filter<C> filter){
+
+	public static <C> CollectionView<C> getCollectionView(Collection<? extends C> collection, Filter<C> filter) {
 		return new ArrayListView<C>(collection, filter);
 	}
 

@@ -19,8 +19,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.CollectionFactory;
-import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.ToStringStrategy;
 import net.sf.kerner.utils.collections.impl.CollectionUtils;
 import net.sf.kerner.utils.collections.list.ListFactory;
@@ -162,19 +160,17 @@ public class ListUtils {
 		return result;
 	}
 
-	public static <C> List<C> filterList(List<? extends C> collection,
-			ListFilter<C> filter, ListFactory<C> factory) {
+	public static <C> List<C> filterList(List<? extends C> collection, ListFilter<C> filter, ListFactory<C> factory) {
 		final List<C> result = factory.createCollection();
-		for(int i=0; i< collection.size(); i++){
+		for (int i = 0; i < collection.size(); i++) {
 			final C c = collection.get(i);
-			if(filter.visit(c, i))
+			if (filter.visit(c, i))
 				result.add(c);
 		}
 		return result;
 	}
 
-	public static <C> List<C> filterList(List<? extends C> collection,
-			ListFilter<C> filter) {
+	public static <C> List<C> filterList(List<? extends C> collection, ListFilter<C> filter) {
 		return filterList(collection, filter, new ArrayListFactory<C>());
 	}
 

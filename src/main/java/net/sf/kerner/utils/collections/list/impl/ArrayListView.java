@@ -6,20 +6,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import net.sf.kerner.utils.collections.CollectionView;
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.ListFilter;
 import net.sf.kerner.utils.collections.list.ListView;
 
 public class ArrayListView<T> implements ListView<T>, List<T> {
-	
+
 	protected final List<T> collection;
-	
+
 	public ArrayListView(List<? extends T> collection, ListFilter<T> filter) {
 		this.collection = new ArrayList<T>();
-		for(int i=0; i<collection.size(); i++){
+		for (int i = 0; i < collection.size(); i++) {
 			final T t = collection.get(i);
-			if(filter.visit(t, i)){
+			if (filter.visit(t, i)) {
 				this.collection.add(t);
 			}
 		}
@@ -27,21 +26,21 @@ public class ArrayListView<T> implements ListView<T>, List<T> {
 
 	public ArrayListView(Collection<? extends T> collection, Filter<T> filter) {
 		this.collection = new ArrayList<T>();
-		for(T t : collection){
-			if(filter.visit(t)){
+		for (T t : collection) {
+			if (filter.visit(t)) {
 				this.collection.add(t);
 			}
 		}
 	}
-	
+
 	public ArrayListView(Collection<? extends T> collection) {
 		this.collection = new ArrayList<T>(collection);
 	}
-	
+
 	public ListView<T> getView(final Filter<T> filter) {
 		return new ArrayListView<T>(collection, filter);
 	}
-	
+
 	public ListView<T> getView(final ListFilter<T> filter) {
 		return new ArrayListView<T>(collection, filter);
 	}
@@ -145,10 +144,5 @@ public class ArrayListView<T> implements ListView<T>, List<T> {
 	public List<T> subList(int fromIndex, int toIndex) {
 		return collection.subList(fromIndex, toIndex);
 	}
-	
-	
-
-	
-	
 
 }

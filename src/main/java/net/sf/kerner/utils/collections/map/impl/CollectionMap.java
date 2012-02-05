@@ -23,9 +23,9 @@ public class CollectionMap<K, V> {
 	public CollectionMap() {
 		this(new LinkedHashMapFactory<K, Collection<V>>(), new ArrayListFactory<V>());
 	}
-	
+
 	public void putAll(K k, Collection<? extends V> elements) {
-		for(V v : elements){
+		for (V v : elements) {
 			put(k, v);
 		}
 	}

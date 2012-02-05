@@ -24,7 +24,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 
 import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.CollectionFactory;
@@ -44,8 +43,7 @@ public class MapUtils {
 	private MapUtils() {
 	}
 
-	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys,
-			V value, boolean clean) {
+	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys, V value, boolean clean) {
 		if (clean)
 			map.clear();
 		for (K k : keys) {
