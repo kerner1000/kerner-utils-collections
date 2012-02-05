@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections.map;
+package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.Collection;
 import java.util.Map;
