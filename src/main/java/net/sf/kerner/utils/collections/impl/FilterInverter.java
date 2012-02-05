@@ -24,25 +24,28 @@ import net.sf.kerner.utils.collections.Filter;
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-26
  * 
  * @see Filter
- *
- * @param <E> type of elements which are filtered
+ * 
+ * @param <E>
+ *            type of elements which are filtered
  */
-public class FilterInverter<E> implements Filter<E>{
-	
+public class FilterInverter<E> implements Filter<E> {
+
 	private final Filter<E> filter;
-	
+
 	public FilterInverter(Filter<E> filter) {
 		super();
 		Utils.checkForNull(filter);

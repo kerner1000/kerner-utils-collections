@@ -19,9 +19,9 @@ import java.util.Collection;
 
 /**
  * 
- * A {@code CollectionFactory} provides factory methods to retrieve a new instance of all kind of
- * direct and indirect implementations of {@link java.util.Collection
- * Collection}.
+ * A {@code CollectionFactory} provides factory methods to retrieve a new
+ * instance of all kind of direct and indirect implementations of
+ * {@link java.util.Collection Collection}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-06-03
@@ -41,8 +41,8 @@ public interface CollectionFactory<E> {
 
 	/**
 	 * 
-	 * Get a new instance for specified {@code Collection} containing all
-	 * given elements.
+	 * Get a new instance for specified {@code Collection} containing all given
+	 * elements.
 	 * 
 	 * @param elements
 	 *            that are contained in new collection

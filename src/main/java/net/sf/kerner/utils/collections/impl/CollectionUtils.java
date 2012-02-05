@@ -178,8 +178,7 @@ public class CollectionUtils {
 	 * @return string representation of all elements provided by
 	 *         {@code iterable}
 	 */
-	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor,
-			String objectSeparator) {
+	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor, String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<? extends O> it = iterable.iterator();
 		while (it.hasNext()) {
@@ -213,28 +212,32 @@ public class CollectionUtils {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 
-//	public static <C> Collection<Collection<C>> split(Collection<C> col, int numElements,
-//			CollectionFactory<Collection<C>> factory, CollectionFactory<C> factory2) {
-//		final Collection<Collection<C>> result = factory.createCollection();
-//		Collection<C> tmp = factory2.createCollection();
-//		int i = 0;
-//		final Iterator<C> it = col.iterator();
-//		while (it.hasNext()) {
-//			while (i <= numElements) {
-//
-//				tmp.add(it.next());
-//				i++;
-//
-//			}
-//			result.add(tmp);
-//			i = 0;
-//			tmp = factory2.createCollection();
-//		}
-//		return result;
-//	}
-//	
-//	public static <C> Collection<Collection<C>> split(Collection<C> col, int numElements) {
-//		return split(col, numElements, new ArrayListFactory<Collection<C>>(), new ArrayListFactory<C>());
-//	}
+	// public static <C> Collection<Collection<C>> split(Collection<C> col, int
+	// numElements,
+	// CollectionFactory<Collection<C>> factory, CollectionFactory<C> factory2)
+	// {
+	// final Collection<Collection<C>> result = factory.createCollection();
+	// Collection<C> tmp = factory2.createCollection();
+	// int i = 0;
+	// final Iterator<C> it = col.iterator();
+	// while (it.hasNext()) {
+	// while (i <= numElements) {
+	//
+	// tmp.add(it.next());
+	// i++;
+	//
+	// }
+	// result.add(tmp);
+	// i = 0;
+	// tmp = factory2.createCollection();
+	// }
+	// return result;
+	// }
+	//
+	// public static <C> Collection<Collection<C>> split(Collection<C> col, int
+	// numElements) {
+	// return split(col, numElements, new ArrayListFactory<Collection<C>>(), new
+	// ArrayListFactory<C>());
+	// }
 
 }

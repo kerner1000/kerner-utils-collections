@@ -41,7 +41,7 @@ public class TestListUtils {
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld02() {
 		List<String> l1 = Arrays.asList("a", "b");
@@ -51,7 +51,7 @@ public class TestListUtils {
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld03() {
 		List<String> l1 = Arrays.asList("a", "b");
@@ -61,17 +61,17 @@ public class TestListUtils {
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld04() {
 		List<String> l1 = Arrays.asList("a", "b");
 		List<String> l2 = Arrays.asList(null, "c");
 		List<String> l3 = Arrays.asList("a", "b", "c");
-List<String> l4 = ListUtils.meld(l1, l2);
-assertEquals(l3.size(), l4.size());
-assertArrayEquals(l3.toArray(), l4.toArray());
+		List<String> l4 = ListUtils.meld(l1, l2);
+		assertEquals(l3.size(), l4.size());
+		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld04b() {
 		List<String> l1 = Arrays.asList("a", "b");
@@ -81,7 +81,7 @@ assertArrayEquals(l3.toArray(), l4.toArray());
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld05() {
 		List<String> l1 = Arrays.asList(null, null);
@@ -91,7 +91,7 @@ assertArrayEquals(l3.toArray(), l4.toArray());
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld05b() {
 		List<String> l1 = Arrays.asList(null, null);
@@ -101,7 +101,7 @@ assertArrayEquals(l3.toArray(), l4.toArray());
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld06() {
 		List<String> l1 = Arrays.asList(null, null);
@@ -111,7 +111,7 @@ assertArrayEquals(l3.toArray(), l4.toArray());
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld06b() {
 		List<String> l1 = Arrays.asList(null, null);
@@ -121,12 +121,12 @@ assertArrayEquals(l3.toArray(), l4.toArray());
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());
 	}
-	
+
 	@Test
 	public final void testMeld07() {
 		List<Double> l1 = Arrays.asList(0.1, 0.2, 0.4);
 		List<Double> l2 = Arrays.asList(null, 0.3);
-		List<Double> l3 = Arrays.asList(0.1,0.2,0.3,0.4);
+		List<Double> l3 = Arrays.asList(0.1, 0.2, 0.3, 0.4);
 		List<Double> l4 = ListUtils.meld(l1, l2);
 		assertEquals(l3.size(), l4.size());
 		assertArrayEquals(l3.toArray(), l4.toArray());

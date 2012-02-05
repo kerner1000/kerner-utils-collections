@@ -30,15 +30,16 @@ import net.sf.kerner.utils.collections.CollectionFactory;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-03
  * 
- * @param <E> type of elements contained by the {@code Set}
+ * @param <E>
+ *            type of elements contained by the {@code Set}
  */
 public interface SetFactory<E> extends CollectionFactory<E> {
-	
+
 	/**
 	 * Create a new {@link java.util.Set Set}.
 	 */
 	Set<E> createCollection();
-	
+
 	/**
 	 * Create a new {@link java.util.Set Set} containing all given elements.
 	 */

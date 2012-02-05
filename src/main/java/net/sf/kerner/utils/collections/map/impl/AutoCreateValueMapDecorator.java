@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections.map;
+package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.Collection;
 import java.util.Map;
@@ -7,9 +7,9 @@ import java.util.Set;
 import net.sf.kerner.utils.factory.Factory;
 
 public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
-	
+
 	private final Map<K, V> decorated;
-	
+
 	private final Factory<V> factory;
 
 	public AutoCreateValueMapDecorator(Map<K, V> decorated, Factory<V> factory) {
@@ -17,20 +17,20 @@ public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
 		this.decorated = decorated;
 		this.factory = factory;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public V get(Object key) {
-		if(decorated.containsKey(key)){
+		if (decorated.containsKey(key)) {
 			// ok
 		} else {
-//			System.err.println("dont know this key [" + key + "]");
+			// System.err.println("dont know this key [" + key + "]");
 			decorated.put((K) key, factory.create());
 		}
 		return decorated.get(key);
 	}
-	
+
 	// Delegate //
-	
+
 	@Override
 	public String toString() {
 		return decorated.toString();
@@ -87,5 +87,5 @@ public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
 	public int hashCode() {
 		return decorated.hashCode();
 	}
-	
+
 }

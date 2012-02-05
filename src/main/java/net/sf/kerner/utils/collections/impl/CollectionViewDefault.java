@@ -8,17 +8,17 @@ import net.sf.kerner.utils.collections.CollectionView;
 import net.sf.kerner.utils.collections.Filter;
 
 public class CollectionViewDefault<T> implements CollectionView<T> {
-	
+
 	protected final Collection<T> collection;
-	
+
 	public CollectionViewDefault(Collection<T> collection, Filter<T> filter) {
 		this.collection = new ArrayList<T>();
-		for(T t : collection){
-			if(filter.visit(t))
+		for (T t : collection) {
+			if (filter.visit(t))
 				this.collection.add(t);
 		}
 	}
-	
+
 	public CollectionView<T> getView(Filter<T> filter) {
 		return new CollectionViewDefault<T>(collection, filter);
 	}
@@ -83,7 +83,7 @@ public class CollectionViewDefault<T> implements CollectionView<T> {
 	public int hashCode() {
 		return collection.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
 		return collection.toString();

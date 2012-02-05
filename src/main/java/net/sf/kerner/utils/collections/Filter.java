@@ -21,19 +21,22 @@ package net.sf.kerner.utils.collections;
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-26
- *
- * @param <E> type of element which are filtered
+ * 
+ * @param <E>
+ *            type of element which are filtered
  */
-public interface Filter<E> extends Visitor<Boolean, E>{
+public interface Filter<E> extends Visitor<Boolean, E> {
 
 }

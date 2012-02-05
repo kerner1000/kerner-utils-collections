@@ -23,34 +23,37 @@ import java.util.Comparator;
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-26
  * 
  * @see Comparator
- *
- * @param <E> type of elements which are compared
+ * 
+ * @param <E>
+ *            type of elements which are compared
  */
-public class ComparatorInverter<T> implements Comparator<T>{
-	
+public class ComparatorInverter<T> implements Comparator<T> {
+
 	protected final Comparator<T> c;
-	
+
 	public ComparatorInverter(Comparator<T> c) {
 		this.c = c;
 	}
 
 	public int compare(T o1, T o2) {
 		final int r = c.compare(o1, o2);
-		if(r < 0)
+		if (r < 0)
 			return 1;
-		if(r > 0)
+		if (r > 0)
 			return -1;
 		return r;
 	}

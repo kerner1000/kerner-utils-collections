@@ -40,10 +40,11 @@ import net.sf.kerner.utils.modifier.Modifier;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-03
  * 
- * @param <T> type of elements in input collection
- * @param <V> type of elements in output collection
+ * @param <T>
+ *            type of elements in input collection
+ * @param <V>
+ *            type of elements in output collection
  */
-public interface CollectionModifier<T, V extends T> extends
-		Modifier<Collection<? extends T>, Collection<? extends V>> {
+public interface CollectionModifier<T, V extends T> extends Modifier<Collection<? extends T>, Collection<? extends V>> {
 
 }

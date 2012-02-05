@@ -42,8 +42,7 @@ public class MapUtils {
 	private MapUtils() {
 	}
 
-	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys,
-			V value, boolean clean) {
+	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys, V value, boolean clean) {
 		if (clean)
 			map.clear();
 		for (K k : keys) {
@@ -151,6 +150,16 @@ public class MapUtils {
 		col.add(element);
 	}
 
+	public static <T, K, V> void addToMapMap(Map<T, Map<K, V>> map, T key1, K key2, V value, MapFactory<K, V> factory) {
+		Utils.checkForNull(map, factory);
+		Map<K, V> m1 = map.get(key1);
+		if (m1 == null) {
+			m1 = factory.create();
+			map.put(key1, m1);
+		}
+		m1.put(key2, value);
+	}
+
 	/**
 	 * 
 	 * 
@@ -233,8 +242,7 @@ public class MapUtils {
 		return result;
 	}
 
-	public static <K, V> Map<K, V> sort(Map<K, V> map,
-			MapFactory<K, V> factory, Comparator<Map.Entry<K, V>> c) {
+	public static <K, V> Map<K, V> sort(Map<K, V> map, MapFactory<K, V> factory, Comparator<Map.Entry<K, V>> c) {
 		List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
 		Collections.sort(list, c);
 		Map<K, V> result = factory.create();
@@ -243,13 +251,14 @@ public class MapUtils {
 		}
 		return result;
 	}
-	
-	public static <K, V> Map<K, V> sortByValue(final Map<K, V> map,
-			final MapFactory<K, V> factory, final Comparator<? super V> c) {
-		return sort(map, factory, new Comparator<Entry<K, V>>(){
+
+	public static <K, V> Map<K, V> sortByValue(final Map<K, V> map, final MapFactory<K, V> factory,
+			final Comparator<? super V> c) {
+		return sort(map, factory, new Comparator<Entry<K, V>>() {
 			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
 				return c.compare(o1.getValue(), o2.getValue());
-			}});
+			}
+		});
 	}
 
 }

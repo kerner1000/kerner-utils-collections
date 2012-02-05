@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestAbstractToStringStrategy {
-	
+
 	private AbstractToStringStrategy<?> s;
 
 	@BeforeClass
@@ -47,7 +47,7 @@ public class TestAbstractToStringStrategy {
 		};
 		assertEquals("null", s.toString());
 	}
-	
+
 	@Test
 	public final void test03() {
 		s = new AbstractToStringStrategy<Object>(null) {

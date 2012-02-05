@@ -11,9 +11,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestFilterInverter {
-	
+
 	private FilterInverter<Boolean> fi;
-	
+
 	private Filter<Boolean> f;
 
 	@BeforeClass
@@ -34,34 +34,37 @@ public class TestFilterInverter {
 
 	@Test
 	public final void testFilterInverter01() {
-		f = new Filter<Boolean>(){
+		f = new Filter<Boolean>() {
 			public Boolean visit(Boolean element) {
 				return element;
-			}};
+			}
+		};
 		fi = new FilterInverter<Boolean>(f);
 	}
-	
-	@Test(expected=NullPointerException.class)
+
+	@Test(expected = NullPointerException.class)
 	public final void testFilterInverter02() {
 		fi = new FilterInverter<Boolean>(null);
 	}
 
 	@Test
 	public final void testVisit01() {
-		f = new Filter<Boolean>(){
+		f = new Filter<Boolean>() {
 			public Boolean visit(Boolean element) {
 				return element;
-			}};
+			}
+		};
 		fi = new FilterInverter<Boolean>(f);
 		assertFalse(fi.visit(Boolean.TRUE));
 	}
-	
+
 	@Test
 	public final void testVisit02() {
-		f = new Filter<Boolean>(){
+		f = new Filter<Boolean>() {
 			public Boolean visit(Boolean element) {
 				return element;
-			}};
+			}
+		};
 		fi = new FilterInverter<Boolean>(f);
 		assertTrue(fi.visit(Boolean.FALSE));
 	}

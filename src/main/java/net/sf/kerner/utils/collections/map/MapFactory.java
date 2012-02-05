@@ -39,8 +39,10 @@ import net.sf.kerner.utils.factory.Factory;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-12
  * 
- * @param <K> type of keys in the map
- * @param <V> type of values in the map
+ * @param <K>
+ *            type of keys in the map
+ * @param <V>
+ *            type of values in the map
  */
 public interface MapFactory<K, V> extends Factory<Map<K, V>> {
 

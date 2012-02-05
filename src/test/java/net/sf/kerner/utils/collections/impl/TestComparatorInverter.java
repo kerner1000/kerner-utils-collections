@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestComparatorInverter {
-	
+
 	private ComparatorInverter c;
 
 	@BeforeClass
@@ -32,36 +32,39 @@ public class TestComparatorInverter {
 
 	@Test
 	public final void testCompare01() {
-		c = new ComparatorInverter<Integer>(new Comparator<Integer>(){
+		c = new ComparatorInverter<Integer>(new Comparator<Integer>() {
 			public int compare(Integer o1, Integer o2) {
 				return o1.compareTo(o2);
-			}});
+			}
+		});
 		final int i = c.compare(Integer.valueOf(1), Integer.valueOf(2));
-//		System.out.println(i);
+		// System.out.println(i);
 		final boolean b = (i > 0);
 		assertTrue(b);
 	}
-	
+
 	@Test
 	public final void testCompare02() {
-		c = new ComparatorInverter<Integer>(new Comparator<Integer>(){
+		c = new ComparatorInverter<Integer>(new Comparator<Integer>() {
 			public int compare(Integer o1, Integer o2) {
 				return o1.compareTo(o2);
-			}});
+			}
+		});
 		final int i = c.compare(Integer.valueOf(2), Integer.valueOf(1));
-//		System.out.println(i);
+		// System.out.println(i);
 		final boolean b = (i < 0);
 		assertTrue(b);
 	}
-	
+
 	@Test
 	public final void testCompare03() {
-		c = new ComparatorInverter<Integer>(new Comparator<Integer>(){
+		c = new ComparatorInverter<Integer>(new Comparator<Integer>() {
 			public int compare(Integer o1, Integer o2) {
 				return o1.compareTo(o2);
-			}});
+			}
+		});
 		final int i = c.compare(Integer.valueOf(1), Integer.valueOf(1));
-//		System.out.println(i);
+		// System.out.println(i);
 		final boolean b = (i == 0);
 		assertTrue(b);
 	}

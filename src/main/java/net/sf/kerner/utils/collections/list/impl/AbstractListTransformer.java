@@ -6,8 +6,8 @@ import net.sf.kerner.utils.collections.list.ListFactory;
 import net.sf.kerner.utils.collections.list.ListTransformer;
 import net.sf.kerner.utils.transformer.Transformer;
 
-public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
-		Transformer<T, V>, ListTransformer<T, V> {
+public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements Transformer<T, V>,
+		ListTransformer<T, V> {
 
 	protected final ListFactory<V> factory;
 
