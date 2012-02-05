@@ -150,6 +150,17 @@ public class MapUtils {
 		}
 		col.add(element);
 	}
+	
+	public static <T, K, V> void addToMapMap(Map<T, Map<K,V>> map, T key1, K key2, V value,
+			MapFactory<K,V> factory) {
+		Utils.checkForNull(map, factory);
+		Map<K,V> m1 = map.get(key1);
+		if (m1 == null) {
+			m1 = factory.create();
+			map.put(key1, m1);
+		}
+		m1.put(key2, value);
+	}
 
 	/**
 	 * 
