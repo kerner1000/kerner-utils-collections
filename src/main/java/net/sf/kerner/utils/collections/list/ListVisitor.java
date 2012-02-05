@@ -15,6 +15,7 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.list;
 
+import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.Visitor;
@@ -53,11 +54,9 @@ public interface ListVisitor<R, E> extends Visitor<R, E> {
 	 * 
 	 * @param element
 	 *            element to visit
-	 * @param iterator
-	 *            {@link ListIterator} that gives direct access to {@link List}
-	 *            that contains elements which are visited
+	 * 
 	 * @return result of visit
 	 */
-	R visit(E e, ListIterator<? extends E> iterator);
+	R visit(E element, int index);
 
 }

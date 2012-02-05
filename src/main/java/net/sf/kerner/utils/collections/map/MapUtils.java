@@ -20,9 +20,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.CollectionFactory;
@@ -42,7 +44,8 @@ public class MapUtils {
 	private MapUtils() {
 	}
 
-	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys, V value, boolean clean) {
+	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys,
+			V value, boolean clean) {
 		if (clean)
 			map.clear();
 		for (K k : keys) {
@@ -242,21 +245,28 @@ public class MapUtils {
 		return result;
 	}
 
-	public static <K, V> Map<K, V> sort(Map<K, V> map, MapFactory<K, V> factory, Comparator<Map.Entry<K, V>> c) {
+	public static <K, V> Map<K, V> sort(Map<K, V> map, Comparator<Map.Entry<K, V>> c) {
 		List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
 		Collections.sort(list, c);
-		Map<K, V> result = factory.create();
+		Map<K, V> result = new LinkedHashMap<K, V>();
 		for (Map.Entry<K, V> entry : list) {
 			result.put(entry.getKey(), entry.getValue());
 		}
 		return result;
 	}
 
-	public static <K, V> Map<K, V> sortByValue(final Map<K, V> map, final MapFactory<K, V> factory,
-			final Comparator<? super V> c) {
-		return sort(map, factory, new Comparator<Entry<K, V>>() {
+	public static <K, V> Map<K, V> sortByValue(final Map<K, V> map, final Comparator<? super V> c) {
+		return sort(map, new Comparator<Entry<K, V>>() {
 			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
 				return c.compare(o1.getValue(), o2.getValue());
+			}
+		});
+	}
+
+	public static <K, V> Map<K, V> sortByKey(final Map<K, V> map, final Comparator<? super K> c) {
+		return sort(map, new Comparator<Entry<K, V>>() {
+			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+				return c.compare(o1.getKey(), o2.getKey());
 			}
 		});
 	}
