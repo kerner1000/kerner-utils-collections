@@ -44,6 +44,11 @@ public class ArrayListView<T> implements ListView<T>, List<T> {
 	public ListView<T> getView(final ListFilter<T> filter) {
 		return new ArrayListView<T>(collection, filter);
 	}
+	
+	@Override
+	public String toString() {
+		return collection.toString();
+	}
 
 	public int size() {
 		return collection.size();
