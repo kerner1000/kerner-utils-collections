@@ -8,5 +8,7 @@ import net.sf.kerner.utils.collections.Filter;
 public interface ListView<T> extends CollectionView<T>, List<T> {
 
 	ListView<T> getView(Filter<T> filter);
+	
+	ListView<T> getView(ListFilter<T> filter);
 
 }
