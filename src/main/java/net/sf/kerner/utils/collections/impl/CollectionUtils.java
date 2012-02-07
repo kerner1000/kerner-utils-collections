@@ -181,7 +181,8 @@ public class CollectionUtils {
 	 * @return string representation of all elements provided by
 	 *         {@code iterable}
 	 */
-	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor, String objectSeparator) {
+	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor,
+			String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<? extends O> it = iterable.iterator();
 		while (it.hasNext()) {
@@ -244,8 +245,8 @@ public class CollectionUtils {
 	// ArrayListFactory<C>());
 	// }
 
-	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter,
-			CollectionFactory<C> factory) {
+	public static <C> Collection<C> filterCollection(Collection<? extends C> collection,
+			Filter<C> filter, CollectionFactory<C> factory) {
 		final Collection<C> result = factory.createCollection();
 		for (C c : collection)
 			if (filter.visit(c))
@@ -253,11 +254,13 @@ public class CollectionUtils {
 		return result;
 	}
 
-	public static <C> Collection<C> filterCollection(Collection<? extends C> collection, Filter<C> filter) {
+	public static <C> Collection<C> filterCollection(Collection<? extends C> collection,
+			Filter<C> filter) {
 		return filterCollection(collection, filter, new ArrayListFactory<C>());
 	}
 
-	public static <C> CollectionView<C> getCollectionView(Collection<? extends C> collection, Filter<C> filter) {
+	public static <C> CollectionView<C> getCollectionView(Collection<? extends C> collection,
+			Filter<C> filter) {
 		return new ArrayListView<C>(collection, filter);
 	}
 

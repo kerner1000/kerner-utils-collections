@@ -15,7 +15,8 @@ public class CollectionMap<K, V> {
 
 	private final CollectionFactory<V> collectionFactory;
 
-	public CollectionMap(MapFactory<K, Collection<V>> mapFactory, CollectionFactory<V> collectionFactory) {
+	public CollectionMap(MapFactory<K, Collection<V>> mapFactory,
+			CollectionFactory<V> collectionFactory) {
 		this.map = mapFactory.create();
 		this.collectionFactory = collectionFactory;
 	}

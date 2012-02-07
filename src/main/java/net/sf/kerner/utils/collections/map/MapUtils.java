@@ -43,7 +43,8 @@ public class MapUtils {
 	private MapUtils() {
 	}
 
-	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys, V value, boolean clean) {
+	public static <K, V> void initMapWithValue(Map<K, V> map, Collection<? extends K> keys,
+			V value, boolean clean) {
 		if (clean)
 			map.clear();
 		for (K k : keys) {
@@ -151,7 +152,8 @@ public class MapUtils {
 		col.add(element);
 	}
 
-	public static <T, K, V> void addToMapMap(Map<T, Map<K, V>> map, T key1, K key2, V value, MapFactory<K, V> factory) {
+	public static <T, K, V> void addToMapMap(Map<T, Map<K, V>> map, T key1, K key2, V value,
+			MapFactory<K, V> factory) {
 		Utils.checkForNull(map, factory);
 		Map<K, V> m1 = map.get(key1);
 		if (m1 == null) {

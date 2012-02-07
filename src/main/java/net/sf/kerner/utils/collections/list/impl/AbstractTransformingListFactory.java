@@ -5,8 +5,8 @@ import java.util.List;
 
 import net.sf.kerner.utils.collections.list.ListFactory;
 
-public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V> implements
-		ListFactory<V> {
+public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V>
+		implements ListFactory<V> {
 
 	public AbstractTransformingListFactory() {
 		super();

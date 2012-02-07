@@ -58,7 +58,8 @@ public class ListUtils {
 	 *            ListFactory} that provides instance of returning list
 	 * @return a new {@link java.util.List List}
 	 */
-	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2, ListFactory<C> factory) {
+	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2,
+			ListFactory<C> factory) {
 		final List<C> result = factory.createCollection();
 		Iterator<? extends C> i1 = c1.iterator();
 		Iterator<? extends C> i2 = c2.iterator();
@@ -160,7 +161,8 @@ public class ListUtils {
 		return result;
 	}
 
-	public static <C> List<C> filterList(List<? extends C> collection, ListFilter<C> filter, ListFactory<C> factory) {
+	public static <C> List<C> filterList(List<? extends C> collection, ListFilter<C> filter,
+			ListFactory<C> factory) {
 		final List<C> result = factory.createCollection();
 		for (int i = 0; i < collection.size(); i++) {
 			final C c = collection.get(i);
