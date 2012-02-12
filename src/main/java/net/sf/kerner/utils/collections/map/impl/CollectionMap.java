@@ -30,6 +30,12 @@ public class CollectionMap<K, V> {
 			put(k, v);
 		}
 	}
+	
+	public void putAll(Map<? extends K, ? extends V> m) {
+		for (java.util.Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
+			this.put(e.getKey(), e.getValue());
+		}
+	}
 
 	public int size() {
 		return map.size();
@@ -67,12 +73,6 @@ public class CollectionMap<K, V> {
 				result = b;
 		}
 		return result;
-	}
-
-	public void putAll(Map<? extends K, ? extends V> m) {
-		for (java.util.Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
-			this.put(e.getKey(), e.getValue());
-		}
 	}
 
 	public void clear() {
