@@ -263,5 +263,29 @@ public class CollectionUtils {
 			Filter<C> filter) {
 		return new ArrayListView<C>(collection, filter);
 	}
+	
+	public static int getNumberOfNonNullElements(Collection<?> col){
+		if(col == null)
+			return 0;
+		int result = 0;
+		for(Object o : col){
+			if(o != null){
+				result++;
+			}
+		}
+		return result;
+	}
+	
+	public static int getNumberOfNonEmptyElements(Iterable<Collection<?>> col){
+		if(col == null)
+			return 0;
+		int result = 0;
+		for(Collection<?> o : col){
+			if(o != null && !o.isEmpty()){
+				result++;
+			}
+		}
+		return result;
+	}
 
 }
