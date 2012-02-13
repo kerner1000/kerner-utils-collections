@@ -104,6 +104,12 @@ public class ListUtils {
 	 * 
 	 */
 	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2) {
+		if(c1 == null && c2 == null)
+			return new ArrayListFactory<C>().createCollection();
+		if(c1 == null)
+			return new ArrayListFactory<C>().createCollection(c2);
+		if(c2 == null)
+			return new ArrayListFactory<C>().createCollection(c1);
 		return meld(c1, c2, new ArrayListFactory<C>());
 	}
 
