@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
@@ -66,6 +67,23 @@ public class PropertiesSorted extends Properties {
 			}
 		});
 		return new LinkedHashSet<Object>(keyList);
+	}
+	
+	@Override
+	public synchronized String toString() {
+		StringBuilder sb = new StringBuilder();
+		Iterator<Object> it = keySet().iterator();
+		while(it.hasNext()){
+			Object k = it.next();
+			Object v = get(k);
+			sb.append(k);
+			sb.append("=");
+			sb.append(v);
+			if(it.hasNext()){
+				sb.append(", ");
+			}
+		}
+		return sb.toString();
 	}
 
 }

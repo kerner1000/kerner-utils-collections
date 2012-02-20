@@ -2,6 +2,7 @@ package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -24,11 +25,41 @@ public class MapMap<T, K, V> {
 	public MapMap(Map<T, Map<K, V>> map) {
 		this(map, new LinkedHashMapFactory<K, V>());
 	}
-
-	public int size() {
-		return map.size();
+	
+	public MapMap() {
+		this(new LinkedHashMap<T,Map<K,V>>(), new LinkedHashMapFactory<K, V>());
 	}
 
+	/**
+	 * 
+	 * TODO description
+	 *
+	 * @return number of key1 to map mappings
+	 */
+	public int size1() {
+		return map.size();
+	}
+	
+	/**
+	 * 
+	 * TODO description
+	 *
+	 * @return number of key2 value mappings
+	 */
+	public int size2() {
+		int size = 0;
+		for(Entry<T, Map<K, V>> e : map.entrySet()){
+			size += e.getValue().size();
+		}
+		return size;
+	}
+
+	/**
+	 * 
+	 * TODO description
+	 *
+	 * @return {@code true} if {{@link #size1()} == 0}; {@code false} otherwise
+	 */
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
@@ -87,8 +118,15 @@ public class MapMap<T, K, V> {
 		return result;
 	}
 
-	public Collection<V> values(K key) {
-		return map.get(key).values();
+	/**
+	 * 
+	 * TODO description
+	 *
+	 * @param key Type of key1
+	 * @return all values that are mapped by this key1
+	 */
+	public Collection<V> values(K key1) {
+		return map.get(key1).values();
 	}
 
 	public Collection<V> values() {
