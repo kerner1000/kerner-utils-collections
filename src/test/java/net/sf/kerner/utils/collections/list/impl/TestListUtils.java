@@ -137,5 +137,58 @@ public class TestListUtils {
 	public final void testFill() {
 		fail("Not yet implemented"); // TODO
 	}
-
+	
+	@Test
+	public final void testSetAll01() {
+		List<Integer> parent = Arrays.asList(0, 1, 2, 3 ,4);
+		List<Integer> child = Arrays.asList(0, 0);
+		List<Integer> parentNew = Arrays.asList(0, 0, 0, 3 ,4);
+		ListUtils.setAll(parent, child, 1);
+		assertArrayEquals(parentNew.toArray(), parent.toArray());
+	}
+	
+	@Test
+	public final void testSetAll02() {
+		List<Integer> parent = Arrays.asList(0, 1, 2, 3 ,4);
+		List<Integer> child = Arrays.asList(0, 0);
+		List<Integer> parentNew = Arrays.asList(0, 0, 0, 3 ,4);
+		ListUtils.setAll(parent, child, 1);
+		assertArrayEquals(parentNew.toArray(), parent.toArray());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public final void testSetAll03() {
+		List<Integer> parent = Arrays.asList(0, 1, 2, 3 ,4);
+		List<Integer> child = Arrays.asList(0, 0);
+		List<Integer> parentNew = Arrays.asList(0, 0, 0, 3 ,4);
+		ListUtils.setAll(parent, child, -1);
+		assertArrayEquals(parentNew.toArray(), parent.toArray());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public final void testSetAll04() {
+		List<Integer> parent = Arrays.asList(0, 1, 2, 3 ,4);
+		List<Integer> child = Arrays.asList(0, 0);
+		List<Integer> parentNew = Arrays.asList(0, 0, 0, 3 ,4);
+		ListUtils.setAll(parent, child, 4);
+		assertArrayEquals(parentNew.toArray(), parent.toArray());
+	}
+	
+	@Test
+	public final void testSetAll05() {
+		List<Integer> parent = Arrays.asList(0, 1, 2, 3 ,4);
+		List<Integer> child = Arrays.asList(0, 0);
+		List<Integer> parentNew = Arrays.asList(0, 0, 2, 3 ,4);
+		ListUtils.setAll(parent, child, 0);
+		assertArrayEquals(parentNew.toArray(), parent.toArray());
+	}
+	
+	@Test
+	public final void testSetAll06() {
+		List<Integer> parent = Arrays.asList(0, 1, 2, 3 ,4);
+		List<Integer> child = Arrays.asList(0, 0);
+		List<Integer> parentNew = Arrays.asList(0, 1, 2, 0 ,0);
+		ListUtils.setAll(parent, child, 3);
+		assertArrayEquals(parentNew.toArray(), parent.toArray());
+	}
 }

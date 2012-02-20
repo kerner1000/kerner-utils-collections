@@ -185,5 +185,17 @@ public class ListUtils {
 	public static <V> ListView<V> getListView(List<? extends V> list, ListFilter<V> filter) {
 		return new ArrayListView<V>(list, filter);
 	}
+	
+	public static <T> void setAll(List<T> parent, List<T> sublist, int index){
+		if(parent.size() < sublist.size())
+			throw new IllegalArgumentException("parent too small for child");
+		if(parent.size() < sublist.size() + index)
+			throw new IllegalArgumentException("parent too small for index");
+		if(index < 0)
+			throw new IllegalArgumentException("invalid index " + index);
+		for(int i=0; i < sublist.size(); i++){
+			parent.set(i + index, sublist.get(i));
+		}
+	}
 
 }
