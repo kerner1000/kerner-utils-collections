@@ -271,4 +271,26 @@ public class MapUtils {
 		});
 	}
 
+	/**
+	 * 
+	 * Retrieve first key from map, which maps to given value.
+	 * 
+	 * @param <K>
+	 *            type of {@code key}
+	 * @param <V>
+	 *            type of {@code value}
+	 * @param map
+	 *            {@link Map} to retrieve key from
+	 * @param value
+	 *            value, for which key is needed
+	 * @return key for given value (first occurrence)
+	 */
+	public static <K, V> K getKeyForValue(final Map<K, V> map, final V value) {
+		for (Entry<K, V> e : map.entrySet()) {
+			if (e.getValue().equals(value))
+				return e.getKey();
+		}
+		return null;
+	}
+
 }
