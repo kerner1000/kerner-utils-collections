@@ -47,7 +47,6 @@ public class FilterInverter<E> implements Filter<E> {
 	private final Filter<E> filter;
 
 	public FilterInverter(Filter<E> filter) {
-		super();
 		Utils.checkForNull(filter);
 		this.filter = filter;
 	}
