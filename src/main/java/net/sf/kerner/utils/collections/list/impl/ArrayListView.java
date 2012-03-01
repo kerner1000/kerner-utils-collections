@@ -70,6 +70,7 @@ public class ArrayListView<T> implements ListView<T>, List<T> {
 		return collection.toArray();
 	}
 
+	@SuppressWarnings("hiding")
 	public <T> T[] toArray(T[] a) {
 		return collection.toArray(a);
 	}
