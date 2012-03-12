@@ -104,7 +104,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	}
 
 	public int getMaxIndex() {
-		return MathUtils.max((map.values().toArray(new Integer[map.values().size()]))).intValue();
+		return (int) MathUtils.max(map.values());
 	}
 
 	public int getSize() {
