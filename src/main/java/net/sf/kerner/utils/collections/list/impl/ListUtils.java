@@ -15,9 +15,11 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.list.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.ToStringStrategy;
 import net.sf.kerner.utils.collections.impl.CollectionUtils;
@@ -196,6 +198,56 @@ public class ListUtils {
 		for(int i=0; i < sublist.size(); i++){
 			parent.set(i + index, sublist.get(i));
 		}
+	}
+	
+	public static void removeAll(List<?> list, Collection<Integer> indices){
+		ListIterator<?> it = list.listIterator();
+		while(it.hasNext()){
+			int index = it.nextIndex();
+			it.next();
+			if(indices.contains(index)){
+				it.remove();
+			}
+		}
+	}
+	
+	public static <T> List<T> removeAll(List<T> list, List<T> values){
+		final List<T> copy = new ArrayList<T>(list);
+		copy.removeAll(values);
+		return copy;
+	}
+	
+	public static void retainAll(List<?> list, Collection<Integer> indices){
+		ListIterator<?> it = list.listIterator();
+		while(it.hasNext()){
+			int index = it.nextIndex();
+			it.next();
+			if(indices.contains(index)){
+				// ok
+			} else {
+				it.remove();
+			}
+		}
+	}
+	
+	public static <T> List<T> removeAll2(List<T> list, Collection<Integer> indices, ListFactory<T> factory){
+		final List<T> copy = factory.createCollection(list);
+		removeAll(copy, indices);
+		return copy;
+	}
+	
+	public static <T> List<T> retainAll2(List<T> list, Collection<Integer> indices, ListFactory<T> factory){
+		final List<T> copy = factory.createCollection(list);
+		retainAll(copy, indices);
+		return copy;
+	}
+	
+	public static <T> List<T> removeAll2(List<T> list, Collection<Integer> indices){
+		return removeAll2(list, indices, new ArrayListFactory<T>());
+	}
+	
+	public static <T> List<T> retainAll2(List<T> list, Collection<Integer> indices){
+		return retainAll2(list, indices, new ArrayListFactory<T>());
 	}
 
 }
