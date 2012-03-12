@@ -52,6 +52,14 @@ public class PropertiesSorted extends Properties {
 
 	private final static IteratorToEnumerationTransformer<Object> t = new IteratorToEnumerationTransformer<Object>();
 
+	public PropertiesSorted() {
+
+	}
+
+	public PropertiesSorted(Properties defaults) {
+		super(defaults);
+	}
+
 	@Override
 	public synchronized Enumeration<Object> keys() {
 		return t.transform(keySet().iterator());

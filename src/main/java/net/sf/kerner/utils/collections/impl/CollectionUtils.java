@@ -287,5 +287,13 @@ public class CollectionUtils {
 		}
 		return result;
 	}
+	
+	public static boolean containsNull(Collection<?> c){
+		for(Object o : c){
+			if(o == null)
+				return true;
+		}
+		return false;
+	}
 
 }
