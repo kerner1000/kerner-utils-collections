@@ -1,7 +1,6 @@
 package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

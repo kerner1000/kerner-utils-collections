@@ -1,9 +1,9 @@
 package net.sf.kerner.utils.collections.map.impl;
 
-import static org.junit.Assert.*;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
