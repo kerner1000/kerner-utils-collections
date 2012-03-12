@@ -29,13 +29,14 @@ import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.CollectionFactory;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.counter.Counter;
+import net.sf.kerner.utils.factory.Factory;
 
 /**
  * 
- * Utility class for {@link java.util.Map Map} related stuff.
+ * Utility class for {@link Map} and {@link CollectionMap} related stuff.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-05-18
+ * @version 2012-03-06
  * 
  */
 public class MapUtils {
@@ -254,9 +255,48 @@ public class MapUtils {
 		}
 		return result;
 	}
+	
+	public static <K, V> void sort2(Map<K, V> map, Comparator<Map.Entry<K, V>> c) {
+		List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
+		Collections.sort(list, c);
+		map.clear();
+		for (Map.Entry<K, V> entry : list) {
+			map.put(entry.getKey(), entry.getValue());
+		}
+	}
+
+	public static <K, V, L extends Collection<V>> CollectionMap<K, V, L> sort(
+			CollectionMap<K, V, L> map, Comparator<Map.Entry<K, L>> c,
+			Factory<? extends CollectionMap<K, V, L>> factory) {
+		List<Map.Entry<K, L>> list = new ArrayList<Map.Entry<K, L>>(map.entrySet());
+		Collections.sort(list, c);
+		CollectionMap<K, V, L> result = factory.create();
+		for (Map.Entry<K, L> entry : list) {
+			result.putAll(entry.getKey(), entry.getValue());
+		}
+		return result;
+	}
+	
+	public static <K, V, L extends Collection<V>> void sort2(
+			CollectionMap<K, V, L> map, Comparator<Map.Entry<K, L>> c) {
+		List<Map.Entry<K, L>> list = new ArrayList<Map.Entry<K, L>>(map.entrySet());
+		Collections.sort(list, c);
+		map.clear();
+		for (Map.Entry<K, L> entry : list) {
+			map.putAll(entry.getKey(), entry.getValue());
+		}
+	}
 
 	public static <K, V> Map<K, V> sortByValue(final Map<K, V> map, final Comparator<? super V> c) {
 		return sort(map, new Comparator<Entry<K, V>>() {
+			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+				return c.compare(o1.getValue(), o2.getValue());
+			}
+		});
+	}
+	
+	public static <K, V> void sortByValue2(final Map<K, V> map, final Comparator<? super V> c) {
+		sort2(map, new Comparator<Entry<K, V>>() {
 			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
 				return c.compare(o1.getValue(), o2.getValue());
 			}
@@ -266,6 +306,33 @@ public class MapUtils {
 	public static <K, V> Map<K, V> sortByKey(final Map<K, V> map, final Comparator<? super K> c) {
 		return sort(map, new Comparator<Entry<K, V>>() {
 			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+				return c.compare(o1.getKey(), o2.getKey());
+			}
+		});
+	}
+	
+	public static <K, V> void sortByKey2(final Map<K, V> map, final Comparator<? super K> c) {
+		sort2(map, new Comparator<Entry<K, V>>() {
+			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
+				return c.compare(o1.getKey(), o2.getKey());
+			}
+		});
+	}
+
+	public static <K, V, L extends Collection<V>> CollectionMap<K, V, L> sortByKey(
+			final CollectionMap<K, V, L> map, final Comparator<? super K> c,
+			Factory<? extends CollectionMap<K, V, L>> factory) {
+		return sort(map, new Comparator<Entry<K, L>>() {
+			public int compare(Entry<K, L> o1, Entry<K, L> o2) {
+				return c.compare(o1.getKey(), o2.getKey());
+			}
+		}, factory);
+	}
+	
+	public static <K, V, L extends Collection<V>> void sortByKey2(
+			final CollectionMap<K, V, L> map, final Comparator<? super K> c) {
+		sort2(map, new Comparator<Entry<K, L>>() {
+			public int compare(Entry<K, L> o1, Entry<K, L> o2) {
 				return c.compare(o1.getKey(), o2.getKey());
 			}
 		});
