@@ -37,6 +37,8 @@ public class CollectionUtils {
 	public static Visitor<String, Object> DEFAULT_VISITOR = new Visitor<String, Object>() {
 
 		public String visit(Object element) {
+			if(element == null)
+				return "null";
 			return element.toString();
 		}
 	};
@@ -217,34 +219,6 @@ public class CollectionUtils {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 
-	// public static <C> Collection<Collection<C>> split(Collection<C> col, int
-	// numElements,
-	// CollectionFactory<Collection<C>> factory, CollectionFactory<C> factory2)
-	// {
-	// final Collection<Collection<C>> result = factory.createCollection();
-	// Collection<C> tmp = factory2.createCollection();
-	// int i = 0;
-	// final Iterator<C> it = col.iterator();
-	// while (it.hasNext()) {
-	// while (i <= numElements) {
-	//
-	// tmp.add(it.next());
-	// i++;
-	//
-	// }
-	// result.add(tmp);
-	// i = 0;
-	// tmp = factory2.createCollection();
-	// }
-	// return result;
-	// }
-	//
-	// public static <C> Collection<Collection<C>> split(Collection<C> col, int
-	// numElements) {
-	// return split(col, numElements, new ArrayListFactory<Collection<C>>(), new
-	// ArrayListFactory<C>());
-	// }
-
 	public static <C> Collection<C> filterCollection(Collection<? extends C> collection,
 			Filter<C> filter, CollectionFactory<C> factory) {
 		final Collection<C> result = factory.createCollection();
@@ -252,6 +226,17 @@ public class CollectionUtils {
 			if (filter.visit(c))
 				result.add(c);
 		return result;
+	}
+
+	public static <C> void filterCollection2(Collection<? extends C> collection, Filter<C> filter) {
+		for (Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
+			C c = i.next();
+			if (filter.visit(c)) {
+				// OK
+			} else {
+				i.remove();
+			}
+		}
 	}
 
 	public static <C> Collection<C> filterCollection(Collection<? extends C> collection,
@@ -263,34 +248,34 @@ public class CollectionUtils {
 			Filter<C> filter) {
 		return new ArrayListView<C>(collection, filter);
 	}
-	
-	public static int getNumberOfNonNullElements(Collection<?> col){
-		if(col == null)
+
+	public static int getNumberOfNonNullElements(Collection<?> col) {
+		if (col == null)
 			return 0;
 		int result = 0;
-		for(Object o : col){
-			if(o != null){
+		for (Object o : col) {
+			if (o != null) {
 				result++;
 			}
 		}
 		return result;
 	}
-	
-	public static int getNumberOfNonEmptyElements(Iterable<Collection<?>> col){
-		if(col == null)
+
+	public static int getNumberOfNonEmptyElements(Iterable<Collection<?>> col) {
+		if (col == null)
 			return 0;
 		int result = 0;
-		for(Collection<?> o : col){
-			if(o != null && !o.isEmpty()){
+		for (Collection<?> o : col) {
+			if (o != null && !o.isEmpty()) {
 				result++;
 			}
 		}
 		return result;
 	}
-	
-	public static boolean containsNull(Collection<?> c){
-		for(Object o : c){
-			if(o == null)
+
+	public static boolean containsNull(Collection<?> c) {
+		for (Object o : c) {
+			if (o == null)
 				return true;
 		}
 		return false;
