@@ -8,8 +8,8 @@ import net.sf.kerner.utils.collections.list.ListFactory;
 import net.sf.kerner.utils.collections.list.ListTransformer;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 
-public class KeyValueViewValues<K, V> extends KeyValueViewValue<K, V> implements
-ListTransformer<KeyValue<K, V>, V> {
+public class KeyValueViewValues<V> extends KeyValueViewValue<V> implements
+ListTransformer<KeyValue<?, V>, V> {
 
 	private final ListFactory<V> factory;
 
@@ -21,9 +21,9 @@ ListTransformer<KeyValue<K, V>, V> {
 		this(new ArrayListFactory<V>());
 	}
 
-	public List<V> transformList(List<? extends KeyValue<K, V>> element) {
+	public List<V> transformList(List<? extends KeyValue<?, V>> element) {
 		List<V> result = factory.createCollection();
-		for (KeyValue<K, V> e : element) {
+		for (KeyValue<?, V> e : element) {
 			result.add(transform(e));
 		}
 		return result;
