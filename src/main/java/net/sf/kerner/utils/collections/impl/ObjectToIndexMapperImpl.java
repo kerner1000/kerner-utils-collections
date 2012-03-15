@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.kerner.utils.collections.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +50,10 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 			values.add(Integer.valueOf(i));
 		}
 		MapUtils.initMapWithValues(map, keys, values);
+	}
+	
+	public ObjectToIndexMapperImpl(Object... keys) {
+		this(Arrays.asList(keys));
 	}
 
 	// Private //
