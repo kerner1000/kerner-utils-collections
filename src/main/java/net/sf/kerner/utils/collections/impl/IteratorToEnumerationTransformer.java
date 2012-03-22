@@ -19,7 +19,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Vector;
 
-import net.sf.kerner.utils.transformer.Transformer;
+import net.sf.kerner.utils.Transformer;
 
 /**
  * 

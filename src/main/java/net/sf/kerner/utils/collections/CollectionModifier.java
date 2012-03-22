@@ -17,7 +17,7 @@ package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
 
-import net.sf.kerner.utils.modifier.Modifier;
+import net.sf.kerner.utils.Modifier;
 
 /**
  * 

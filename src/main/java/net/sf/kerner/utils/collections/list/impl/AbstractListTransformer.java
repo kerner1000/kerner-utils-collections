@@ -2,9 +2,9 @@ package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.List;
 
+import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.list.ListFactory;
 import net.sf.kerner.utils.collections.list.ListTransformer;
-import net.sf.kerner.utils.transformer.Transformer;
 
 public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
 		Transformer<T, V>, ListTransformer<T, V> {
