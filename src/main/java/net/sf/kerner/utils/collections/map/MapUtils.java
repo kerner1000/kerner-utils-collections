@@ -25,8 +25,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.Utils;
-import net.sf.kerner.utils.collections.CollectionFactory;
+import net.sf.kerner.utils.collections.FactoryCollection;
+import net.sf.kerner.utils.collections.ToStringStrategy;
+import net.sf.kerner.utils.collections.impl.ToStringStrategyDefault;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.counter.Counter;
 import net.sf.kerner.utils.factory.Factory;
@@ -40,6 +43,12 @@ import net.sf.kerner.utils.factory.Factory;
  * 
  */
 public class MapUtils {
+
+	public static final String DEFAULT_ENTRY_SEPARATOR = " = ";
+
+	public static final String DEFAULT_ELEMENT_SEPARATOR = StringUtils.NEW_LINE_STRING;
+
+	public static final ToStringStrategy<Object> DEFAULT_KEY_VALUE_TO_STRING = new ToStringStrategyDefault();
 
 	private MapUtils() {
 	}
@@ -137,13 +146,13 @@ public class MapUtils {
 	 * 
 	 * @see java.util.Map Map
 	 * @see java.util.Collection Collection
-	 * @see net.sf.kerner.utils.collections.CollectionFactory CollectionFactory
+	 * @see net.sf.kerner.utils.collections.FactoryCollection CollectionFactory
 	 * 
 	 * @throws NullPointerException
 	 *             if {@code map} or {@code key} is null
 	 */
 	public static <M, E> void addToCollectionsMap(Map<M, Collection<E>> map, M key, E element,
-			CollectionFactory<E> factory) {
+			FactoryCollection<E> factory) {
 		Utils.checkForNull(map, factory);
 		Collection<E> col = map.get(key);
 		if (col == null) {
@@ -255,7 +264,7 @@ public class MapUtils {
 		}
 		return result;
 	}
-	
+
 	public static <K, V> void sort2(Map<K, V> map, Comparator<Map.Entry<K, V>> c) {
 		List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
 		Collections.sort(list, c);
@@ -276,9 +285,9 @@ public class MapUtils {
 		}
 		return result;
 	}
-	
-	public static <K, V, L extends Collection<V>> void sort2(
-			CollectionMap<K, V, L> map, Comparator<Map.Entry<K, L>> c) {
+
+	public static <K, V, L extends Collection<V>> void sort2(CollectionMap<K, V, L> map,
+			Comparator<Map.Entry<K, L>> c) {
 		List<Map.Entry<K, L>> list = new ArrayList<Map.Entry<K, L>>(map.entrySet());
 		Collections.sort(list, c);
 		map.clear();
@@ -294,7 +303,7 @@ public class MapUtils {
 			}
 		});
 	}
-	
+
 	public static <K, V> void sortByValue2(final Map<K, V> map, final Comparator<? super V> c) {
 		sort2(map, new Comparator<Entry<K, V>>() {
 			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
@@ -310,7 +319,7 @@ public class MapUtils {
 			}
 		});
 	}
-	
+
 	public static <K, V> void sortByKey2(final Map<K, V> map, final Comparator<? super K> c) {
 		sort2(map, new Comparator<Entry<K, V>>() {
 			public int compare(Entry<K, V> o1, Entry<K, V> o2) {
@@ -328,9 +337,9 @@ public class MapUtils {
 			}
 		}, factory);
 	}
-	
-	public static <K, V, L extends Collection<V>> void sortByKey2(
-			final CollectionMap<K, V, L> map, final Comparator<? super K> c) {
+
+	public static <K, V, L extends Collection<V>> void sortByKey2(final CollectionMap<K, V, L> map,
+			final Comparator<? super K> c) {
 		sort2(map, new Comparator<Entry<K, L>>() {
 			public int compare(Entry<K, L> o1, Entry<K, L> o2) {
 				return c.compare(o1.getKey(), o2.getKey());
@@ -360,4 +369,39 @@ public class MapUtils {
 		return null;
 	}
 
+	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyToString,
+			ToStringStrategy<Object> valueToString, String elementSeparator, String entrySteparator) {
+		final StringBuilder sb = new StringBuilder();
+		final Iterator<Entry<K, V>> it = map.entrySet().iterator();
+		while (it.hasNext()) {
+			final Entry<K, V> next = it.next();
+			sb.append(keyToString.transform(next.getKey()));
+			sb.append(entrySteparator);
+			sb.append(valueToString.transform(next.getValue()));
+			if (it.hasNext())
+				sb.append(elementSeparator);
+		}
+		return sb.toString();
+	}
+
+	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyToString,
+			ToStringStrategy<Object> valueToString, String elementSeparator) {
+		return toString(map, keyToString, valueToString, elementSeparator, DEFAULT_ENTRY_SEPARATOR);
+	}
+
+	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyToString,
+			ToStringStrategy<Object> valueToString) {
+		return toString(map, keyToString, valueToString, DEFAULT_ELEMENT_SEPARATOR,
+				DEFAULT_ENTRY_SEPARATOR);
+	}
+
+	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyValueToString) {
+		return toString(map, keyValueToString, keyValueToString, DEFAULT_ELEMENT_SEPARATOR,
+				DEFAULT_ENTRY_SEPARATOR);
+	}
+
+	public static <K, V> String toString(final Map<K, V> map) {
+		return toString(map, DEFAULT_KEY_VALUE_TO_STRING, DEFAULT_KEY_VALUE_TO_STRING,
+				DEFAULT_ELEMENT_SEPARATOR, DEFAULT_ENTRY_SEPARATOR);
+	}
 }

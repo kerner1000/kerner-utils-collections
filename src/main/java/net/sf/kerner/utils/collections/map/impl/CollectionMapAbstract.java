@@ -1,7 +1,9 @@
 package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import net.sf.kerner.utils.collections.map.CollectionMap;
@@ -19,15 +21,21 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 		this(new LinkedHashMapFactory<K, L>());
 	}
 
-	public void putAll(K k, Collection<? extends V> elements) {
+	public synchronized void putAll(K k, Collection<? extends V> elements) {
 		for (V v : elements) {
 			put(k, v);
 		}
 	}
 
-	public void putAll(Map<? extends K, ? extends V> m) {
+	public synchronized void putAll(Map<? extends K, ? extends V> m) {
 		for (java.util.Map.Entry<? extends K, ? extends V> e : m.entrySet()) {
 			this.put(e.getKey(), e.getValue());
+		}
+	}
+	
+	public synchronized void putAll(CollectionMap<? extends K, ? extends V, L> m) {
+		for (Entry<? extends K, L> e : m.entrySet()) {
+			this.putAll(e.getKey(), e.getValue());
 		}
 	}
 
@@ -51,7 +59,7 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 		return map.containsKey(key);
 	}
 
-	public boolean containsValue(V value) {
+	public synchronized boolean containsValue(V value) {
 		for (Collection<V> v : map.values()) {
 			if (v.contains(value))
 				return true;
@@ -59,11 +67,22 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 		return false;
 	}
 
-	public void remove(K key) {
+	public synchronized void remove(K key) {
 		for (Collection<V> c : map.values()) {
 			c.remove(key);
 		}
 	}
+	
+	public synchronized void removeValue(V v) {
+		Iterator<Entry<K, L>> it = map.entrySet().iterator();
+		while(it.hasNext()){
+			final Entry<K, L> next = it.next();
+			next.getValue().remove(v);
+			if(next.getValue().isEmpty()){
+				it.remove();
+			}
+		}
+	};
 
 	public void clear() {
 		map.clear();

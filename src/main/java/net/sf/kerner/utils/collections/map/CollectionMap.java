@@ -13,6 +13,8 @@ public interface CollectionMap<K, V, L extends Collection<V>> {
 	
 	void putAll(Map<? extends K, ? extends V> m);
 	
+	void putAll(CollectionMap<? extends K, ? extends V, L> m);
+	
 	int size();
 	
 	int size(K k);
@@ -28,6 +30,8 @@ public interface CollectionMap<K, V, L extends Collection<V>> {
 	L get(K k);
 	
 	void remove(K k);
+	
+	void removeValue(V v);
 	
 	void clear();
 	

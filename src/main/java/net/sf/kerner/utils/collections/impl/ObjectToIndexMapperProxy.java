@@ -6,20 +6,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class ObjectToIndexMapperProxy extends ObjectToIndexMapperImpl {
+public class ObjectToIndexMapperProxy<T> extends ObjectToIndexMapperImpl<T> {
 	
-	protected Map<Object, Object> identToIdent;
+	protected Map<T, Object> identToIdent;
 	
-	public ObjectToIndexMapperProxy(Map<Object, Object> identToIdent) {
-		super(identToIdent.values());
-		this.identToIdent = new LinkedHashMap<Object, Object>(identToIdent);
+	public ObjectToIndexMapperProxy(Map<T, Object> identToIdent) {
+		super(new ArrayList<T>(identToIdent.keySet()));
+		this.identToIdent = new LinkedHashMap<T, Object>(identToIdent);
 	}
 
-	public int get(Object key) {
-		if(super.containsKey(identToIdent.get(key))){
-		return super.get(identToIdent.get(key));
-		}
-		List<Object> keySet = new ArrayList<Object>(identToIdent.keySet());
+	public int get(T key) {
+		List<T> keySet = new ArrayList<T>(identToIdent.keySet());
 		for(int i = 0; i < keySet.size(); i++){
 			if(keySet.get(i) != null && keySet.get(i).equals(key)){
 				return i;
@@ -38,7 +35,7 @@ public class ObjectToIndexMapperProxy extends ObjectToIndexMapperImpl {
 		throw new NoSuchElementException();
 	}
 
-	public boolean containsKey(Object key) {
+	public boolean containsKey(T key) {
 		return identToIdent.containsKey(key);
 	}
 
@@ -46,18 +43,15 @@ public class ObjectToIndexMapperProxy extends ObjectToIndexMapperImpl {
 		return identToIdent.containsValue(super.getValue(index));
 	}
 
-	public List<Object> keys() {
-		return new ArrayList<Object>(identToIdent.keySet());
+	public List<T> keys() {
+		return new ArrayList<T>(identToIdent.keySet());
 	}
 	
-	public void addMapping(Object key) {
+	public void addMapping(T key) {
 		throw new IllegalStateException();	
 	}
 
-	public void addMapping(Object key, int index) {
+	public void addMapping(T key, int index) {
 		throw new IllegalStateException();
 	}
-	
-	
-
 }

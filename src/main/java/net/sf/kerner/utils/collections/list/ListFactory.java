@@ -18,12 +18,12 @@ package net.sf.kerner.utils.collections.list;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.CollectionFactory;
+import net.sf.kerner.utils.collections.FactoryCollection;
 
 /**
  * 
  * 
- * A {@code ListFactory} extends a {@link CollectionFactory} by limiting the
+ * A {@code ListFactory} extends a {@link FactoryCollection} by limiting the
  * created {@code Collection} to be a {@link java.util.List List}.
  * 
  * 
@@ -33,7 +33,7 @@ import net.sf.kerner.utils.collections.CollectionFactory;
  * @param <E>
  *            type of elements contained by the {@code List}
  */
-public interface ListFactory<E> extends CollectionFactory<E> {
+public interface ListFactory<E> extends FactoryCollection<E> {
 
 	/**
 	 * Create a new {@link java.util.List List}.

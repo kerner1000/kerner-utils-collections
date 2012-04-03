@@ -15,8 +15,10 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections;
 
-import net.sf.kerner.utils.Transformer;
+import java.util.Collection;
 
-public interface ToStringStrategy<E> extends Transformer<E, String> {
+public interface TransformerCollection<T, V> {
+
+	Collection<V> transformCollection(Collection<? extends T> element);
 
 }

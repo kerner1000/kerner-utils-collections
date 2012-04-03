@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -21,40 +21,40 @@ import java.util.Iterator;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.StringUtils;
-import net.sf.kerner.utils.collections.CollectionFactory;
-import net.sf.kerner.utils.collections.CollectionView;
+import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.Visitor;
+import net.sf.kerner.utils.collections.ToStringStrategy;
 import net.sf.kerner.utils.collections.list.ListVisitor;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.collections.list.impl.ArrayListView;
 import net.sf.kerner.utils.factory.Factory;
 
+/**
+ * 
+ * Utility class for Collection related stuff.
+ * 
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2012-03-29
+ * 
+ */
 public class CollectionUtils {
 
 	public static String DEFAULT_OBJECT_SEPARATOR = ", ";
 
-	public static Visitor<String, Object> DEFAULT_VISITOR = new Visitor<String, Object>() {
-
-		public String visit(Object element) {
-			if(element == null)
-				return "null";
-			return element.toString();
-		}
-	};
+	public static ToStringStrategy<Object> DEFAULT_TO_STRING_STRATEGY = new ToStringStrategyDefault();
 
 	private CollectionUtils() {
+		// Singleton
 	}
 
 	/**
 	 * 
 	 * Create a new {@link Collection}, that contains all elements contained in
 	 * first given collection and in second given collection. Ordering is as
-	 * given by first {@code Collection}'s {@link Iterator} followed by second
-	 * {@code Collection}'s {@link Iterator}.
+	 * given by first {@code Collection Collection's} {@link Iterator} followed
+	 * by second {@code Collection Collection's} {@link Iterator}.
 	 * 
 	 * @param <C>
-	 *            Type of {@link Collection}s
+	 *            Type of both {@link Collection Collections}
 	 * @param c1
 	 *            first {@link Collection}
 	 * @param c2
@@ -64,7 +64,7 @@ public class CollectionUtils {
 	 * @return new {@code Collection}
 	 */
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2,
-			CollectionFactory<C> factory) {
+			FactoryCollection<C> factory) {
 		final Collection<C> result = factory.createCollection(c1);
 		result.addAll(c2);
 		return result;
@@ -72,7 +72,7 @@ public class CollectionUtils {
 
 	/**
 	 * 
-	 * Same as {@link #append(c1, c2, new ArrayListFactory)}
+	 * Same as {@link #append(c1, c2, new ArrayListFactory())}
 	 * 
 	 */
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2) {
@@ -85,9 +85,8 @@ public class CollectionUtils {
 	 * {@code toString()} and appends after that
 	 * {@link StringUtils.NEW_LINE_STRING}.
 	 * 
-	 * @param elements
-	 *            {@code Collection} of element's
-	 * @return String representation for given {@code Collection}
+	 * @return String representation for given {@code Collection}, or empty
+	 *         string if parameter is empty
 	 */
 	public static String toString(Iterable<?> elements) {
 		if (!elements.iterator().hasNext())
@@ -165,30 +164,12 @@ public class CollectionUtils {
 		return true;
 	}
 
-	/**
-	 * 
-	 * Retrieve a string representation of a collection of objects. each objects
-	 * string representation is obtained by {@code visitor} which will visit
-	 * every element one after another. Each object's string representation is
-	 * separated by {@code objectSeparator}.
-	 * 
-	 * @param <O>
-	 *            type of elements
-	 * @param iterable
-	 *            {@link Iterable} that provides elements
-	 * @param visitor
-	 *            {@link Visitor} to obtain each elements string representation
-	 * @param objectSeparator
-	 *            String to separate objects from each other
-	 * @return string representation of all elements provided by
-	 *         {@code iterable}
-	 */
-	public static <O> String toString(Iterable<? extends O> iterable, Visitor<String, O> visitor,
-			String objectSeparator) {
+	public static <O> String toString(Iterable<? extends O> iterable,
+			ToStringStrategy<O> transformer, String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<? extends O> it = iterable.iterator();
 		while (it.hasNext()) {
-			sb.append(visitor.visit(it.next()));
+			sb.append(transformer.transform(it.next()));
 			if (it.hasNext())
 				sb.append(objectSeparator);
 		}
@@ -207,12 +188,12 @@ public class CollectionUtils {
 		return sb.toString();
 	}
 
-	public static <O> String toString(Iterable<? extends O> it, Visitor<String, O> s) {
+	public static <O> String toString(Iterable<? extends O> it, ToStringStrategy<O> s) {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 
 	public static <O> String toString(Iterable<? extends O> it, String objectSeparator) {
-		return toString(it, DEFAULT_VISITOR, objectSeparator);
+		return toString(it, DEFAULT_TO_STRING_STRATEGY, objectSeparator);
 	}
 
 	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> s) {
@@ -220,7 +201,7 @@ public class CollectionUtils {
 	}
 
 	public static <C> Collection<C> filterCollection(Collection<? extends C> collection,
-			Filter<C> filter, CollectionFactory<C> factory) {
+			Filter<C> filter, FactoryCollection<C> factory) {
 		final Collection<C> result = factory.createCollection();
 		for (C c : collection)
 			if (filter.visit(c))
@@ -230,8 +211,7 @@ public class CollectionUtils {
 
 	public static <C> void filterCollection2(Collection<? extends C> collection, Filter<C> filter) {
 		for (Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
-			C c = i.next();
-			if (filter.visit(c)) {
+			if (filter.visit(i.next())) {
 				// OK
 			} else {
 				i.remove();
@@ -242,11 +222,6 @@ public class CollectionUtils {
 	public static <C> Collection<C> filterCollection(Collection<? extends C> collection,
 			Filter<C> filter) {
 		return filterCollection(collection, filter, new ArrayListFactory<C>());
-	}
-
-	public static <C> CollectionView<C> getCollectionView(Collection<? extends C> collection,
-			Filter<C> filter) {
-		return new ArrayListView<C>(collection, filter);
 	}
 
 	public static int getNumberOfNonNullElements(Collection<?> col) {

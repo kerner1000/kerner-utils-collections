@@ -35,16 +35,16 @@ import net.sf.kerner.utils.math.MathUtils;
  * @version 2012-01-25
  * 
  */
-public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
+public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
 
 	// Field //
 
 	/**
 	 * 
 	 */
-	protected final Map<Object, Integer> map = new LinkedHashMap<Object, Integer>();
+	protected final Map<T, Integer> map = new LinkedHashMap<T, Integer>();
 
-	public ObjectToIndexMapperImpl(List<? extends Object> keys) {
+	public ObjectToIndexMapperImpl(List<? extends T> keys) {
 		final List<Integer> values = new ArrayList<Integer>();
 		for (int i = 0; i < keys.size(); i++) {
 			values.add(Integer.valueOf(i));
@@ -52,7 +52,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		MapUtils.initMapWithValues(map, keys, values);
 	}
 	
-	public ObjectToIndexMapperImpl(Object... keys) {
+	public ObjectToIndexMapperImpl(T... keys) {
 		this(Arrays.asList(keys));
 	}
 
@@ -74,7 +74,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	/**
 	 * 
 	 */
-	public int get(Object key) {
+	public int get(T key) {
 		final Integer result = map.get(key);
 		if (result != null) {
 			return result;
@@ -85,14 +85,14 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 	public Object getValue(int index) {
 		if (index < 0)
 			throw new IllegalArgumentException("index [" + index + "]");
-		for (Entry<Object, Integer> e : map.entrySet()) {
+		for (Entry<T, Integer> e : map.entrySet()) {
 			if (e.getValue().equals(Integer.valueOf(index)))
 				return e.getKey();
 		}
 		throw new NoSuchElementException("no such index [" + index + "]");
 	}
 
-	public boolean containsKey(Object key) {
+	public boolean containsKey(T key) {
 		return map.containsKey(key);
 	}
 
@@ -104,8 +104,8 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		return new ArrayList<Integer>(map.values());
 	}
 
-	public List<Object> keys() {
-		return new ArrayList<Object>(map.keySet());
+	public List<T> keys() {
+		return new ArrayList<T>(map.keySet());
 	}
 
 	public int getMaxIndex() {
@@ -120,7 +120,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		return getSize() == 0;
 	}
 
-	public void addMapping(Object key, int value) {
+	public void addMapping(T key, int value) {
 		// final Iterator<Entry<Object, Integer>> it =
 		// map.entrySet().iterator();
 		// while(it.hasNext()){
@@ -133,7 +133,7 @@ public class ObjectToIndexMapperImpl implements ObjectToIndexMapper {
 		map.put(key, value);
 	}
 
-	public void addMapping(Object key) {
+	public void addMapping(T key) {
 		map.put(key, getMaxIndex() + 1);
 	}
 }

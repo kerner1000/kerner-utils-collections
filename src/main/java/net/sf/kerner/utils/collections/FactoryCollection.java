@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -19,32 +19,35 @@ import java.util.Collection;
 
 /**
  * 
- * A {@code CollectionTransformer} converts one object of type
- * {@code Collection<? extends T>} to another object of type
- * {@code Collection<? super V>}.
- * 
- * <p>
- * <b>Example:</b><br>
- * 
- * </p>
- * <p>
- * 
- * <pre>
- * TODO example
- * </pre>
- * 
- * </p>
+ * A {@code CollectionFactory} provides factory methods to retrieve a new
+ * instance of all kind of direct and indirect implementations of
+ * {@link java.util.Collection Collection}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-05-11
+ * @version 2012-03-28
+ * @param E
+ *            type of elements within the collection
  * 
- * @param <T>
- *            type of elements in input collection
- * @param <V>
- *            type of elements in output collection
  */
-public interface CollectionTransformer<T, V> {
+public interface FactoryCollection<E> {
 
-	Collection<V> transformCollection(Collection<? extends T> element);
+	/**
+	 * 
+	 * Get a new instance for specified {@code Collection}.
+	 * 
+	 * @return new {@code Collection}
+	 */
+	Collection<E> createCollection();
+
+	/**
+	 * 
+	 * Get a new instance for specified {@code Collection} containing all given
+	 * elements.
+	 * 
+	 * @param elements
+	 *            that are contained in new collection
+	 * @return new {@code Collection}
+	 */
+	Collection<E> createCollection(Collection<? extends E> template);
 
 }

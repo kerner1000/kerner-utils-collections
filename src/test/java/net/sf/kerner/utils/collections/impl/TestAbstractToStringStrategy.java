@@ -31,7 +31,7 @@ public class TestAbstractToStringStrategy {
 	@Test
 	public final void test01() {
 		s = new AbstractToStringStrategy<Object>(1) {
-			public String visit(Object element) {
+			public String transform(Object element) {
 				return element.toString();
 			}
 		};
@@ -41,7 +41,7 @@ public class TestAbstractToStringStrategy {
 	@Test
 	public final void test02() {
 		s = new AbstractToStringStrategy<Object>(1) {
-			public String visit(Object element) {
+			public String transform(Object element) {
 				return null;
 			}
 		};
@@ -51,7 +51,7 @@ public class TestAbstractToStringStrategy {
 	@Test
 	public final void test03() {
 		s = new AbstractToStringStrategy<Object>(null) {
-			public String visit(Object element) {
+			public String transform(Object element) {
 				return null;
 			}
 		};

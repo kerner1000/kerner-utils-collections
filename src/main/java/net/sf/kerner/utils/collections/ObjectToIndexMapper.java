@@ -59,13 +59,13 @@ import java.util.NoSuchElementException;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
+ * @version 2012-03-17
  * @see Collection
  * @see List
  * @see Map
  * 
  */
-public interface ObjectToIndexMapper {
+public interface ObjectToIndexMapper<T> {
 
 	/**
 	 * 
@@ -76,7 +76,7 @@ public interface ObjectToIndexMapper {
 	 *            {@code ObjectToIndexMapper}
 	 * @return true, if given object is a valid key; false otherwise
 	 */
-	boolean containsKey(Object key);
+	boolean containsKey(T key);
 
 	/**
 	 * 
@@ -100,7 +100,7 @@ public interface ObjectToIndexMapper {
 	 * @throws NoSuchElementException
 	 *             if key is not registered to this {@code ObjectToIndexMapper}
 	 */
-	int get(Object key);
+	int get(T key);
 
 	/**
 	 * 
@@ -131,7 +131,7 @@ public interface ObjectToIndexMapper {
 	 * @return a {@code List} that contains all keys of this
 	 *         {@code ObjectToIndexMapper}
 	 */
-	List<Object> keys();
+	List<T> keys();
 
 	int getSize();
 
@@ -139,8 +139,8 @@ public interface ObjectToIndexMapper {
 
 	boolean isEmpty();
 
-	void addMapping(Object key);
+	void addMapping(T key);
 
-	void addMapping(Object key, int index);
+	void addMapping(T key, int index);
 
 }
