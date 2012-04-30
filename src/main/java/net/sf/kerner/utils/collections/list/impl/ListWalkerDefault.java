@@ -5,14 +5,14 @@ import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.list.DefaultListVisitor;
 import net.sf.kerner.utils.collections.list.ListWalker;
+import net.sf.kerner.utils.collections.list.VisitorListDefault;
 
 public class ListWalkerDefault<E> implements ListWalker<E> {
 
 	protected final Collection<Filter<E>> filters = new ArrayList<Filter<E>>();
 
-	protected final Collection<DefaultListVisitor<E>> visitors = new ArrayList<DefaultListVisitor<E>>();
+	protected final Collection<VisitorListDefault<E>> visitors = new ArrayList<VisitorListDefault<E>>();
 
 	public synchronized void addFilter(Filter<E> filter) {
 		filters.add(filter);
@@ -22,7 +22,7 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 		filters.clear();
 	}
 
-	public synchronized void addVisitor(DefaultListVisitor<E> visitor) {
+	public synchronized void addVisitor(VisitorListDefault<E> visitor) {
 		visitors.add(visitor);
 	}
 
@@ -48,7 +48,7 @@ public class ListWalkerDefault<E> implements ListWalker<E> {
 				}
 			}
 			if (take) {
-				for (DefaultListVisitor<E> v : visitors) {
+				for (VisitorListDefault<E> v : visitors) {
 					v.visit(e, i);
 					v.visit(e);
 				}

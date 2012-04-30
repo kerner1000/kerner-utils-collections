@@ -8,35 +8,35 @@ import java.util.Set;
 public interface CollectionMap<K, V, L extends Collection<V>> {
 
 	void put(K k, V v);
-	
+
 	void putAll(K k, Collection<? extends V> elements);
-	
+
 	void putAll(Map<? extends K, ? extends V> m);
-	
+
 	void putAll(CollectionMap<? extends K, ? extends V, L> m);
-	
+
 	int size();
-	
+
 	int size(K k);
-	
+
 	boolean isEmpty();
-	
+
 	boolean isEmpty(K k);
-	
+
 	boolean containsKey(K k);
-	
+
 	boolean containsValue(V v);
-	
+
 	L get(K k);
-	
+
 	void remove(K k);
-	
+
 	void removeValue(V v);
-	
+
 	void clear();
-	
+
 	Set<K> keySet();
-	
+
 	L values();
 
 	Set<Entry<K, L>> entrySet();

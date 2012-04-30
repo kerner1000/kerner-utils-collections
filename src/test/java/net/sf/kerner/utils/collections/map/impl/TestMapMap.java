@@ -61,7 +61,7 @@ public class TestMapMap {
 	public final void testIsEmpty01() {
 		assertTrue(map.isEmpty());
 	}
-	
+
 	@Test
 	public final void testIsEmpty02() {
 		assertTrue(map.isEmpty());
@@ -72,7 +72,7 @@ public class TestMapMap {
 		map.put("A", "A", "v");
 		assertFalse(map.isEmpty());
 	}
-	
+
 	@Test
 	public final void testIsEmpty04() {
 		map.put("A", "A", "v");
@@ -85,14 +85,14 @@ public class TestMapMap {
 		map.put("A", "A", "v");
 		assertTrue(map.containsKey1("A"));
 	}
-	
+
 	@Test
 	public final void testContainsKey102() {
 		map.put("A", "A", "v");
 		map.put("A", "B", "v");
 		assertFalse(map.containsKey1("B"));
 	}
-	
+
 	@Test
 	public final void testContainsKey201() {
 		map.put("A", "A", "v");
@@ -123,7 +123,7 @@ public class TestMapMap {
 		map.remove1("A");
 		assertTrue(map.isEmpty());
 	}
-	
+
 	@Test
 	public final void testRemove102() {
 		map.put("A", "A", "a");
@@ -145,7 +145,7 @@ public class TestMapMap {
 		assertEquals(2, map.size1());
 		assertEquals(3, map.size2());
 	}
-	
+
 	@Test
 	public final void testRemove202() {
 		map.put("A", "A", "a");
@@ -163,7 +163,7 @@ public class TestMapMap {
 		map.put("A", "B", "b");
 		map.put("B", "C", "c");
 		map.put("B", "D", "d");
-		assertArrayEquals(new String[]{"a","b"}, map.values("A").toArray());
+		assertArrayEquals(new String[] { "a", "b" }, map.values("A").toArray());
 	}
 
 	@Test
@@ -172,7 +172,7 @@ public class TestMapMap {
 		map.put("A", "B", "b");
 		map.put("B", "C", "c");
 		map.put("B", "D", "d");
-		assertArrayEquals(new String[]{"a","b","c","d"}, map.values().toArray());
+		assertArrayEquals(new String[] { "a", "b", "c", "d" }, map.values().toArray());
 	}
 
 }

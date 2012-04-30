@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,16 +13,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections.map;
+package net.sf.kerner.utils.collections.list;
 
-import java.util.Map;
+import java.util.List;
+import java.util.ListIterator;
 
-import net.sf.kerner.utils.factory.Factory;
+import net.sf.kerner.utils.collections.Visitor;
 
 /**
  * 
- * A {@code MapFactory} provides factory methods to retrieve all kind of direct
- * and indirect implementations of {@link java.util.Map Map}.
+ * An extension to {@link Visitor}, which additionally provides a
+ * {@link ListIterator} as a parameter (to the closure/ function), that gives
+ * access to {@link List} that is visited by this {@code Visitor}.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -37,13 +39,24 @@ import net.sf.kerner.utils.factory.Factory;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-11-12
+ * @version 2011-11-03
  * 
- * @param <K>
- *            type of keys in the map
- * @param <V>
- *            type of values in the map
+ * @param <R>
+ *            type of result
+ * @param <E>
+ *            type of input
  */
-public interface MapFactory<K, V> extends Factory<Map<K, V>> {
+public interface VisitorList<R, E> extends Visitor<R, E> {
+
+	/**
+	 * 
+	 * Visit object {@code e}, perform any action and return result.
+	 * 
+	 * @param element
+	 *            element to visit
+	 * 
+	 * @return result of visit
+	 */
+	R visit(E element, int index);
 
 }

@@ -76,18 +76,18 @@ public class PropertiesSorted extends Properties {
 		});
 		return new LinkedHashSet<Object>(keyList);
 	}
-	
+
 	@Override
 	public synchronized String toString() {
 		StringBuilder sb = new StringBuilder();
 		Iterator<Object> it = keySet().iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			Object k = it.next();
 			Object v = get(k);
 			sb.append(k);
 			sb.append("=");
 			sb.append(v);
-			if(it.hasNext()){
+			if (it.hasNext()) {
 				sb.append(", ");
 			}
 		}

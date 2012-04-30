@@ -7,13 +7,14 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import net.sf.kerner.utils.collections.map.CollectionMap;
-import net.sf.kerner.utils.collections.map.MapFactory;
+import net.sf.kerner.utils.collections.map.FactoryMap;
 
-public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> implements CollectionMap<K, V, L> {
+public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> implements
+		CollectionMap<K, V, L> {
 
 	protected final Map<K, L> map;
 
-	public CollectionMapAbstract(MapFactory<K, L> mapFactory) {
+	public CollectionMapAbstract(FactoryMap<K, L> mapFactory) {
 		this.map = mapFactory.create();
 	}
 
@@ -32,7 +33,7 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 			this.put(e.getKey(), e.getValue());
 		}
 	}
-	
+
 	public synchronized void putAll(CollectionMap<? extends K, ? extends V, L> m) {
 		for (Entry<? extends K, L> e : m.entrySet()) {
 			this.putAll(e.getKey(), e.getValue());
@@ -50,7 +51,7 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 	public boolean isEmpty() {
 		return map.isEmpty();
 	}
-	
+
 	public boolean isEmpty(K k) {
 		return map.get(k).isEmpty();
 	}
@@ -72,13 +73,13 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 			c.remove(key);
 		}
 	}
-	
+
 	public synchronized void removeValue(V v) {
 		Iterator<Entry<K, L>> it = map.entrySet().iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			final Entry<K, L> next = it.next();
 			next.getValue().remove(v);
-			if(next.getValue().isEmpty()){
+			if (next.getValue().isEmpty()) {
 				it.remove();
 			}
 		}
@@ -91,7 +92,7 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
 	public Set<K> keySet() {
 		return map.keySet();
 	}
-	
+
 	public Set<Map.Entry<K, L>> entrySet() {
 		return map.entrySet();
 	}

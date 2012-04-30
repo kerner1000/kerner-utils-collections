@@ -13,17 +13,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.map;
 
-import java.util.Collection;
+import java.util.Map;
 
-import net.sf.kerner.utils.Modifier;
+import net.sf.kerner.utils.Factory;
 
 /**
  * 
- * A {@code CollectionModifier} modifies one implementation of
- * {@code Collection<? extends T>} and returns the modified {@code Collection}
- * which is of type {@code Collection<V extends T>}.
+ * A {@code MapFactory} provides factory methods to retrieve all kind of direct
+ * and indirect implementations of {@link java.util.Map Map}.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -38,14 +37,13 @@ import net.sf.kerner.utils.Modifier;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-03
+ * @version 2010-11-12
  * 
- * @param <T>
- *            type of elements in input collection
+ * @param <K>
+ *            type of keys in the map
  * @param <V>
- *            type of elements in output collection
+ *            type of values in the map
  */
-public interface CollectionModifier<T, V extends T> extends
-		Modifier<Collection<? extends T>, Collection<? extends V>> {
+public interface FactoryMap<K, V> extends Factory<Map<K, V>> {
 
 }

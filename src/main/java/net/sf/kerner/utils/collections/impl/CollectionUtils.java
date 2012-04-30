@@ -21,12 +21,12 @@ import java.util.Iterator;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.StringUtils;
+import net.sf.kerner.utils.TransformerToString;
+import net.sf.kerner.utils.TransformerToStringDefault;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.ToStringStrategy;
-import net.sf.kerner.utils.collections.list.ListVisitor;
+import net.sf.kerner.utils.collections.list.VisitorList;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.factory.Factory;
 
 /**
  * 
@@ -40,7 +40,7 @@ public class CollectionUtils {
 
 	public static String DEFAULT_OBJECT_SEPARATOR = ", ";
 
-	public static ToStringStrategy<Object> DEFAULT_TO_STRING_STRATEGY = new ToStringStrategyDefault();
+	public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
 	private CollectionUtils() {
 		// Singleton
@@ -165,7 +165,7 @@ public class CollectionUtils {
 	}
 
 	public static <O> String toString(Iterable<? extends O> iterable,
-			ToStringStrategy<O> transformer, String objectSeparator) {
+			TransformerToString transformer, String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<? extends O> it = iterable.iterator();
 		while (it.hasNext()) {
@@ -176,7 +176,7 @@ public class CollectionUtils {
 		return sb.toString();
 	}
 
-	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> visitor,
+	public static <O> String toString(ListIterator<? extends O> it, VisitorList<String, O> visitor,
 			String objectSeparator) {
 		final StringBuilder sb = new StringBuilder();
 		while (it.hasNext()) {
@@ -188,15 +188,15 @@ public class CollectionUtils {
 		return sb.toString();
 	}
 
-	public static <O> String toString(Iterable<? extends O> it, ToStringStrategy<O> s) {
+	public static <O> String toString(Iterable<? extends O> it, TransformerToString s) {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 
 	public static <O> String toString(Iterable<? extends O> it, String objectSeparator) {
-		return toString(it, DEFAULT_TO_STRING_STRATEGY, objectSeparator);
+		return toString(it, TRANSFORMER_TO_STRING_DEFAULT, objectSeparator);
 	}
 
-	public static <O> String toString(ListIterator<? extends O> it, ListVisitor<String, O> s) {
+	public static <O> String toString(ListIterator<? extends O> it, VisitorList<String, O> s) {
 		return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
 	}
 

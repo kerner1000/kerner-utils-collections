@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -21,7 +21,7 @@ import java.util.Collection;
  * 
  * A {@code Selector} selects and returns an instance of one element out of a
  * given {@link java.util.Collection Collection} of elements. Returned instance
- * of element ist not altered and stays a member of input
+ * of element is not altered and stays a member of input
  * {@link java.util.Collection Collection}.
  * 
  * <p>
@@ -37,9 +37,10 @@ import java.util.Collection;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-06-06
+ * @version 2012-04-16
  * 
  * @param <T>
+ *            type of elements
  */
 public interface Selector<T> {
 

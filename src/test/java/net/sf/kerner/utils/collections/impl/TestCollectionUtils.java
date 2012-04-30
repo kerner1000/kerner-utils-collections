@@ -1,6 +1,6 @@
 package net.sf.kerner.utils.collections.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,7 +34,7 @@ public class TestCollectionUtils {
 	public final void testFilterCollection201() {
 		Collection<Integer> c = new ArrayList<Integer>();
 		c.add(1);
-		for (Iterator<? extends Integer> i = c.iterator(); i.hasNext();){
+		for (Iterator<? extends Integer> i = c.iterator(); i.hasNext();) {
 			i.next();
 			i.remove();
 		}

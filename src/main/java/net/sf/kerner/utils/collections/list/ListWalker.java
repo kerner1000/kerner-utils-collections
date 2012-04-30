@@ -16,7 +16,7 @@ public interface ListWalker<E> {
 
 	void clearFilters();
 
-	void addVisitor(DefaultListVisitor<E> visitor);
+	void addVisitor(VisitorListDefault<E> visitor);
 
 	void clearVisitors();
 

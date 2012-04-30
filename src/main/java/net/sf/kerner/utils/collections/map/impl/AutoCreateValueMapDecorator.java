@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-import net.sf.kerner.utils.factory.Factory;
+import net.sf.kerner.utils.Factory;
 
 public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
 
