@@ -21,9 +21,8 @@ import net.sf.kerner.utils.Modifier;
 
 /**
  * 
- * A {@code CollectionModifier} modifies one implementation of
- * {@code Collection<? extends T>} and returns the modified {@code Collection}
- * which is of type {@code Collection<V extends T>}.
+ * A {@code ModifierCollection} modifies all elements in a {@code Collection}
+ * and returns another {@code Collection} which contains the modified elements.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -38,7 +37,7 @@ import net.sf.kerner.utils.Modifier;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-04-16
+ * @version 2012-05-02
  * 
  * @param <T>
  *            type of elements in input collection

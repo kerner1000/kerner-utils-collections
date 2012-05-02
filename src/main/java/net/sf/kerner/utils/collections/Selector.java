@@ -20,9 +20,7 @@ import java.util.Collection;
 /**
  * 
  * A {@code Selector} selects and returns an instance of one element out of a
- * given {@link java.util.Collection Collection} of elements. Returned instance
- * of element is not altered and stays a member of input
- * {@link java.util.Collection Collection}.
+ * given {@link Collection} of elements.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -37,7 +35,7 @@ import java.util.Collection;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-04-16
+ * @version 2012-05-02
  * 
  * @param <T>
  *            type of elements
@@ -50,8 +48,8 @@ public interface Selector<T> {
 	 * {@code Selector's} needs.
 	 * 
 	 * @param elements
-	 *            {@link java.util.Collection Collection} of elements from which
-	 *            one should be selected
+	 *            {@link Collection} from which
+	 *            one element is selected
 	 * @return element that was selected by this {@code Selector}
 	 */
 	T select(Collection<? extends T> elements);

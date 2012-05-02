@@ -24,7 +24,7 @@ import java.util.NoSuchElementException;
  * 
  * 
  * An {@code ObjectToIndexMapper} establishes a mapping between any collection
- * of objects and a {@link List}'s integer indices.
+ * of objects and a {@link List List's} integer indices.
  * <p>
  * Given a collection of objects, e.g. following set of strings:
  * </p>
@@ -59,9 +59,8 @@ import java.util.NoSuchElementException;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-03-17
+ * @version 2012-04-30
  * @see Collection
- * @see List
  * @see Map
  * 
  */
@@ -74,7 +73,7 @@ public interface ObjectToIndexMapper<T> {
 	 * @param key
 	 *            object that is checked to be a valid key in this
 	 *            {@code ObjectToIndexMapper}
-	 * @return true, if given object is a valid key; false otherwise
+	 * @return {@code true}, if given object is a valid key; {@code false} otherwise
 	 */
 	boolean containsKey(T key);
 
@@ -85,7 +84,7 @@ public interface ObjectToIndexMapper<T> {
 	 * @param index
 	 *            index that is checked to be a valid value in this
 	 *            {@code ObjectToIndexMapper}
-	 * @return true, if given index is a valid value; false otherwise
+	 * @return {@code true}, if given index is a valid value; {@code false} otherwise
 	 */
 	boolean containsValue(int index);
 

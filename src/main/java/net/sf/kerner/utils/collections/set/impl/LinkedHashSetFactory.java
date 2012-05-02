@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -23,12 +23,10 @@ import net.sf.kerner.utils.collections.set.SetFactory;
 
 /**
  * 
- * A {@link net.sf.kerner.utils.collections.set.SetFactory SetFactory} that
- * returns a {@link java.util.LinkedHashSet LinkedHashSet} as
- * {@link java.util.Set Set} implementation.
+ * A {@link SetFactory} builds a {@link LinkedHashSet}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-16
+ * @version 2012-04-02
  * 
  * @param <E>
  *            type of elements contained by the {@code Set}
@@ -42,6 +40,9 @@ public class LinkedHashSetFactory<E> implements SetFactory<E> {
 		return new LinkedHashSet<E>();
 	}
 
+	/**
+	 * 
+	 */
 	public Set<E> createCollection(Collection<? extends E> template) {
 		return new LinkedHashSet<E>(template);
 	}

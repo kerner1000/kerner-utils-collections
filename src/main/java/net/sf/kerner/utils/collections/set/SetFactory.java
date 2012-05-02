@@ -24,7 +24,7 @@ import net.sf.kerner.utils.collections.FactoryCollection;
  * 
  * 
  * A {@code SetFactory} extends a {@link FactoryCollection} by limiting the
- * created {@code Collection} to be a {@link java.util.Set Set}.
+ * created {@code Collection} to be a {@link Set}.
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
@@ -36,12 +36,12 @@ import net.sf.kerner.utils.collections.FactoryCollection;
 public interface SetFactory<E> extends FactoryCollection<E> {
 
 	/**
-	 * Create a new {@link java.util.Set Set}.
+	 * Create a new {@link Set}.
 	 */
 	Set<E> createCollection();
 
 	/**
-	 * Create a new {@link java.util.Set Set} containing all given elements.
+	 * Create a new {@link Set} containing all given elements.
 	 */
 	Set<E> createCollection(Collection<? extends E> template);
 
