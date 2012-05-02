@@ -31,7 +31,7 @@ import net.sf.kerner.utils.collections.set.SetFactory;
  * @param <E>
  *            type of elements contained by the {@code Set}
  */
-public class LinkedHashSetFactory<E> implements SetFactory<E> {
+public class FactoryLinkedHashSet<E> implements SetFactory<E> {
 
 	/** 
 	 * 
