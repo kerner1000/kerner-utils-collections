@@ -6,13 +6,13 @@ import java.util.Set;
 
 import net.sf.kerner.utils.Factory;
 
-public class AutoCreateValueMapDecorator<K, V> implements Map<K, V> {
+public class DecoratorMapAutoCreateValue<K, V> implements Map<K, V> {
 
 	private final Map<K, V> decorated;
 
 	private final Factory<V> factory;
 
-	public AutoCreateValueMapDecorator(Map<K, V> decorated, Factory<V> factory) {
+	public DecoratorMapAutoCreateValue(Map<K, V> decorated, Factory<V> factory) {
 		super();
 		this.decorated = decorated;
 		this.factory = factory;
