@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.list.DefaultListVisitor;
+import net.sf.kerner.utils.collections.list.VisitorListDefault;
 import net.sf.kerner.utils.counter.Counter;
 
 import org.junit.After;
@@ -21,7 +21,7 @@ public class TestListWalkerDefault {
 
 	private ListWalkerDefault<Integer> w;
 	private List<Integer> l;
-	private DefaultListVisitor<Integer> v;
+	private VisitorListDefault<Integer> v;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

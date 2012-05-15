@@ -1,15 +1,17 @@
 package net.sf.kerner.utils.collections.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.KeyValue;
-import net.sf.kerner.utils.KeyValueViewKey;
+import net.sf.kerner.utils.ViewKeyValueKey;
+import net.sf.kerner.utils.collections.TransformerCollection;
 import net.sf.kerner.utils.collections.list.ListFactory;
-import net.sf.kerner.utils.collections.list.ListTransformer;
+import net.sf.kerner.utils.collections.list.TransformerList;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 
-public class KeyValueViewKeys<K> extends KeyValueViewKey<K> implements
-		ListTransformer<KeyValue<K, ?>, K> {
+public class KeyValueViewKeys<K> extends ViewKeyValueKey<K> implements
+		TransformerCollection<KeyValue<K, ?>, K> {
 
 	private final ListFactory<K> factory;
 
@@ -21,7 +23,7 @@ public class KeyValueViewKeys<K> extends KeyValueViewKey<K> implements
 		this(new ArrayListFactory<K>());
 	}
 
-	public List<K> transformList(List<? extends KeyValue<K, ?>> element) {
+	public List<K> transformCollection(Collection<? extends KeyValue<K, ?>> element) {
 		List<K> result = factory.createCollection();
 		for (KeyValue<K, ?> e : element) {
 			result.add(transform(e));

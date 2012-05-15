@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.sf.kerner.utils.collections.map.MapFactory;
+import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.set.SetFactory;
 
 public class CollectionMapSet<K, V> extends CollectionMapAbstract<K, V, Set<V>> {
@@ -12,16 +12,18 @@ public class CollectionMapSet<K, V> extends CollectionMapAbstract<K, V, Set<V>> 
 	private final SetFactory<V> factory;
 
 	public CollectionMapSet() {
-		this.factory = new SetFactory<V>(){
+		this.factory = new SetFactory<V>() {
 			public Set<V> createCollection() {
 				return new HashSet<V>();
 			}
+
 			public Set<V> createCollection(Collection<? extends V> template) {
 				return new HashSet<V>(template);
-			}};
+			}
+		};
 	}
 
-	public CollectionMapSet(MapFactory<K, Set<V>> mapFactory, SetFactory<V> factory) {
+	public CollectionMapSet(FactoryMap<K, Set<V>> mapFactory, SetFactory<V> factory) {
 		super(mapFactory);
 		this.factory = factory;
 	}
@@ -29,11 +31,11 @@ public class CollectionMapSet<K, V> extends CollectionMapAbstract<K, V, Set<V>> 
 	public Set<V> get(K key) {
 		return map.get(key);
 	}
-	
+
 	public void put(K key, V value) {
-		
+
 		// TODO see {@link MapUtils#addToCollectionsMap()}
-		
+
 		Set<V> col = map.get(key);
 		if (col == null) {
 			col = factory.createCollection();

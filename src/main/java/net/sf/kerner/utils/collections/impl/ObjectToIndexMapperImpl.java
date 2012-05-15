@@ -51,7 +51,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
 		}
 		MapUtils.initMapWithValues(map, keys, values);
 	}
-	
+
 	public ObjectToIndexMapperImpl(T... keys) {
 		this(Arrays.asList(keys));
 	}

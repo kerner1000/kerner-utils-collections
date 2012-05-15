@@ -35,7 +35,7 @@ package net.sf.kerner.utils.collections;
  * @version 2011-10-26
  * 
  * @param <E>
- *            type of element which are filtered
+ *            type of elements which are filtered
  */
 public interface Filter<E> extends Visitor<Boolean, E> {
 

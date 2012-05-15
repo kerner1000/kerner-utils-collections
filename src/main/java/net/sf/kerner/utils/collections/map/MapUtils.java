@@ -25,14 +25,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.StringUtils;
+import net.sf.kerner.utils.TransformerToString;
+import net.sf.kerner.utils.TransformerToStringDefault;
 import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.FactoryCollection;
-import net.sf.kerner.utils.collections.ToStringStrategy;
-import net.sf.kerner.utils.collections.impl.ToStringStrategyDefault;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.counter.Counter;
-import net.sf.kerner.utils.factory.Factory;
 
 /**
  * 
@@ -48,7 +48,7 @@ public class MapUtils {
 
 	public static final String DEFAULT_ELEMENT_SEPARATOR = StringUtils.NEW_LINE_STRING;
 
-	public static final ToStringStrategy<Object> DEFAULT_KEY_VALUE_TO_STRING = new ToStringStrategyDefault();
+	public static final TransformerToString DEFAULT_KEY_VALUE_TO_STRING = new TransformerToStringDefault();
 
 	private MapUtils() {
 	}
@@ -163,7 +163,7 @@ public class MapUtils {
 	}
 
 	public static <T, K, V> void addToMapMap(Map<T, Map<K, V>> map, T key1, K key2, V value,
-			MapFactory<K, V> factory) {
+			FactoryMap<K, V> factory) {
 		Utils.checkForNull(map, factory);
 		Map<K, V> m1 = map.get(key1);
 		if (m1 == null) {
@@ -230,7 +230,7 @@ public class MapUtils {
 	 *            number of elements returning [@code Map} contains (at most)
 	 * @return the new {@code Map} that has been trimmed
 	 */
-	public static <K, V> Map<K, V> trimMapToSize(Map<K, V> map, MapFactory<K, V> factory, int size) {
+	public static <K, V> Map<K, V> trimMapToSize(Map<K, V> map, FactoryMap<K, V> factory, int size) {
 		Utils.checkForNull(map, factory);
 		if (size < 1 || map.size() <= size)
 			return map;
@@ -246,7 +246,7 @@ public class MapUtils {
 		return result;
 	}
 
-	public static <K, V> Map<V, K> invert(Map<K, V> map, MapFactory<V, K> factory) {
+	public static <K, V> Map<V, K> invert(Map<K, V> map, FactoryMap<V, K> factory) {
 		Utils.checkForNull(map, factory);
 		final Map<V, K> result = factory.create();
 		for (Entry<K, V> e : map.entrySet()) {
@@ -369,8 +369,8 @@ public class MapUtils {
 		return null;
 	}
 
-	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyToString,
-			ToStringStrategy<Object> valueToString, String elementSeparator, String entrySteparator) {
+	public static <K, V> String toString(final Map<K, V> map, TransformerToString keyToString,
+			TransformerToString valueToString, String elementSeparator, String entrySteparator) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<Entry<K, V>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
@@ -384,18 +384,18 @@ public class MapUtils {
 		return sb.toString();
 	}
 
-	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyToString,
-			ToStringStrategy<Object> valueToString, String elementSeparator) {
+	public static <K, V> String toString(final Map<K, V> map, TransformerToString keyToString,
+			TransformerToString valueToString, String elementSeparator) {
 		return toString(map, keyToString, valueToString, elementSeparator, DEFAULT_ENTRY_SEPARATOR);
 	}
 
-	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyToString,
-			ToStringStrategy<Object> valueToString) {
+	public static <K, V> String toString(final Map<K, V> map, TransformerToString keyToString,
+			TransformerToString valueToString) {
 		return toString(map, keyToString, valueToString, DEFAULT_ELEMENT_SEPARATOR,
 				DEFAULT_ENTRY_SEPARATOR);
 	}
 
-	public static <K, V> String toString(final Map<K, V> map, ToStringStrategy<Object> keyValueToString) {
+	public static <K, V> String toString(final Map<K, V> map, TransformerToString keyValueToString) {
 		return toString(map, keyValueToString, keyValueToString, DEFAULT_ELEMENT_SEPARATOR,
 				DEFAULT_ENTRY_SEPARATOR);
 	}
@@ -403,5 +403,9 @@ public class MapUtils {
 	public static <K, V> String toString(final Map<K, V> map) {
 		return toString(map, DEFAULT_KEY_VALUE_TO_STRING, DEFAULT_KEY_VALUE_TO_STRING,
 				DEFAULT_ELEMENT_SEPARATOR, DEFAULT_ENTRY_SEPARATOR);
+	}
+	
+	public static <K,V> Map<K,V> newMap(){
+		return new LinkedHashMap<K, V>();
 	}
 }

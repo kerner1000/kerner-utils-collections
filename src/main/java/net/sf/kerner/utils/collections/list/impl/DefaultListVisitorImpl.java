@@ -1,8 +1,8 @@
 package net.sf.kerner.utils.collections.list.impl;
 
-import net.sf.kerner.utils.collections.list.DefaultListVisitor;
+import net.sf.kerner.utils.collections.list.VisitorListDefault;
 
-public class DefaultListVisitorImpl<E> implements DefaultListVisitor<E> {
+public class DefaultListVisitorImpl<E> implements VisitorListDefault<E> {
 
 	public Void visit(E e) {
 		// do nothing by default

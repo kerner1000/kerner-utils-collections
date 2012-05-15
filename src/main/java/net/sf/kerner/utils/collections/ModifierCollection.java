@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,18 +13,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections;
 
-import java.util.List;
-import java.util.ListIterator;
+import java.util.Collection;
 
-import net.sf.kerner.utils.collections.Visitor;
+import net.sf.kerner.utils.Modifier;
 
 /**
  * 
- * An extension to {@link Visitor}, which additionally provides a
- * {@link ListIterator} as a parameter (to the closure/ function), that gives
- * access to {@link List} that is visited by this {@code Visitor}.
+ * A {@code ModifierCollection} modifies all elements in a {@code Collection}
+ * and returns another {@code Collection} which contains the modified elements.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -39,24 +37,14 @@ import net.sf.kerner.utils.collections.Visitor;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-11-03
+ * @version 2012-05-02
  * 
- * @param <R>
- *            type of result
- * @param <E>
- *            type of input
+ * @param <T>
+ *            type of elements in input collection
+ * @param <V>
+ *            type of elements in output collection
  */
-public interface ListVisitor<R, E> extends Visitor<R, E> {
-
-	/**
-	 * 
-	 * Visit object {@code e}, perform any action and return result.
-	 * 
-	 * @param element
-	 *            element to visit
-	 * 
-	 * @return result of visit
-	 */
-	R visit(E element, int index);
+public interface ModifierCollection<T, V extends T> extends
+		Modifier<Collection<? extends T>, Collection<? extends V>> {
 
 }

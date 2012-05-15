@@ -19,12 +19,12 @@ import java.util.Collection;
 
 /**
  * 
- * A {@code CollectionFactory} provides factory methods to retrieve a new
+ * A {@code FactoryCollection} provides factory methods to retrieve a new
  * instance of all kind of direct and indirect implementations of
  * {@link java.util.Collection Collection}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-03-28
+ * @version 2012-04-16
  * @param E
  *            type of elements within the collection
  * 

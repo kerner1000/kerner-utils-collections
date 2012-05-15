@@ -8,16 +8,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import net.sf.kerner.utils.collections.map.MapFactory;
+import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.MapUtils;
 
 public class MapMap<T, K, V> {
 
 	private final Map<T, Map<K, V>> map;
 
-	private final MapFactory<K, V> factory;
+	private final FactoryMap<K, V> factory;
 
-	public MapMap(Map<T, Map<K, V>> map, MapFactory<K, V> factory) {
+	public MapMap(Map<T, Map<K, V>> map, FactoryMap<K, V> factory) {
 		this.map = map;
 		this.factory = factory;
 	}
@@ -25,30 +25,30 @@ public class MapMap<T, K, V> {
 	public MapMap(Map<T, Map<K, V>> map) {
 		this(map, new LinkedHashMapFactory<K, V>());
 	}
-	
+
 	public MapMap() {
-		this(new LinkedHashMap<T,Map<K,V>>(), new LinkedHashMapFactory<K, V>());
+		this(new LinkedHashMap<T, Map<K, V>>(), new LinkedHashMapFactory<K, V>());
 	}
 
 	/**
 	 * 
 	 * TODO description
-	 *
+	 * 
 	 * @return number of key1 to map mappings
 	 */
 	public int size1() {
 		return map.size();
 	}
-	
+
 	/**
 	 * 
 	 * TODO description
-	 *
+	 * 
 	 * @return number of key2 value mappings
 	 */
 	public int size2() {
 		int size = 0;
-		for(Entry<T, Map<K, V>> e : map.entrySet()){
+		for (Entry<T, Map<K, V>> e : map.entrySet()) {
 			size += e.getValue().size();
 		}
 		return size;
@@ -57,7 +57,7 @@ public class MapMap<T, K, V> {
 	/**
 	 * 
 	 * TODO description
-	 *
+	 * 
 	 * @return {@code true} if {{@link #size1()} == 0}; {@code false} otherwise
 	 */
 	public boolean isEmpty() {
@@ -121,8 +121,9 @@ public class MapMap<T, K, V> {
 	/**
 	 * 
 	 * TODO description
-	 *
-	 * @param key Type of key1
+	 * 
+	 * @param key
+	 *            Type of key1
 	 * @return all values that are mapped by this key1
 	 */
 	public Collection<V> values(K key1) {
