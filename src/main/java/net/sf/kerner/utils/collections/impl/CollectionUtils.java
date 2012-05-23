@@ -20,6 +20,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.TransformerToStringDefault;
@@ -70,11 +71,6 @@ public class CollectionUtils {
 		return result;
 	}
 
-	/**
-	 * 
-	 * Same as {@link #append(c1, c2, new ArrayListFactory())}
-	 * 
-	 */
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2) {
 		return append(c1, c2, new ArrayListFactory<C>());
 	}
@@ -83,7 +79,7 @@ public class CollectionUtils {
 	 * 
 	 * Simple {@code toString()} method, which calls each element's
 	 * {@code toString()} and appends after that
-	 * {@link StringUtils.NEW_LINE_STRING}.
+	 * {@link StringUtils#NEW_LINE_STRING}.
 	 * 
 	 * @return String representation for given {@code Collection}, or empty
 	 *         string if parameter is empty

@@ -122,9 +122,9 @@ public class MapMap<T, K, V> {
 	 * 
 	 * TODO description
 	 * 
-	 * @param key
+	 * @param key1
 	 *            Type of key1
-	 * @return all values that are mapped by this key1
+	 * @return all values that are mapped by this key
 	 */
 	public Collection<V> values(K key1) {
 		return map.get(key1).values();

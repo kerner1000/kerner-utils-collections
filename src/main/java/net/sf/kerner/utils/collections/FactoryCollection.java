@@ -21,7 +21,7 @@ import java.util.Collection;
  * 
  * A {@code FactoryCollection} provides factory methods to retrieve a new
  * instance of all kind of direct and indirect implementations of
- * {@link java.util.Collection Collection}.
+ * {@link Collection}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-04-16
@@ -48,6 +48,6 @@ public interface FactoryCollection<E> {
 	 *            that are contained in new collection
 	 * @return new {@code Collection}
 	 */
-	Collection<E> createCollection(Collection<? extends E> template);
+	Collection<E> createCollection(Collection<? extends E> elements);
 
 }

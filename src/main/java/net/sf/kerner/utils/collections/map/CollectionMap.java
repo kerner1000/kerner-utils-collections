@@ -58,10 +58,6 @@ public interface CollectionMap<K, V, L extends Collection<V>> {
 	 * is created, which will be associated by given key and holds initially
 	 * given value.
 	 * 
-	 * @param k
-	 *            key
-	 * @param v
-	 *            value
 	 */
 	void put(K k, V v);
 
@@ -71,10 +67,6 @@ public interface CollectionMap<K, V, L extends Collection<V>> {
 	 * {@code CollectionMap} already contains this key, All values are added to
 	 * the {@code Collection} that is mapped by this key.
 	 * 
-	 * @param k
-	 *            key
-	 * @param values
-	 *            values
 	 */
 	void putAll(K k, Collection<? extends V> values);
 
@@ -84,10 +76,6 @@ public interface CollectionMap<K, V, L extends Collection<V>> {
 	 * {@code CollectionMap} already contains any of given keys, All values are
 	 * added to the {@code Collection} that are mapped by this key.
 	 * 
-	 * @param k
-	 *            key
-	 * @param values
-	 *            values
 	 */
 	void putAll(Map<? extends K, ? extends V> values);
 
@@ -97,10 +85,6 @@ public interface CollectionMap<K, V, L extends Collection<V>> {
 	 * {@code CollectionMap} already contains any of given keys, All values are
 	 * added to the {@code Collection} that are mapped by this key.
 	 * 
-	 * @param k
-	 *            key
-	 * @param values
-	 *            values
 	 */
 	void putAll(CollectionMap<? extends K, ? extends V, L> values);
 

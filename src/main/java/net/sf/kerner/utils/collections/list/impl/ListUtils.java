@@ -102,12 +102,6 @@ public class ListUtils {
 		return result;
 	}
 
-	/**
-	 * 
-	 * Same as {@link ListUtils#meld(List, List, ListFactory, boolean)}, using
-	 * an {@link ArrayListFactory ArrayListFactory}.
-	 * 
-	 */
 	public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2) {
 		if (c1 == null && c2 == null)
 			return new ArrayListFactory<C>().createCollection();

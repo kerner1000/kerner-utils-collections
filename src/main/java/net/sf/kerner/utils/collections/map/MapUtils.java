@@ -214,7 +214,7 @@ public class MapUtils {
 
 	/**
 	 * 
-	 * Reduce the number of elements in given {@link java.uitl.Map Map} to at
+	 * Reduce the number of elements in given {@link Map} to at
 	 * most given size.
 	 * 
 	 * @param <K>
@@ -224,7 +224,7 @@ public class MapUtils {
 	 * @param map
 	 *            {@code Map} that is trimmed
 	 * @param factory
-	 *            {@link net.sf.kerner.utils.factory.Factory Factory} that is
+	 *            {@link Factory} that is
 	 *            used to instantiate returning {@code Map}
 	 * @param size
 	 *            number of elements returning [@code Map} contains (at most)
