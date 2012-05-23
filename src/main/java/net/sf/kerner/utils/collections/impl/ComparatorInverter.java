@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -34,11 +34,11 @@ import java.util.Comparator;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-10-26
+ * @version 2012-05-23
  * 
  * @see Comparator
  * 
- * @param <E>
+ * @param <T>
  *            type of elements which are compared
  */
 public class ComparatorInverter<T> implements Comparator<T> {
@@ -50,12 +50,7 @@ public class ComparatorInverter<T> implements Comparator<T> {
 	}
 
 	public int compare(T o1, T o2) {
-		final int r = c.compare(o1, o2);
-		if (r < 0)
-			return 1;
-		if (r > 0)
-			return -1;
-		return r;
+		return c.compare(o2, o1);
 	}
 
 }
