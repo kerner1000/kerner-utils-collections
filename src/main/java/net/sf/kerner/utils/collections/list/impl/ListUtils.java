@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.kerner.utils.collections.list.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -251,6 +252,22 @@ public class ListUtils {
 		return new ArrayList<T>();
 	}
 	
+	public static <T> List<T> newList(Collection<? extends T> elements) {
+		return new ArrayList<T>(elements);
+	}
+	
+	public static <T> List<T> newList(T... elements) {
+		return Arrays.asList(elements);
+	}
+	
+	public static <T> List<T> newList(Collection<? extends T>... elements) {
+		final List<T> result = newList();
+		for(Collection<? extends T> c : elements){
+			result.addAll(c);
+		}
+		return result;
+	} 
+	
 	public static int getFirstNonNullIndex(List<?> list){
 		for(int i=0; i< list.size(); i++){
 			final Object o = list.get(i);
@@ -283,6 +300,10 @@ public class ListUtils {
 	
 	public static <T> List<T> filterNull(List<T> list){
 		return filterList(list, new FilterNull<T>());
+	}
+	
+	public static List<Object> toObjectList(Collection<? extends Object> elements){
+		return newList(elements);
 	}
 
 }
