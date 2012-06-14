@@ -24,6 +24,7 @@ import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.TransformerToStringDefault;
+import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.VisitorList;
@@ -63,9 +64,12 @@ public class CollectionUtils {
 	 * @param factory
 	 *            {@link Factory} to create new {@code Collection}
 	 * @return new {@code Collection}
+	 * 
+	 * @throws NullPointerException if one of arguments is {@code null}
 	 */
 	public static <C> Collection<C> append(Collection<? extends C> c1, Collection<? extends C> c2,
 			FactoryCollection<C> factory) {
+		Utils.checkForNull(c1,c2,factory);
 		final Collection<C> result = factory.createCollection(c1);
 		result.addAll(c2);
 		return result;
@@ -244,12 +248,29 @@ public class CollectionUtils {
 		return result;
 	}
 
+	/**
+	 * @throws NullPointerException if given argument is {@code null}
+	 */
 	public static boolean containsNull(Collection<?> c) {
 		for (Object o : c) {
 			if (o == null)
 				return true;
 		}
 		return false;
+	}
+	
+	public static <T> Collection<T> getIntersection(Collection<T> a, Collection<T> b, FactoryCollection<T> factory){
+		final Collection<T> result = factory.createCollection();
+		for(T t : a){
+			if(b.contains(t)){
+				result.add(t);
+			}
+		}
+		return result;
+	}
+	
+	public static <T> Collection<T> getIntersection(Collection<T> a, Collection<T> b){
+		return getIntersection(a, b, new ArrayListFactory<T>());
 	}
 
 }
