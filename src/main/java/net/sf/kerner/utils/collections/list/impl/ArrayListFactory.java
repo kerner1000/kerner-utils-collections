@@ -19,24 +19,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.list.ListFactory;
+import net.sf.kerner.utils.collections.list.FactoryList;
 
 /**
- * A {@link net.sf.kerner.utils.collections.list.ListFactory ListFactory} that
+ * A {@link net.sf.kerner.utils.collections.list.FactoryList ListFactory} that
  * returns instances of {@link java.util.ArrayList ArrayList}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-06-18
  * 
  */
-public class ArrayListFactory<E> implements ListFactory<E> {
+public class ArrayListFactory<E> implements FactoryList<E> {
 
-	public List<E> createCollection() {
-		return new ArrayList<E>();
-	}
+    public List<E> createCollection() {
+        return new ArrayList<E>();
+    }
 
-	public List<E> createCollection(Collection<? extends E> template) {
-		return new ArrayList<E>(template);
-	}
+    public List<E> createCollection(Collection<? extends E> template) {
+        return new ArrayList<E>(template);
+    }
 
 }

@@ -37,103 +37,103 @@ import net.sf.kerner.utils.math.MathUtils;
  */
 public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
 
-	// Field //
+    // Field //
 
-	/**
+    /**
 	 * 
 	 */
-	protected final Map<T, Integer> map = new LinkedHashMap<T, Integer>();
+    protected final Map<T, Integer> map = new LinkedHashMap<T, Integer>();
 
-	public ObjectToIndexMapperImpl(List<? extends T> keys) {
-		final List<Integer> values = new ArrayList<Integer>();
-		for (int i = 0; i < keys.size(); i++) {
-			values.add(Integer.valueOf(i));
-		}
-		MapUtils.initMapWithValues(map, keys, values);
-	}
+    public ObjectToIndexMapperImpl(List<? extends T> keys) {
+        final List<Integer> values = new ArrayList<Integer>();
+        for (int i = 0; i < keys.size(); i++) {
+            values.add(Integer.valueOf(i));
+        }
+        MapUtils.initMapWithValues(map, keys, values);
+    }
 
-	public ObjectToIndexMapperImpl(T... keys) {
-		this(Arrays.asList(keys));
-	}
+    public ObjectToIndexMapperImpl(T... keys) {
+        this(Arrays.asList(keys));
+    }
 
-	// Private //
+    // Private //
 
-	// Protected //
+    // Protected //
 
-	// Public //
+    // Public //
 
-	// Override //
+    // Override //
 
-	@Override
-	public String toString() {
-		return map.toString();
-	}
+    @Override
+    public String toString() {
+        return map.toString();
+    }
 
-	// Implement //
+    // Implement //
 
-	/**
+    /**
 	 * 
 	 */
-	public int get(T key) {
-		final Integer result = map.get(key);
-		if (result != null) {
-			return result;
-		} else
-			throw new NoSuchElementException("no such key [" + key + "]");
-	}
+    public int get(T key) {
+        final Integer result = map.get(key);
+        if (result != null) {
+            return result;
+        } else
+            throw new NoSuchElementException("no such key [" + key + "]");
+    }
 
-	public Object getValue(int index) {
-		if (index < 0)
-			throw new IllegalArgumentException("index [" + index + "]");
-		for (Entry<T, Integer> e : map.entrySet()) {
-			if (e.getValue().equals(Integer.valueOf(index)))
-				return e.getKey();
-		}
-		throw new NoSuchElementException("no such index [" + index + "]");
-	}
+    public Object getValue(int index) {
+        if (index < 0)
+            throw new IllegalArgumentException("index [" + index + "]");
+        for (Entry<T, Integer> e : map.entrySet()) {
+            if (e.getValue().equals(Integer.valueOf(index)))
+                return e.getKey();
+        }
+        throw new NoSuchElementException("no such index [" + index + "]");
+    }
 
-	public boolean containsKey(T key) {
-		return map.containsKey(key);
-	}
+    public boolean containsKey(T key) {
+        return map.containsKey(key);
+    }
 
-	public boolean containsValue(int index) {
-		return map.containsValue(Integer.valueOf(index));
-	}
+    public boolean containsValue(int index) {
+        return map.containsValue(Integer.valueOf(index));
+    }
 
-	public List<Integer> values() {
-		return new ArrayList<Integer>(map.values());
-	}
+    public List<Integer> values() {
+        return new ArrayList<Integer>(map.values());
+    }
 
-	public List<T> keys() {
-		return new ArrayList<T>(map.keySet());
-	}
+    public List<T> keys() {
+        return new ArrayList<T>(map.keySet());
+    }
 
-	public int getMaxIndex() {
-		return (int) MathUtils.max(map.values());
-	}
+    public int getMaxIndex() {
+        return (int) MathUtils.max(map.values());
+    }
 
-	public int getSize() {
-		return map.values().size();
-	}
+    public int getSize() {
+        return map.values().size();
+    }
 
-	public boolean isEmpty() {
-		return getSize() == 0;
-	}
+    public boolean isEmpty() {
+        return getSize() == 0;
+    }
 
-	public void addMapping(T key, int value) {
-		// final Iterator<Entry<Object, Integer>> it =
-		// map.entrySet().iterator();
-		// while(it.hasNext()){
-		// final Entry<Object, Integer> e = it.next();
-		// if (e.getValue().equals(Integer.valueOf(value))){
-		// it.remove();
-		// break;
-		// }
-		// }
-		map.put(key, value);
-	}
+    public void addMapping(T key, int value) {
+        // final Iterator<Entry<Object, Integer>> it =
+        // map.entrySet().iterator();
+        // while(it.hasNext()){
+        // final Entry<Object, Integer> e = it.next();
+        // if (e.getValue().equals(Integer.valueOf(value))){
+        // it.remove();
+        // break;
+        // }
+        // }
+        map.put(key, value);
+    }
 
-	public void addMapping(T key) {
-		map.put(key, getMaxIndex() + 1);
-	}
+    public void addMapping(T key) {
+        map.put(key, getMaxIndex() + 1);
+    }
 }

@@ -48,50 +48,50 @@ import java.util.Set;
  */
 public class PropertiesSorted extends Properties {
 
-	private static final long serialVersionUID = -3190096405009723488L;
+    private static final long serialVersionUID = -3190096405009723488L;
 
-	private final static IteratorToEnumerationTransformer<Object> t = new IteratorToEnumerationTransformer<Object>();
+    private final static IteratorToEnumerationTransformer<Object> t = new IteratorToEnumerationTransformer<Object>();
 
-	public PropertiesSorted() {
+    public PropertiesSorted() {
 
-	}
+    }
 
-	public PropertiesSorted(Properties defaults) {
-		super(defaults);
-	}
+    public PropertiesSorted(Properties defaults) {
+        super(defaults);
+    }
 
-	@Override
-	public synchronized Enumeration<Object> keys() {
-		return t.transform(keySet().iterator());
-	}
+    @Override
+    public synchronized Enumeration<Object> keys() {
+        return t.transform(keySet().iterator());
+    }
 
-	@Override
-	public synchronized Set<Object> keySet() {
-		Set<Object> keys = super.keySet();
-		List<Object> keyList = new ArrayList<Object>(keys);
-		Collections.sort(keyList, new Comparator<Object>() {
-			public int compare(Object o1, Object o2) {
-				return o1.toString().compareToIgnoreCase(o2.toString());
-			}
-		});
-		return new LinkedHashSet<Object>(keyList);
-	}
+    @Override
+    public synchronized Set<Object> keySet() {
+        Set<Object> keys = super.keySet();
+        List<Object> keyList = new ArrayList<Object>(keys);
+        Collections.sort(keyList, new Comparator<Object>() {
+            public int compare(Object o1, Object o2) {
+                return o1.toString().compareToIgnoreCase(o2.toString());
+            }
+        });
+        return new LinkedHashSet<Object>(keyList);
+    }
 
-	@Override
-	public synchronized String toString() {
-		StringBuilder sb = new StringBuilder();
-		Iterator<Object> it = keySet().iterator();
-		while (it.hasNext()) {
-			Object k = it.next();
-			Object v = get(k);
-			sb.append(k);
-			sb.append("=");
-			sb.append(v);
-			if (it.hasNext()) {
-				sb.append(", ");
-			}
-		}
-		return sb.toString();
-	}
+    @Override
+    public synchronized String toString() {
+        StringBuilder sb = new StringBuilder();
+        Iterator<Object> it = keySet().iterator();
+        while (it.hasNext()) {
+            Object k = it.next();
+            Object v = get(k);
+            sb.append(k);
+            sb.append("=");
+            sb.append(v);
+            if (it.hasNext()) {
+                sb.append(", ");
+            }
+        }
+        return sb.toString();
+    }
 
 }

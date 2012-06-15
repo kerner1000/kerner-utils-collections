@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,16 +15,12 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.list;
 
-import java.util.List;
-import java.util.ListIterator;
-
 import net.sf.kerner.utils.collections.Visitor;
 
 /**
  * 
- * An extension to {@link Visitor}, which additionally provides a
- * {@link ListIterator} as a parameter (to the closure/ function), that gives
- * access to {@link List} that is visited by this {@code Visitor}.
+ * An extension to {@link Visitor}, which additionally provides the index of
+ * visited element in list as a parameter.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -39,7 +35,7 @@ import net.sf.kerner.utils.collections.Visitor;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-11-03
+ * @version 2012-06-15
  * 
  * @param <R>
  *            type of result
@@ -48,15 +44,17 @@ import net.sf.kerner.utils.collections.Visitor;
  */
 public interface VisitorList<R, E> extends Visitor<R, E> {
 
-	/**
-	 * 
-	 * Visit object {@code e}, perform any action and return result.
-	 * 
-	 * @param element
-	 *            element to visit
-	 * 
-	 * @return result of visit
-	 */
-	R visit(E element, int index);
+    /**
+     * 
+     * Visit object {@code element}, perform any action and return result.
+     * 
+     * @param element
+     *            element to visit
+     * @param index
+     *            of element in list
+     * 
+     * @return result of visit
+     */
+    R visit(E element, int index);
 
 }

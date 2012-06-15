@@ -44,7 +44,6 @@ import net.sf.kerner.utils.Modifier;
  * @param <V>
  *            type of elements in output collection
  */
-public interface ModifierCollection<T, V extends T> extends
-		Modifier<Collection<? extends T>, Collection<? extends V>> {
+public interface ModifierCollection<T, V extends T> extends Modifier<Collection<? extends T>, Collection<? extends V>> {
 
 }

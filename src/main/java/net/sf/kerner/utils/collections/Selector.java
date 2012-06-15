@@ -42,16 +42,15 @@ import java.util.Collection;
  */
 public interface Selector<T> {
 
-	/**
-	 * 
-	 * Select one element from given {@code Collection} that fits this
-	 * {@code Selector's} needs.
-	 * 
-	 * @param elements
-	 *            {@link Collection} from which
-	 *            one element is selected
-	 * @return element that was selected by this {@code Selector}
-	 */
-	T select(Collection<? extends T> elements);
+    /**
+     * 
+     * Select one element from given {@code Collection} that fits this
+     * {@code Selector's} needs.
+     * 
+     * @param elements
+     *            {@link Collection} from which one element is selected
+     * @return element that was selected by this {@code Selector}
+     */
+    T select(Collection<? extends T> elements);
 
 }

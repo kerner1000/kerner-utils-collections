@@ -23,26 +23,32 @@ import net.sf.kerner.utils.collections.FactoryCollection;
 /**
  * 
  * 
- * A {@code SetFactory} extends a {@link FactoryCollection} by limiting the
- * created {@code Collection} to be a {@link Set}.
+ * {@code FactorySet} extends {@link FactoryCollection} by limiting the created
+ * {@code Collection} to be a {@link Set}.
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-04-16
+ * @version 2012-06-15
  * 
  * @param <E>
  *            type of elements contained by the {@code Set}
  */
-public interface SetFactory<E> extends FactoryCollection<E> {
+public interface FactorySet<E> extends FactoryCollection<E> {
 
-	/**
-	 * Create a new {@link Set}.
-	 */
-	Set<E> createCollection();
+    /**
+     * Create a new {@link Set}.
+     * 
+     * @return the new {@link Set} instance
+     */
+    Set<E> createCollection();
 
-	/**
-	 * Create a new {@link Set} containing all given elements.
-	 */
-	Set<E> createCollection(Collection<? extends E> template);
+    /**
+     * Create a new {@link Set} containing all given elements.
+     * 
+     * @param template
+     *            Elements which are initially contained by new {@link Set}
+     * @return the new {@link Set} instance
+     */
+    Set<E> createCollection(Collection<? extends E> template);
 
 }

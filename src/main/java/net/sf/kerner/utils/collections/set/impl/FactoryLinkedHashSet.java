@@ -19,11 +19,11 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import net.sf.kerner.utils.collections.set.SetFactory;
+import net.sf.kerner.utils.collections.set.FactorySet;
 
 /**
  * 
- * A {@link SetFactory} builds a {@link LinkedHashSet}.
+ * A {@link FactorySet} builds a {@link LinkedHashSet}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-04-02
@@ -31,20 +31,20 @@ import net.sf.kerner.utils.collections.set.SetFactory;
  * @param <E>
  *            type of elements contained by the {@code Set}
  */
-public class FactoryLinkedHashSet<E> implements SetFactory<E> {
+public class FactoryLinkedHashSet<E> implements FactorySet<E> {
 
-	/** 
+    /** 
 	 * 
 	 */
-	public Set<E> createCollection() {
-		return new LinkedHashSet<E>();
-	}
+    public Set<E> createCollection() {
+        return new LinkedHashSet<E>();
+    }
 
-	/**
+    /**
 	 * 
 	 */
-	public Set<E> createCollection(Collection<? extends E> template) {
-		return new LinkedHashSet<E>(template);
-	}
+    public Set<E> createCollection(Collection<? extends E> template) {
+        return new LinkedHashSet<E>(template);
+    }
 
 }

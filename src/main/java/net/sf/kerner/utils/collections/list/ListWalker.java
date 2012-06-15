@@ -6,18 +6,18 @@ import net.sf.kerner.utils.collections.Filter;
 
 public interface ListWalker<E> {
 
-	void beforeWalk();
+    void beforeWalk();
 
-	void walk(List<? extends E> list);
+    void walk(List<? extends E> list);
 
-	void afterWalk();
+    void afterWalk();
 
-	void addFilter(Filter<E> filter);
+    void addFilter(Filter<E> filter);
 
-	void clearFilters();
+    void clearFilters();
 
-	void addVisitor(VisitorListDefault<E> visitor);
+    void addVisitor(VisitorListDefault<E> visitor);
 
-	void clearVisitors();
+    void clearVisitors();
 
 }

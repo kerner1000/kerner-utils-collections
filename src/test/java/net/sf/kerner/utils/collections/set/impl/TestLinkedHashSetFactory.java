@@ -1,6 +1,8 @@
 package net.sf.kerner.utils.collections.set.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -12,38 +14,39 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestLinkedHashSetFactory {
-	
-	private FactoryLinkedHashSet<String> f;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+    private FactoryLinkedHashSet<String> f;
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+    }
 
-	@Before
-	public void setUp() throws Exception {
-		f = new FactoryLinkedHashSet<String>();
-	}
+    @AfterClass
+    public static void tearDownAfterClass() throws Exception {
+    }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+    @Before
+    public void setUp() throws Exception {
+        f = new FactoryLinkedHashSet<String>();
+    }
 
-	@Test
-	public final void testCreateCollection01() {
-		assertNotNull(f.createCollection());
-	}
-	
-	@Test
-	public final void testCreateCollection02() {
-		assertTrue(f.createCollection() instanceof LinkedHashSet);
-	}
-	
-	@Test
-	public final void testCreateCollection03() {
-		assertArrayEquals(f.createCollection(Arrays.asList("eins", "zwei")).toArray(), new LinkedHashSet<String>(Arrays.asList("eins", "zwei")).toArray());
-	}
+    @After
+    public void tearDown() throws Exception {
+    }
+
+    @Test
+    public final void testCreateCollection01() {
+        assertNotNull(f.createCollection());
+    }
+
+    @Test
+    public final void testCreateCollection02() {
+        assertTrue(f.createCollection() instanceof LinkedHashSet);
+    }
+
+    @Test
+    public final void testCreateCollection03() {
+        assertArrayEquals(f.createCollection(Arrays.asList("eins", "zwei")).toArray(),
+                new LinkedHashSet<String>(Arrays.asList("eins", "zwei")).toArray());
+    }
 }

@@ -46,14 +46,14 @@ package net.sf.kerner.utils.collections;
  */
 public interface Visitor<R, E> {
 
-	/**
-	 * 
-	 * Visit object {@code element}, perform any action and return result.
-	 * 
-	 * @param element
-	 *            element to visit
-	 * @return result of visit
-	 */
-	R visit(E element);
+    /**
+     * 
+     * Visit object {@code element}, perform any action and return result.
+     * 
+     * @param element
+     *            element to visit
+     * @return result of visit
+     */
+    R visit(E element);
 
 }

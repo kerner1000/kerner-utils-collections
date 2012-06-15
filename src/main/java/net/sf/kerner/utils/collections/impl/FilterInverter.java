@@ -44,15 +44,15 @@ import net.sf.kerner.utils.collections.Filter;
  */
 public class FilterInverter<E> implements Filter<E> {
 
-	private final Filter<E> filter;
+    private final Filter<E> filter;
 
-	public FilterInverter(Filter<E> filter) {
-		Utils.checkForNull(filter);
-		this.filter = filter;
-	}
+    public FilterInverter(Filter<E> filter) {
+        Utils.checkForNull(filter);
+        this.filter = filter;
+    }
 
-	public Boolean visit(E element) {
-		return !filter.visit(element);
-	}
+    public Boolean visit(E element) {
+        return !filter.visit(element);
+    }
 
 }

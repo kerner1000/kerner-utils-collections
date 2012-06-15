@@ -9,24 +9,24 @@ import net.sf.kerner.utils.TransformerToStringDefault;
 
 public class TransformerToStringCollection extends AbstractTransformingListFactory<Object, String> {
 
-	private final static TransformerToString DEFAULT_TRANSFORMER = new TransformerToStringDefault();
+    private final static TransformerToString DEFAULT_TRANSFORMER = new TransformerToStringDefault();
 
-	private final TransformerToString transformer;
+    private final TransformerToString transformer;
 
-	public TransformerToStringCollection(TransformerToString transformer) {
-		this.transformer = transformer;
-	}
+    public TransformerToStringCollection(TransformerToString transformer) {
+        this.transformer = transformer;
+    }
 
-	public TransformerToStringCollection() {
-		this(DEFAULT_TRANSFORMER);
-	}
+    public TransformerToStringCollection() {
+        this(DEFAULT_TRANSFORMER);
+    }
 
-	public String transform(Object arg0) {
-		return transformer.transform(arg0);
-	}
-	
-	public synchronized List<String> transformCollection(Collection<? extends Object> element) {
-		return super.transformCollection(new ArrayList<Object>(element));
-	}
+    public String transform(Object arg0) {
+        return transformer.transform(arg0);
+    }
+
+    public synchronized List<String> transformCollection(Collection<? extends Object> element) {
+        return super.transformCollection(new ArrayList<Object>(element));
+    }
 
 }

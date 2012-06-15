@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -23,26 +23,32 @@ import net.sf.kerner.utils.collections.FactoryCollection;
 /**
  * 
  * 
- * A {@code ListFactory} extends a {@link FactoryCollection} by limiting the
- * created {@code Collection} to be a {@link java.util.List List}.
+ * {@code FactoryList} extends {@link FactoryCollection} by limiting the created
+ * {@code Collection} to be a {@link List}.
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-11-02
+ * @version 2012-06-15
  * 
  * @param <E>
  *            type of elements contained by the {@code List}
  */
-public interface ListFactory<E> extends FactoryCollection<E> {
+public interface FactoryList<E> extends FactoryCollection<E> {
 
-	/**
-	 * Create a new {@link java.util.List List}.
-	 */
-	List<E> createCollection();
+    /**
+     * Create a new {@link List}.
+     * 
+     * @return new {@link List} instance
+     */
+    List<E> createCollection();
 
-	/**
-	 * Create a new {@link java.util.List List} containing all given elements.
-	 */
-	List<E> createCollection(Collection<? extends E> template);
+    /**
+     * Create a new {@link List} containing all given elements.
+     * 
+     * @param template
+     *            Elements which are initially contained by new {@link List}
+     * @return new {@link List} instance
+     */
+    List<E> createCollection(Collection<? extends E> template);
 
 }

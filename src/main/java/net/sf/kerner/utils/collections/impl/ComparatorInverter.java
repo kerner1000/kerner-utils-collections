@@ -43,14 +43,14 @@ import java.util.Comparator;
  */
 public class ComparatorInverter<T> implements Comparator<T> {
 
-	protected final Comparator<T> c;
+    protected final Comparator<T> c;
 
-	public ComparatorInverter(Comparator<T> c) {
-		this.c = c;
-	}
+    public ComparatorInverter(Comparator<T> c) {
+        this.c = c;
+    }
 
-	public int compare(T o1, T o2) {
-		return c.compare(o2, o1);
-	}
+    public int compare(T o1, T o2) {
+        return c.compare(o2, o1);
+    }
 
 }
