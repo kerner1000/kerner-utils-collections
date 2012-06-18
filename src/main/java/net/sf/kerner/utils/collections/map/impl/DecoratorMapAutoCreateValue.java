@@ -22,13 +22,10 @@ import java.util.Set;
 import net.sf.kerner.utils.Factory;
 
 /**
- * 
- * A {@link Map} decorator, that creates a value to a given key, if no such
- * value is associated to a key, when trying to get associated value for a key.
- * 
+ * A {@link Map} decorator, that creates a value to a given key, if no such value is associated to a key, when trying to
+ * get associated value for a key.
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -40,7 +37,6 @@ import net.sf.kerner.utils.Factory;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version May 2, 2012
- * 
  * @param <K>
  * @param <V>
  */

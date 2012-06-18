@@ -20,13 +20,10 @@ import java.util.Map;
 import net.sf.kerner.utils.Factory;
 
 /**
- * 
- * A {@code MapFactory} provides factory methods to retrieve all kind of direct
- * and indirect implementations of {@link java.util.Map Map}.
- * 
+ * A {@code MapFactory} provides factory methods to retrieve all kind of direct and indirect implementations of
+ * {@link java.util.Map Map}.
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -38,7 +35,6 @@ import net.sf.kerner.utils.Factory;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-12
- * 
  * @param <K>
  *            type of keys in the map
  * @param <V>

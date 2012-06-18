@@ -28,23 +28,21 @@ import net.sf.kerner.utils.collections.map.MapUtils;
 import net.sf.kerner.utils.math.MathUtils;
 
 /**
- * 
  * Default implementation for {@link ObjectToIndexMapper}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
- * 
+ * @version 2012-06-18
  */
 public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
 
-    // Field //
+    // Fields //
 
     /**
 	 * 
 	 */
     protected final Map<T, Integer> map = new LinkedHashMap<T, Integer>();
 
-    public ObjectToIndexMapperImpl(List<? extends T> keys) {
+    public ObjectToIndexMapperImpl(final List<? extends T> keys) {
         final List<Integer> values = new ArrayList<Integer>();
         for (int i = 0; i < keys.size(); i++) {
             values.add(Integer.valueOf(i));
@@ -52,7 +50,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
         MapUtils.initMapWithValues(map, keys, values);
     }
 
-    public ObjectToIndexMapperImpl(T... keys) {
+    public ObjectToIndexMapperImpl(final T... keys) {
         this(Arrays.asList(keys));
     }
 
@@ -74,7 +72,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
     /**
 	 * 
 	 */
-    public int get(T key) {
+    public int get(final T key) {
         final Integer result = map.get(key);
         if (result != null) {
             return result;
@@ -82,21 +80,21 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
             throw new NoSuchElementException("no such key [" + key + "]");
     }
 
-    public Object getValue(int index) {
+    public Object getValue(final int index) {
         if (index < 0)
             throw new IllegalArgumentException("index [" + index + "]");
-        for (Entry<T, Integer> e : map.entrySet()) {
+        for (final Entry<T, Integer> e : map.entrySet()) {
             if (e.getValue().equals(Integer.valueOf(index)))
                 return e.getKey();
         }
         throw new NoSuchElementException("no such index [" + index + "]");
     }
 
-    public boolean containsKey(T key) {
+    public boolean containsKey(final T key) {
         return map.containsKey(key);
     }
 
-    public boolean containsValue(int index) {
+    public boolean containsValue(final int index) {
         return map.containsValue(Integer.valueOf(index));
     }
 
@@ -120,20 +118,11 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
         return getSize() == 0;
     }
 
-    public void addMapping(T key, int value) {
-        // final Iterator<Entry<Object, Integer>> it =
-        // map.entrySet().iterator();
-        // while(it.hasNext()){
-        // final Entry<Object, Integer> e = it.next();
-        // if (e.getValue().equals(Integer.valueOf(value))){
-        // it.remove();
-        // break;
-        // }
-        // }
+    public void addMapping(final T key, final int value) {
         map.put(key, value);
     }
 
-    public void addMapping(T key) {
+    public void addMapping(final T key) {
         map.put(key, getMaxIndex() + 1);
     }
 }

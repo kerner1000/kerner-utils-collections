@@ -15,16 +15,13 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.impl;
 
-import net.sf.kerner.utils.Utils;
 import net.sf.kerner.utils.collections.Filter;
+import net.sf.kerner.utils.impl.util.Util;
 
 /**
- * 
  * Simple class to invert the filtering logic of another {@link Filter}.
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -36,9 +33,7 @@ import net.sf.kerner.utils.collections.Filter;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-26
- * 
  * @see Filter
- * 
  * @param <E>
  *            type of elements which are filtered
  */
@@ -46,12 +41,12 @@ public class FilterInverter<E> implements Filter<E> {
 
     protected final Filter<E> filter;
 
-    public FilterInverter(Filter<E> filter) {
-        Utils.checkForNull(filter);
+    public FilterInverter(final Filter<E> filter) {
+        Util.checkForNull(filter);
         this.filter = filter;
     }
 
-    public Boolean visit(E element) {
+    public Boolean visit(final E element) {
         return !filter.visit(element);
     }
 

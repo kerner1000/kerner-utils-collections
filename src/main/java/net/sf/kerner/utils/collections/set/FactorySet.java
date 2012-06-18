@@ -21,15 +21,10 @@ import java.util.Set;
 import net.sf.kerner.utils.collections.FactoryCollection;
 
 /**
- * 
- * 
- * {@code FactorySet} extends {@link FactoryCollection} by limiting the created
- * {@code Collection} to be a {@link Set}.
- * 
+ * {@code FactorySet} extends {@link FactoryCollection} by limiting the created {@code Collection} to be a {@link Set}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-06-15
- * 
  * @param <E>
  *            type of elements contained by the {@code Set}
  */

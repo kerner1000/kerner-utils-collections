@@ -21,13 +21,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 /**
- * 
- * A {@code CollectionMap} represents a {@link Map}, that contains values, which
- * are itself a {@link Collection}.
- * 
+ * A {@code CollectionMap} represents a {@link Map}, that contains values, which are itself a {@link Collection}.
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -39,7 +35,6 @@ import java.util.Set;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version May 2, 2012
- * 
  * @param <K>
  *            type of keys in this map
  * @param <V>
@@ -50,41 +45,28 @@ import java.util.Set;
 public interface CollectionMap<K, V, L extends Collection<V>> {
 
     /**
-     * 
-     * Add another key value mapping to this {@code CollectionMap}. </p> If this
-     * {@code CollectionMap} already contains this key, The value is added to
-     * the {@code Collection} that is mapped by this key.</p> If the
-     * {@code CollectionMap} does not contain this key, a new {@code Collection}
-     * is created, which will be associated by given key and holds initially
-     * given value.
-     * 
+     * Add another key value mapping to this {@code CollectionMap}. </p> If this {@code CollectionMap} already contains
+     * this key, The value is added to the {@code Collection} that is mapped by this key.</p> If the
+     * {@code CollectionMap} does not contain this key, a new {@code Collection} is created, which will be associated by
+     * given key and holds initially given value.
      */
     void put(K k, V v);
 
     /**
-     * 
-     * Add all key value mappings to this {@code CollectionMap}. </p> If this
-     * {@code CollectionMap} already contains this key, All values are added to
-     * the {@code Collection} that is mapped by this key.
-     * 
+     * Add all key value mappings to this {@code CollectionMap}. </p> If this {@code CollectionMap} already contains
+     * this key, All values are added to the {@code Collection} that is mapped by this key.
      */
     void putAll(K k, Collection<? extends V> values);
 
     /**
-     * 
-     * Add all key value mappings to this {@code CollectionMap}. </p> If this
-     * {@code CollectionMap} already contains any of given keys, All values are
-     * added to the {@code Collection} that are mapped by this key.
-     * 
+     * Add all key value mappings to this {@code CollectionMap}. </p> If this {@code CollectionMap} already contains any
+     * of given keys, All values are added to the {@code Collection} that are mapped by this key.
      */
     void putAll(Map<? extends K, ? extends V> values);
 
     /**
-     * 
-     * Add all key value mappings to this {@code CollectionMap}. </p> If this
-     * {@code CollectionMap} already contains any of given keys, All values are
-     * added to the {@code Collection} that are mapped by this key.
-     * 
+     * Add all key value mappings to this {@code CollectionMap}. </p> If this {@code CollectionMap} already contains any
+     * of given keys, All values are added to the {@code Collection} that are mapped by this key.
      */
     void putAll(CollectionMap<? extends K, ? extends V, L> values);
 

@@ -22,12 +22,9 @@ import java.util.Vector;
 import net.sf.kerner.utils.Transformer;
 
 /**
- * 
  * Transforms an {@link Iterator} to an {@link Enumeration}.
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -39,7 +36,6 @@ import net.sf.kerner.utils.Transformer;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-07-06
- * 
  * @param <T>
  *            type of elements
  */

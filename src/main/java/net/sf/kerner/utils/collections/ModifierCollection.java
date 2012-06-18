@@ -20,13 +20,10 @@ import java.util.Collection;
 import net.sf.kerner.utils.Modifier;
 
 /**
- * 
- * A {@code ModifierCollection} modifies all elements in a {@code Collection}
- * and returns another {@code Collection} which contains the modified elements.
- * 
+ * A {@code ModifierCollection} modifies all elements in a {@code Collection} and returns another {@code Collection}
+ * which contains the modified elements.
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -38,7 +35,6 @@ import net.sf.kerner.utils.Modifier;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-05-02
- * 
  * @param <T>
  *            type of elements in input collection
  * @param <V>

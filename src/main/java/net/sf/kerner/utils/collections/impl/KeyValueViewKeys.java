@@ -3,11 +3,11 @@ package net.sf.kerner.utils.collections.impl;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.kerner.utils.KeyValue;
 import net.sf.kerner.utils.ViewKeyValueKey;
 import net.sf.kerner.utils.collections.TransformerCollection;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.impl.KeyValue;
 
 public class KeyValueViewKeys<K> extends ViewKeyValueKey<K> implements TransformerCollection<KeyValue<K, ?>, K> {
 

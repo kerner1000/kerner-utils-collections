@@ -22,12 +22,11 @@ import java.util.List;
 import net.sf.kerner.utils.collections.list.FactoryList;
 
 /**
- * A {@link net.sf.kerner.utils.collections.list.FactoryList ListFactory} that
- * returns instances of {@link java.util.ArrayList ArrayList}.
+ * A {@link net.sf.kerner.utils.collections.list.FactoryList ListFactory} that returns instances of
+ * {@link java.util.ArrayList ArrayList}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-06-18
- * 
  */
 public class ArrayListFactory<E> implements FactoryList<E> {
 

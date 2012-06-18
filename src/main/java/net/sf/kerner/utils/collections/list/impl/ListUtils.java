@@ -23,19 +23,17 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.TransformerToString;
-import net.sf.kerner.utils.TransformerToStringDefault;
 import net.sf.kerner.utils.collections.impl.CollectionUtil;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.FilterList;
 import net.sf.kerner.utils.collections.list.impl.filter.FilterNull;
+import net.sf.kerner.utils.impl.TransformerToStringDefault;
 
 /**
- * 
  * Utility class for {@link List} related stuff.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-04-16
- * 
  */
 public class ListUtils {
 
@@ -46,13 +44,10 @@ public class ListUtils {
     }
 
     /**
-     * 
-     * Combine two {@link java.util.List Lists} into one. </p> Elements, that
-     * have same position in both lists and are equal to each other are filtered
-     * out. </p> {@code null equals null}. {@code null} is kept in list only, if
-     * at this position in both list elemnt is {@code null} or other list does
-     * not have this position. </p> Resulting list size is always equal to size
-     * of longer list.
+     * Combine two {@link java.util.List Lists} into one. </p> Elements, that have same position in both lists and are
+     * equal to each other are filtered out. </p> {@code null equals null}. {@code null} is kept in list only, if at
+     * this position in both list elemnt is {@code null} or other list does not have this position. </p> Resulting list
+     * size is always equal to size of longer list.
      * 
      * @param <C>
      * @param c1
@@ -60,8 +55,8 @@ public class ListUtils {
      * @param c2
      *            second list
      * @param factory
-     *            {@link net.sf.kerner.utils.collections.list.FactoryList
-     *            ListFactory} that provides instance of returning list
+     *            {@link net.sf.kerner.utils.collections.list.FactoryList ListFactory} that provides instance of
+     *            returning list
      * @return a new {@link java.util.List List}
      */
     public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2, FactoryList<C> factory) {

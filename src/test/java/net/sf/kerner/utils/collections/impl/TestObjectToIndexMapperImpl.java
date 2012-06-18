@@ -31,10 +31,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-06
- * 
  */
 public class TestObjectToIndexMapperImpl {
 
@@ -56,38 +54,33 @@ public class TestObjectToIndexMapperImpl {
     public void tearDown() throws Exception {
     }
 
-    /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#ObjectToIndexMapperImpl(java.util.Set)}
-     * .
-     */
     @Test
-    public final void testObjectToIndexMapperImpl() {
+    public final void testObjectToIndexMapperImpl01() {
         List<Object> keys = new ArrayList<Object>();
-        mapper = new ObjectToIndexMapperImpl(keys);
+        mapper = new ObjectToIndexMapperImpl<Object>(keys);
         assertEquals(0, mapper.keys().size());
         assertEquals(0, mapper.values().size());
     }
 
-    /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#ObjectToIndexMapperImpl(java.util.Set)}
-     * .
-     */
     @Test
-    public final void testObjectToIndexMapperImpl01() {
+    public final void testObjectToIndexMapperImpl02() {
         List<Object> keys = new ArrayList<Object>();
         keys.add("eins");
         keys.add("zwei");
-        mapper = new ObjectToIndexMapperImpl(keys);
+        mapper = new ObjectToIndexMapperImpl<Object>(keys);
+        assertEquals(2, mapper.keys().size());
+        assertEquals(2, mapper.values().size());
+    }
+
+    @Test
+    public final void testObjectToIndexMapperImpl03() {
+        mapper = new ObjectToIndexMapperImpl<Object>("eins", "zwei");
         assertEquals(2, mapper.keys().size());
         assertEquals(2, mapper.values().size());
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#get(java.lang.Object)}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#get(java.lang.Object)} .
      */
     @Test
     public final void testGet() {
@@ -100,9 +93,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#get(java.lang.Object)}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#get(java.lang.Object)} .
      */
     @Test(expected = NoSuchElementException.class)
     public final void testGet01() {
@@ -114,9 +105,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#getValue(int)}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#getValue(int)} .
      */
     @Test
     public final void testGetValue() {
@@ -129,9 +118,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#getValue(int)}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#getValue(int)} .
      */
     @Test(expected = IllegalArgumentException.class)
     public final void testGetValue01() {
@@ -143,9 +130,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#getValue(int)}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#getValue(int)} .
      */
     @Test(expected = NoSuchElementException.class)
     public final void testGetValue02() {
@@ -158,8 +143,7 @@ public class TestObjectToIndexMapperImpl {
 
     /**
      * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#containsKey(java.lang.Object)}
-     * .
+     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#containsKey(java.lang.Object)} .
      */
     @Test
     public final void testContainsKey() {
@@ -173,9 +157,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#containsValue(int)}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#containsValue(int)} .
      */
     @Test
     public final void testContainsValue() {
@@ -189,9 +171,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#values()}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#values()} .
      */
     @Test
     public final void testValues() {
@@ -203,9 +183,7 @@ public class TestObjectToIndexMapperImpl {
     }
 
     /**
-     * Test method for
-     * {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#keys()}
-     * .
+     * Test method for {@link net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl#keys()} .
      */
     @Test
     public final void testkeys() {

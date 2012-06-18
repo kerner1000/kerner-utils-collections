@@ -18,9 +18,7 @@ package net.sf.kerner.utils.collections.impl;
 import java.util.Comparator;
 
 /**
- * 
- * Prototype implementation for a {@link Comparator} which adds support for
- * {@code null} values: </br>
+ * Prototype implementation for a {@link Comparator} which adds support for {@code null} values: </br>
  * 
  * <pre>
  * 
@@ -35,10 +33,8 @@ import java.util.Comparator;
  * }
  * 
  * </pre>
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -50,7 +46,6 @@ import java.util.Comparator;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-26
- * 
  * @param <T>
  *            type of objects which are compared
  */
@@ -67,17 +62,15 @@ public class ComparatorNull<T> implements Comparator<T> {
     }
 
     /**
-     * 
-     * Delegate method to compare objects in case both are not {@code null}. By
-     * default, this method returns {@code o1#compareTo(o2)}. Override if custom
-     * behavior is desired or objects do not implement {@link Comparable}.
+     * Delegate method to compare objects in case both are not {@code null}. By default, this method returns
+     * {@code o1#compareTo(o2)}. Override if custom behavior is desired or objects do not implement {@link Comparable}.
      * 
      * @param o1
      *            first object
      * @param o2
      *            second object
-     * @return a negative integer, zero, or a positive integer as the first
-     *         argument is less than, equal to, or greater than the second
+     * @return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater
+     *         than the second
      * @throws ClassCastException
      *             if one or both objects do not implement comparable
      */

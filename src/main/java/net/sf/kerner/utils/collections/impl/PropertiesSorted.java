@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -26,13 +26,9 @@ import java.util.Properties;
 import java.util.Set;
 
 /**
- * 
- * An instance of {@link Properties} that keeps properties sorted by string
- * representation of keys.
- * 
+ * An instance of {@link Properties} that keeps properties sorted by string representation of keys.
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -44,7 +40,6 @@ import java.util.Set;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-27
- * 
  */
 public class PropertiesSorted extends Properties {
 
@@ -56,7 +51,7 @@ public class PropertiesSorted extends Properties {
 
     }
 
-    public PropertiesSorted(Properties defaults) {
+    public PropertiesSorted(final Properties defaults) {
         super(defaults);
     }
 
@@ -67,10 +62,10 @@ public class PropertiesSorted extends Properties {
 
     @Override
     public synchronized Set<Object> keySet() {
-        Set<Object> keys = super.keySet();
-        List<Object> keyList = new ArrayList<Object>(keys);
+        final Set<Object> keys = super.keySet();
+        final List<Object> keyList = new ArrayList<Object>(keys);
         Collections.sort(keyList, new Comparator<Object>() {
-            public int compare(Object o1, Object o2) {
+            public int compare(final Object o1, final Object o2) {
                 return o1.toString().compareToIgnoreCase(o2.toString());
             }
         });
@@ -79,11 +74,11 @@ public class PropertiesSorted extends Properties {
 
     @Override
     public synchronized String toString() {
-        StringBuilder sb = new StringBuilder();
-        Iterator<Object> it = keySet().iterator();
+        final StringBuilder sb = new StringBuilder();
+        final Iterator<Object> it = keySet().iterator();
         while (it.hasNext()) {
-            Object k = it.next();
-            Object v = get(k);
+            final Object k = it.next();
+            final Object v = get(k);
             sb.append(k);
             sb.append("=");
             sb.append(v);

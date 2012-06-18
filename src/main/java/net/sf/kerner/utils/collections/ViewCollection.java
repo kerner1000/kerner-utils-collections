@@ -20,12 +20,9 @@ import java.util.Collection;
 import net.sf.kerner.utils.View;
 
 /**
- * 
  * TODO description
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -37,7 +34,6 @@ import net.sf.kerner.utils.View;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version May 2, 2012
- * 
  * @param <T>
  *            type of elements in {@link Collection}
  * @param <V>

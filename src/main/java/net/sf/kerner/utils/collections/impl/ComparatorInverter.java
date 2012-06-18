@@ -17,15 +17,12 @@ package net.sf.kerner.utils.collections.impl;
 
 import java.util.Comparator;
 
-import net.sf.kerner.utils.Utils;
+import net.sf.kerner.utils.impl.util.Util;
 
 /**
- * 
  * Simple class to invert the comparison logic of another {@link Comparator}.
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -37,9 +34,7 @@ import net.sf.kerner.utils.Utils;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-05-23
- * 
  * @see Comparator
- * 
  * @param <T>
  *            type of elements which are compared
  */
@@ -47,12 +42,12 @@ public class ComparatorInverter<T> implements Comparator<T> {
 
     protected final Comparator<T> c;
 
-    public ComparatorInverter(Comparator<T> c) {
-        Utils.checkForNull(c);
+    public ComparatorInverter(final Comparator<T> c) {
+        Util.checkForNull(c);
         this.c = c;
     }
 
-    public int compare(T o1, T o2) {
+    public int compare(final T o1, final T o2) {
         return c.compare(o2, o1);
     }
 

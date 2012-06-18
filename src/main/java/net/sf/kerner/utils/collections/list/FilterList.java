@@ -18,12 +18,9 @@ package net.sf.kerner.utils.collections.list;
 import net.sf.kerner.utils.collections.Filter;
 
 /**
- * 
  * TODO description
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -35,7 +32,6 @@ import net.sf.kerner.utils.collections.Filter;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-06-15
- * 
  * @param <T>
  *            type of elements which are filtered
  */

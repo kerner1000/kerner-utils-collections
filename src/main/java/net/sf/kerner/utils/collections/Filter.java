@@ -16,12 +16,9 @@ limitations under the License.
 package net.sf.kerner.utils.collections;
 
 /**
- * 
  * TODO description
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -33,7 +30,6 @@ package net.sf.kerner.utils.collections;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-10-26
- * 
  * @param <E>
  *            type of elements which are filtered
  */

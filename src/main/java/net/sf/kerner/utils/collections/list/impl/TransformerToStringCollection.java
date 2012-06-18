@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.TransformerToString;
-import net.sf.kerner.utils.TransformerToStringDefault;
+import net.sf.kerner.utils.impl.TransformerToStringDefault;
 
 public class TransformerToStringCollection extends AbstractTransformingListFactory<Object, String> {
 

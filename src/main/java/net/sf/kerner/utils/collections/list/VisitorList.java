@@ -18,13 +18,9 @@ package net.sf.kerner.utils.collections.list;
 import net.sf.kerner.utils.collections.Visitor;
 
 /**
- * 
- * An extension to {@link Visitor}, which additionally provides the index of
- * visited element in list as a parameter.
- * 
+ * An extension to {@link Visitor}, which additionally provides the index of visited element in list as a parameter.
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -36,7 +32,6 @@ import net.sf.kerner.utils.collections.Visitor;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-06-15
- * 
  * @param <R>
  *            type of result
  * @param <E>
@@ -45,14 +40,12 @@ import net.sf.kerner.utils.collections.Visitor;
 public interface VisitorList<R, E> extends Visitor<R, E> {
 
     /**
-     * 
      * Visit object {@code element}, perform any action and return result.
      * 
      * @param element
      *            element to visit
      * @param index
      *            of element in list
-     * 
      * @return result of visit
      */
     R visit(E element, int index);
