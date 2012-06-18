@@ -23,7 +23,7 @@ import net.sf.kerner.utils.collections.set.FactorySet;
 
 /**
  * 
- * A {@link FactorySet} builds a {@link LinkedHashSet}.
+ * A {@link FactorySet} which builds a {@link LinkedHashSet}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-04-02

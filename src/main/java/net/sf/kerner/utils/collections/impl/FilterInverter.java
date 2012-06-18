@@ -44,7 +44,7 @@ import net.sf.kerner.utils.collections.Filter;
  */
 public class FilterInverter<E> implements Filter<E> {
 
-    private final Filter<E> filter;
+    protected final Filter<E> filter;
 
     public FilterInverter(Filter<E> filter) {
         Utils.checkForNull(filter);

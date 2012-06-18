@@ -15,6 +15,8 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections;
 
+import java.util.Collection;
+
 import net.sf.kerner.utils.View;
 
 /**
@@ -37,7 +39,7 @@ import net.sf.kerner.utils.View;
  * @version May 2, 2012
  * 
  * @param <T>
- *            type of elements in {@code Collection}
+ *            type of elements in {@link Collection}
  * @param <V>
  *            type of {@link View} of elements
  */

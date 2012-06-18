@@ -19,8 +19,8 @@ import java.util.Collection;
 
 /**
  * 
- * A {@code Selector} selects and returns an instance of one element out of a
- * given {@link Collection} of elements.
+ * A {@code Selector} selects and returns one element out of a given
+ * {@link Collection} of elements.
  * 
  * <p>
  * <b>Example:</b><br>

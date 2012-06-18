@@ -17,6 +17,8 @@ package net.sf.kerner.utils.collections.impl;
 
 import java.util.Comparator;
 
+import net.sf.kerner.utils.Utils;
+
 /**
  * 
  * Simple class to invert the comparison logic of another {@link Comparator}.
@@ -46,6 +48,7 @@ public class ComparatorInverter<T> implements Comparator<T> {
     protected final Comparator<T> c;
 
     public ComparatorInverter(Comparator<T> c) {
+        Utils.checkForNull(c);
         this.c = c;
     }
 

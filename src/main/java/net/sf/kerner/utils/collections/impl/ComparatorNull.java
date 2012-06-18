@@ -19,7 +19,7 @@ import java.util.Comparator;
 
 /**
  * 
- * Prototype implementation for {@link Comparator} which adds support for
+ * Prototype implementation for a {@link Comparator} which adds support for
  * {@code null} values: </br>
  * 
  * <pre>
@@ -56,7 +56,7 @@ import java.util.Comparator;
  */
 public class ComparatorNull<T> implements Comparator<T> {
 
-    public int compare(T o1, T o2) {
+    public final int compare(final T o1, final T o2) {
         if (o1 == null && o2 == null)
             return 0;
         if (o1 == null)
@@ -82,7 +82,7 @@ public class ComparatorNull<T> implements Comparator<T> {
      *             if one or both objects do not implement comparable
      */
     @SuppressWarnings("unchecked")
-    public int compareNonNull(T o1, T o2) {
+    public int compareNonNull(T o1, T o2) throws ClassCastException {
         return ((Comparable<T>) o1).compareTo(o2);
     }
 

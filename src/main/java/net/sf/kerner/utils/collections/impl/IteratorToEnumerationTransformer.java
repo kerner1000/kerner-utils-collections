@@ -23,8 +23,7 @@ import net.sf.kerner.utils.Transformer;
 
 /**
  * 
- * Transforms an {@link java.util.Iterator Iterator} to an
- * {@link java.util.Enumeration Enumeration}.
+ * Transforms an {@link Iterator} to an {@link Enumeration}.
  * 
  * <p>
  * <b>Example:</b><br>
@@ -42,17 +41,17 @@ import net.sf.kerner.utils.Transformer;
  * @version 2011-07-06
  * 
  * @param <T>
- *            type of element
+ *            type of elements
  */
 public class IteratorToEnumerationTransformer<T> implements Transformer<Iterator<T>, Enumeration<T>> {
 
     /**
 	 * 
 	 */
-    public Enumeration<T> transform(Iterator<T> element) {
+    public Enumeration<T> transform(Iterator<T> iterator) {
         final Vector<T> v = new Vector<T>();
-        while (element.hasNext())
-            v.add(element.next());
+        while (iterator.hasNext())
+            v.add(iterator.next());
         return v.elements();
     }
 

@@ -23,8 +23,8 @@ import java.util.NoSuchElementException;
 /**
  * 
  * 
- * An {@code ObjectToIndexMapper} establishes a mapping between any collection
- * of objects and a {@link List List's} integer indices.
+ * {@code ObjectToIndexMapper} establishes a mapping between any collection of
+ * objects and a {@link List List's} integer indices.
  * <p>
  * Given a collection of objects, e.g. following set of strings:
  * </p>
@@ -33,14 +33,14 @@ import java.util.NoSuchElementException;
  * { one, two, three, four }
  * </pre>
  * 
- * And a given list with following elements:
+ * And a given list with following elements: </p>
  * 
  * <pre>
  * { blue, red, black, green }
  * </pre>
  * 
  * Access to this list's elements can be more intuitive accessing the elements
- * by an object-based index:
+ * by an object-based index: </p>
  * 
  * <pre>
  * List colors = new ArrayList(){{blue, red, black, green}};
@@ -49,17 +49,9 @@ import java.util.NoSuchElementException;
  * assertEquals(blue, colors.get(mapper.get(one)));
  * ...
  * </pre>
- * <p>
- * <b>Example:</b>
- * 
- * <pre>
- * TODO example
- * </pre>
- * 
- * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-04-30
+ * @version 2012-06-18
  * @see Collection
  * @see Map
  * 
@@ -101,7 +93,7 @@ public interface ObjectToIndexMapper<T> {
      * @throws NoSuchElementException
      *             if key is not registered to this {@code ObjectToIndexMapper}
      */
-    int get(T key);
+    int get(T key) throws NoSuchElementException;
 
     /**
      * 
@@ -110,23 +102,26 @@ public interface ObjectToIndexMapper<T> {
      * @param index
      *            index for which mapping object is returned
      * @return object that maps to given index
+     * 
+     * @throws NoSuchElementException
+     *             if index is not mapped by any object
      */
-    Object getValue(int index);
+    Object getValue(int index) throws NoSuchElementException;
 
     /**
      * 
-     * Get a {@code List} that contains all values of this
+     * Get a {@link List} that contains all values of this
      * {@code ObjectToIndexMapper}, meaning all indices that are mapped by
      * objects.
      * 
-     * @return a {@code List} that contains all values of this
+     * @return a {@link List} that contains all values of this
      *         {@code ObjectToIndexMapper}
      */
     List<Integer> values();
 
     /**
      * 
-     * Get a {@code List} that contains all keys of this
+     * Get a {@link List} that contains all keys of this
      * {@code ObjectToIndexMapper}, meaning all objects that map to indices.
      * 
      * @return a {@code List} that contains all keys of this
