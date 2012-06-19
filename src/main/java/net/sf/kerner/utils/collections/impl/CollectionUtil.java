@@ -26,7 +26,7 @@ import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.VisitorList;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.collections.list.impl.ListUtils;
+import net.sf.kerner.utils.collections.list.impl.ListUtil;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.StringUtil;
 import net.sf.kerner.utils.impl.util.Util;
@@ -282,7 +282,7 @@ public class CollectionUtil {
     }
 
     public static boolean containsDuplicates(final Collection<?> c) {
-        final Collection<Integer> hashes = ListUtils.newList();
+        final Collection<Integer> hashes = ListUtil.newList();
         for (final Object o : c) {
             final int hash = o.hashCode();
             if (hashes.contains(hash)) {
@@ -294,7 +294,7 @@ public class CollectionUtil {
     }
 
     public static <T> Collection<T> getSame(final Collection<T> collection, final T element) {
-        final Collection<T> result = ListUtils.newList();
+        final Collection<T> result = ListUtil.newList();
         for (final T t : collection) {
             if (t.equals(element)) {
                 result.add(t);
@@ -304,7 +304,7 @@ public class CollectionUtil {
     }
 
     public static <T> Collection<T> getSame(final Collection<T> collection, final int hashCode) {
-        final Collection<T> result = ListUtils.newList();
+        final Collection<T> result = ListUtil.newList();
         for (final T t : collection) {
             if (t.hashCode() == hashCode) {
                 result.add(t);
