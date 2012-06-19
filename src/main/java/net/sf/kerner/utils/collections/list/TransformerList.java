@@ -4,6 +4,14 @@ import java.util.List;
 
 public interface TransformerList<T, V> {
 
-    List<V> transformCollection(List<? extends T> element);
+    /**
+     * Transforms each element contained by given {@link List} and returns another {@link List} which contains all
+     * transformed elements (in the same order).
+     * 
+     * @param list
+     *            {@link List} that contains elements to transform
+     * @return {@link List} containing transformed elements
+     */
+    List<V> transformCollection(List<? extends T> list);
 
 }

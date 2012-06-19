@@ -26,6 +26,7 @@ import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.VisitorList;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.collections.list.impl.ListUtils;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.StringUtil;
 import net.sf.kerner.utils.impl.util.Util;
@@ -262,4 +263,53 @@ public class CollectionUtil {
         return getIntersection(a, b, new ArrayListFactory<T>());
     }
 
+    /**
+     * Check whether {@code c1} contains any element in {@code c2}.
+     * 
+     * @param c1
+     *            {@link Collection} to check for containing elements
+     * @param c2
+     *            elements which are checked if they are contained by {@code c1}
+     * @return {@code true}, if any of {@code c2} is contained by {@code c1}; {@code false} otherwise
+     */
+    public static boolean containsAny(final Collection<?> c1, final Object... c2) {
+        for (final Object o : c2) {
+            if (c1.contains(o)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean containsDuplicates(final Collection<?> c) {
+        final Collection<Integer> hashes = ListUtils.newList();
+        for (final Object o : c) {
+            final int hash = o.hashCode();
+            if (hashes.contains(hash)) {
+                return true;
+            }
+            hashes.add(hash);
+        }
+        return false;
+    }
+
+    public static <T> Collection<T> getSame(final Collection<T> collection, final T element) {
+        final Collection<T> result = ListUtils.newList();
+        for (final T t : collection) {
+            if (t.equals(element)) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    public static <T> Collection<T> getSame(final Collection<T> collection, final int hashCode) {
+        final Collection<T> result = ListUtils.newList();
+        for (final T t : collection) {
+            if (t.hashCode() == hashCode) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
 }
