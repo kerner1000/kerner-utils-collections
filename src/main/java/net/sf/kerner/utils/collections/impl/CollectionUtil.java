@@ -15,13 +15,16 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.TransformerToString;
+import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.Filter;
 import net.sf.kerner.utils.collections.list.VisitorList;
@@ -281,6 +284,14 @@ public class CollectionUtil {
         return false;
     }
 
+    /**
+     * Checks whether two or more elements in {@code c} have the same hashCode.
+     * 
+     * @see Object#hashCode()
+     * @param c
+     *            {@link Collection}
+     * @return {@code true}, if {@code c} contains more than one element with same hashCode; {@code false} otherwise
+     */
     public static boolean containsDuplicates(final Collection<?> c) {
         final Collection<Integer> hashes = ListUtil.newList();
         for (final Object o : c) {
@@ -293,21 +304,51 @@ public class CollectionUtil {
         return false;
     }
 
-    public static <T> Collection<T> getSame(final Collection<T> collection, final T element) {
-        final Collection<T> result = ListUtil.newList();
-        for (final T t : collection) {
-            if (t.equals(element)) {
-                result.add(t);
+    public static void removeNull(final Collection<?> c) {
+        for (final Iterator<?> it = c.iterator(); it.hasNext();) {
+            final Object object = it.next();
+            if (object == null) {
+                it.remove();
             }
         }
-        return result;
     }
 
-    public static <T> Collection<T> getSame(final Collection<T> collection, final int hashCode) {
-        final Collection<T> result = ListUtil.newList();
-        for (final T t : collection) {
-            if (t.hashCode() == hashCode) {
-                result.add(t);
+    public static <T> Collection<T> newCollection() {
+        return ListUtil.newList();
+    }
+
+    public static <T> Collection<T> newCollection(final Collection<? extends T> template) {
+        return ListUtil.newList(template);
+    }
+
+    public static <T> Collection<T> newCollection(final T... template) {
+        return ListUtil.newList(template);
+    }
+
+    public static <T> Collection<Collection<T>> getSame(final Collection<T> c) {
+        return getSame(c, new EqualatorDefault<T>());
+    }
+
+    public static <T> Collection<Collection<T>> getSame(final Collection<? extends T> c, final Equalator<T> equalator) {
+        final Collection<Collection<T>> result = newCollection();
+        final List<T> listCopy = new ArrayList<T>(c);
+        ListIterator<T> it1 = listCopy.listIterator();
+        while (it1.hasNext()) {
+            final T t1 = it1.next();
+            final int index = it1.nextIndex();
+            final ListIterator<T> it2 = listCopy.listIterator(index);
+            final Collection<T> result2 = newCollection();
+            result2.add(t1);
+            while (it2.hasNext()) {
+                final T t2 = it2.next();
+                if (equalator.areEqual(t1, t2)) {
+                    result2.add(t2);
+                    it2.remove();
+                    it1 = listCopy.listIterator();
+                }
+            }
+            if (result2.size() > 1) {
+                result.add(result2);
             }
         }
         return result;
