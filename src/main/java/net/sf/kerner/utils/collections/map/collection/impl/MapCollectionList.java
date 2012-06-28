@@ -1,20 +1,21 @@
-package net.sf.kerner.utils.collections.map.impl;
+package net.sf.kerner.utils.collections.map.collection.impl;
 
 import java.util.List;
 
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.map.FactoryMap;
+import net.sf.kerner.utils.collections.map.collection.MapCollectionAbstract;
 
-public class CollectionMapList<K, V> extends CollectionMapAbstract<K, V, List<V>> {
+public class MapCollectionList<K, V> extends MapCollectionAbstract<K, V, List<V>> {
 
     private final FactoryList<V> factory;
 
-    public CollectionMapList() {
+    public MapCollectionList() {
         this.factory = new ArrayListFactory<V>();
     }
 
-    public CollectionMapList(FactoryMap<K, List<V>> mapFactory, FactoryList<V> factory) {
+    public MapCollectionList(FactoryMap<K, List<V>> mapFactory, FactoryList<V> factory) {
         super(mapFactory);
         this.factory = factory;
     }

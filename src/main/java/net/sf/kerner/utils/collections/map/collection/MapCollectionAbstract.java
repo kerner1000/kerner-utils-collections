@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections.map.impl;
+package net.sf.kerner.utils.collections.map.collection;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -6,18 +6,18 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import net.sf.kerner.utils.collections.map.CollectionMap;
 import net.sf.kerner.utils.collections.map.FactoryMap;
+import net.sf.kerner.utils.collections.map.impl.LinkedHashMapFactory;
 
-public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> implements CollectionMap<K, V, L> {
+public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> implements MapCollection<K, V, L> {
 
     protected final Map<K, L> map;
 
-    public CollectionMapAbstract(FactoryMap<K, L> mapFactory) {
+    public MapCollectionAbstract(FactoryMap<K, L> mapFactory) {
         this.map = mapFactory.create();
     }
 
-    public CollectionMapAbstract() {
+    public MapCollectionAbstract() {
         this(new LinkedHashMapFactory<K, L>());
     }
 
@@ -33,7 +33,7 @@ public abstract class CollectionMapAbstract<K, V, L extends Collection<V>> imple
         }
     }
 
-    public synchronized void putAll(CollectionMap<? extends K, ? extends V, L> m) {
+    public synchronized void putAll(MapCollection<? extends K, ? extends V, L> m) {
         for (Entry<? extends K, L> e : m.entrySet()) {
             this.putAll(e.getKey(), e.getValue());
         }

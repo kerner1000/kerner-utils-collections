@@ -26,10 +26,10 @@ import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
-import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.list.VisitorList;
+import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.impl.ListUtil;
+import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.StringUtil;
 import net.sf.kerner.utils.impl.util.Util;
@@ -40,13 +40,13 @@ import net.sf.kerner.utils.impl.util.Util;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-03-29
  */
-public class CollectionUtil {
+public class UtilCollection {
 
     public static String DEFAULT_OBJECT_SEPARATOR = ", ";
 
     public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
-    private CollectionUtil() {
+    private UtilCollection() {
         // Singleton
     }
 

@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,13 +13,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.visitor;
+
 
 /**
- * <a href="http://de.wikipedia.org/wiki/Visitor">Wikipedia: Visitor Pattern</a></p> A {@code Visitor} can also be seen
- * as a <a href="http://en.wikipedia.org/wiki/Closure_%28computer_science%29" >Closure</a>, where
- * {@link Visitor#visit(Object)} represents the closure/ function, which has an input of type {@code E} and and output/
- * result of type {@code R}.
+ * A {@link Visitor} which does not return any result.
  * <p>
  * <b>Example:</b><br>
  * </p>
@@ -32,21 +30,10 @@ package net.sf.kerner.utils.collections;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-04-16
- * @param <R>
- *            type of result
+ * @version 2012-06-15
  * @param <E>
- *            type of input
+ *            type of elements which are visited
  */
-public interface Visitor<R, E> {
-
-    /**
-     * Visit object {@code element}, perform any action and return result.
-     * 
-     * @param element
-     *            element to visit
-     * @return result of visit
-     */
-    R visit(E element);
+public interface VisitorDefault<E> extends Visitor<Void, E> {
 
 }

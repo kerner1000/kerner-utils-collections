@@ -13,12 +13,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.list.visitor;
 
-import net.sf.kerner.utils.collections.Visitor;
 
 /**
- * An extension to {@link Visitor}, which additionally provides the index of visited element in list as a parameter.
  * <p>
  * <b>Example:</b><br>
  * </p>
@@ -31,13 +29,13 @@ import net.sf.kerner.utils.collections.Visitor;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-06-15
+ * @version 2012-06-22
  * @param <R>
  *            type of result
  * @param <E>
  *            type of input
  */
-public interface VisitorList<R, E> extends Visitor<R, E> {
+public interface VisitorList<R, E> {
 
     /**
      * Visit object {@code element}, perform any action and return result.

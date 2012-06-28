@@ -5,9 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.sf.kerner.utils.collections.map.FactoryMap;
+import net.sf.kerner.utils.collections.map.collection.MapCollectionAbstract;
 import net.sf.kerner.utils.collections.set.FactorySet;
 
-public class CollectionMapSet<K, V> extends CollectionMapAbstract<K, V, Set<V>> {
+public class CollectionMapSet<K, V> extends MapCollectionAbstract<K, V, Set<V>> {
 
     private final FactorySet<V> factory;
 

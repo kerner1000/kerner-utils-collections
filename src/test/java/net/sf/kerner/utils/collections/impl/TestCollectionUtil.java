@@ -17,7 +17,7 @@ public class TestCollectionUtil {
     public final void testAppend01() {
         final Collection<Integer> c1 = Arrays.asList(1, 2, 3);
         final Collection<Integer> c2 = Arrays.asList(4, 5, 6);
-        final Collection<Integer> c3 = CollectionUtil.append(c1, c2);
+        final Collection<Integer> c3 = UtilCollection.append(c1, c2);
         final Collection<Integer> c4 = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertArrayEquals(c4.toArray(), c3.toArray());
     }
@@ -26,7 +26,7 @@ public class TestCollectionUtil {
     public final void testAppend02() {
         final Collection<Integer> c1 = Arrays.asList(1, 2, 3);
         final Collection<Integer> c2 = Arrays.asList(1);
-        final Collection<Integer> c3 = CollectionUtil.append(c1, c2);
+        final Collection<Integer> c3 = UtilCollection.append(c1, c2);
         final Collection<Integer> c4 = Arrays.asList(1, 2, 3, 1);
         assertArrayEquals(c4.toArray(), c3.toArray());
     }
@@ -35,47 +35,47 @@ public class TestCollectionUtil {
     public final void testAppend03() {
         final Collection<Integer> c1 = null;
         final Collection<Integer> c2 = Arrays.asList(1);
-        CollectionUtil.append(c1, c2);
+        UtilCollection.append(c1, c2);
     }
 
     @Test(expected = NullPointerException.class)
     public final void testAppend04() {
         final Collection<Integer> c1 = Arrays.asList(1);
         final Collection<Integer> c2 = null;
-        CollectionUtil.append(c1, c2);
+        UtilCollection.append(c1, c2);
     }
 
     @Test
     public final void testContainsNull01() {
         final Collection<Integer> c1 = Arrays.asList(1, 2, 3);
-        final boolean result = CollectionUtil.containsNull(c1);
+        final boolean result = UtilCollection.containsNull(c1);
         assertEquals(false, result);
     }
 
     @Test
     public final void testContainsNull02() {
         final Collection<Integer> c1 = Arrays.asList(null, 2, 3);
-        final boolean result = CollectionUtil.containsNull(c1);
+        final boolean result = UtilCollection.containsNull(c1);
         assertEquals(true, result);
     }
 
     @Test(expected = NullPointerException.class)
     public final void testContainsNull03() {
-        CollectionUtil.containsNull(null);
+        UtilCollection.containsNull(null);
     }
 
     @Test
     public final void testGetIntersection01() {
         final Collection a = Arrays.asList(1, 2, 3);
         final Collection b = Arrays.asList(3, 4, 5);
-        assertTrue(CollectionUtil.getIntersection(a, b).size() == 1);
-        assertEquals(3, CollectionUtil.getIntersection(a, b).iterator().next());
+        assertTrue(UtilCollection.getIntersection(a, b).size() == 1);
+        assertEquals(3, UtilCollection.getIntersection(a, b).iterator().next());
     }
 
     @Test
     public final void testGetSame01() {
         final Collection c = Arrays.asList(1, 2, 3, 3, 4, 5);
-        final Collection<Collection<Integer>> same = CollectionUtil.getSame(c);
+        final Collection<Collection<Integer>> same = UtilCollection.getSame(c);
         assertEquals(1, same.size());
         assertArrayEquals(new Integer[] { 3, 3 }, same.iterator().next().toArray());
     }
@@ -83,7 +83,7 @@ public class TestCollectionUtil {
     @Test
     public final void testGetSame02() {
         final Collection c = Arrays.asList(1, 2, 3, 3, 4, 4, 5);
-        final Collection<Collection<Integer>> same = CollectionUtil.getSame(c);
+        final Collection<Collection<Integer>> same = UtilCollection.getSame(c);
         assertEquals(2, same.size());
         final Iterator<Collection<Integer>> it = same.iterator();
         assertArrayEquals(new Integer[] { 3, 3 }, it.next().toArray());
@@ -93,7 +93,7 @@ public class TestCollectionUtil {
     @Test
     public final void testGetSame03() {
         final Collection c = Arrays.asList(4, 1, 2, 3, 3, 4, 4, 5);
-        final Collection<Collection<Integer>> same = CollectionUtil.getSame(c);
+        final Collection<Collection<Integer>> same = UtilCollection.getSame(c);
 
         assertEquals(2, same.size());
         final Iterator<Collection<Integer>> it = same.iterator();
@@ -105,7 +105,7 @@ public class TestCollectionUtil {
     @Test
     public final void testGetSame04() {
         final Collection c = Arrays.asList(1, 2, 3);
-        final Collection<Collection<Integer>> same = CollectionUtil.getSame(c);
+        final Collection<Collection<Integer>> same = UtilCollection.getSame(c);
         assertEquals(0, same.size());
 
     }

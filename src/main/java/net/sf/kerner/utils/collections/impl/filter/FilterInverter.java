@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,12 +13,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.impl.filter;
 
-import net.sf.kerner.utils.collections.Filter;
+import net.sf.kerner.utils.collections.filter.Filter;
+import net.sf.kerner.utils.impl.util.Util;
 
 /**
- * TODO description
+ * Simple class to invert the filtering logic of another {@link Filter}.
  * <p>
  * <b>Example:</b><br>
  * </p>
@@ -31,10 +32,22 @@ import net.sf.kerner.utils.collections.Filter;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-06-15
- * @param <T>
+ * @version 2011-10-26
+ * @see Filter
+ * @param <E>
  *            type of elements which are filtered
  */
-public interface FilterList<T> extends Filter<T>, VisitorList<Boolean, T> {
+public class FilterInverter<E> implements Filter<E> {
+
+    protected final Filter<E> filter;
+
+    public FilterInverter(final Filter<E> filter) {
+        Util.checkForNull(filter);
+        this.filter = filter;
+    }
+
+    public Boolean visit(final E element) {
+        return !filter.visit(element);
+    }
 
 }

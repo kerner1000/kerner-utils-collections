@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.visitor;
 
 import net.sf.kerner.utils.collections.list.TransformerList;
 

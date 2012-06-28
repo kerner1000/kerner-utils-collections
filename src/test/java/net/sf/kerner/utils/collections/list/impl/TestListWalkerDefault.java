@@ -6,8 +6,8 @@ import static org.junit.Assert.fail;
 import java.util.Arrays;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.Filter;
-import net.sf.kerner.utils.collections.list.VisitorListDefault;
+import net.sf.kerner.utils.collections.filter.Filter;
+import net.sf.kerner.utils.collections.list.visitor.VisitorListDefault;
 import net.sf.kerner.utils.counter.Counter;
 
 import org.junit.After;
@@ -87,22 +87,18 @@ public class TestListWalkerDefault {
     public final void testWalk03() {
         w = new ListWalkerDefault<Integer>();
         l = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-        final Counter c1 = new Counter();
+
         final Counter c2 = new Counter();
         v = new DefaultListVisitorImpl<Integer>() {
-            public Void visit(Integer e) {
-                c1.count();
-                return null;
-            };
-
-            public Void visit(Integer e, int index) {
+            @Override
+            public Void visit(final Integer e, final int index) {
                 c2.count();
                 return null;
             };
         };
         w.addVisitor(v);
         w.walk(l);
-        assertEquals(l.size(), c1.getCount());
+
         assertEquals(l.size(), c2.getCount());
     }
 
@@ -110,21 +106,18 @@ public class TestListWalkerDefault {
     public final void testWalk04() {
         w = new ListWalkerDefault<Integer>();
         l = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-        final Counter c1 = new Counter();
+
         final Counter c2 = new Counter();
         v = new DefaultListVisitorImpl<Integer>() {
-            public Void visit(Integer e) {
-                c1.count();
-                return null;
-            };
 
-            public Void visit(Integer e, int index) {
+            @Override
+            public Void visit(final Integer e, final int index) {
                 c2.count();
                 return null;
             };
         };
         w.addFilter(new Filter<Integer>() {
-            public Boolean visit(Integer element) {
+            public Boolean visit(final Integer element) {
                 if (element <= 4)
                     return false;
                 return true;
@@ -132,7 +125,7 @@ public class TestListWalkerDefault {
         });
         w.addVisitor(v);
         w.walk(l);
-        assertEquals(l.size() / 2, c1.getCount());
+
         assertEquals(l.size() / 2, c2.getCount());
     }
 

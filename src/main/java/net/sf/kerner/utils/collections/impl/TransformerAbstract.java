@@ -5,10 +5,16 @@ import java.util.Collection;
 import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.TransformerCollection;
+import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 
 public abstract class TransformerAbstract<T, V> implements Transformer<T, V>, TransformerCollection<T, V> {
 
     protected final FactoryCollection<V> factoryCollection;
+
+    public TransformerAbstract() {
+        super();
+        this.factoryCollection = new ArrayListFactory<V>();
+    }
 
     public TransformerAbstract(final FactoryCollection<V> factoryCollection) {
         super();

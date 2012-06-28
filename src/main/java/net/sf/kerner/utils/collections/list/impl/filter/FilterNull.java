@@ -1,6 +1,6 @@
 package net.sf.kerner.utils.collections.list.impl.filter;
 
-import net.sf.kerner.utils.collections.list.FilterList;
+import net.sf.kerner.utils.collections.list.filter.FilterList;
 
 public class FilterNull<T> implements FilterList<T> {
 

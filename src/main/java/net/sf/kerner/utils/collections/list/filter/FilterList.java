@@ -13,10 +13,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.list.filter;
+
+import net.sf.kerner.utils.collections.filter.Filter;
+import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 
 /**
- * A {@link Visitor} which does not return any result.
+ * TODO description
  * <p>
  * <b>Example:</b><br>
  * </p>
@@ -30,9 +33,9 @@ package net.sf.kerner.utils.collections;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-06-15
- * @param <E>
- *            type of elements which are visited
+ * @param <T>
+ *            type of elements which are filtered
  */
-public interface VisitorDefault<E> extends Visitor<Void, E> {
+public interface FilterList<T> extends Filter<T>, VisitorList<Boolean, T> {
 
 }

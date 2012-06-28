@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.TransformerToString;
-import net.sf.kerner.utils.collections.impl.CollectionUtil;
+import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.collections.list.FactoryList;
-import net.sf.kerner.utils.collections.list.FilterList;
+import net.sf.kerner.utils.collections.list.filter.FilterList;
 import net.sf.kerner.utils.collections.list.impl.filter.FilterNull;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 
@@ -125,7 +125,7 @@ public class ListUtil {
     }
 
     public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2) {
-        return (List<L>) CollectionUtil.append(c1, c2, new ArrayListFactory<L>());
+        return (List<L>) UtilCollection.append(c1, c2, new ArrayListFactory<L>());
     }
 
     public static <V> List<V> trimm(List<? extends V> list, FactoryList<V> factory) {
