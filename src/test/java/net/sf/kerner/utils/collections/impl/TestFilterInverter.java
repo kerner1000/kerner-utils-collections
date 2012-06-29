@@ -36,7 +36,7 @@ public class TestFilterInverter {
     @Test
     public final void testFilterInverter01() {
         f = new Filter<Boolean>() {
-            public Boolean visit(Boolean element) {
+            public boolean filter(final Boolean element) {
                 return element;
             }
         };
@@ -51,23 +51,23 @@ public class TestFilterInverter {
     @Test
     public final void testVisit01() {
         f = new Filter<Boolean>() {
-            public Boolean visit(Boolean element) {
+            public boolean filter(final Boolean element) {
                 return element;
             }
         };
         fi = new FilterInverter<Boolean>(f);
-        assertFalse(fi.visit(Boolean.TRUE));
+        assertFalse(fi.filter(Boolean.TRUE));
     }
 
     @Test
     public final void testVisit02() {
         f = new Filter<Boolean>() {
-            public Boolean visit(Boolean element) {
+            public boolean filter(final Boolean element) {
                 return element;
             }
         };
         fi = new FilterInverter<Boolean>(f);
-        assertTrue(fi.visit(Boolean.FALSE));
+        assertTrue(fi.filter(Boolean.FALSE));
     }
 
 }

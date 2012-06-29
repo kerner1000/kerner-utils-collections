@@ -16,7 +16,6 @@ limitations under the License.
 package net.sf.kerner.utils.collections.list.filter;
 
 import net.sf.kerner.utils.collections.filter.Filter;
-import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 
 /**
  * TODO description
@@ -36,6 +35,8 @@ import net.sf.kerner.utils.collections.list.visitor.VisitorList;
  * @param <T>
  *            type of elements which are filtered
  */
-public interface FilterList<T> extends Filter<T>, VisitorList<Boolean, T> {
+public interface FilterList<T> extends Filter<T> {
+
+    public boolean filter(final T element, final int index);
 
 }

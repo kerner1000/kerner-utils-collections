@@ -45,7 +45,7 @@ public class FilterApplierProto<E> implements FilterApplier<E> {
         switch (type) {
         case ALL:
             for (final Filter<E> f : filters) {
-                if (f.visit(e)) {
+                if (f.filter(e)) {
                     // take
                 } else {
                     return false;
@@ -54,7 +54,7 @@ public class FilterApplierProto<E> implements FilterApplier<E> {
             return true;
         case ONE:
             for (final Filter<E> f : filters) {
-                if (f.visit(e)) {
+                if (f.filter(e)) {
                     return true;
                 } else {
                     // see what others say

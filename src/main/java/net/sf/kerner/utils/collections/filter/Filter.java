@@ -15,7 +15,6 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.filter;
 
-import net.sf.kerner.utils.collections.visitor.Visitor;
 
 /**
  * TODO description
@@ -35,6 +34,8 @@ import net.sf.kerner.utils.collections.visitor.Visitor;
  * @param <E>
  *            type of elements which are filtered
  */
-public interface Filter<E> extends Visitor<Boolean, E> {
+public interface Filter<E> {
+
+    boolean filter(E e);
 
 }

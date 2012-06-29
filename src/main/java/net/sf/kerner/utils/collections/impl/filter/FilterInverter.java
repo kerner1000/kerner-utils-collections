@@ -46,8 +46,8 @@ public class FilterInverter<E> implements Filter<E> {
         this.filter = filter;
     }
 
-    public Boolean visit(final E element) {
-        return !filter.visit(element);
+    public boolean filter(final E element) {
+        return !filter.filter(element);
     }
 
 }

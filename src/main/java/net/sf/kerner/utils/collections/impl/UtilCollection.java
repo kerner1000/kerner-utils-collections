@@ -196,14 +196,14 @@ public class UtilCollection {
             final FactoryCollection<C> factory) {
         final Collection<C> result = factory.createCollection();
         for (final C c : collection)
-            if (filter.visit(c))
+            if (filter.filter(c))
                 result.add(c);
         return result;
     }
 
     public static <C> void filterCollection2(final Collection<? extends C> collection, final Filter<C> filter) {
         for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
-            if (filter.visit(i.next())) {
+            if (filter.filter(i.next())) {
                 // OK
             } else {
                 i.remove();

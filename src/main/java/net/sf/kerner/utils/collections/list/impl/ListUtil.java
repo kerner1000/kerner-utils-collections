@@ -59,10 +59,10 @@ public class ListUtil {
      *            returning list
      * @return a new {@link java.util.List List}
      */
-    public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2, FactoryList<C> factory) {
+    public static <C> List<C> meld(final List<? extends C> c1, final List<? extends C> c2, final FactoryList<C> factory) {
         final List<C> result = factory.createCollection();
-        Iterator<? extends C> i1 = c1.iterator();
-        Iterator<? extends C> i2 = c2.iterator();
+        final Iterator<? extends C> i1 = c1.iterator();
+        final Iterator<? extends C> i2 = c2.iterator();
 
         while (i1.hasNext()) {
             final C e1 = i1.next();
@@ -97,7 +97,7 @@ public class ListUtil {
         return result;
     }
 
-    public static <C> List<C> meld(List<? extends C> c1, List<? extends C> c2) {
+    public static <C> List<C> meld(final List<? extends C> c1, final List<? extends C> c2) {
         if (c1 == null && c2 == null)
             return new ArrayListFactory<C>().createCollection();
         if (c1 == null)
@@ -107,7 +107,7 @@ public class ListUtil {
         return meld(c1, c2, new ArrayListFactory<C>());
     }
 
-    public static <E> void fill(List<E> list, int numElements, E e) {
+    public static <E> void fill(final List<E> list, final int numElements, final E e) {
         if (numElements < list.size())
             return;
         final int iterations = numElements - list.size();
@@ -116,42 +116,43 @@ public class ListUtil {
         }
     }
 
-    public static <E> List<String> toStringList(Collection<E> elements) {
+    public static <E> List<String> toStringList(final Collection<E> elements) {
         return new TransformerToStringCollection().transformCollection(elements);
     }
 
-    public static <E> List<String> toStringList(TransformerToString strategy, Collection<E> elements) {
+    public static <E> List<String> toStringList(final TransformerToString strategy, final Collection<E> elements) {
         return new TransformerToStringCollection(strategy).transformCollection(elements);
     }
 
-    public static <L> List<L> append(Collection<? extends L> c1, Collection<? extends L> c2) {
+    public static <L> List<L> append(final Collection<? extends L> c1, final Collection<? extends L> c2) {
         return (List<L>) UtilCollection.append(c1, c2, new ArrayListFactory<L>());
     }
 
-    public static <V> List<V> trimm(List<? extends V> list, FactoryList<V> factory) {
+    public static <V> List<V> trimm(final List<? extends V> list, final FactoryList<V> factory) {
         final List<V> result = factory.createCollection();
-        for (V o : list) {
+        for (final V o : list) {
             if (o != null)
                 result.add(o);
         }
         return result;
     }
 
-    public static <C> List<C> filterList(List<? extends C> collection, FilterList<C> filter, FactoryList<C> factory) {
+    public static <C> List<C> filterList(final List<? extends C> collection, final FilterList<C> filter,
+            final FactoryList<C> factory) {
         final List<C> result = factory.createCollection();
         for (int i = 0; i < collection.size(); i++) {
             final C c = collection.get(i);
-            if (filter.visit(c, i))
+            if (filter.filter(c, i))
                 result.add(c);
         }
         return result;
     }
 
-    public static <C> List<C> filterList(List<? extends C> collection, FilterList<C> filter) {
+    public static <C> List<C> filterList(final List<? extends C> collection, final FilterList<C> filter) {
         return filterList(collection, filter, new ArrayListFactory<C>());
     }
 
-    public static <T> void setAll(List<T> parent, List<T> sublist, int index) {
+    public static <T> void setAll(final List<T> parent, final List<T> sublist, final int index) {
         if (parent.size() < sublist.size())
             throw new IllegalArgumentException("parent too small for child");
         if (parent.size() < sublist.size() + index)
@@ -163,10 +164,10 @@ public class ListUtil {
         }
     }
 
-    public static void removeAll(List<?> list, Collection<Integer> indices) {
-        ListIterator<?> it = list.listIterator();
+    public static void removeAll(final List<?> list, final Collection<Integer> indices) {
+        final ListIterator<?> it = list.listIterator();
         while (it.hasNext()) {
-            int index = it.nextIndex();
+            final int index = it.nextIndex();
             it.next();
             if (indices.contains(index)) {
                 it.remove();
@@ -174,16 +175,16 @@ public class ListUtil {
         }
     }
 
-    public static <T> List<T> removeAll(List<T> list, List<T> values) {
+    public static <T> List<T> removeAll(final List<T> list, final List<T> values) {
         final List<T> copy = new ArrayList<T>(list);
         copy.removeAll(values);
         return copy;
     }
 
-    public static void retainAll(List<?> list, Collection<Integer> indices) {
-        ListIterator<?> it = list.listIterator();
+    public static void retainAll(final List<?> list, final Collection<Integer> indices) {
+        final ListIterator<?> it = list.listIterator();
         while (it.hasNext()) {
-            int index = it.nextIndex();
+            final int index = it.nextIndex();
             it.next();
             if (indices.contains(index)) {
                 // ok
@@ -193,47 +194,49 @@ public class ListUtil {
         }
     }
 
-    public static <T> List<T> removeAll2(List<T> list, Collection<Integer> indices, FactoryList<T> factory) {
+    public static <T> List<T> removeAll2(final List<T> list, final Collection<Integer> indices,
+            final FactoryList<T> factory) {
         final List<T> copy = factory.createCollection(list);
         removeAll(copy, indices);
         return copy;
     }
 
-    public static <T> List<T> retainAll2(List<T> list, Collection<Integer> indices, FactoryList<T> factory) {
+    public static <T> List<T> retainAll2(final List<T> list, final Collection<Integer> indices,
+            final FactoryList<T> factory) {
         final List<T> copy = factory.createCollection(list);
         retainAll(copy, indices);
         return copy;
     }
 
-    public static <T> List<T> removeAll2(List<T> list, Collection<Integer> indices) {
+    public static <T> List<T> removeAll2(final List<T> list, final Collection<Integer> indices) {
         return removeAll2(list, indices, new ArrayListFactory<T>());
     }
 
-    public static <T> List<T> retainAll2(List<T> list, Collection<Integer> indices) {
+    public static <T> List<T> retainAll2(final List<T> list, final Collection<Integer> indices) {
         return retainAll2(list, indices, new ArrayListFactory<T>());
     }
 
-    public static <T> T getFirstElement(List<T> list) {
+    public static <T> T getFirstElement(final List<T> list) {
         if (list.size() < 1) {
             throw new IllegalArgumentException("list is empty");
         }
         return list.get(0);
     }
 
-    public static <T> T getLastElement(List<T> list) {
+    public static <T> T getLastElement(final List<T> list) {
         if (list.size() < 1) {
             throw new IllegalArgumentException("list is empty");
         }
         return list.get(list.size() - 1);
     }
 
-    public static <T> void prepend(List<T> list, int numElements, T element) {
+    public static <T> void prepend(final List<T> list, final int numElements, final T element) {
         for (int i = 0; i < list.size(); i++) {
             list.add(0, element);
         }
     }
 
-    public static <T> void append(List<T> list, int numElements, T element) {
+    public static <T> void append(final List<T> list, final int numElements, final T element) {
         for (int i = 0; i < numElements; i++) {
             list.add(element);
         }
@@ -243,23 +246,23 @@ public class ListUtil {
         return new ArrayList<T>();
     }
 
-    public static <T> List<T> newList(Collection<? extends T> elements) {
+    public static <T> List<T> newList(final Collection<? extends T> elements) {
         return new ArrayList<T>(elements);
     }
 
-    public static <T> List<T> newList(T... elements) {
+    public static <T> List<T> newList(final T... elements) {
         return Arrays.asList(elements);
     }
 
-    public static <T> List<T> newList(Collection<? extends T>... elements) {
+    public static <T> List<T> newList(final Collection<? extends T>... elements) {
         final List<T> result = newList();
-        for (Collection<? extends T> c : elements) {
+        for (final Collection<? extends T> c : elements) {
             result.addAll(c);
         }
         return result;
     }
 
-    public static int getFirstNonNullIndex(List<?> list) {
+    public static int getFirstNonNullIndex(final List<?> list) {
         for (int i = 0; i < list.size(); i++) {
             final Object o = list.get(i);
             if (o != null) {
@@ -269,7 +272,7 @@ public class ListUtil {
         return -1;
     }
 
-    public static int getLastNonNullIndex(List<?> list) {
+    public static int getLastNonNullIndex(final List<?> list) {
         for (int i = list.size() - 1; i >= 0; i--) {
             final Object o = list.get(i);
             if (o != null) {
@@ -279,7 +282,7 @@ public class ListUtil {
         return -1;
     }
 
-    public static int getFirstNonEmptyIndex(List<Collection<?>> list) {
+    public static int getFirstNonEmptyIndex(final List<Collection<?>> list) {
         for (int i = 0; i < list.size(); i++) {
             final Collection<?> o = list.get(i);
             if (o != null && !o.isEmpty()) {
@@ -289,11 +292,11 @@ public class ListUtil {
         return -1;
     }
 
-    public static <T> List<T> filterNull(List<T> list) {
+    public static <T> List<T> filterNull(final List<T> list) {
         return filterList(list, new FilterNull<T>());
     }
 
-    public static List<Object> toObjectList(Collection<? extends Object> elements) {
+    public static List<Object> toObjectList(final Collection<? extends Object> elements) {
         return newList(elements);
     }
 

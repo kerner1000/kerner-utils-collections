@@ -18,11 +18,12 @@ public class VisitorApplierDefaultProto<E> implements VisitorApplierDefault<E> {
         visitors.clear();
     }
 
-    public void visit(final E e) {
+    public Void visit(final E e) {
 
         for (final Visitor<Void, E> v : visitors) {
             v.visit(e);
         }
+        return null;
 
     };
 

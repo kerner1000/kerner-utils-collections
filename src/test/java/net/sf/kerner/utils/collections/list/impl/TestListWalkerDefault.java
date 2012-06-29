@@ -117,7 +117,7 @@ public class TestListWalkerDefault {
             };
         };
         w.addFilter(new Filter<Integer>() {
-            public Boolean visit(final Integer element) {
+            public boolean filter(final Integer element) {
                 if (element <= 4)
                     return false;
                 return true;

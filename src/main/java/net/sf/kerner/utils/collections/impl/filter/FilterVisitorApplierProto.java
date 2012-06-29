@@ -32,9 +32,10 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
         visitorDelegate.clearVisitors();
     }
 
-    public void visit(final E e) {
+    public Void visit(final E e) {
         if (filter(e)) {
             visitorDelegate.visit(e);
         }
+        return null;
     }
 }
