@@ -28,7 +28,7 @@ import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.collections.list.impl.ListUtil;
+import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.StringUtil;
@@ -293,7 +293,7 @@ public class UtilCollection {
      * @return {@code true}, if {@code c} contains more than one element with same hashCode; {@code false} otherwise
      */
     public static boolean containsDuplicates(final Collection<?> c) {
-        final Collection<Integer> hashes = ListUtil.newList();
+        final Collection<Integer> hashes = UtilList.newList();
         for (final Object o : c) {
             final int hash = o.hashCode();
             if (hashes.contains(hash)) {
@@ -314,15 +314,15 @@ public class UtilCollection {
     }
 
     public static <T> Collection<T> newCollection() {
-        return ListUtil.newList();
+        return UtilList.newList();
     }
 
     public static <T> Collection<T> newCollection(final Collection<? extends T> template) {
-        return ListUtil.newList(template);
+        return UtilList.newList(template);
     }
 
     public static <T> Collection<T> newCollection(final T... template) {
-        return ListUtil.newList(template);
+        return UtilList.newList(template);
     }
 
     public static <T> Collection<Collection<T>> getSame(final Collection<T> c) {

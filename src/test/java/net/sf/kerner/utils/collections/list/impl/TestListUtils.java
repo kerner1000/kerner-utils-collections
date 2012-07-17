@@ -37,7 +37,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList("a", "b");
         List<String> l2 = Arrays.asList("c", "d");
         List<String> l3 = Arrays.asList("a", "c", "b", "d");
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -47,7 +47,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList("a", "b");
         List<String> l2 = Arrays.asList("a", "c");
         List<String> l3 = Arrays.asList("a", "b", "c");
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -57,7 +57,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList("a", "b");
         List<String> l2 = Arrays.asList("a", "c");
         List<String> l3 = Arrays.asList("a", "b", "c");
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -67,7 +67,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList("a", "b");
         List<String> l2 = Arrays.asList(null, "c");
         List<String> l3 = Arrays.asList("a", "b", "c");
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -77,7 +77,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList("a", "b");
         List<String> l2 = Arrays.asList(null, "c");
         List<String> l3 = Arrays.asList("a", "b", "c");
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -87,7 +87,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList(null, null);
         List<String> l2 = Arrays.asList(null, null);
         List<String> l3 = Arrays.asList(null, null);
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -97,7 +97,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList(null, null);
         List<String> l2 = Arrays.asList(null, null);
         List<String> l3 = Arrays.asList(null, null);
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -107,7 +107,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList(null, null);
         List<String> l2 = Arrays.asList("a", null);
         List<String> l3 = Arrays.asList("a", null);
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -117,7 +117,7 @@ public class TestListUtils {
         List<String> l1 = Arrays.asList(null, null);
         List<String> l2 = Arrays.asList("a", null);
         List<String> l3 = Arrays.asList("a", null);
-        List<String> l4 = ListUtil.meld(l1, l2);
+        List<String> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -127,7 +127,7 @@ public class TestListUtils {
         List<Double> l1 = Arrays.asList(0.1, 0.2, 0.4);
         List<Double> l2 = Arrays.asList(null, 0.3);
         List<Double> l3 = Arrays.asList(0.1, 0.2, 0.3, 0.4);
-        List<Double> l4 = ListUtil.meld(l1, l2);
+        List<Double> l4 = UtilList.meld(l1, l2);
         assertEquals(l3.size(), l4.size());
         assertArrayEquals(l3.toArray(), l4.toArray());
     }
@@ -143,7 +143,7 @@ public class TestListUtils {
         List<Integer> parent = Arrays.asList(0, 1, 2, 3, 4);
         List<Integer> child = Arrays.asList(0, 0);
         List<Integer> parentNew = Arrays.asList(0, 0, 0, 3, 4);
-        ListUtil.setAll(parent, child, 1);
+        UtilList.setAll(parent, child, 1);
         assertArrayEquals(parentNew.toArray(), parent.toArray());
     }
 
@@ -152,7 +152,7 @@ public class TestListUtils {
         List<Integer> parent = Arrays.asList(0, 1, 2, 3, 4);
         List<Integer> child = Arrays.asList(0, 0);
         List<Integer> parentNew = Arrays.asList(0, 0, 0, 3, 4);
-        ListUtil.setAll(parent, child, 1);
+        UtilList.setAll(parent, child, 1);
         assertArrayEquals(parentNew.toArray(), parent.toArray());
     }
 
@@ -161,7 +161,7 @@ public class TestListUtils {
         List<Integer> parent = Arrays.asList(0, 1, 2, 3, 4);
         List<Integer> child = Arrays.asList(0, 0);
         List<Integer> parentNew = Arrays.asList(0, 0, 0, 3, 4);
-        ListUtil.setAll(parent, child, -1);
+        UtilList.setAll(parent, child, -1);
         assertArrayEquals(parentNew.toArray(), parent.toArray());
     }
 
@@ -170,7 +170,7 @@ public class TestListUtils {
         List<Integer> parent = Arrays.asList(0, 1, 2, 3, 4);
         List<Integer> child = Arrays.asList(0, 0);
         List<Integer> parentNew = Arrays.asList(0, 0, 0, 3, 4);
-        ListUtil.setAll(parent, child, 4);
+        UtilList.setAll(parent, child, 4);
         assertArrayEquals(parentNew.toArray(), parent.toArray());
     }
 
@@ -179,7 +179,7 @@ public class TestListUtils {
         List<Integer> parent = Arrays.asList(0, 1, 2, 3, 4);
         List<Integer> child = Arrays.asList(0, 0);
         List<Integer> parentNew = Arrays.asList(0, 0, 2, 3, 4);
-        ListUtil.setAll(parent, child, 0);
+        UtilList.setAll(parent, child, 0);
         assertArrayEquals(parentNew.toArray(), parent.toArray());
     }
 
@@ -188,7 +188,7 @@ public class TestListUtils {
         List<Integer> parent = Arrays.asList(0, 1, 2, 3, 4);
         List<Integer> child = Arrays.asList(0, 0);
         List<Integer> parentNew = Arrays.asList(0, 1, 2, 0, 0);
-        ListUtil.setAll(parent, child, 3);
+        UtilList.setAll(parent, child, 3);
         assertArrayEquals(parentNew.toArray(), parent.toArray());
     }
 }

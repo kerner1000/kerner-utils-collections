@@ -35,11 +35,11 @@ import net.sf.kerner.utils.impl.TransformerToStringDefault;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-04-16
  */
-public class ListUtil {
+public class UtilList {
 
     public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
-    private ListUtil() {
+    private UtilList() {
         // Singleton
     }
 
