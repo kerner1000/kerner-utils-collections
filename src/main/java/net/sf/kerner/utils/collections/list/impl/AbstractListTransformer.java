@@ -1,5 +1,7 @@
 package net.sf.kerner.utils.collections.list.impl;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.Transformer;
@@ -15,10 +17,11 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
 
     protected volatile int currentIndex;
 
-    public AbstractListTransformer(FactoryList<V> factory) {
+    public AbstractListTransformer(final FactoryList<V> factory) {
         this.factory = factory;
         super.addVisitor(new DefaultListVisitorImpl<T>() {
-            public Void visit(T element, int index) {
+            @Override
+            public Void visit(final T element, final int index) {
                 setCurrentIndex(index);
                 result.add(transform(element));
                 return null;
@@ -39,9 +42,9 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
     /**
      * if {@code element == null}, empty list is returned.
      */
-    public synchronized List<V> transformCollection(List<? extends T> element) {
+    public synchronized List<V> transformCollection(final Collection<? extends T> element) {
         if (element != null)
-            walk(element);
+            walk(new ArrayList<T>(element));
         return result;
     }
 
@@ -49,7 +52,7 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
         return currentIndex;
     }
 
-    private void setCurrentIndex(int currentIndex) {
+    private void setCurrentIndex(final int currentIndex) {
         this.currentIndex = currentIndex;
     }
 

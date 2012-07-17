@@ -1,17 +1,12 @@
 package net.sf.kerner.utils.collections.list;
 
+import java.util.Collection;
 import java.util.List;
 
-public interface TransformerList<T, V> {
+import net.sf.kerner.utils.collections.TransformerCollection;
 
-    /**
-     * Transforms each element contained by given {@link List} and returns another {@link List} which contains all
-     * transformed elements (in the same order).
-     * 
-     * @param list
-     *            {@link List} that contains elements to transform
-     * @return {@link List} containing transformed elements
-     */
-    List<V> transformCollection(List<? extends T> list);
+public interface TransformerList<T, V> extends TransformerCollection<T, V> {
+
+    List<V> transformCollection(Collection<? extends T> element);
 
 }
