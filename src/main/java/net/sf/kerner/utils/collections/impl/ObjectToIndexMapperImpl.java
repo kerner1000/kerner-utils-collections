@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.map.MapUtils;
-import net.sf.kerner.utils.math.MathUtils;
+import net.sf.kerner.utils.math.UtilMath;
 
 /**
  * Default implementation for {@link ObjectToIndexMapper}.
@@ -107,7 +107,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
     }
 
     public int getMaxIndex() {
-        return (int) MathUtils.max(map.values());
+        return (int) UtilMath.max(map.values());
     }
 
     public int getSize() {

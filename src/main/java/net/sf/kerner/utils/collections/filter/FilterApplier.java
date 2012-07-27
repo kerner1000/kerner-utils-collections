@@ -1,5 +1,7 @@
 package net.sf.kerner.utils.collections.filter;
 
+import java.util.List;
+
 public interface FilterApplier<E> extends Filter<E> {
 
     static enum TYPE {
@@ -9,5 +11,7 @@ public interface FilterApplier<E> extends Filter<E> {
     void addFilter(Filter<E> filter);
 
     void clearFilters();
+
+    List<Filter<E>> getFilters();
 
 }

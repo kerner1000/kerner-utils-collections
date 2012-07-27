@@ -1,5 +1,7 @@
 package net.sf.kerner.utils.collections.impl.filter;
 
+import java.util.List;
+
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.filter.FilterApplier;
 import net.sf.kerner.utils.collections.impl.visitor.VisitorApplierDefaultProto;
@@ -16,20 +18,24 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
         filterDelegate.addFilter(filter);
     }
 
+    public void addVisitor(final Visitor<Void, E> visitor) {
+        visitorDelegate.addVisitor(visitor);
+    }
+
     public void clearFilters() {
         filterDelegate.clearFilters();
+    }
+
+    public void clearVisitors() {
+        visitorDelegate.clearVisitors();
     }
 
     public boolean filter(final E e) {
         return filterDelegate.filter(e);
     }
 
-    public void addVisitor(final Visitor<Void, E> visitor) {
-        visitorDelegate.addVisitor(visitor);
-    }
-
-    public void clearVisitors() {
-        visitorDelegate.clearVisitors();
+    public List<Filter<E>> getFilters() {
+        return filterDelegate.getFilters();
     }
 
     public Void visit(final E e) {

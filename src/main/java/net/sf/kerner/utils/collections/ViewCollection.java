@@ -15,30 +15,6 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections;
 
-import java.util.Collection;
-
-import net.sf.kerner.utils.View;
-
-/**
- * TODO description
- * <p>
- * <b>Example:</b><br>
- * </p>
- * <p>
- * 
- * <pre>
- * TODO example
- * </pre>
- * 
- * </p>
- * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version May 2, 2012
- * @param <T>
- *            type of elements in {@link Collection}
- * @param <V>
- *            type of {@link View} of elements
- */
 public interface ViewCollection<T, V> extends TransformerCollection<T, V> {
 
 }
