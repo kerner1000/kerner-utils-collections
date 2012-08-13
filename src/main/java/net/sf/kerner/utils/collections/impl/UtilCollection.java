@@ -316,7 +316,7 @@ public class UtilCollection {
 
     /**
      * Simple {@code toString()} method, which calls each element's {@code toString()} and appends after that
-     * {@link StringUtils#NEW_LINE_STRING}.
+     * {@link UtilStrings#NEW_LINE_STRING}.
      * 
      * @return String representation for given {@code Collection}, or empty string if parameter is empty
      */
