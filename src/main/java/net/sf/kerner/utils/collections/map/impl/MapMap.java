@@ -22,11 +22,11 @@ public class MapMap<T, K, V> {
     }
 
     public MapMap(final Map<T, Map<K, V>> map) {
-        this(map, new LinkedHashMapFactory<K, V>());
+        this(map, new FactoryLinkedHashMap<K, V>());
     }
 
     public MapMap() {
-        this(new LinkedHashMap<T, Map<K, V>>(), new LinkedHashMapFactory<K, V>());
+        this(new LinkedHashMap<T, Map<K, V>>(), new FactoryLinkedHashMap<K, V>());
     }
 
     /**

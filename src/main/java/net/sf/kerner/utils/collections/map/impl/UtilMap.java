@@ -131,7 +131,7 @@ public class UtilMap {
     }
 
     public static <K, V> Map<K, V> filterByKey(final Map<K, V> map, final Filter<K> filter) {
-        return filterByKey(map, filter, new LinkedHashMapFactory<K, V>());
+        return filterByKey(map, filter, new FactoryLinkedHashMap<K, V>());
     }
 
     public static <K, V> Map<K, V> filterByKey(final Map<K, V> map, final Filter<K> filter,
@@ -148,7 +148,7 @@ public class UtilMap {
     }
 
     public static <K, V> Map<K, V> filterByValue(final Map<K, V> map, final Filter<V> filter) {
-        return filterByValue(map, filter, new LinkedHashMapFactory<K, V>());
+        return filterByValue(map, filter, new FactoryLinkedHashMap<K, V>());
     }
 
     public static <K, V> Map<K, V> filterByValue(final Map<K, V> map, final Filter<V> filter,

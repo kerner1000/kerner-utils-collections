@@ -8,14 +8,14 @@ import java.util.Set;
 
 import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.collections.map.FactoryMap;
-import net.sf.kerner.utils.collections.map.impl.LinkedHashMapFactory;
+import net.sf.kerner.utils.collections.map.impl.FactoryLinkedHashMap;
 
 public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> implements MapCollection<K, V, L> {
 
     protected final Map<K, L> map;
 
     public MapCollectionAbstract() {
-        this(new LinkedHashMapFactory<K, L>());
+        this(new FactoryLinkedHashMap<K, L>());
     }
 
     public MapCollectionAbstract(final FactoryMap<K, L> mapFactory) {
