@@ -24,7 +24,7 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.map.impl.MapUtils;
+import net.sf.kerner.utils.collections.map.impl.UtilMap;
 import net.sf.kerner.utils.math.UtilMath;
 
 /**
@@ -47,7 +47,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
         for (int i = 0; i < keys.size(); i++) {
             values.add(Integer.valueOf(i));
         }
-        MapUtils.initMapWithValues(map, keys, values);
+        UtilMap.initMapWithValues(map, keys, values);
     }
 
     public ObjectToIndexMapperImpl(final T... keys) {

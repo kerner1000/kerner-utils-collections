@@ -85,7 +85,7 @@ public class MapMap<T, K, V> {
     }
 
     public void put(final T key1, final K key2, final V value) {
-        MapUtils.addToMapMap(map, key1, key2, value, factory);
+        UtilMap.addToMapMap(map, key1, key2, value, factory);
     }
 
     public Map<K, V> remove1(final T key1) {

@@ -42,7 +42,7 @@ import net.sf.kerner.utils.impl.util.UtilString;
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-03-06
  */
-public class MapUtils {
+public class UtilMap {
 
     public static final String DEFAULT_ELEMENT_SEPARATOR = UtilString.NEW_LINE_STRING;
 
@@ -374,6 +374,6 @@ public class MapUtils {
         return result;
     }
 
-    private MapUtils() {
+    private UtilMap() {
     }
 }
