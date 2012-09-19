@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -28,6 +28,7 @@ import java.util.Map.Entry;
 import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.collections.FactoryCollection;
+import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.collection.MapCollection;
@@ -40,7 +41,7 @@ import net.sf.kerner.utils.impl.util.UtilString;
  * Utility class for {@link Map} and {@link MapCollection} related stuff.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-03-06
+ * @version 2012-09-18
  */
 public class UtilMap {
 
@@ -127,6 +128,40 @@ public class UtilMap {
             map.put(key1, m1);
         }
         m1.put(key2, value);
+    }
+
+    public static <K, V> Map<K, V> filterByKey(final Map<K, V> map, final Filter<K> filter) {
+        return filterByKey(map, filter, new LinkedHashMapFactory<K, V>());
+    }
+
+    public static <K, V> Map<K, V> filterByKey(final Map<K, V> map, final Filter<K> filter,
+            final FactoryMap<K, V> factory) {
+        final Map<K, V> result = factory.create();
+
+        for (final Entry<K, V> e : map.entrySet()) {
+            if (filter.filter(e.getKey())) {
+                result.put(e.getKey(), e.getValue());
+            }
+        }
+
+        return result;
+    }
+
+    public static <K, V> Map<K, V> filterByValue(final Map<K, V> map, final Filter<V> filter) {
+        return filterByValue(map, filter, new LinkedHashMapFactory<K, V>());
+    }
+
+    public static <K, V> Map<K, V> filterByValue(final Map<K, V> map, final Filter<V> filter,
+            final FactoryMap<K, V> factory) {
+        final Map<K, V> result = factory.create();
+
+        for (final Entry<K, V> e : map.entrySet()) {
+            if (filter.filter(e.getValue())) {
+                result.put(e.getKey(), e.getValue());
+            }
+        }
+
+        return result;
     }
 
     /**
