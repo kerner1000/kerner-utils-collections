@@ -9,7 +9,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import net.sf.kerner.utils.collections.map.FactoryMap;
-import net.sf.kerner.utils.collections.map.MapUtils;
 
 public class MapMap<T, K, V> {
 

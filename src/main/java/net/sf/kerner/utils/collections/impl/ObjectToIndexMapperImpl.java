@@ -24,7 +24,7 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.map.MapUtils;
+import net.sf.kerner.utils.collections.map.impl.MapUtils;
 import net.sf.kerner.utils.math.UtilMath;
 
 /**

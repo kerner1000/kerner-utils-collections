@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.kerner.utils.collections.map;
+package net.sf.kerner.utils.collections.map.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,6 +29,7 @@ import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.collection.MapCollection;
 import net.sf.kerner.utils.counter.Counter;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
