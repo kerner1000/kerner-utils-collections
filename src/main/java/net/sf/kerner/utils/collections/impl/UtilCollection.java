@@ -256,6 +256,20 @@ public class UtilCollection {
         return getSame(c, new EqualatorDefault<T>());
     }
 
+    public static <C> Collection<C> iteratorToCollection(final Iterable<? extends C> iterable) {
+        return iteratorToCollection(iterable, new ArrayListFactory<C>());
+    }
+
+    public static <C> Collection<C> iteratorToCollection(final Iterable<? extends C> iterable,
+            final FactoryCollection<C> factory) {
+        final Collection<C> result = factory.createCollection();
+        final Iterator<? extends C> it = iterable.iterator();
+        while (it.hasNext()) {
+            result.add(it.next());
+        }
+        return result;
+    }
+
     public static <T> Collection<T> newCollection() {
         return UtilList.newList();
     }
