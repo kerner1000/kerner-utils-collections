@@ -7,7 +7,7 @@
 	</parent>
 	<groupId>net.sf.kerner-utils-collections</groupId>
 	<artifactId>kerner-utils-collections</artifactId>
-	<version>0.17.3-SNAPSHOT</version>
+	<version>0.18.0</version>
 	<name>Kerner Utilities - Collections</name>
 	<description>Commonly used utility classes (java.util.Collections related)</description>
 	<properties>
@@ -36,7 +36,7 @@
 		</url>
 		<connection>scm:git:git://kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</connection>
 		<developerConnection>scm:git:ssh://akerner@kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</developerConnection>
-	  <tag>HEAD</tag>
+	  <tag>kerner-utils-collections-0.18.0</tag>
   </scm>
 	<distributionManagement>
 		<site>
