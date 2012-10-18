@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -36,9 +37,14 @@
 		</url>
 		<connection>scm:git:git://kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</connection>
 		<developerConnection>scm:git:ssh://akerner@kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	<distributionManagement>
+		<repository>
+			<id>sourceforge-kerner-utils-co</id>
+			<url>
+sftp://frs.sourceforge.net:/home/frs/project/k/ke/kerner-utils-co/releases</url>
+		</repository>
 		<site>
 			<id>sourceforge-kerner-utils-co</id>
 			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-co/htdocs</url>
@@ -92,18 +98,20 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.3.2</version>
-			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh-external</artifactId>
+				<version>1.0-alpha-5</version>
+			</extension>
+		</extensions>
 	</build>
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.kerner-utils</groupId>
 			<artifactId>kerner-utils</artifactId>
-			<version>0.13.3</version>
+			<version>0.13.8</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
