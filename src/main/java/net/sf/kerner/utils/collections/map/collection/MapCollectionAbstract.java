@@ -101,9 +101,7 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
     }
 
     public synchronized void remove(final K key) {
-        for (final Collection<V> c : map.values()) {
-            c.remove(key);
-        }
+        map.remove(key);
     }
 
     public synchronized void removeValue(final V v) {
