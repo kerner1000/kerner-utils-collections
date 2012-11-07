@@ -37,8 +37,8 @@ import net.sf.kerner.utils.impl.util.UtilString;
 /**
  * Utility class for Collection related stuff.
  * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-03-29
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2012-11-12
  */
 public class UtilCollection {
 
@@ -46,6 +46,21 @@ public class UtilCollection {
 
     public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
+    /**
+     * Create a new {@link Collection}, that contains all elements contained in first given collection and in second
+     * given collection. Ordering is as given by first {@code Collection Collection's} {@link Iterator} followed by
+     * second {@code Collection Collection's} {@link Iterator}.
+     * 
+     * @param <C>
+     *            Type of both {@link Collection Collections}
+     * @param c1
+     *            first {@link Collection}
+     * @param c2
+     *            second {@link Collection}
+     * @return new {@code Collection}
+     * @throws NullPointerException
+     *             if one of arguments is {@code null}
+     */
     public static <C> Collection<C> append(final Collection<? extends C> c1, final Collection<? extends C> c2) {
         return append(c1, c2, new ArrayListFactory<C>());
     }
@@ -125,20 +140,7 @@ public class UtilCollection {
         return false;
     }
 
-    public static <C> Collection<C> filterCollection(final Collection<? extends C> collection, final Filter<C> filter) {
-        return filterCollection(collection, filter, new ArrayListFactory<C>());
-    }
-
-    public static <C> Collection<C> filterCollection(final Collection<? extends C> collection, final Filter<C> filter,
-            final FactoryCollection<C> factory) {
-        final Collection<C> result = factory.createCollection();
-        for (final C c : collection)
-            if (filter.filter(c))
-                result.add(c);
-        return result;
-    }
-
-    public static <C> void filterCollection2(final Collection<? extends C> collection, final Filter<C> filter) {
+    public static <C> void filterCollection(final Collection<? extends C> collection, final Filter<C> filter) {
         for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
             if (filter.filter(i.next())) {
                 // OK
