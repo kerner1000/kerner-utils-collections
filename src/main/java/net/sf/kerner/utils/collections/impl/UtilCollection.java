@@ -23,7 +23,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.Factory;
-import net.sf.kerner.utils.TransformerToString;
+import net.sf.kerner.utils.ObjectPairSame;
+import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.filter.Filter;
@@ -38,13 +39,33 @@ import net.sf.kerner.utils.impl.util.UtilString;
  * Utility class for Collection related stuff.
  * 
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * @version 2012-11-12
+ * @version 2012-11-27
  */
 public class UtilCollection {
 
     public static String DEFAULT_OBJECT_SEPARATOR = ", ";
 
-    public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
+    public final static Transformer<Object, String> TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
+
+    public static <T> boolean allSame(final Collection<? extends T> collection) {
+        return allSame(collection, new EqualatorDefault<T>());
+    }
+
+    public static <T> boolean allSame(final Collection<? extends T> collection, final Equalator<T> equalator) {
+        T last = null;
+        for (final T t : collection) {
+            if (last == null) {
+                last = t;
+            } else {
+                if (equalator.areEqual(last, t)) {
+
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * Create a new {@link Collection}, that contains all elements contained in first given collection and in second
@@ -284,6 +305,21 @@ public class UtilCollection {
         return UtilList.newList(template);
     }
 
+    public static <T> ObjectPairSame<T> nextTwo(final Iterator<T> iterator) {
+        T first = null, second = null;
+        if (iterator.hasNext()) {
+            first = iterator.next();
+        }
+        if (iterator.hasNext()) {
+            second = iterator.next();
+        }
+        if (first != null && second != null) {
+            return new ObjectPairSame<T>(first, second);
+        } else {
+            return null;
+        }
+    }
+
     /**
      * Check if a {@link Collection} or all of its elements is/ are {@code null} .
      * 
@@ -314,12 +350,12 @@ public class UtilCollection {
         return toString(it, TRANSFORMER_TO_STRING_DEFAULT, objectSeparator);
     }
 
-    public static <O> String toString(final Iterable<? extends O> it, final TransformerToString s) {
+    public static <O> String toString(final Iterable<? extends O> it, final Transformer<Object, String> s) {
         return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
     }
 
-    public static <O> String toString(final Iterable<? extends O> iterable, final TransformerToString transformer,
-            final String objectSeparator) {
+    public static <O> String toString(final Iterable<? extends O> iterable,
+            final Transformer<Object, String> transformer, final String objectSeparator) {
         final StringBuilder sb = new StringBuilder();
         final Iterator<? extends O> it = iterable.iterator();
         while (it.hasNext()) {
