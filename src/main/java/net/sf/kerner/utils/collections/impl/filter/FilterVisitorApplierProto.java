@@ -31,7 +31,11 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
     }
 
     public boolean filter(final E e) {
-        return filterDelegate.filter(e);
+        final boolean b = filterDelegate.filter(e);
+        if (b) {
+            visitorDelegate.visit(e);
+        }
+        return b;
     }
 
     public List<Filter<E>> getFilters() {
