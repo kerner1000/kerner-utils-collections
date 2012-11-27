@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.impl.UtilCollection;
@@ -29,6 +30,7 @@ import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.filter.FilterList;
 import net.sf.kerner.utils.collections.list.impl.filter.FilterNull;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
+import net.sf.kerner.utils.impl.util.UtilArray;
 
 /**
  * Utility class for {@link List} related stuff.
@@ -56,6 +58,24 @@ public class UtilList {
         final int iterations = numElements - list.size();
         for (int i = 0; i < iterations; i++) {
             list.add(e);
+        }
+    }
+
+    public static <E> void fill(final List<E> list, final int numElements, final Factory<E> factory) {
+        if (numElements < list.size())
+            return;
+        final int iterations = numElements - list.size();
+        for (int i = 0; i < iterations; i++) {
+            list.add(factory.create());
+        }
+    }
+
+    public static <E> void fillNull(final List<E> list, final int numElements) {
+        if (numElements < list.size())
+            return;
+        final int iterations = numElements - list.size();
+        for (int i = 0; i < iterations; i++) {
+            list.add(null);
         }
     }
 
@@ -281,6 +301,33 @@ public class UtilList {
         for (int i = 0; i < sublist.size(); i++) {
             parent.set(i + index, sublist.get(i));
         }
+    }
+
+    public static <T> List<List<T>> split(final List<T> list, final int index) {
+        return split(list, index, new ArrayListFactory<T>());
+    }
+
+    public static <T> List<List<T>> split(final List<T> list, final int index, final FactoryList<T> factory) {
+        final List<List<T>> result = newList();
+        result.add(factory.createCollection(list.subList(0, index)));
+        result.add(factory.createCollection(list.subList(index, list.size())));
+        return result;
+    }
+
+    public static <T> List<List<T>> split(final List<T> list, final int[] indices) {
+        return split(list, indices, new ArrayListFactory<T>());
+    }
+
+    public static <T> List<List<T>> split(final List<T> list, final int[] indices, final FactoryList<T> factory) {
+        final List<List<T>> result = newList();
+        if (UtilArray.emptyArray(indices)) {
+            result.add(list);
+            return result;
+        }
+        for (final int index : indices) {
+            result.addAll(split(list, index));
+        }
+        return result;
     }
 
     public static List<Object> toObjectList(final Collection<? extends Object> elements) {
