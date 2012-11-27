@@ -1,4 +1,6 @@
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.impl.equalator;
+
+import net.sf.kerner.utils.collections.Equalator;
 
 public class EqualatorByHash<T> implements Equalator<T> {
 

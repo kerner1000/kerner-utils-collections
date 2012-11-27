@@ -28,6 +28,7 @@ import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.filter.Filter;
+import net.sf.kerner.utils.collections.impl.equalator.EqualatorDefault;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;

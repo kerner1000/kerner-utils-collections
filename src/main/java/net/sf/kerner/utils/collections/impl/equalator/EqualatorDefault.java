@@ -1,4 +1,4 @@
-package net.sf.kerner.utils.collections.impl;
+package net.sf.kerner.utils.collections.impl.equalator;
 
 import net.sf.kerner.utils.collections.Equalator;
 
