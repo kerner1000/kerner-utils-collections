@@ -22,8 +22,8 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
         visitorDelegate.addVisitor(visitor);
     }
 
-    public void clearFilters() {
-        filterDelegate.clearFilters();
+    public void clear() {
+        filterDelegate.clear();
     }
 
     public void clearVisitors() {

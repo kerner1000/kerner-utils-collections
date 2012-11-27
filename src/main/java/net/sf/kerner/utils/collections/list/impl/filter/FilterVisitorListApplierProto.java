@@ -23,8 +23,8 @@ public class FilterVisitorListApplierProto<E> implements FilterApplier<E>, Visit
         visitorDelegate.addVisitor(visitor);
     }
 
-    public void clearFilters() {
-        filterDelegate.clearFilters();
+    public void clear() {
+        filterDelegate.clear();
     }
 
     public void clearVisitors() {

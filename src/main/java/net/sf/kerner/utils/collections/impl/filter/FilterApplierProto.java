@@ -3,17 +3,14 @@ package net.sf.kerner.utils.collections.impl.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.applier.ApplierAbstract;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.filter.FilterApplier;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 
-public class FilterApplierProto<E> implements FilterApplier<E> {
-
-    public static TYPE DEFAULT_FILTER_TYPE = TYPE.ALL;
+public class FilterApplierProto<E> extends ApplierAbstract implements FilterApplier<E> {
 
     private List<Filter<E>> filters = UtilList.newList();
-
-    private final TYPE type;
 
     public FilterApplierProto() {
         this(DEFAULT_FILTER_TYPE);
@@ -24,21 +21,21 @@ public class FilterApplierProto<E> implements FilterApplier<E> {
     }
 
     public FilterApplierProto(final TYPE type) {
-        this.type = type;
+        super(type);
     }
 
     public FilterApplierProto(final TYPE type, final Filter<E>... filters) {
+        super(type);
         for (final Filter<E> f : filters) {
             this.filters.add(f);
         }
-        this.type = type;
     }
 
     public synchronized void addFilter(final Filter<E> filter) {
         filters.add(filter);
     }
 
-    public synchronized void clearFilters() {
+    public synchronized void clear() {
         filters.clear();
     }
 

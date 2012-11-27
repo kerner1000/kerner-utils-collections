@@ -2,15 +2,11 @@ package net.sf.kerner.utils.collections.filter;
 
 import java.util.List;
 
-public interface FilterApplier<E> extends Filter<E> {
+import net.sf.kerner.utils.collections.applier.Applier;
 
-    static enum TYPE {
-        ALL, ONE;
-    }
+public interface FilterApplier<E> extends Filter<E>, Applier {
 
     void addFilter(Filter<E> filter);
-
-    void clearFilters();
 
     List<Filter<E>> getFilters();
 
