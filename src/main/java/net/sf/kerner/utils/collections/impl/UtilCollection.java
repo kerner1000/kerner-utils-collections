@@ -59,7 +59,7 @@ public class UtilCollection {
                 last = t;
             } else {
                 if (equalator.areEqual(last, t)) {
-
+                    // same
                 } else {
                     return false;
                 }
@@ -170,6 +170,33 @@ public class UtilCollection {
                 i.remove();
             }
         }
+    }
+
+    public static <T> Collection<T> findSame(final T key, final Collection<T> collection) {
+        return findSame(key, collection, new EqualatorDefault<T>());
+    }
+
+    public static <T> Collection<T> findSame(final T key, final Collection<T> collection, final Equalator<T> equalator) {
+        final Collection<T> result = newCollection();
+        for (final T t : collection) {
+            if (equalator.areEqual(key, t)) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    public static <T> T findSameFirst(final T key, final Collection<T> collection) {
+        return findSameFirst(key, collection, new EqualatorDefault<T>());
+    }
+
+    public static <T> T findSameFirst(final T key, final Collection<T> collection, final Equalator<T> equalator) {
+        for (final T t : collection) {
+            if (equalator.areEqual(key, t)) {
+                return t;
+            }
+        }
+        return null;
     }
 
     /**
