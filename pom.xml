@@ -32,10 +32,10 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>git://git.code.sf.net/p/kerner-utils-co/code 
+		<url>git.code.sf.net/p/kerner-utils-co/code 
 		</url>
-		<connection>scm:git:git://git.code.sf.net/p/kerner-utils-co/code </connection>
-		<developerConnection>scm:git:ssh://akerner@git://git.code.sf.net/p/kerner-utils-co/code </developerConnection>
+		<connection>scm:git://git.code.sf.net/p/kerner-utils-co/code </connection>
+		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/kerner-utils-co/code </developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
