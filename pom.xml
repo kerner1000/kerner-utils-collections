@@ -34,7 +34,7 @@
 	<scm>
 		<url>git://git.code.sf.net/p/kerner-utils-co/code 
 		</url>
-		<connection>scm:git:git://git://git.code.sf.net/p/kerner-utils-co/code </connection>
+		<connection>scm:git:git://git.code.sf.net/p/kerner-utils-co/code </connection>
 		<developerConnection>scm:git:ssh://akerner@git://git.code.sf.net/p/kerner-utils-co/code </developerConnection>
 		<tag>HEAD</tag>
 	</scm>
