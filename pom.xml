@@ -35,15 +35,10 @@
 		<url>git.code.sf.net/p/kerner-utils-co/code 
 		</url>
 		<connection>scm:git://git.code.sf.net/p/kerner-utils-co/code </connection>
-		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/kerner-utils-co/code </developerConnection>
+		<developerConnection>scm:git:ssh://akerner,kerner-utils-co@git.code.sf.net/p/kerner-utils-co/code </developerConnection>
 		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
-		<repository>
-			<id>sourceforge-kerner-utils-co</id>
-			<url>
-sftp://frs.sourceforge.net:/home/frs/project/k/ke/kerner-utils-co/releases</url>
-		</repository>
 		<site>
 			<id>sourceforge-kerner-utils-co</id>
 			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-co/htdocs</url>
