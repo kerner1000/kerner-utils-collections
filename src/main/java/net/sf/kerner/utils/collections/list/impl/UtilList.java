@@ -52,21 +52,21 @@ public class UtilList {
         }
     }
 
-    public static <E> void fill(final List<E> list, final int numElements, final E e) {
-        if (numElements < list.size())
-            return;
-        final int iterations = numElements - list.size();
-        for (int i = 0; i < iterations; i++) {
-            list.add(e);
-        }
-    }
-
     public static <E> void fill(final List<E> list, final int numElements, final Factory<E> factory) {
         if (numElements < list.size())
             return;
         final int iterations = numElements - list.size();
         for (int i = 0; i < iterations; i++) {
             list.add(factory.create());
+        }
+    }
+
+    public static <E> void fillElement(final List<E> list, final int numElements, final E e) {
+        if (numElements < list.size())
+            return;
+        final int iterations = numElements - list.size();
+        for (int i = 0; i < iterations; i++) {
+            list.add(e);
         }
     }
 
