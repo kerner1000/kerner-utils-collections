@@ -330,6 +330,27 @@ public class UtilList {
         return result;
     }
 
+    public static <T> List<List<T>> splitMaxElements(final List<? extends T> list, final int maxElements) {
+        return splitMaxElements(list, maxElements, new ArrayListFactory<T>());
+    }
+
+    public static <T> List<List<T>> splitMaxElements(final List<? extends T> list, final int maxElements,
+            final FactoryList<T> factory) {
+        final List<List<T>> result = newList();
+        List<T> newList = factory.createCollection();
+        for (int i = 0; i < list.size(); i++) {
+            if (i % maxElements == 0 && newList.size() > 0) {
+                result.add(factory.createCollection(newList));
+                newList = factory.createCollection();
+            }
+            newList.add(list.get(i));
+        }
+        if (newList().size() > 0) {
+            result.add(newList);
+        }
+        return result;
+    }
+
     public static List<Object> toObjectList(final Collection<? extends Object> elements) {
         return newList(elements);
     }
@@ -354,5 +375,4 @@ public class UtilList {
     private UtilList() {
         // Singleton
     }
-
 }
