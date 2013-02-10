@@ -41,26 +41,26 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
 
     public boolean filter(final E e) {
         switch (type) {
-        case ALL:
-            for (final Filter<E> f : filters) {
-                if (f.filter(e)) {
-                    // take
-                } else {
-                    return false;
+            case ALL:
+                for (final Filter<E> f : filters) {
+                    if (f.filter(e)) {
+                        // take
+                    } else {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        case ONE:
-            for (final Filter<E> f : filters) {
-                if (f.filter(e)) {
-                    return true;
-                } else {
-                    // see what others say
+                return true;
+            case ONE:
+                for (final Filter<E> f : filters) {
+                    if (f.filter(e)) {
+                        return true;
+                    } else {
+                        // see what others say
+                    }
                 }
-            }
-            return false;
-        default:
-            throw new RuntimeException("unknown type " + type);
+                return false;
+            default:
+                throw new RuntimeException("unknown type " + type);
         }
     }
 
@@ -70,5 +70,10 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
 
     public void setFilters(final List<Filter<E>> filters) {
         this.filters = new ArrayList<Filter<E>>(filters);
+    }
+
+    @Override
+    public String toString() {
+        return getFilters().toString();
     }
 }
