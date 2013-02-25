@@ -10,4 +10,6 @@ public interface FilterApplier<E> extends Filter<E>, Applier {
 
     List<Filter<E>> getFilters();
 
+    boolean isEmpty();
+
 }

@@ -68,6 +68,10 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
         return new ArrayList<Filter<E>>(filters);
     }
 
+    public boolean isEmpty() {
+        return this.filters.isEmpty();
+    }
+
     public void setFilters(final List<Filter<E>> filters) {
         this.filters = new ArrayList<Filter<E>>(filters);
     }

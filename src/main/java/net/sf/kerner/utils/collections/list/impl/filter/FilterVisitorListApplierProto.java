@@ -39,6 +39,10 @@ public class FilterVisitorListApplierProto<E> implements FilterApplier<E>, Visit
         return filterDelegate.getFilters();
     }
 
+    public boolean isEmpty() {
+        return filterDelegate.isEmpty();
+    }
+
     public void visit(final E e, final int index) {
         if (filter(e)) {
             visitorDelegate.visit(e, index);

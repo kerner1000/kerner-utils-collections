@@ -42,6 +42,10 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
         return filterDelegate.getFilters();
     }
 
+    public boolean isEmpty() {
+        return filterDelegate.isEmpty();
+    }
+
     public Void visit(final E e) {
         if (filter(e)) {
             visitorDelegate.visit(e);
