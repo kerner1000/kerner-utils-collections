@@ -48,30 +48,11 @@ public class UtilCollection {
 
     public final static Transformer<Object, String> TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
-    public static <T> boolean allSame(final Collection<? extends T> collection) {
-        return allSame(collection, new EqualatorDefault<T>());
-    }
-
-    public static <T> boolean allSame(final Collection<? extends T> collection, final Equalator<T> equalator) {
-        T last = null;
-        for (final T t : collection) {
-            if (last == null) {
-                last = t;
-            } else {
-                if (equalator.areEqual(last, t)) {
-                    // same
-                } else {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     /**
-     * Create a new {@link Collection}, that contains all elements contained in first given collection and in second
-     * given collection. Ordering is as given by first {@code Collection Collection's} {@link Iterator} followed by
-     * second {@code Collection Collection's} {@link Iterator}.
+     * Create a new {@link Collection}, that contains all elements contained in
+     * first given collection and in second given collection. Ordering is as
+     * given by first {@code Collection Collection's} {@link Iterator} followed
+     * by second {@code Collection Collection's} {@link Iterator}.
      * 
      * @param <C>
      *            Type of both {@link Collection Collections}
@@ -88,9 +69,10 @@ public class UtilCollection {
     }
 
     /**
-     * Create a new {@link Collection}, that contains all elements contained in first given collection and in second
-     * given collection. Ordering is as given by first {@code Collection Collection's} {@link Iterator} followed by
-     * second {@code Collection Collection's} {@link Iterator}.
+     * Create a new {@link Collection}, that contains all elements contained in
+     * first given collection and in second given collection. Ordering is as
+     * given by first {@code Collection Collection's} {@link Iterator} followed
+     * by second {@code Collection Collection's} {@link Iterator}.
      * 
      * @param <C>
      *            Type of both {@link Collection Collections}
@@ -112,6 +94,30 @@ public class UtilCollection {
         return result;
     }
 
+    public static <T> boolean areAllEqual(final Collection<? extends T> elements) {
+        return areAllEqual(elements, new EqualatorDefault<T>());
+    }
+
+    public static <T> boolean areAllEqual(final Collection<? extends T> elements, final Equalator<T> equalator) {
+        final Collection<T> copy = new ArrayList<T>(elements);
+        final Iterator<? extends T> it = copy.iterator();
+        while (it.hasNext()) {
+            final T t = it.next();
+            it.remove();
+            final Iterator<? extends T> it2 = copy.iterator();
+            while (it2.hasNext()) {
+                final T t2 = it2.next();
+                it2.remove();
+                if (equalator.areEqual(t, t2)) {
+                    // ok
+                } else {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * Check whether {@code c1} contains any element in {@code c2}.
      * 
@@ -119,7 +125,8 @@ public class UtilCollection {
      *            {@link Collection} to check for containing elements
      * @param c2
      *            elements which are checked if they are contained by {@code c1}
-     * @return {@code true}, if any of {@code c2} is contained by {@code c1}; {@code false} otherwise
+     * @return {@code true}, if any of {@code c2} is contained by {@code c1};
+     *         {@code false} otherwise
      */
     public static boolean containsAny(final Collection<?> c1, final Object... c2) {
         for (final Object o : c2) {
@@ -136,7 +143,8 @@ public class UtilCollection {
      * @see Object#hashCode()
      * @param c
      *            {@link Collection}
-     * @return {@code true}, if {@code c} contains more than one element with same hashCode; {@code false} otherwise
+     * @return {@code true}, if {@code c} contains more than one element with
+     *         same hashCode; {@code false} otherwise
      */
     public static boolean containsDuplicates(final Collection<?> c) {
         final Collection<Integer> hashes = UtilList.newList();
@@ -349,11 +357,13 @@ public class UtilCollection {
     }
 
     /**
-     * Check if a {@link Collection} or all of its elements is/ are {@code null} .
+     * Check if a {@link Collection} or all of its elements is/ are {@code null}
+     * .
      * 
      * @param col
      *            {@link Collection} to check
-     * @return true, if given {@link Collection} or all of its elements is/ are {@code null}; {@code false} otherwise
+     * @return true, if given {@link Collection} or all of its elements is/ are
+     *         {@code null}; {@code false} otherwise
      */
     public static boolean nullCollection(final Collection<?> col) {
         if (col == null)
@@ -395,10 +405,12 @@ public class UtilCollection {
     }
 
     /**
-     * Simple {@code toString()} method, which calls each element's {@code toString()} and appends after that
+     * Simple {@code toString()} method, which calls each element's
+     * {@code toString()} and appends after that
      * {@link UtilStrings#NEW_LINE_STRING}.
      * 
-     * @return String representation for given {@code Collection}, or empty string if parameter is empty
+     * @return String representation for given {@code Collection}, or empty
+     *         string if parameter is empty
      */
     public static String toString(final Iterable<?> elements) {
         if (!elements.iterator().hasNext())

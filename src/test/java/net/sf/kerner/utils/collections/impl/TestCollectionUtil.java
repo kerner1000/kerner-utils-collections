@@ -2,6 +2,7 @@ package net.sf.kerner.utils.collections.impl;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -43,6 +44,30 @@ public class TestCollectionUtil {
         final Collection<Integer> c1 = Arrays.asList(1);
         final Collection<Integer> c2 = null;
         UtilCollection.append(c1, c2);
+    }
+
+    @Test
+    public final void testAreAllEqual01() {
+        final Collection c = Arrays.asList(1, 2, 3);
+        assertFalse(UtilCollection.areAllEqual(c));
+    }
+
+    @Test
+    public final void testAreAllEqual02() {
+        final Collection c = Arrays.asList(1, 1, 1);
+        assertTrue(UtilCollection.areAllEqual(c));
+    }
+
+    @Test
+    public final void testAreAllEqual03() {
+        final Collection c = Arrays.asList(1, 1, 2);
+        assertFalse(UtilCollection.areAllEqual(c));
+    }
+
+    @Test
+    public final void testAreAllEqual04() {
+        final Collection c = Arrays.asList(1, 1, 2, 2, 2, 2);
+        assertFalse(UtilCollection.areAllEqual(c));
     }
 
     @Test
@@ -107,6 +132,5 @@ public class TestCollectionUtil {
         final Collection c = Arrays.asList(1, 2, 3);
         final Collection<Collection<Integer>> same = UtilCollection.getSame(c);
         assertEquals(0, same.size());
-
     }
 }
