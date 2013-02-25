@@ -37,12 +37,6 @@
 		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/kerner-utils-co/code </developerConnection>
 		<tag>HEAD</tag>
 	</scm>
-	<distributionManagement>
-		<site>
-			<id>sourceforge-kerner-utils-co</id>
-			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-co/htdocs</url>
-		</site>
-	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
