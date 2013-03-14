@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Name: kerner-utils-co
 Bundle-SymbolicName: net.sf.kerner-utils-collections
-Bundle-Version: 0.21.2.SNAPSHOT
+Bundle-Version: 0.22.1.SNAPSHOT
 Export-Package: net.sf.kerner.utils.collections,
  net.sf.kerner.utils.collections.applier,
  net.sf.kerner.utils.collections.equalator,
