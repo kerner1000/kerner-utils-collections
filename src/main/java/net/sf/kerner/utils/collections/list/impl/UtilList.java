@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -35,8 +35,8 @@ import net.sf.kerner.utils.impl.util.UtilArray;
 /**
  * Utility class for {@link List} related stuff.
  * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-04-16
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-03-27
  */
 public class UtilList {
 
@@ -160,10 +160,12 @@ public class UtilList {
     }
 
     /**
-     * Combine two {@link java.util.List Lists} into one. </p> Elements, that have same position in both lists and are
-     * equal to each other are filtered out. </p> {@code null equals null}. {@code null} is kept in list only, if at
-     * this position in both list elemnt is {@code null} or other list does not have this position. </p> Resulting list
-     * size is always equal to size of longer list.
+     * Combine two {@link java.util.List Lists} into one. </p> Elements, that
+     * have same position in both lists and are equal to each other are filtered
+     * out. </p> {@code null equals null}. {@code null} is kept in list only, if
+     * at this position in both list elemnt is {@code null} or other list does
+     * not have this position. </p> Resulting list size is always equal to size
+     * of longer list.
      * 
      * @param <C>
      * @param c1
@@ -171,8 +173,8 @@ public class UtilList {
      * @param c2
      *            second list
      * @param factory
-     *            {@link net.sf.kerner.utils.collections.list.FactoryList ListFactory} that provides instance of
-     *            returning list
+     *            {@link net.sf.kerner.utils.collections.list.FactoryList
+     *            ListFactory} that provides instance of returning list
      * @return a new {@link java.util.List List}
      */
     public static <C> List<C> meld(final List<? extends C> c1, final List<? extends C> c2, final FactoryList<C> factory) {
