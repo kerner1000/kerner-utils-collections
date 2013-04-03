@@ -3,6 +3,7 @@ package net.sf.kerner.utils.collections.impl.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.applier.Applier;
 import net.sf.kerner.utils.collections.applier.ApplierAbstract;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.filter.FilterApplier;
@@ -39,7 +40,7 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
         filters.clear();
     }
 
-    public boolean filter(final E e) {
+    public synchronized boolean filter(final E e) {
         switch (type) {
             case ALL:
                 for (final Filter<E> f : filters) {
@@ -64,16 +65,20 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
         }
     }
 
-    public List<Filter<E>> getFilters() {
+    public synchronized List<Filter<E>> getFilters() {
         return new ArrayList<Filter<E>>(filters);
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return this.filters.isEmpty();
     }
 
-    public void setFilters(final List<Filter<E>> filters) {
+    public synchronized void setFilters(final List<Filter<E>> filters) {
         this.filters = new ArrayList<Filter<E>>(filters);
+    }
+
+    public synchronized void setFilterType(final Applier.TYPE filterType) {
+        super.type = filterType;
     }
 
     @Override
