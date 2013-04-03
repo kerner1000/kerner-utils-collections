@@ -2,6 +2,7 @@ package net.sf.kerner.utils.collections.impl.filter;
 
 import java.util.List;
 
+import net.sf.kerner.utils.collections.applier.Applier;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.filter.FilterApplier;
 import net.sf.kerner.utils.collections.impl.visitor.VisitorApplierDefaultProto;
@@ -10,9 +11,9 @@ import net.sf.kerner.utils.collections.visitor.VisitorApplierDefault;
 
 public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorApplierDefault<E> {
 
-    private final FilterApplier<E> filterDelegate = new FilterApplierProto<E>();
+    private final FilterApplierProto<E> filterDelegate = new FilterApplierProto<E>();
 
-    private final VisitorApplierDefault<E> visitorDelegate = new VisitorApplierDefaultProto<E>();
+    private final VisitorApplierDefaultProto<E> visitorDelegate = new VisitorApplierDefaultProto<E>();
 
     public void addFilter(final Filter<E> filter) {
         filterDelegate.addFilter(filter);
@@ -44,6 +45,10 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
 
     public boolean isEmpty() {
         return filterDelegate.isEmpty();
+    }
+
+    public void setFilterType(final Applier.TYPE filterType) {
+        this.filterDelegate.setFilterType(filterType);
     }
 
     public Void visit(final E e) {
