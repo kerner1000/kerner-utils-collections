@@ -52,6 +52,14 @@ public class UtilList {
         }
     }
 
+    public static <L> List<L> cast(final Collection<? extends Object> list, final Class<L> clazz) {
+        final List<L> result = UtilList.newList();
+        for (final Object o : list) {
+            result.add(clazz.cast(o));
+        }
+        return result;
+    }
+
     public static <E> void fill(final List<E> list, final int numElements, final Factory<E> factory) {
         if (numElements < list.size())
             return;
