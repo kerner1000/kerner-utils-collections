@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.Factory;
-import net.sf.kerner.utils.ObjectPairSame;
 import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
@@ -32,6 +31,7 @@ import net.sf.kerner.utils.collections.impl.equalator.EqualatorDefault;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
+import net.sf.kerner.utils.impl.ObjectPairSameImpl;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.Util;
 import net.sf.kerner.utils.impl.util.UtilString;
@@ -341,7 +341,7 @@ public class UtilCollection {
         return UtilList.newList(template);
     }
 
-    public static <T> ObjectPairSame<T> nextTwo(final Iterator<T> iterator) {
+    public static <T> ObjectPairSameImpl<T> nextTwo(final Iterator<T> iterator) {
         T first = null, second = null;
         if (iterator.hasNext()) {
             first = iterator.next();
@@ -350,7 +350,7 @@ public class UtilCollection {
             second = iterator.next();
         }
         if (first != null && second != null) {
-            return new ObjectPairSame<T>(first, second);
+            return new ObjectPairSameImpl<T>(first, second);
         } else {
             return null;
         }
