@@ -20,6 +20,16 @@ public class MapList<K, V> extends MapCollectionAbstract<K, V, List<V>> {
         };
     }
 
+    public MapList(final FactoryMap<K, List<V>> mapFactory) {
+        super(mapFactory);
+        this.factory = new Factory<List<V>>() {
+
+            public List<V> create() {
+                return new ArrayList<V>();
+            }
+        };
+    }
+
     public MapList(final FactoryMap<K, List<V>> mapFactory, final Factory<List<V>> factory) {
         super(mapFactory);
         this.factory = factory;
