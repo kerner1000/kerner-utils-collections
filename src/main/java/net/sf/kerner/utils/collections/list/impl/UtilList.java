@@ -52,6 +52,17 @@ public class UtilList {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> asList(final Collection<? extends T> collection) {
+        List<T> result;
+        if (collection instanceof List) {
+            result = (List) collection;
+        } else {
+            result = newList(collection);
+        }
+        return result;
+    }
+
     public static <L> List<L> cast(final Collection<? extends Object> list, final Class<L> clazz) {
         final List<L> result = UtilList.newList();
         for (final Object o : list) {
@@ -60,7 +71,7 @@ public class UtilList {
         return result;
     }
 
-    public static <E> void fill(final List<E> list, final int numElements, final Factory<E> factory) {
+    public static <E> void fill(final List<E> list, final int numElements, final Factory<? extends E> factory) {
         if (numElements < list.size())
             return;
         final int iterations = numElements - list.size();
