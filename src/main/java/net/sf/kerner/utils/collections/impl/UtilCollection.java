@@ -170,6 +170,15 @@ public class UtilCollection {
         return false;
     }
 
+    public static boolean equalsOne(final Object o1, final Object... others) {
+        for (final Object o : others) {
+            if (o.equals(o1)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static <C> void filterCollection(final Collection<? extends C> collection, final Filter<C> filter) {
         for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
             if (filter.filter(i.next())) {
