@@ -18,9 +18,11 @@ package net.sf.kerner.utils.collections.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.Transformer;
@@ -35,6 +37,7 @@ import net.sf.kerner.utils.impl.ObjectPairSameImpl;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.Util;
 import net.sf.kerner.utils.impl.util.UtilString;
+import net.sf.kerner.utils.math.UtilMath;
 
 /**
  * Utility class for Collection related stuff.
@@ -214,6 +217,21 @@ public class UtilCollection {
             }
         }
         return null;
+    }
+
+    public static <V> Map<V, Integer> getFrequencies(final Collection<? extends V> collection) {
+        final Map<V, Integer> result = new HashMap<V, Integer>();
+
+        for (final V v : collection) {
+            final Integer freq = result.get(v);
+            if (freq == null) {
+                result.put(v, Integer.valueOf(1));
+            } else {
+                result.put(v, UtilMath.increment(freq));
+            }
+        }
+
+        return result;
     }
 
     /**
