@@ -15,8 +15,9 @@ public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorAp
 
     private final VisitorApplierDefaultProto<E> visitorDelegate = new VisitorApplierDefaultProto<E>();
 
-    public void addFilter(final Filter<E> filter) {
+    public FilterVisitorApplierProto<E> addFilter(final Filter<E> filter) {
         filterDelegate.addFilter(filter);
+        return this;
     }
 
     public void addVisitor(final Visitor<Void, E> visitor) {

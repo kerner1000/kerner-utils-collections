@@ -32,8 +32,9 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
         }
     }
 
-    public synchronized void addFilter(final Filter<E> filter) {
+    public synchronized FilterApplierProto<E> addFilter(final Filter<E> filter) {
         filters.add(filter);
+        return this;
     }
 
     public synchronized void clear() {
@@ -56,7 +57,7 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
                     if (f.filter(e)) {
                         return true;
                     } else {
-                        // see what others say
+
                     }
                 }
                 return false;
