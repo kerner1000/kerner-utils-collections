@@ -23,24 +23,43 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.kerner.utils.Factory;
+import net.sf.kerner.utils.ObjectPairSame;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.filter.FilterList;
 import net.sf.kerner.utils.collections.list.impl.filter.FilterNull;
+import net.sf.kerner.utils.impl.ObjectPairSameImpl;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.UtilArray;
+import net.sf.kerner.utils.math.UtilMath;
 
 /**
  * Utility class for {@link List} related stuff.
  * 
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * @version 2013-03-27
+ * @version 2013-05-03
  */
 public class UtilList {
 
     public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
+
+    public static <L> List<ObjectPairSame<L>> allAgainstAll(final List<L> list) {
+        final List<ObjectPairSame<L>> result = new ArrayList<ObjectPairSame<L>>(UtilMath.factorial(list.size())
+                .intValue());
+        final ListIterator<L> it1 = list.listIterator();
+        while (it1.hasNext()) {
+            final int index = it1.nextIndex();
+            final L next = it1.next();
+            final ListIterator<L> it2 = list.listIterator(index + 1);
+            while (it2.hasNext()) {
+                final L next2 = it2.next();
+                result.add(new ObjectPairSameImpl<L>(next, next2));
+            }
+        }
+        return result;
+    }
 
     public static <L> List<L> append(final Collection<? extends L> c1, final Collection<? extends L> c2) {
         return (List<L>) UtilCollection.append(c1, c2, new ArrayListFactory<L>());
