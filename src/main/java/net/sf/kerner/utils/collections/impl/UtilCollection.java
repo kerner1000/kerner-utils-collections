@@ -182,6 +182,10 @@ public class UtilCollection {
         return false;
     }
 
+    /**
+     * Removes <b>not</b> matching results, does not return anything.
+     * 
+     */
     public static <C> void filterCollection(final Collection<? extends C> collection, final Filter<C> filter) {
         for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
             if (filter.filter(i.next())) {
@@ -190,6 +194,21 @@ public class UtilCollection {
                 i.remove();
             }
         }
+    }
+
+    /**
+     * Returns <b>matching</b> results, does not remove from collection.
+     * 
+     */
+    public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection, final Filter<C> filter) {
+        final List<C> result = UtilList.newList();
+        for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
+            final C next = i.next();
+            if (filter.filter(next)) {
+                result.add(next);
+            }
+        }
+        return result;
     }
 
     public static <T> Collection<T> findSame(final T key, final Collection<T> collection) {
