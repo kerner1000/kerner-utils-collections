@@ -52,20 +52,25 @@ public class UtilMap {
     public static final TransformerToString DEFAULT_KEY_VALUE_TO_STRING = new TransformerToStringDefault();
 
     /**
-     * Given a {@link java.util.Map Map} of collections, add the given element to the {@link java.util.Collection
-     * Collection} associated with given key. If for this key is no {@code Collection} registered, a new one will be
-     * created. The given element will be then added to this new {@code Collection}. The new {@code Collection} will be
-     * associated with given key.
+     * Given a {@link java.util.Map Map} of collections, add the given element
+     * to the {@link java.util.Collection Collection} associated with given key.
+     * If for this key is no {@code Collection} registered, a new one will be
+     * created. The given element will be then added to this new
+     * {@code Collection}. The new {@code Collection} will be associated with
+     * given key.
      * <p>
-     * Element that is added may be null, if underlying collection allows null elements.
+     * Element that is added may be null, if underlying collection allows null
+     * elements.
      * </p>
      * 
      * @param <M>
      *            type of keys in given {@code Map}
      * @param <E>
-     *            type of values in {@code Collection}s contained in given {@code Map}
+     *            type of values in {@code Collection}s contained in given
+     *            {@code Map}
      * @param map
-     *            {@code Map} that contains {@code Collection} to which element is added
+     *            {@code Map} that contains {@code Collection} to which element
+     *            is added
      * @param key
      *            key for {@code Collection} to which element is added
      * @param element
@@ -81,27 +86,32 @@ public class UtilMap {
     }
 
     /**
-     * Given a {@link java.util.Map Map} of collections, add the given element to the {@link java.util.Collection
-     * Collection} associated with given key. If for this key is no {@code Collection} registered, a new one will be
-     * created. The given element will be then added to this new {@code Collection}. The new {@code Collection} will be
-     * associated with given key.
+     * Given a {@link java.util.Map Map} of collections, add the given element
+     * to the {@link java.util.Collection Collection} associated with given key.
+     * If for this key is no {@code Collection} registered, a new one will be
+     * created. The given element will be then added to this new
+     * {@code Collection}. The new {@code Collection} will be associated with
+     * given key.
      * <p>
-     * Element that is added may be null, if underlying collection allows null elements.
+     * Element that is added may be null, if underlying collection allows null
+     * elements.
      * </p>
      * 
      * @param <M>
      *            type of keys in given {@code Map}
      * @param <E>
-     *            type of values in {@code Collection}s contained in given {@code Map}
+     *            type of values in {@code Collection}s contained in given
+     *            {@code Map}
      * @param map
-     *            {@code Map} that contains {@code Collection} to which element is added
+     *            {@code Map} that contains {@code Collection} to which element
+     *            is added
      * @param key
      *            key for {@code Collection} to which element is added
      * @param element
      *            element that is added
      * @param factory
-     *            {@code CollectionFactory} that is used to create a new {@code Collection} if there is no value for
-     *            given key yet
+     *            {@code CollectionFactory} that is used to create a new
+     *            {@code Collection} if there is no value for given key yet
      * @see java.util.Map Map
      * @see java.util.Collection Collection
      * @see net.sf.kerner.Util.collections.FactoryCollection CollectionFactory
@@ -200,10 +210,13 @@ public class UtilMap {
 
     /**
      * Initialize given {@code Map} with given keys and given values. <br>
-     * After initialization, {@code Map} will contain all given keys. If {@code number of values >= number of keys},
-     * every given key will map to one specific value. <br>
-     * Mapping will happen index-based, which means that {@code keys[i]} is mapped to {@code values[i]}.<br>
-     * If there are more keys than values, left-over keys will map to a null value, if underlying map allows this.
+     * After initialization, {@code Map} will contain all given keys. If
+     * {@code number of values >= number of keys}, every given key will map to
+     * one specific value. <br>
+     * Mapping will happen index-based, which means that {@code keys[i]} is
+     * mapped to {@code values[i]}.<br>
+     * If there are more keys than values, left-over keys will map to a null
+     * value, if underlying map allows this.
      * 
      * @param <K>
      *            type of keys
@@ -252,6 +265,18 @@ public class UtilMap {
 
     public static <K, V> Map<K, V> newMap() {
         return new LinkedHashMap<K, V>();
+    }
+
+    public static <K, V> Map<K, V> newMap(final Collection<? extends K> keys) {
+        return newMap(keys, new FactoryLinkedHashMap<K, V>());
+    }
+
+    public static <K, V> Map<K, V> newMap(final Collection<? extends K> keys, final FactoryMap<K, V> factoryMap) {
+        final Map<K, V> result = factoryMap.create();
+        for (final K k : keys) {
+            result.put(k, null);
+        }
+        return result;
     }
 
     public static <K, V> Map<K, V> sort(final Map<K, V> map, final Comparator<Map.Entry<K, V>> c) {
@@ -388,7 +413,8 @@ public class UtilMap {
      * @param map
      *            {@code Map} that is trimmed
      * @param factory
-     *            {@link Factory} that is used to instantiate returning {@code Map}
+     *            {@link Factory} that is used to instantiate returning
+     *            {@code Map}
      * @param size
      *            number of elements returning [@code Map} contains (at most)
      * @return the new {@code Map} that has been trimmed
