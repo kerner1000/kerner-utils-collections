@@ -82,7 +82,16 @@ public class UtilList {
         return result;
     }
 
-    public static <L> List<L> cast(final Collection<? extends Object> list, final Class<L> clazz) {
+    @SuppressWarnings("unchecked")
+    public static <L> List<L> cast(final Collection<? extends Object> list) {
+        if (list instanceof List) {
+            return (List<L>) list;
+        } else {
+            return (List<L>) newList(list);
+        }
+    }
+
+    public static <L> List<L> castDeep(final Collection<? extends Object> list, final Class<L> clazz) {
         final List<L> result = UtilList.newList();
         for (final Object o : list) {
             result.add(clazz.cast(o));
