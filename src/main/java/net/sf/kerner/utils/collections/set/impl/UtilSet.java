@@ -1,6 +1,8 @@
 package net.sf.kerner.utils.collections.set.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class UtilSet {
@@ -23,6 +25,14 @@ public class UtilSet {
             }
         }
         return true;
+    }
+
+    public static <T> Set<T> newSet() {
+        return new LinkedHashSet<T>();
+    }
+
+    public static <T> Set<T> newSet(final Collection<? extends T> col) {
+        return new LinkedHashSet<T>(col);
     }
 
 }
