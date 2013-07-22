@@ -1,6 +1,6 @@
 package net.sf.kerner.utils.collections.map.collection.impl;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import net.sf.kerner.utils.Factory;
@@ -14,7 +14,7 @@ public class MapSet<K, V> extends MapCollectionAbstract<K, V, Set<V>> {
     public MapSet() {
         this.factory = new Factory<Set<V>>() {
             public Set<V> create() {
-                return new HashSet<V>();
+                return new LinkedHashSet<V>();
             }
         };
     }
