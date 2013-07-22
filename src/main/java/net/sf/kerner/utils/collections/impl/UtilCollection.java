@@ -361,6 +361,26 @@ public class UtilCollection {
         return getSame(c, new EqualatorDefault<T>());
     }
 
+    public static <T> Collection<T> getSymmetricDifference(final Collection<? extends T> c1,
+            final Collection<? extends T> c2) {
+        final Collection<T> result = UtilCollection.newCollection();
+        for (final T t : c1) {
+            if (c2.contains(t)) {
+
+            } else {
+                result.add(t);
+            }
+        }
+        for (final T t : c2) {
+            if (c1.contains(t)) {
+
+            } else {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
     public static <C> Collection<C> iteratorToCollection(final Iterable<? extends C> iterable) {
         return iteratorToCollection(iterable, new ArrayListFactory<C>());
     }
