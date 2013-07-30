@@ -100,5 +100,5 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
 
     int size(K k);
 
-    L values();
+    Collection<L> values();
 }

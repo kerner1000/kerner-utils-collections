@@ -128,12 +128,8 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
         return map.toString();
     }
 
-    public L values() {
-        final L result = getFactoryCollection().create();
-        for (final L c : map.values()) {
-            result.addAll(c);
-        }
-        return result;
+    public Collection<L> values() {
+        return map.values();
     }
 
 }
