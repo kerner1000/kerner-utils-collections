@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -40,16 +40,16 @@ import net.sf.kerner.utils.impl.util.UtilString;
 import net.sf.kerner.utils.math.UtilMath;
 
 /**
- * Utility class for Collection related stuff.
+ * Utility class for {@link Collection} related stuff.
  * 
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * @version 2012-11-27
+ * @version 2013-08-01
  */
 public class UtilCollection {
 
     public static String DEFAULT_OBJECT_SEPARATOR = ", ";
 
-    public final static Transformer<Object, String> TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
+    public final static Transformer<?, String> TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
     /**
      * Create a new {@link Collection}, that contains all elements contained in
@@ -450,37 +450,9 @@ public class UtilCollection {
         }
     }
 
-    public static <O> String toString(final Iterable<? extends O> it, final String objectSeparator) {
-        return toString(it, TRANSFORMER_TO_STRING_DEFAULT, objectSeparator);
-    }
-
-    public static <O> String toString(final Iterable<? extends O> it, final Transformer<Object, String> s) {
-        return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
-    }
-
-    public static <O> String toString(final Iterable<? extends O> iterable,
-            final Transformer<Object, String> transformer, final String objectSeparator) {
-        final StringBuilder sb = new StringBuilder();
-        final Iterator<? extends O> it = iterable.iterator();
-        while (it.hasNext()) {
-            sb.append(transformer.transform(it.next()));
-            if (it.hasNext())
-                sb.append(objectSeparator);
-        }
-        return sb.toString();
-    }
-
-    /**
-     * Simple {@code toString()} method, which calls each element's
-     * {@code toString()} and appends after that
-     * {@link UtilStrings#NEW_LINE_STRING}.
-     * 
-     * @return String representation for given {@code Collection}, or empty
-     *         string if parameter is empty
-     */
     public static String toString(final Iterable<?> elements) {
         if (!elements.iterator().hasNext())
-            return "";
+            return " ";
         final StringBuilder b = new StringBuilder();
         b.append(UtilString.NEW_LINE_STRING);
         final Iterator<?> i = elements.iterator();
@@ -492,11 +464,32 @@ public class UtilCollection {
         return b.toString();
     }
 
-    public static <O> String toString(final ListIterator<? extends O> it, final VisitorList<String, O> s) {
+    @SuppressWarnings("unchecked")
+    public static <T> String toString(final Iterable<T> it, final String objectSeparator) {
+        return toString(it, (Transformer<T, String>) TRANSFORMER_TO_STRING_DEFAULT, objectSeparator);
+    }
+
+    public static <T> String toString(final Iterable<T> it, final Transformer<T, String> s) {
         return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
     }
 
-    public static <O> String toString(final ListIterator<? extends O> it, final VisitorList<String, O> visitor,
+    public static <T> String toString(final Iterable<T> iterable, final Transformer<T, String> transformer,
+            final String objectSeparator) {
+        final StringBuilder sb = new StringBuilder();
+        final Iterator<T> it = iterable.iterator();
+        while (it.hasNext()) {
+            sb.append(transformer.transform(it.next()));
+            if (it.hasNext())
+                sb.append(objectSeparator);
+        }
+        return sb.toString();
+    }
+
+    public static <T> String toString(final ListIterator<T> it, final VisitorList<String, T> s) {
+        return toString(it, s, DEFAULT_OBJECT_SEPARATOR);
+    }
+
+    public static <T> String toString(final ListIterator<T> it, final VisitorList<String, T> visitor,
             final String objectSeparator) {
         final StringBuilder sb = new StringBuilder();
         while (it.hasNext()) {
