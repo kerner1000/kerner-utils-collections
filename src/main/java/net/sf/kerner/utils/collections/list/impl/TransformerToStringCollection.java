@@ -7,26 +7,30 @@ import java.util.List;
 import net.sf.kerner.utils.TransformerToString;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 
-public class TransformerToStringCollection extends AbstractTransformingListFactory<Object, String> {
+public class TransformerToStringCollection<T> extends AbstractTransformingListFactory<T, String> {
 
-    private final static TransformerToString DEFAULT_TRANSFORMER = new TransformerToStringDefault();
+    private final TransformerToString<Object> DEFAULT_TRANSFORMER = new TransformerToStringDefault();
 
-    private final TransformerToString transformer;
+    private final TransformerToString<T> transformer;
 
-    public TransformerToStringCollection(TransformerToString transformer) {
+    public TransformerToStringCollection() {
+        this(null);
+    }
+
+    public TransformerToStringCollection(final TransformerToString<T> transformer) {
         this.transformer = transformer;
     }
 
-    public TransformerToStringCollection() {
-        this(DEFAULT_TRANSFORMER);
-    }
-
-    public String transform(Object arg0) {
+    public String transform(final T arg0) {
+        if (transformer == null) {
+            return DEFAULT_TRANSFORMER.transform(arg0);
+        }
         return transformer.transform(arg0);
     }
 
-    public synchronized List<String> transformCollection(Collection<? extends Object> element) {
-        return super.transformCollection(new ArrayList<Object>(element));
+    @Override
+    public synchronized List<String> transformCollection(final Collection<? extends T> element) {
+        return super.transformCollection(new ArrayList<T>(element));
     }
 
 }
