@@ -17,6 +17,7 @@ package net.sf.kerner.utils.collections.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,6 +26,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import net.sf.kerner.utils.Factory;
+import net.sf.kerner.utils.ObjectPairSame;
 import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.Equalator;
 import net.sf.kerner.utils.collections.FactoryCollection;
@@ -33,6 +35,7 @@ import net.sf.kerner.utils.collections.impl.equalator.EqualatorDefault;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
+import net.sf.kerner.utils.collections.map.collection.MapCollection;
 import net.sf.kerner.utils.impl.ObjectPairSameImpl;
 import net.sf.kerner.utils.impl.TransformerToStringDefault;
 import net.sf.kerner.utils.impl.util.Util;
@@ -43,7 +46,7 @@ import net.sf.kerner.utils.math.UtilMath;
  * Utility class for {@link Collection} related stuff.
  * 
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * @version 2013-08-01
+ * @version 2013-08-07
  */
 public class UtilCollection {
 
@@ -253,6 +256,12 @@ public class UtilCollection {
         return result;
     }
 
+    public static <T extends Comparable<T>> T getHighest(final Collection<? extends T> elements) {
+        final List<T> copy = UtilList.newList(elements);
+        Collections.sort(copy);
+        return copy.get(copy.size() - 1);
+    }
+
     /**
      * Retrieve highest element contained in a collection.
      * 
@@ -293,6 +302,12 @@ public class UtilCollection {
         return result;
     }
 
+    public static <T extends Comparable<T>> T getLowest(final Collection<? extends T> elements) {
+        final List<T> copy = UtilList.newList(elements);
+        Collections.sort(copy);
+        return copy.get(0);
+    }
+
     /**
      * Retrieve lowest element contained in a collection.
      * 
@@ -306,6 +321,13 @@ public class UtilCollection {
      */
     public static <T> T getLowest(final Collection<? extends T> elements, final Comparator<T> c) {
         return getHighest(elements, new ComparatorInverter<T>(c));
+    }
+
+    public static <T> ObjectPairSame<T> getNextTwo(final Iterator<? extends T> iterator) {
+        if (iterator == null) {
+            throw new NullPointerException();
+        }
+        return new ObjectPairSameImpl<T>(iterator.next(), iterator.next());
     }
 
     public static int getNumberOfNonEmptyElements(final Iterable<Collection<?>> col) {
@@ -407,19 +429,12 @@ public class UtilCollection {
         return UtilList.newList(template);
     }
 
-    public static <T> ObjectPairSameImpl<T> nextTwo(final Iterator<T> iterator) {
-        T first = null, second = null;
-        if (iterator.hasNext()) {
-            first = iterator.next();
-        }
-        if (iterator.hasNext()) {
-            second = iterator.next();
-        }
-        if (first != null && second != null) {
-            return new ObjectPairSameImpl<T>(first, second);
-        } else {
-            return null;
-        }
+    public static boolean notNullNotEmpty(final Collection<?> collection) {
+        return collection != null && !collection.isEmpty();
+    }
+
+    public static boolean notNullNotEmpty(final MapCollection<?, ?, ?> collection) {
+        return collection != null && !collection.isEmpty();
     }
 
     /**
@@ -448,6 +463,17 @@ public class UtilCollection {
                 it.remove();
             }
         }
+    }
+
+    public static Collection removeNullReturn(final Collection c) {
+        final Collection copy = new ArrayList(c);
+        for (final Iterator it = copy.iterator(); it.hasNext();) {
+            final Object object = it.next();
+            if (object == null) {
+                it.remove();
+            }
+        }
+        return copy;
     }
 
     public static String toString(final Iterable<?> elements) {
