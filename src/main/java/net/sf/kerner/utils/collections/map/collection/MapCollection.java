@@ -32,10 +32,17 @@ import java.util.Set;
  * TODO example
  * </pre>
  * 
+ * 
+ * 
+ * </p>
+ * 
+ * 
+ * <p>
+ * last reviewed: 2013-08-07
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2013-06-26
+ * @version 2013-08-07
  * @param <K>
  *            type of keys in this map
  * @param <V>
