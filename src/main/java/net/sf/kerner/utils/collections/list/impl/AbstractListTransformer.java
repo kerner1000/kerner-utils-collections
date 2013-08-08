@@ -17,6 +17,10 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
 
     protected volatile int currentIndex;
 
+    public AbstractListTransformer() {
+        this(new ArrayListFactory<V>());
+    }
+
     public AbstractListTransformer(final FactoryList<V> factory) {
         this.factory = factory;
         super.addVisitor(new DefaultListVisitorImpl<T>() {
@@ -29,14 +33,18 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
         });
     }
 
-    public AbstractListTransformer() {
-        this(new ArrayListFactory<V>());
-    }
-
     @Override
     public synchronized void beforeWalk() {
         super.beforeWalk();
         result = factory.createCollection();
+    }
+
+    protected int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    private void setCurrentIndex(final int currentIndex) {
+        this.currentIndex = currentIndex;
     }
 
     /**
@@ -46,14 +54,6 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
         if (element != null)
             walk(new ArrayList<T>(element));
         return result;
-    }
-
-    protected int getCurrentIndex() {
-        return currentIndex;
-    }
-
-    private void setCurrentIndex(final int currentIndex) {
-        this.currentIndex = currentIndex;
     }
 
 }
