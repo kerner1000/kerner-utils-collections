@@ -186,7 +186,7 @@ public class UtilCollection {
     }
 
     /**
-     * Removes <b>not</b> matching results, does not return anything.
+     * <b>Removes not</b> matching results, does not return anything.
      * 
      */
     public static <C> void filterCollection(final Collection<? extends C> collection, final Filter<C> filter) {
