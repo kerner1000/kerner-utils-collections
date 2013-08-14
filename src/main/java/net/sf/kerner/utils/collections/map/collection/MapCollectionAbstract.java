@@ -9,6 +9,7 @@ import java.util.Set;
 import net.sf.kerner.utils.Factory;
 import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.impl.FactoryLinkedHashMap;
+import net.sf.kerner.utils.impl.util.Util;
 
 public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> implements MapCollection<K, V, L> {
 
@@ -44,7 +45,7 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
 
     @Override
     public boolean equals(final Object o) {
-        return map.equals(o);
+        return Util.equalsOnHashCode(this, o);
     }
 
     public L get(final K key) {
