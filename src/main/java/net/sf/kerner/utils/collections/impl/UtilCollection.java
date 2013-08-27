@@ -46,7 +46,7 @@ import net.sf.kerner.utils.math.UtilMath;
  * Utility class for {@link Collection} related stuff.
  * 
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * @version 2013-08-07
+ * @version 2013-08-15
  */
 public class UtilCollection {
 
@@ -155,6 +155,9 @@ public class UtilCollection {
     public static boolean containsDuplicates(final Collection<?> c) {
         final Collection<Integer> hashes = UtilList.newList();
         for (final Object o : c) {
+            if (o == null) {
+                continue;
+            }
             final int hash = o.hashCode();
             if (hashes.contains(hash)) {
                 return true;
@@ -241,6 +244,20 @@ public class UtilCollection {
         return null;
     }
 
+    /**
+     * 
+     * Returns a index-to-frequency mapping for all elements in given
+     * {@link Collection}. </p> Key of returned map is element from
+     * {@code collection}, corresponding value is this element's number of
+     * occurrences in {@code collection}.
+     * 
+     * <p>
+     * last reviewed: 2013-08-15
+     * </p>
+     * 
+     * @param collection
+     * @return a {@link Map}, containing index-to-frequency mapping
+     */
     public static <V> Map<V, Integer> getFrequencies(final Collection<? extends V> collection) {
         final Map<V, Integer> result = new HashMap<V, Integer>();
 
@@ -253,6 +270,21 @@ public class UtilCollection {
             }
         }
 
+        return result;
+    }
+
+    public static <T> int getFrequency(final T element, final Collection<? extends T> collection) {
+        return getFrequency(element, collection, new EqualatorDefault<T>());
+    }
+
+    public static <T> int getFrequency(final T element, final Collection<? extends T> collection,
+            final Equalator<T> equalator) {
+        int result = 0;
+        for (final T t : collection) {
+            if (equalator.areEqual(t, element)) {
+                result++;
+            }
+        }
         return result;
     }
 
