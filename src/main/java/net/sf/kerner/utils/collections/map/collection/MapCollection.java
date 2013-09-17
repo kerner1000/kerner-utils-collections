@@ -101,6 +101,16 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
 
     void remove(K k);
 
+    /**
+     * Removes all values from {@code k} which are equal to {@code v}.
+     * 
+     */
+    void removeValue(K k, V v);
+
+    /**
+     * Removes all values from all keys which are equal to {@code v}.
+     * 
+     */
     void removeValue(V v);
 
     int size();

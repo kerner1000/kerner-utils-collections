@@ -105,6 +105,10 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
         map.remove(key);
     }
 
+    public synchronized void removeValue(final K k, final V v) {
+        map.get(k).remove(v);
+    }
+
     public synchronized void removeValue(final V v) {
         final Iterator<Entry<K, L>> it = map.entrySet().iterator();
         while (it.hasNext()) {
