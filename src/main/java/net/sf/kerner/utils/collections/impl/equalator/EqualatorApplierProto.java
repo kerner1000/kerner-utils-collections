@@ -25,26 +25,26 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
 
     public boolean areEqual(final T o1, final T o2) {
         switch (type) {
-        case ALL:
-            for (final Equalator<T> e : equalators) {
-                if (e.areEqual(o1, o2)) {
-                    // ok
-                } else {
-                    return false;
+            case ALL:
+                for (final Equalator<T> e : equalators) {
+                    if (e.areEqual(o1, o2)) {
+                        // ok
+                    } else {
+                        return false;
+                    }
                 }
-            }
-            return true;
-        case ONE:
-            for (final Equalator<T> e : equalators) {
-                if (e.areEqual(o1, o2)) {
-                    return true;
-                } else {
-                    // see what others say
+                return true;
+            case ONE:
+                for (final Equalator<T> e : equalators) {
+                    if (e.areEqual(o1, o2)) {
+                        return true;
+                    } else {
+                        // see what others say
+                    }
                 }
-            }
-            return false;
-        default:
-            throw new RuntimeException("unknown type " + type);
+                return false;
+            default:
+                throw new RuntimeException("unknown type " + type);
         }
     }
 
