@@ -105,22 +105,21 @@ public class UtilCollection {
     }
 
     public static <T> boolean areAllEqual(final Collection<? extends T> elements, final Equalator<T> equalator) {
-        final Collection<T> copy = new ArrayList<T>(elements);
-        final Iterator<? extends T> it = copy.iterator();
-        while (it.hasNext()) {
-            final T t = it.next();
-            it.remove();
-            final Iterator<? extends T> it2 = copy.iterator();
-            while (it2.hasNext()) {
-                final T t2 = it2.next();
-                it2.remove();
-                if (equalator.areEqual(t, t2)) {
+        T last = null;
+
+        for (final Iterator<? extends T> iterator = elements.iterator(); iterator.hasNext();) {
+            final T t = iterator.next();
+            if (last == null) {
+                last = t;
+            } else {
+                if (equalator.areEqual(last, t)) {
                     // ok
                 } else {
                     return false;
                 }
             }
         }
+
         return true;
     }
 
