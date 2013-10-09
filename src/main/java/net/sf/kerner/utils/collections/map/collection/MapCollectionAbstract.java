@@ -64,7 +64,10 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
     }
 
     public boolean isEmpty(final K k) {
-        return map.get(k).isEmpty();
+        if (map.containsKey(k)) {
+            return map.get(k).isEmpty();
+        }
+        return true;
     }
 
     public Set<K> keySet() {
@@ -125,7 +128,10 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
     }
 
     public int size(final K k) {
-        return map.get(k).size();
+        if (map.containsKey(k)) {
+            return map.get(k).size();
+        }
+        return 0;
     }
 
     @Override
