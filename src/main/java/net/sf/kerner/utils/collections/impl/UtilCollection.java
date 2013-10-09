@@ -167,8 +167,8 @@ public class UtilCollection {
     }
 
     /**
-     * @throws NullPointerException
-     *             if given argument is {@code null}
+     * @return {@code true}, if any of given collection's elements is
+     *         {@code null}; {@code false} otherwise
      */
     public static boolean containsNull(final Collection<?> c) {
         for (final Object o : c) {
@@ -178,7 +178,7 @@ public class UtilCollection {
         return false;
     }
 
-    public static boolean equalsOne(final Object o1, final Object... others) {
+    public static <T> boolean equalsOne(final T o1, final Collection<? extends T> others) {
         for (final Object o : others) {
             if (o.equals(o1)) {
                 return true;
@@ -188,29 +188,44 @@ public class UtilCollection {
     }
 
     /**
-     * <b>Removes not</b> matching results, does not return anything.
+     * Filters given {@link Collection} using given {@link Filter}. Removes all
+     * <b>not</b> matching elements via {@link Iterator#remove()}. <br>
+     * Note: Synchronizes on {@code collection}.
      * 
+     * @param collection
+     * @param filter
      */
-    public static <C> void filterCollection(final Collection<? extends C> collection, final Filter<C> filter) {
-        for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
-            if (filter.filter(i.next())) {
-                // OK
-            } else {
-                i.remove();
+    public static <C> void filterCollectionRemove(final Collection<? extends C> collection, final Filter<C> filter) {
+        synchronized (collection) {
+            for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
+                if (filter.filter(i.next())) {
+                    // OK
+                } else {
+                    i.remove();
+                }
             }
         }
     }
 
     /**
-     * Returns <b>matching</b> results, does not remove from collection.
+     * Filters given {@link Collection} using given {@link Filter}. All
+     * <b>matching</b> elements are returned in a new {@code collection}. <br>
+     * Note: Synchronizes on {@code collection}.
      * 
+     * @param collection
+     *            {@link Collection} that is filtered
+     * @param filter
+     *            {@link Filter} which is used for filtering
+     * @return A new {@link Collection}, that contains all matching elements
      */
     public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection, final Filter<C> filter) {
         final List<C> result = UtilList.newList();
-        for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
-            final C next = i.next();
-            if (filter.filter(next)) {
-                result.add(next);
+        synchronized (collection) {
+            for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
+                final C next = i.next();
+                if (filter.filter(next)) {
+                    result.add(next);
+                }
             }
         }
         return result;
@@ -485,6 +500,10 @@ public class UtilCollection {
                 return false;
         }
         return true;
+    }
+
+    public static boolean nullOrEmpty(final Collection<?> collection) {
+        return !notNullNotEmpty(collection);
     }
 
     public static void removeNull(final Collection<?> c) {
