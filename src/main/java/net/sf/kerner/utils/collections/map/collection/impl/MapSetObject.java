@@ -1,9 +1,9 @@
 package net.sf.kerner.utils.collections.map.collection.impl;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
-import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.collection.MapCollectionAbstract;
 
 public class MapSetObject extends MapSet<Object, Object> {
@@ -12,14 +12,14 @@ public class MapSetObject extends MapSet<Object, Object> {
 
     }
 
-    public MapSetObject(final FactoryMap<Object, Set<Object>> mapFactory) {
-        super(mapFactory);
+    public MapSetObject(final Map<Object, Set<Object>> map) {
+        super(map);
 
     }
 
-    public MapSetObject(final FactoryMap<Object, Set<Object>> mapFactory,
+    public MapSetObject(final Map<Object, Set<Object>> map,
             final MapCollectionAbstract<Object, Object, Set<Object>> template) {
-        super(mapFactory, template);
+        super(map, template);
 
     }
 

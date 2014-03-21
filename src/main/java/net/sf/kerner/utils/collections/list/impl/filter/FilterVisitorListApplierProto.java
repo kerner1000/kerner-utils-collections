@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.filter.FilterApplier;
-import net.sf.kerner.utils.collections.impl.filter.FilterApplierProto;
+import net.sf.kerner.utils.collections.filter.impl.FilterApplierProto;
 import net.sf.kerner.utils.collections.list.visitor.VisitorApplierListDefault;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorListApplierDefaultProto;

@@ -5,14 +5,14 @@ import java.util.List;
 
 import net.sf.kerner.utils.collections.list.FactoryList;
 
-public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V> implements
-        FactoryList<V> {
+public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V>
+        implements FactoryList<V> {
 
     public AbstractTransformingListFactory() {
         super();
     }
 
-    public AbstractTransformingListFactory(FactoryList<V> factory) {
+    public AbstractTransformingListFactory(final FactoryList<V> factory) {
         super(factory);
     }
 
@@ -20,7 +20,7 @@ public abstract class AbstractTransformingListFactory<T, V> extends AbstractList
         return factory.createCollection();
     }
 
-    public List<V> createCollection(Collection<? extends V> template) {
+    public List<V> createCollection(final Collection<? extends V> template) {
         return factory.createCollection(template);
     }
 

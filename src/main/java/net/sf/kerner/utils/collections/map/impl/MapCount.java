@@ -44,6 +44,32 @@ public class MapCount<T> implements Map<T, Integer> {
         return delegate.get(key);
     }
 
+    public T getHighest() {
+        Integer max = null;
+        T key = null;
+        for (final java.util.Map.Entry<T, Integer> e : delegate.entrySet()) {
+            final Integer cnt = e.getValue();
+            if (max == null || cnt.compareTo(max) > 0) {
+                max = cnt;
+                key = e.getKey();
+            }
+        }
+        return key;
+    }
+
+    public T getLoweset() {
+        Integer min = null;
+        T key = null;
+        for (final java.util.Map.Entry<T, Integer> e : delegate.entrySet()) {
+            final Integer cnt = e.getValue();
+            if (min == null || cnt.compareTo(min) < 0) {
+                min = cnt;
+                key = e.getKey();
+            }
+        }
+        return key;
+    }
+
     @Override
     public int hashCode() {
         return delegate.hashCode();
@@ -57,10 +83,7 @@ public class MapCount<T> implements Map<T, Integer> {
         return delegate.keySet();
     }
 
-    public synchronized Integer put(final T key) {
-        if (key != null) {
-            final int i = 0;
-        }
+    public Integer put(final T key) {
         final Integer value = delegate.get(key);
         if (value != null) {
             return delegate.put(key, UtilMath.increment(value));
@@ -74,6 +97,12 @@ public class MapCount<T> implements Map<T, Integer> {
             throw new IllegalArgumentException();
         }
         return delegate.put(key, value);
+    }
+
+    public void putAll(final Collection<? extends T> values) {
+        for (final T t : values) {
+            put(t);
+        }
     }
 
     public void putAll(final Map<? extends T, ? extends Integer> m) {

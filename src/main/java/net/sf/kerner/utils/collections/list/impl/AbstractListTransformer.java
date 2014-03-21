@@ -15,14 +15,13 @@ limitations under the License.
 
 package net.sf.kerner.utils.collections.list.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import net.sf.kerner.utils.Transformer;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.TransformerList;
+import net.sf.kerner.utils.transformer.Transformer;
 
 /**
  * 
@@ -49,8 +48,8 @@ import net.sf.kerner.utils.collections.list.TransformerList;
  * @param <T>
  * @param <V>
  */
-public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements Transformer<T, V>,
-        TransformerList<T, V> {
+public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
+        Transformer<T, V>, TransformerList<T, V> {
 
     protected final FactoryList<V> factory;
 
@@ -66,7 +65,7 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
         this.factory = factory;
         super.addVisitor(new DefaultListVisitorImpl<T>() {
             @Override
-            public Void visit(final T element, final int index) {
+            public synchronized Void visit(final T element, final int index) {
                 setCurrentIndex(index);
                 result.add(transform(element));
                 return null;
@@ -80,15 +79,15 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
         result = factory.createCollection();
     }
 
-    protected int getCurrentIndex() {
-        return currentIndex;
-    }
-
     public synchronized List<V> getAgain() {
         return Collections.unmodifiableList(result);
     }
 
-    private void setCurrentIndex(final int currentIndex) {
+    protected synchronized int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    private synchronized void setCurrentIndex(final int currentIndex) {
         this.currentIndex = currentIndex;
     }
 
@@ -97,7 +96,7 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
      */
     public synchronized List<V> transformCollection(final Collection<? extends T> element) {
         if (element != null)
-            walk(new ArrayList<T>(element));
+            walk((List<? extends T>) element);
         return result;
     }
 

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Comparator;
 
+import net.sf.kerner.utils.collections.ComparatorInverter;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

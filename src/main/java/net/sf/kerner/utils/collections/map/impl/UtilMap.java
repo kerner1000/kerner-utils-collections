@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2014 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -26,22 +26,49 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import net.sf.kerner.utils.Factory;
-import net.sf.kerner.utils.TransformerToString;
+import net.sf.kerner.utils.Util;
+import net.sf.kerner.utils.UtilString;
 import net.sf.kerner.utils.collections.FactoryCollection;
 import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.collection.MapCollection;
 import net.sf.kerner.utils.counter.Counter;
-import net.sf.kerner.utils.impl.TransformerToStringDefault;
-import net.sf.kerner.utils.impl.util.Util;
-import net.sf.kerner.utils.impl.util.UtilString;
+import net.sf.kerner.utils.transformer.TransformerToString;
+import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
 /**
+ * 
  * Utility class for {@link Map} and {@link MapCollection} related stuff.
  * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-09-18
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * <b>Threading:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * Not thread save.
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * last reviewed: 0000-00-00
+ * </p>
+ * 
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * 
  */
 public class UtilMap {
 
@@ -80,7 +107,8 @@ public class UtilMap {
      * @throws NullPointerException
      *             if {@code map} or {@code key} is null
      */
-    public static <M, E> void addToCollectionsMap(final Map<M, Collection<E>> map, final M key, final E element) {
+    public static <M, E> void addToCollectionsMap(final Map<M, Collection<E>> map, final M key,
+            final E element) {
         Util.checkForNull(map, key);
         addToCollectionsMap(map, key, element, new ArrayListFactory<E>());
     }
@@ -114,12 +142,13 @@ public class UtilMap {
      *            {@code Collection} if there is no value for given key yet
      * @see java.util.Map Map
      * @see java.util.Collection Collection
-     * @see net.sf.kerner.Util.collections.FactoryCollection CollectionFactory
+     * @see net.sf.kerner.utils.Util.collections.FactoryCollection
+     *      CollectionFactory
      * @throws NullPointerException
      *             if {@code map} or {@code key} is null
      */
-    public static <M, E> void addToCollectionsMap(final Map<M, Collection<E>> map, final M key, final E element,
-            final FactoryCollection<E> factory) {
+    public static <M, E> void addToCollectionsMap(final Map<M, Collection<E>> map, final M key,
+            final E element, final FactoryCollection<E> factory) {
         Util.checkForNull(map, factory);
         Collection<E> col = map.get(key);
         if (col == null) {
@@ -129,8 +158,8 @@ public class UtilMap {
         col.add(element);
     }
 
-    public static <T, K, V> void addToMapMap(final Map<T, Map<K, V>> map, final T key1, final K key2, final V value,
-            final FactoryMap<K, V> factory) {
+    public static <T, K, V> void addToMapMap(final Map<T, Map<K, V>> map, final T key1,
+            final K key2, final V value, final FactoryMap<K, V> factory) {
         Util.checkForNull(map, factory);
         Map<K, V> m1 = map.get(key1);
         if (m1 == null) {
@@ -195,12 +224,13 @@ public class UtilMap {
         return null;
     }
 
-    public static <K, V> void initMapWithValue(final Map<K, V> map, final Collection<? extends K> keys, final V value) {
+    public static <K, V> void initMapWithValue(final Map<K, V> map,
+            final Collection<? extends K> keys, final V value) {
         initMapWithValue(map, keys, value, true);
     }
 
-    public static <K, V> void initMapWithValue(final Map<K, V> map, final Collection<? extends K> keys, final V value,
-            final boolean clean) {
+    public static <K, V> void initMapWithValue(final Map<K, V> map,
+            final Collection<? extends K> keys, final V value, final boolean clean) {
         if (clean)
             map.clear();
         for (final K k : keys) {
@@ -233,8 +263,9 @@ public class UtilMap {
      * @see java.util.Map
      * @see java.util.Collection
      */
-    public static <K, V> void initMapWithValues(final Map<K, V> map, final Collection<? extends K> keys,
-            final Collection<? extends V> values, final boolean clean) {
+    public static <K, V> void initMapWithValues(final Map<K, V> map,
+            final Collection<? extends K> keys, final Collection<? extends V> values,
+            final boolean clean) {
         if (clean)
             map.clear();
         final Iterator<? extends V> valIt = values.iterator();
@@ -249,8 +280,8 @@ public class UtilMap {
     /**
      * The same as {@code #initMapWithValues(map, keys, values, true)}
      */
-    public static <M, V> void initMapWithValues(final Map<M, V> map, final Collection<? extends M> keys,
-            final Collection<? extends V> values) {
+    public static <M, V> void initMapWithValues(final Map<M, V> map,
+            final Collection<? extends M> keys, final Collection<? extends V> values) {
         initMapWithValues(map, keys, values, true);
     }
 
@@ -271,7 +302,8 @@ public class UtilMap {
         return newMap(keys, new FactoryLinkedHashMap<K, V>());
     }
 
-    public static <K, V> Map<K, V> newMap(final Collection<? extends K> keys, final FactoryMap<K, V> factoryMap) {
+    public static <K, V> Map<K, V> newMap(final Collection<? extends K> keys,
+            final FactoryMap<K, V> factoryMap) {
         final Map<K, V> result = factoryMap.create();
         for (final K k : keys) {
             result.put(k, null);
@@ -289,8 +321,9 @@ public class UtilMap {
         return result;
     }
 
-    public static <K, V, L extends Collection<V>> MapCollection<K, V, L> sort(final MapCollection<K, V, L> map,
-            final Comparator<Map.Entry<K, L>> c, final Factory<? extends MapCollection<K, V, L>> factory) {
+    public static <K, V, L extends Collection<V>> MapCollection<K, V, L> sort(
+            final MapCollection<K, V, L> map, final Comparator<Map.Entry<K, L>> c,
+            final Factory<? extends MapCollection<K, V, L>> factory) {
         final List<Map.Entry<K, L>> list = new ArrayList<Map.Entry<K, L>>(map.entrySet());
         Collections.sort(list, c);
         final MapCollection<K, V, L> result = factory.create();
@@ -327,8 +360,9 @@ public class UtilMap {
         });
     }
 
-    public static <K, V, L extends Collection<V>> MapCollection<K, V, L> sortByKey(final MapCollection<K, V, L> map,
-            final Comparator<? super K> c, final Factory<? extends MapCollection<K, V, L>> factory) {
+    public static <K, V, L extends Collection<V>> MapCollection<K, V, L> sortByKey(
+            final MapCollection<K, V, L> map, final Comparator<? super K> c,
+            final Factory<? extends MapCollection<K, V, L>> factory) {
         return sort(map, new Comparator<Entry<K, L>>() {
             public int compare(final Entry<K, L> o1, final Entry<K, L> o2) {
                 return c.compare(o1.getKey(), o2.getKey());
@@ -363,33 +397,43 @@ public class UtilMap {
 
     public static <K, V> void sortByValue2(final Map<K, V> map, final Comparator<? super V> c) {
         sort2(map, new Comparator<Entry<K, V>>() {
+            @SuppressWarnings({ "rawtypes", "unchecked" })
             public int compare(final Entry<K, V> o1, final Entry<K, V> o2) {
-                return c.compare(o1.getValue(), o2.getValue());
+                if (c == null) {
+                    return ((Comparable) o1.getValue()).compareTo((o2.getValue()));
+                } else {
+                    return c.compare(o1.getValue(), o2.getValue());
+                }
             }
         });
     }
 
     public static <K, V> String toString(final Map<K, V> map) {
-        return toString(map, DEFAULT_KEY_VALUE_TO_STRING, DEFAULT_KEY_VALUE_TO_STRING, DEFAULT_ELEMENT_SEPARATOR,
+        return toString(map, DEFAULT_KEY_VALUE_TO_STRING, DEFAULT_KEY_VALUE_TO_STRING,
+                DEFAULT_ELEMENT_SEPARATOR, DEFAULT_ENTRY_SEPARATOR);
+    }
+
+    public static <K, V> String toString(final Map<K, V> map,
+            final TransformerToString keyValueToString) {
+        return toString(map, keyValueToString, keyValueToString, DEFAULT_ELEMENT_SEPARATOR,
                 DEFAULT_ENTRY_SEPARATOR);
     }
 
-    public static <K, V> String toString(final Map<K, V> map, final TransformerToString keyValueToString) {
-        return toString(map, keyValueToString, keyValueToString, DEFAULT_ELEMENT_SEPARATOR, DEFAULT_ENTRY_SEPARATOR);
+    public static <K, V> String toString(final Map<K, V> map,
+            final TransformerToString<K> keyToString, final TransformerToString<V> valueToString) {
+        return toString(map, keyToString, valueToString, DEFAULT_ELEMENT_SEPARATOR,
+                DEFAULT_ENTRY_SEPARATOR);
     }
 
-    public static <K, V> String toString(final Map<K, V> map, final TransformerToString keyToString,
-            final TransformerToString valueToString) {
-        return toString(map, keyToString, valueToString, DEFAULT_ELEMENT_SEPARATOR, DEFAULT_ENTRY_SEPARATOR);
-    }
-
-    public static <K, V> String toString(final Map<K, V> map, final TransformerToString keyToString,
-            final TransformerToString valueToString, final String elementSeparator) {
+    public static <K, V> String toString(final Map<K, V> map,
+            final TransformerToString<K> keyToString, final TransformerToString<V> valueToString,
+            final String elementSeparator) {
         return toString(map, keyToString, valueToString, elementSeparator, DEFAULT_ENTRY_SEPARATOR);
     }
 
-    public static <K, V> String toString(final Map<K, V> map, final TransformerToString keyToString,
-            final TransformerToString valueToString, final String elementSeparator, final String entrySteparator) {
+    public static <K, V> String toString(final Map<K, V> map,
+            final TransformerToString<K> keyToString, final TransformerToString<V> valueToString,
+            final String elementSeparator, final String entrySteparator) {
         final StringBuilder sb = new StringBuilder();
         final Iterator<Entry<K, V>> it = map.entrySet().iterator();
         while (it.hasNext()) {
@@ -419,7 +463,8 @@ public class UtilMap {
      *            number of elements returning [@code Map} contains (at most)
      * @return the new {@code Map} that has been trimmed
      */
-    public static <K, V> Map<K, V> trimMapToSize(final Map<K, V> map, final FactoryMap<K, V> factory, final int size) {
+    public static <K, V> Map<K, V> trimMapToSize(final Map<K, V> map,
+            final FactoryMap<K, V> factory, final int size) {
         Util.checkForNull(map, factory);
         if (size < 1 || map.size() <= size)
             return map;

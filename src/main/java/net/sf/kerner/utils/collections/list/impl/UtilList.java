@@ -22,18 +22,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import net.sf.kerner.utils.Cloneable;
 import net.sf.kerner.utils.Factory;
-import net.sf.kerner.utils.ObjectPairSame;
-import net.sf.kerner.utils.TransformerToString;
+import net.sf.kerner.utils.UtilArray;
+import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.collections.filter.Filter;
-import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.filter.FilterList;
 import net.sf.kerner.utils.collections.list.impl.filter.FilterNull;
-import net.sf.kerner.utils.impl.ObjectPairSameImpl;
-import net.sf.kerner.utils.impl.TransformerToStringDefault;
-import net.sf.kerner.utils.impl.util.UtilArray;
-import net.sf.kerner.utils.math.UtilMath;
+import net.sf.kerner.utils.pair.ObjectPairSame;
+import net.sf.kerner.utils.pair.ObjectPairSameImpl;
+import net.sf.kerner.utils.transformer.TransformerToString;
+import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
 /**
  * Utility class for {@link List} related stuff.
@@ -43,11 +43,10 @@ import net.sf.kerner.utils.math.UtilMath;
  */
 public class UtilList {
 
-    public final static TransformerToString TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
+    public final static TransformerToString<?> TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
     public static <L> List<ObjectPairSame<L>> allAgainstAll(final List<L> list) {
-        final List<ObjectPairSame<L>> result = new ArrayList<ObjectPairSame<L>>(UtilMath.factorial(list.size())
-                .intValue());
+        final List<ObjectPairSame<L>> result = new ArrayList<ObjectPairSame<L>>();
         final ListIterator<L> it1 = list.listIterator();
         while (it1.hasNext()) {
             final int index = it1.nextIndex();
@@ -61,7 +60,8 @@ public class UtilList {
         return result;
     }
 
-    public static <L> List<L> append(final Collection<? extends L> c1, final Collection<? extends L> c2) {
+    public static <L> List<L> append(final Collection<? extends L> c1,
+            final Collection<? extends L> c2) {
         return (List<L>) UtilCollection.append(c1, c2, new ArrayListFactory<L>());
     }
 
@@ -75,7 +75,7 @@ public class UtilList {
     public static <T> List<T> asList(final Collection<? extends T> collection) {
         List<T> result;
         if (collection instanceof List) {
-            result = (List) collection;
+            result = (List<T>) collection;
         } else {
             result = newList(collection);
         }
@@ -99,7 +99,23 @@ public class UtilList {
         return result;
     }
 
-    public static <E> void fill(final List<E> list, final int numElements, final Factory<? extends E> factory) {
+    public static <T extends Cloneable<T>> List<T> clone(final List<T> list) {
+        final List<T> result = new ArrayList<T>();
+        for (final T t : list) {
+            result.add(t.clone());
+        }
+        return result;
+    }
+
+    public static <L> List<? extends L> cutToSize(final List<? extends L> list, final int size) {
+        if (list.size() <= size) {
+            return list;
+        }
+        return list.subList(0, size);
+    }
+
+    public static <E> void fill(final List<E> list, final int numElements,
+            final Factory<? extends E> factory) {
         if (numElements < list.size())
             return;
         final int iterations = numElements - list.size();
@@ -130,8 +146,8 @@ public class UtilList {
         return filterList(collection, filter, new ArrayListFactory<C>());
     }
 
-    public static <C> List<C> filterList(final List<? extends C> collection, final Filter<C> filter,
-            final FactoryList<C> factory) {
+    public static <C> List<C> filterList(final List<? extends C> collection,
+            final Filter<C> filter, final FactoryList<C> factory) {
         final List<C> result = factory.createCollection();
         for (int i = 0; i < collection.size(); i++) {
             final C c = collection.get(i);
@@ -224,7 +240,8 @@ public class UtilList {
      *            ListFactory} that provides instance of returning list
      * @return a new {@link java.util.List List}
      */
-    public static <C> List<C> meld(final List<? extends C> c1, final List<? extends C> c2, final FactoryList<C> factory) {
+    public static <C> List<C> meld(final List<? extends C> c1, final List<? extends C> c2,
+            final FactoryList<C> factory) {
         final List<C> result = factory.createCollection();
         final Iterator<? extends C> i1 = c1.iterator();
         final Iterator<? extends C> i2 = c2.iterator();
@@ -356,7 +373,8 @@ public class UtilList {
         return split(list, index, new ArrayListFactory<T>());
     }
 
-    public static <T> List<List<T>> split(final List<T> list, final int index, final FactoryList<T> factory) {
+    public static <T> List<List<T>> split(final List<T> list, final int index,
+            final FactoryList<T> factory) {
         final List<List<T>> result = newList();
         result.add(factory.createCollection(list.subList(0, index)));
         result.add(factory.createCollection(list.subList(index, list.size())));
@@ -367,7 +385,8 @@ public class UtilList {
         return split(list, indices, new ArrayListFactory<T>());
     }
 
-    public static <T> List<List<T>> split(final List<T> list, final int[] indices, final FactoryList<T> factory) {
+    public static <T> List<List<T>> split(final List<T> list, final int[] indices,
+            final FactoryList<T> factory) {
         final List<List<T>> result = newList();
         if (UtilArray.emptyArray(indices)) {
             result.add(list);
@@ -379,12 +398,13 @@ public class UtilList {
         return result;
     }
 
-    public static <T> List<List<T>> splitMaxElements(final List<? extends T> list, final int maxElements) {
+    public static <T> List<List<T>> splitMaxElements(final List<? extends T> list,
+            final int maxElements) {
         return splitMaxElements(list, maxElements, new ArrayListFactory<T>());
     }
 
-    public static <T> List<List<T>> splitMaxElements(final List<? extends T> list, final int maxElements,
-            final FactoryList<T> factory) {
+    public static <T> List<List<T>> splitMaxElements(final List<? extends T> list,
+            final int maxElements, final FactoryList<T> factory) {
         final List<List<T>> result = newList();
         List<T> newList = factory.createCollection();
         for (int i = 0; i < list.size(); i++) {
@@ -405,11 +425,14 @@ public class UtilList {
     }
 
     public static <E> List<String> toStringList(final Collection<E> elements) {
-        return new TransformerToStringCollection().transformCollection(elements);
+        final List<String> result = new TransformerToStringCollection<E>()
+                .transformCollection(new ArrayList<E>(elements));
+        return result;
     }
 
-    public static <E> List<String> toStringList(final TransformerToString strategy, final Collection<E> elements) {
-        return new TransformerToStringCollection(strategy).transformCollection(elements);
+    public static <E> List<String> toStringList(final TransformerToString<E> strategy,
+            final Collection<E> elements) {
+        return new TransformerToStringCollection<E>(strategy).transformCollection(elements);
     }
 
     public static <V> List<V> trimm(final List<? extends V> list, final FactoryList<V> factory) {

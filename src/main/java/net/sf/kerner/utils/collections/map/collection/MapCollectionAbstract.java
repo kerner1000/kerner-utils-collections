@@ -2,25 +2,25 @@ package net.sf.kerner.utils.collections.map.collection;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import net.sf.kerner.utils.Factory;
-import net.sf.kerner.utils.collections.map.FactoryMap;
-import net.sf.kerner.utils.collections.map.impl.FactoryLinkedHashMap;
-import net.sf.kerner.utils.impl.util.Util;
+import net.sf.kerner.utils.collections.UtilCollection;
 
-public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> implements MapCollection<K, V, L> {
+public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> implements
+        MapCollection<K, V, L> {
 
     protected final Map<K, L> map;
 
     public MapCollectionAbstract() {
-        this(new FactoryLinkedHashMap<K, L>());
+        this(new LinkedHashMap<K, L>());
     }
 
-    public MapCollectionAbstract(final FactoryMap<K, L> mapFactory) {
-        this.map = mapFactory.create();
+    public MapCollectionAbstract(final Map<K, L> map) {
+        this.map = map;
     }
 
     public void clear() {
@@ -44,8 +44,21 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
     }
 
     @Override
-    public boolean equals(final Object o) {
-        return Util.equalsOnHashCode(this, o);
+    public boolean equals(final Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof MapCollectionAbstract))
+            return false;
+        @SuppressWarnings("rawtypes")
+        final MapCollectionAbstract other = (MapCollectionAbstract) obj;
+        if (map == null) {
+            if (other.map != null)
+                return false;
+        } else if (!map.equals(other.map))
+            return false;
+        return true;
     }
 
     public L get(final K key) {
@@ -56,7 +69,10 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
 
     @Override
     public int hashCode() {
-        return map.hashCode();
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((map == null) ? 0 : map.hashCode());
+        return result;
     }
 
     public boolean isEmpty() {
@@ -123,10 +139,16 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
         }
     }
 
+    /**
+     * Returns the number of key-value mappings in this map.
+     */
     public int size() {
         return map.size();
     }
 
+    /**
+     * Returns the number of elements mapped by this key.
+     */
     public int size(final K k) {
         if (map.containsKey(k)) {
             return map.get(k).size();
@@ -141,6 +163,14 @@ public abstract class MapCollectionAbstract<K, V, L extends Collection<V>> imple
 
     public Collection<L> values() {
         return map.values();
+    }
+
+    public Collection<V> valuesAll() {
+        final Collection<V> result = UtilCollection.newCollection();
+        for (final L v : map.values()) {
+            result.addAll(v);
+        }
+        return result;
     }
 
 }

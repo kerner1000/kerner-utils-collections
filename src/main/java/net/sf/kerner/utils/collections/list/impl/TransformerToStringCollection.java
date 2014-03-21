@@ -1,11 +1,10 @@
 package net.sf.kerner.utils.collections.list.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.kerner.utils.TransformerToString;
-import net.sf.kerner.utils.impl.TransformerToStringDefault;
+import net.sf.kerner.utils.transformer.TransformerToString;
+import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
 public class TransformerToStringCollection<T> extends AbstractTransformingListFactory<T, String> {
 
@@ -29,8 +28,8 @@ public class TransformerToStringCollection<T> extends AbstractTransformingListFa
     }
 
     @Override
-    public synchronized List<String> transformCollection(final Collection<? extends T> element) {
-        return super.transformCollection(new ArrayList<T>(element));
+    public List<String> transformCollection(final Collection<? extends T> element) {
+        return super.transformCollection(element);
     }
 
 }

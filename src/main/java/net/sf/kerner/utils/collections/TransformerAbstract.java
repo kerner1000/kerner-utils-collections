@@ -1,0 +1,29 @@
+package net.sf.kerner.utils.collections;
+
+import java.util.Collection;
+
+import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.transformer.Transformer;
+
+public abstract class TransformerAbstract<T, V> implements Transformer<T, V>, TransformerCollection<T, V> {
+
+    protected final FactoryCollection<V> factoryCollection;
+
+    public TransformerAbstract() {
+        super();
+        this.factoryCollection = new ArrayListFactory<V>();
+    }
+
+    public TransformerAbstract(final FactoryCollection<V> factoryCollection) {
+        super();
+        this.factoryCollection = factoryCollection;
+    }
+
+    public Collection<V> transformCollection(final Collection<? extends T> element) {
+        final Collection<V> result = factoryCollection.createCollection();
+        for (final T t : element) {
+            result.add(transform(t));
+        }
+        return result;
+    }
+}

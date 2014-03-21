@@ -2,7 +2,7 @@ package net.sf.kerner.utils.collections.list.visitor;
 
 import java.util.Collection;
 
-import net.sf.kerner.utils.collections.impl.UtilCollection;
+import net.sf.kerner.utils.collections.UtilCollection;
 
 public class VisitorListApplierDefaultProto<E> implements VisitorApplierListDefault<E> {
 

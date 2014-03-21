@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-import net.sf.kerner.utils.ObjectPairSame;
-import net.sf.kerner.utils.impl.ObjectPairSameImpl;
+import net.sf.kerner.utils.pair.ObjectPairSame;
+import net.sf.kerner.utils.pair.ObjectPairSameImpl;
 
 import org.junit.After;
 import org.junit.AfterClass;

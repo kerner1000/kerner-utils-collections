@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Enumeration;
 import java.util.Iterator;
 
+import net.sf.kerner.utils.collections.PropertiesSorted;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -54,8 +54,44 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
 
     void clear();
 
+    /**
+     * Returns {@code true} if this map contains a mapping for given key. More
+     * formally, returns {@code true} if and only if this map contains a mapping
+     * for a key {@code k} such that
+     * {@code (key==null ? k==null : key.equals(k))}. (There can be at most one
+     * such mapping.)
+     * 
+     * @param key
+     *            key whose presence in this map is to be tested
+     * @return {@code true} if this map contains a mapping for the specified key
+     * @throws ClassCastException
+     *             if the key is of an inappropriate type for this map
+     *             (optional)
+     * @throws NullPointerException
+     *             if the specified key is null and this map does not permit
+     *             null keys (optional)
+     */
     boolean containsKey(K k);
 
+    /**
+     * Returns {@code true} if this map maps one or more keys to the specified
+     * value. More formally, returns {@code true} if and only if this map
+     * contains at least one mapping to a value {@code v} such that
+     * {@code (value==null ? v==null : value.equals(v))}. This operation will
+     * probably require time linear in the map size for most implementations of
+     * the {@code Map} interface.
+     * 
+     * @param value
+     *            value whose presence in this map is to be tested
+     * @return {@code true} if this map maps one or more keys to the specified
+     *         value
+     * @throws ClassCastException
+     *             if the value is of an inappropriate type for this map
+     *             (optional)
+     * @throws NullPointerException
+     *             if the specified value is null and this map does not permit
+     *             null values (optional)
+     */
     boolean containsValue(V v);
 
     Set<Entry<K, L>> entrySet();
@@ -118,4 +154,6 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
     int size(K k);
 
     Collection<L> values();
+
+    Collection<V> valuesAll();
 }

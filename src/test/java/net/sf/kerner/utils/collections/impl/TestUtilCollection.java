@@ -5,7 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-import net.sf.kerner.utils.impl.ComparatorIntegerDefault;
+import net.sf.kerner.utils.collections.UtilCollection;
+import net.sf.kerner.utils.comparator.ComparatorIntegerDefault;
 
 import org.junit.After;
 import org.junit.AfterClass;

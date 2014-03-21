@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import net.sf.kerner.utils.collections.impl.UtilCollection;
+import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 

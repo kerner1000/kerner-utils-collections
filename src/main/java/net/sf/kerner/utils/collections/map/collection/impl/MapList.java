@@ -2,9 +2,9 @@ package net.sf.kerner.utils.collections.map.collection.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.kerner.utils.Factory;
-import net.sf.kerner.utils.collections.map.FactoryMap;
 import net.sf.kerner.utils.collections.map.collection.MapCollectionAbstract;
 
 public class MapList<K, V> extends MapCollectionAbstract<K, V, List<V>> {
@@ -20,8 +20,8 @@ public class MapList<K, V> extends MapCollectionAbstract<K, V, List<V>> {
         };
     }
 
-    public MapList(final FactoryMap<K, List<V>> mapFactory) {
-        super(mapFactory);
+    public MapList(final Map<K, List<V>> map) {
+        super(map);
         this.factory = new Factory<List<V>>() {
 
             public List<V> create() {
@@ -30,8 +30,8 @@ public class MapList<K, V> extends MapCollectionAbstract<K, V, List<V>> {
         };
     }
 
-    public MapList(final FactoryMap<K, List<V>> mapFactory, final Factory<List<V>> factory) {
-        super(mapFactory);
+    public MapList(final Map<K, List<V>> map, final Factory<List<V>> factory) {
+        super(map);
         this.factory = factory;
     }
 

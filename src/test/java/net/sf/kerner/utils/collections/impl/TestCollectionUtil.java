@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
+import net.sf.kerner.utils.collections.UtilCollection;
+
 import org.junit.Test;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
