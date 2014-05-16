@@ -20,7 +20,7 @@ import java.util.List;
 import net.sf.kerner.utils.collections.applier.ApplierAbstract;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.equal.Equalator;
-import net.sf.kerner.utils.pair.ObjectPair;
+import net.sf.kerner.utils.pair.Pair;
 
 public class EqualatorApplierProto<T> extends ApplierAbstract implements EqualatorApplier<T> {
 
@@ -71,7 +71,7 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
         return this.equalators;
     }
 
-    public Boolean transform(final ObjectPair<T, Object> element) {
+    public Boolean transform(final Pair<T, Object> element) {
         return Boolean.valueOf(areEqual(element.getFirst(), element.getSecond()));
     }
 

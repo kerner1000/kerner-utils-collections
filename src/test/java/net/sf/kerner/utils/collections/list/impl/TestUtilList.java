@@ -20,8 +20,8 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-import net.sf.kerner.utils.pair.ObjectPairSame;
-import net.sf.kerner.utils.pair.ObjectPairSameImpl;
+import net.sf.kerner.utils.pair.PairSame;
+import net.sf.kerner.utils.pair.PairSameImpl;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -51,25 +51,25 @@ public class TestUtilList {
     @Test
     public final void testAllAgainstAll01() {
         final List<Integer> list = Arrays.asList(1, 2, 3);
-        final List<ObjectPairSame<Integer>> result = UtilList.allAgainstAll(list);
+        final List<PairSame<Integer>> result = UtilList.allAgainstAll(list);
         assertEquals(3, result.size());
-        assertEquals(new ObjectPairSameImpl(1, 2), result.get(0));
-        assertEquals(new ObjectPairSameImpl(1, 3), result.get(1));
-        assertEquals(new ObjectPairSameImpl(2, 3), result.get(2));
+        assertEquals(new PairSameImpl(1, 2), result.get(0));
+        assertEquals(new PairSameImpl(1, 3), result.get(1));
+        assertEquals(new PairSameImpl(2, 3), result.get(2));
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @Test
     public final void testAllAgainstAll02() {
         final List<Integer> list = Arrays.asList(1, 2, 3, 4);
-        final List<ObjectPairSame<Integer>> result = UtilList.allAgainstAll(list);
+        final List<PairSame<Integer>> result = UtilList.allAgainstAll(list);
         assertEquals(6, result.size());
-        assertEquals(new ObjectPairSameImpl(1, 2), result.get(0));
-        assertEquals(new ObjectPairSameImpl(1, 3), result.get(1));
-        assertEquals(new ObjectPairSameImpl(1, 4), result.get(2));
-        assertEquals(new ObjectPairSameImpl(2, 3), result.get(3));
-        assertEquals(new ObjectPairSameImpl(2, 4), result.get(4));
-        assertEquals(new ObjectPairSameImpl(3, 4), result.get(5));
+        assertEquals(new PairSameImpl(1, 2), result.get(0));
+        assertEquals(new PairSameImpl(1, 3), result.get(1));
+        assertEquals(new PairSameImpl(1, 4), result.get(2));
+        assertEquals(new PairSameImpl(2, 3), result.get(3));
+        assertEquals(new PairSameImpl(2, 4), result.get(4));
+        assertEquals(new PairSameImpl(3, 4), result.get(5));
     }
 
 }

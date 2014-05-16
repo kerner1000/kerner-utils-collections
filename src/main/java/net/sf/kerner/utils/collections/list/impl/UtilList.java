@@ -30,8 +30,8 @@ import net.sf.kerner.utils.collections.filter.Filter;
 import net.sf.kerner.utils.collections.list.FactoryList;
 import net.sf.kerner.utils.collections.list.filter.FilterList;
 import net.sf.kerner.utils.collections.list.impl.filter.FilterNull;
-import net.sf.kerner.utils.pair.ObjectPairSame;
-import net.sf.kerner.utils.pair.ObjectPairSameImpl;
+import net.sf.kerner.utils.pair.PairSame;
+import net.sf.kerner.utils.pair.PairSameImpl;
 import net.sf.kerner.utils.transformer.TransformerToString;
 import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
@@ -45,8 +45,8 @@ public class UtilList {
 
     public final static TransformerToString<?> TRANSFORMER_TO_STRING_DEFAULT = new TransformerToStringDefault();
 
-    public static <L> List<ObjectPairSame<L>> allAgainstAll(final List<L> list) {
-        final List<ObjectPairSame<L>> result = new ArrayList<ObjectPairSame<L>>();
+    public static <L> List<PairSame<L>> allAgainstAll(final List<L> list) {
+        final List<PairSame<L>> result = new ArrayList<PairSame<L>>();
         final ListIterator<L> it1 = list.listIterator();
         while (it1.hasNext()) {
             final int index = it1.nextIndex();
@@ -54,7 +54,7 @@ public class UtilList {
             final ListIterator<L> it2 = list.listIterator(index + 1);
             while (it2.hasNext()) {
                 final L next2 = it2.next();
-                result.add(new ObjectPairSameImpl<L>(next, next2));
+                result.add(new PairSameImpl<L>(next, next2));
             }
         }
         return result;

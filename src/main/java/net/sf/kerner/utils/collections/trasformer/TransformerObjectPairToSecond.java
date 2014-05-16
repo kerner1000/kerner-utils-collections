@@ -16,11 +16,11 @@
 package net.sf.kerner.utils.collections.trasformer;
 
 import net.sf.kerner.utils.collections.list.impl.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.ObjectPair;
+import net.sf.kerner.utils.pair.Pair;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<ObjectPair<?, S>, S> {
+public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
 
-    public S transform(final ObjectPair<?, S> element) {
+    public S transform(final Pair<?, S> element) {
         return element.getSecond();
     }
 

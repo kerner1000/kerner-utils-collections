@@ -38,8 +38,8 @@ import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 import net.sf.kerner.utils.collections.map.collection.MapCollection;
 import net.sf.kerner.utils.equal.Equalator;
 import net.sf.kerner.utils.math.UtilMath;
-import net.sf.kerner.utils.pair.ObjectPairSame;
-import net.sf.kerner.utils.pair.ObjectPairSameImpl;
+import net.sf.kerner.utils.pair.PairSame;
+import net.sf.kerner.utils.pair.PairSameImpl;
 import net.sf.kerner.utils.transformer.Transformer;
 import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
@@ -393,11 +393,11 @@ public class UtilCollection {
         return Collections.min(elements, c);
     }
 
-    public static <T> ObjectPairSame<T> getNextTwo(final Iterator<? extends T> iterator) {
+    public static <T> PairSame<T> getNextTwo(final Iterator<? extends T> iterator) {
         if (iterator == null) {
             throw new NullPointerException();
         }
-        return new ObjectPairSameImpl<T>(iterator.next(), iterator.next());
+        return new PairSameImpl<T>(iterator.next(), iterator.next());
     }
 
     public static int getNumberOfNonEmptyElements(final Iterable<Collection<?>> col) {
