@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -45,7 +45,7 @@ import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
 /**
  * Utility class for {@link Collection} related stuff.
- * 
+ *
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
  * @version 2013-08-15
  */
@@ -60,7 +60,7 @@ public class UtilCollection {
      * first given collection and in second given collection. Ordering is as
      * given by first {@code Collection Collection's} {@link Iterator} followed
      * by second {@code Collection Collection's} {@link Iterator}.
-     * 
+     *
      * @param <C>
      *            Type of both {@link Collection Collections}
      * @param c1
@@ -81,7 +81,7 @@ public class UtilCollection {
      * first given collection and in second given collection. Ordering is as
      * given by first {@code Collection Collection's} {@link Iterator} followed
      * by second {@code Collection Collection's} {@link Iterator}.
-     * 
+     *
      * @param <C>
      *            Type of both {@link Collection Collections}
      * @param c1
@@ -128,7 +128,7 @@ public class UtilCollection {
 
     /**
      * Check whether {@code c1} contains any element in {@code c2}.
-     * 
+     *
      * @param c1
      *            {@link Collection} to check for containing elements
      * @param c2
@@ -147,7 +147,7 @@ public class UtilCollection {
 
     /**
      * Checks whether two or more elements in {@code c} have the same hashCode.
-     * 
+     *
      * @see Object#hashCode()
      * @param c
      *            {@link Collection}
@@ -214,7 +214,7 @@ public class UtilCollection {
      * Filters given {@link Collection} using given {@link Filter}. Removes all
      * <b>not</b> matching elements via {@link Iterator#remove()}. <br>
      * Note: Synchronizes on {@code collection}.
-     * 
+     *
      * @param collection
      * @param filter
      */
@@ -235,7 +235,7 @@ public class UtilCollection {
      * Filters given {@link Collection} using given {@link Filter}. All
      * <b>matching</b> elements are returned in a new {@code collection}. <br>
      * Note: Synchronizes on {@code collection}.
-     * 
+     *
      * @param collection
      *            {@link Collection} that is filtered
      * @param filter
@@ -297,16 +297,50 @@ public class UtilCollection {
     }
 
     /**
-     * 
+     *
+     * @see <a
+     *      href="http://en.wikipedia.org/wiki/Complement_%28set_theory%29">Set
+     *      theory</a>
+     */
+    public static <C> Collection<C> getComplementRelativeLeft(final Collection<? extends C> c1,
+            final Collection<? extends C> c2, final FactoryCollection<C> factory) {
+        final Collection<C> result = factory.createCollection();
+        for (final C c : c1) {
+            if (!c2.contains(c)) {
+                result.add(c);
+            }
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @see <a
+     *      href="http://en.wikipedia.org/wiki/Complement_%28set_theory%29">Set
+     *      theory</a>
+     */
+    public static <C> Collection<C> getComplementRelativeRight(final Collection<? extends C> c1,
+            final Collection<? extends C> c2, final FactoryCollection<C> factory) {
+        final Collection<C> result = factory.createCollection();
+        for (final C c : c2) {
+            if (!c1.contains(c)) {
+                result.add(c);
+            }
+        }
+        return result;
+    }
+
+    /**
+     *
      * Returns a index-to-frequency mapping for all elements in given
      * {@link Collection}. </p> Key of returned map is element from
      * {@code collection}, corresponding value is this element's number of
      * occurrences in {@code collection}.
-     * 
+     *
      * <p>
      * last reviewed: 2013-08-15
      * </p>
-     * 
+     *
      * @param collection
      * @return a {@link Map}, containing index-to-frequency mapping
      */
@@ -346,7 +380,7 @@ public class UtilCollection {
 
     /**
      * Retrieve highest element contained in a collection.
-     * 
+     *
      * @param <T>
      *            type of elements
      * @param elements
@@ -359,10 +393,22 @@ public class UtilCollection {
         return Collections.max(elements, c);
     }
 
+    /**
+     *
+     * @see <a
+     *      href="http://en.wikipedia.org/wiki/Intersection_%28set_theory%29">Set
+     *      theory</a>
+     */
     public static <T> Collection<T> getIntersection(final Collection<T> a, final Collection<T> b) {
         return getIntersection(a, b, new ArrayListFactory<T>());
     }
 
+    /**
+     *
+     * @see <a
+     *      href="http://en.wikipedia.org/wiki/Intersection_%28set_theory%29">Set
+     *      theory</a>
+     */
     public static <T> Collection<T> getIntersection(final Collection<T> a, final Collection<T> b,
             final FactoryCollection<T> factory) {
         final Collection<T> result = factory.createCollection();
@@ -380,7 +426,7 @@ public class UtilCollection {
 
     /**
      * Retrieve lowest element contained in a collection.
-     * 
+     *
      * @param <T>
      *            type of elements
      * @param elements
@@ -454,23 +500,37 @@ public class UtilCollection {
         return getSame(c, new EqualatorDefault<T>());
     }
 
+    /**
+     *
+     * @see <a href="http://en.wikipedia.org/wiki/Symmetric_difference">Set
+     *      theory</a>
+     */
     public static <T> Collection<T> getSymmetricDifference(final Collection<? extends T> c1,
             final Collection<? extends T> c2) {
         final Collection<T> result = UtilCollection.newCollection();
         for (final T t : c1) {
-            if (c2.contains(t)) {
-
-            } else {
+            if (!c2.contains(t)) {
                 result.add(t);
             }
         }
         for (final T t : c2) {
-            if (c1.contains(t)) {
-
-            } else {
+            if (!c1.contains(t)) {
                 result.add(t);
             }
         }
+        return result;
+    }
+
+    /**
+     *
+     * @see <a href="http://en.wikipedia.org/wiki/Union_%28set_theory%29">Set
+     *      theory</a>
+     */
+    public static <C> Collection<C> getUnion(final Collection<? extends C> c1,
+            final Collection<? extends C> c2, final FactoryCollection<C> factory) {
+        final Collection<C> result = factory.createCollection();
+        result.addAll(c1);
+        result.addAll(c2);
         return result;
     }
 
@@ -511,7 +571,7 @@ public class UtilCollection {
     /**
      * Check if a {@link Collection} or all of its elements is/ are {@code null}
      * .
-     * 
+     *
      * @param col
      *            {@link Collection} to check
      * @return true, if given {@link Collection} or all of its elements is/ are
