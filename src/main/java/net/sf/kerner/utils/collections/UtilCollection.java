@@ -521,6 +521,11 @@ public class UtilCollection {
         return result;
     }
 
+    public static <C> Collection<C> getUnion(final Collection<? extends C> c1,
+            final Collection<? extends C> c2) {
+        return getUnion(c1, c2, new ArrayListFactory<C>());
+    }
+
     /**
      *
      * @see <a href="http://en.wikipedia.org/wiki/Union_%28set_theory%29">Set
