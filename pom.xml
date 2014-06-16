@@ -3,11 +3,11 @@
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>5</version>
+		<version>7</version>
 	</parent>
 	<groupId>net.sf.kerner-utils-collections</groupId>
 	<artifactId>kerner-utils-collections</artifactId>
-	<version>0.10.1-SNAPSHOT</version>
+	<version>0.25.1-SNAPSHOT</version>
 	<name>Kerner Utilities - Collections</name>
 	<description>Commonly used utility classes (java.util.Collections related)</description>
 	<properties>
@@ -18,7 +18,7 @@
 		<developer>
 			<id>kerner</id>
 			<name>Alexander Kerner</name>
-			<email>alex.kerner.24@googlemail.com</email>
+			<email>alexanderkerner24@googlemail.com</email>
 			<roles>
 				<role>Project Manager</role>
 				<role>Architect</role>
@@ -32,57 +32,111 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>git://kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co
-		</url>
-		<connection>scm:git:git://kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</connection>
-		<developerConnection>scm:git:ssh://akerner@kerner-utils-co.git.sourceforge.net/gitroot/kerner-utils-co/kerner-utils-co</developerConnection>
+		<url>git://git.code.sf.net/p/kerner-utils-co/code</url>
+		<connection>scm:git://git.code.sf.net/p/kerner-utils-co/code</connection>
+		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/kerner-utils-co/code </developerConnection>
+		<tag>HEAD</tag>
 	</scm>
 	<distributionManagement>
 		<site>
-			<id>sourceforge-kerner-utils-co</id>
-			<url>sftp://frs.sourceforge.net:/home/groups/k/ke/kerner-utils-co/htdocs</url>
+			<id>sourceforge-kerner-utils</id>
+			<url>scp://shell.sourceforge.net/home/project-web/kerner-utils-co/htdocs
+			</url>
 		</site>
 	</distributionManagement>
 	<build>
+
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.2</version>
+				<dependencies>
+					<dependency><!-- add support for ssh/scp -->
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>1.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.0</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<configuration>
-					<formats>
-						<format>html</format>
-						<format>xml</format>
-					</formats>
-					<check>
-						<lineRate>70</lineRate>
-						<haltOnFailure>false</haltOnFailure>
-						<totalLineRate>70</totalLineRate>
-						<packageLineRate>70</packageLineRate>
-					</check>
-					<instrumentation>
-						<ignores>
-							<ignore>**.*Exception.class</ignore>
-						</ignores>
-						<excludes>
-							<exclude>**/*Exception.class</exclude>
-						</excludes>
-					</instrumentation>
-				</configuration>
+				<artifactId>maven-install-plugin</artifactId>
+				<version>2.4</version>
 				<executions>
 					<execution>
 						<goals>
-							<goal>clean</goal>
-							<goal>check</goal>
+							<goal>install</goal>
+						</goals>
+						<configuration>
+							<createChecksum>true</createChecksum>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>dist-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+							<Bundle-Description>${project.description}</Bundle-Description>
+							<Implementation-Version>${project.version}</Implementation-Version>
+						</manifestEntries>
+						<manifestFile>META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -90,94 +144,13 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils</groupId>
 			<artifactId>kerner-utils</artifactId>
-			<version>0.4.1</version>
+			<version>0.19.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<profiles>
-		<profile>
-			<id>doc</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<source>${jdk.version}</source>
-							<target>${jdk.version}</target>
-						</configuration>
-					</plugin>
-					<plugin>
-						<artifactId>maven-install-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>install</goal>
-								</goals>
-								<configuration>
-									<createChecksum>true</createChecksum>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-install-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>install</goal>
-								</goals>
-								<configuration>
-									<createChecksum>true</createChecksum>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<configuration>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
-						</configuration>
-						<executions>
-							<execution>
-								<id>dist-assembly</id>
-								<phase>package</phase>
-								<goals>
-									<goal>single</goal> <!-- that's all :) -->
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
