@@ -134,9 +134,15 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         return delegate.tailMap(fromKey);
     }
 
+    public Properties toProperties() {
+        final Properties p = new Properties();
+        p.putAll(delegate);
+        return p;
+    }
+
     @Override
     public String toString() {
-        return delegate.toString();
+        return UtilCollection.toString(delegate.entrySet());
     }
 
     public Collection<Object> values() {
