@@ -6,6 +6,7 @@ Bundle-SymbolicName: net.sf.kerner-utils-collections
 Bundle-Version: 0.25.0
 Export-Package: net.sf.kerner.utils.collections;version="0.25.0",
  net.sf.kerner.utils.collections.applier;version="0.25.0",
+ net.sf.kerner.utils.collections.comparator,
  net.sf.kerner.utils.collections.equalator;version="0.25.0",
  net.sf.kerner.utils.collections.filter;version="0.25.0",
  net.sf.kerner.utils.collections.filter.impl;version="0.25.0",
