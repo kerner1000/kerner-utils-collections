@@ -619,6 +619,10 @@ public class UtilCollection {
         return copy;
     }
 
+    public static <T> T select(final Collection<? extends T> c, final Selector<T> s) {
+        return s.select(c);
+    }
+
     public static String toString(final Iterable<?> elements) {
         if (elements == null)
             return UtilString.NEW_LINE_STRING + "null";
