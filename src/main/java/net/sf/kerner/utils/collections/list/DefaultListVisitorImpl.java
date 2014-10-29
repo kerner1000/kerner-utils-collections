@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.list;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import net.sf.kerner.utils.collections.list.visitor.VisitorListDefault;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+public class DefaultListVisitorImpl<E> implements VisitorListDefault<E> {
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    public Void visit(final E e, final int index) {
+        // do nothing by default
+        return null;
     }
 
 }

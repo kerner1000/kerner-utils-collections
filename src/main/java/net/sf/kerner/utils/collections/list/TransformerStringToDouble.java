@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.list;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+public class TransformerStringToDouble extends AbstractTransformingListFactory<String, Double> {
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
-
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    public Double transform(final String element) {
+        return Double.parseDouble(element);
     }
 
 }

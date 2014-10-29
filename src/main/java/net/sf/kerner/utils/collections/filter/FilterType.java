@@ -13,15 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.filter;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+public class FilterType implements Filter<Object> {
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    private final Class<?> clazz;
+
+    public FilterType(final Class<?> clazz) {
+        this.clazz = clazz;
     }
 
+    public boolean filter(final Object e) {
+        final boolean result = clazz.isInstance(e);
+        return result;
+    }
 }

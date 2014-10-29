@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.UtilString;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.transformer.Transformer;
 
 public abstract class ToStringStrategyAbstract<T> implements Transformer<T, String> {

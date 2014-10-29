@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.filter.Filter;
+import net.sf.kerner.utils.collections.list.DefaultListVisitorImpl;
+import net.sf.kerner.utils.collections.list.ListWalkerDefault;
 import net.sf.kerner.utils.collections.list.visitor.VisitorListDefault;
 import net.sf.kerner.utils.counter.Counter;
 

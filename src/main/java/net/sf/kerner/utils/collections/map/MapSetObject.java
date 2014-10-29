@@ -13,29 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections;
+package net.sf.kerner.utils.collections.map;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
-import net.sf.kerner.utils.collections.filter.FilterVisitorApplierProto;
+public class MapSetObject extends MapSet<Object, Object> {
 
-public class CollectionWalkerImpl<E> extends FilterVisitorApplierProto<E> implements CollectionWalker<E> {
+    public MapSetObject() {
 
-    public void walk(final Collection<? extends E> list) {
-        beforeWalk();
-        for (final E e : list) {
-            if (filter(e)) {
-                visit(e);
-            }
+    }
+
+    public MapSetObject(final Map<Object, Set<Object>> map) {
+        super(map);
+
+    }
+
+    public MapSetObject(final Map<Object, Set<Object>> map,
+            final MapCollectionAbstract<Object, Object, Set<Object>> template) {
+        super(map, template);
+
+    }
+
+    public MapSetObject(final MapCollectionAbstract<Object, Object, Set<Object>> template) {
+        super(template);
+
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public void put(final Object key, final Object value) {
+        if (value instanceof Collection) {
+            putAll(key, (Collection<Object>) value);
+        } else {
+            super.put(key, value);
         }
-        afterWalk();
     }
 
-    public void beforeWalk() {
-        // do nothing by default
-    }
-
-    public void afterWalk() {
-        // do nothing by default
-    }
 }

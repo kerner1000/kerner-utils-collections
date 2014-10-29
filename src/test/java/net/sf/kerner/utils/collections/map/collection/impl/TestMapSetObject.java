@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 
+import net.sf.kerner.utils.collections.map.MapSetObject;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

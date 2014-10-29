@@ -18,7 +18,7 @@ package net.sf.kerner.utils.collections.equalator;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.applier.ApplierAbstract;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.equal.Equalator;
 import net.sf.kerner.utils.pair.Pair;
 

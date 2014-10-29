@@ -13,15 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.set;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import java.util.Collection;
+import java.util.Set;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+import net.sf.kerner.utils.collections.TransformerCollection;
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
-    }
+public interface TransformerSet<T, V> extends TransformerCollection<T, V> {
+
+    /**
+     * Transforms each element contained by given {@link Set} and returns another {@link Set} which contains all
+     * transformed elements (in the same order).
+     * 
+     * @param collection
+     *            {@link Collection} that contains elements to transform
+     * @return {@link Set} containing transformed elements
+     */
+    Set<V> transformCollection(Collection<? extends T> collection);
 
 }

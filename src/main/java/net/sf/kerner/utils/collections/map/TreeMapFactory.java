@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.map;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+public class TreeMapFactory<K, V> implements FactoryMap<K, V> {
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    public Map<K, V> create() {
+        return new TreeMap<K, V>();
     }
 
 }

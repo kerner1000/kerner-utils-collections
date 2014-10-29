@@ -13,15 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.list;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import java.util.Collection;
+import java.util.List;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V>
+        implements FactoryList<V> {
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    public AbstractTransformingListFactory() {
+        super();
+    }
+
+    public AbstractTransformingListFactory(final FactoryList<V> factory) {
+        super(factory);
+    }
+
+    public List<V> createCollection() {
+        return factory.createCollection();
+    }
+
+    public List<V> createCollection(final Collection<? extends V> template) {
+        return factory.createCollection(template);
     }
 
 }

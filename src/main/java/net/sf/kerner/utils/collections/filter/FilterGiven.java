@@ -13,15 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.filter;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+public class FilterGiven implements Filter<Object> {
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    private final Set<Object> set;
+
+    public FilterGiven(final Collection<Object> objects) {
+        set = new HashSet<Object>(objects);
+    }
+
+    public boolean filter(final Object e) {
+        return set.contains(e);
     }
 
 }

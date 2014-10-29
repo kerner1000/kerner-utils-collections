@@ -13,15 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.filter;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import net.sf.kerner.utils.Util;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+/**
+ * Simple class to invert the filtering logic of another {@link Filter}.
+ * <p>
+ * <b>Example:</b><br>
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * 
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2011-10-26
+ * @see Filter
+ * @param <E>
+ *            type of elements which are filtered
+ */
+public class FilterInverter<E> implements Filter<E> {
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+    protected final Filter<E> filter;
+
+    public FilterInverter(final Filter<E> filter) {
+        Util.checkForNull(filter);
+        this.filter = filter;
+    }
+
+    public boolean filter(final E element) {
+        return !filter.filter(element);
     }
 
 }

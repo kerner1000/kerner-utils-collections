@@ -13,15 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.trasformer;
+package net.sf.kerner.utils.collections.list;
 
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
-import net.sf.kerner.utils.pair.Pair;
+import java.util.List;
+import java.util.ListIterator;
 
-public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {
+import net.sf.kerner.utils.collections.list.filter.FilterVisitorListApplierProto;
 
-    public S transform(final Pair<?, S> element) {
-        return element.getSecond();
+public class ListWalkerDefault<E> extends FilterVisitorListApplierProto<E> implements ListWalker<E> {
+
+    public void afterWalk() {
+        // do nothing by default
     }
 
+    public void beforeWalk() {
+        // do nothing by default
+    }
+
+    public void walk(final List<? extends E> list) {
+        synchronized (list) {
+            beforeWalk();
+            for (final ListIterator<? extends E> it = list.listIterator(); it.hasNext();) {
+                final int index = it.nextIndex();
+                final E e = it.next();
+                visit(e, index);
+            }
+            afterWalk();
+        }
+    }
 }
