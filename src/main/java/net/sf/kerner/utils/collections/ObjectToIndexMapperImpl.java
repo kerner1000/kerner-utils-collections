@@ -106,7 +106,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
     }
 
     public int getMaxIndex() {
-        return (int) UtilMath.max(map.values());
+        return (int) UtilMath.getMax(map.values());
     }
 
     public int getSize() {
