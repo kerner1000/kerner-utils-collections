@@ -32,6 +32,7 @@ import net.sf.kerner.utils.Util;
 import net.sf.kerner.utils.UtilString;
 import net.sf.kerner.utils.collections.equalator.EqualatorDefault;
 import net.sf.kerner.utils.collections.filter.Filter;
+import net.sf.kerner.utils.collections.filter.FilterType;
 import net.sf.kerner.utils.collections.list.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
@@ -127,25 +128,6 @@ public class UtilCollection {
     }
 
     /**
-     * Check whether {@code c1} contains any element in {@code c2}.
-     *
-     * @param c1
-     *            {@link Collection} to check for containing elements
-     * @param c2
-     *            elements which are checked if they are contained by {@code c1}
-     * @return {@code true}, if any of {@code c2} is contained by {@code c1};
-     *         {@code false} otherwise
-     */
-    public static boolean containsAny(final Collection<?> c1, final Object... c2) {
-        for (final Object o : c2) {
-            if (c1.contains(o)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Checks whether two or more elements in {@code c} have the same hashCode.
      *
      * @see Object#hashCode()
@@ -181,6 +163,16 @@ public class UtilCollection {
             }
             return false;
         }
+    }
+
+    public static <T> boolean containsType(final Collection<?> c1, final Class<?> clazz) {
+        final FilterType f = new FilterType(clazz);
+        for (final Object o : c1) {
+            if (f.filter(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static <T> boolean equalsOne(final T o1, final Collection<? extends T> others) {
