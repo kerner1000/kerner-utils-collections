@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,37 +36,37 @@ import net.sf.kerner.utils.transformer.TransformerToString;
 import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
 /**
- * 
+ *
  * Utility class for {@link Map} and {@link MapCollection} related stuff.
- * 
+ *
  * <p>
  * <b>Example:</b><br>
- * 
+ *
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * TODO example
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * <b>Threading:</b><br>
- * 
+ *
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * Not thread save.
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * last reviewed: 0000-00-00
  * </p>
- * 
+ *
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
- * 
+ *
  */
 public class UtilMap {
 
@@ -87,7 +87,7 @@ public class UtilMap {
      * Element that is added may be null, if underlying collection allows null
      * elements.
      * </p>
-     * 
+     *
      * @param <M>
      *            type of keys in given {@code Map}
      * @param <E>
@@ -122,7 +122,7 @@ public class UtilMap {
      * Element that is added may be null, if underlying collection allows null
      * elements.
      * </p>
-     * 
+     *
      * @param <M>
      *            type of keys in given {@code Map}
      * @param <E>
@@ -203,7 +203,7 @@ public class UtilMap {
 
     /**
      * Retrieve first key from map, which maps to given value.
-     * 
+     *
      * @param <K>
      *            type of {@code key}
      * @param <V>
@@ -245,7 +245,7 @@ public class UtilMap {
      * mapped to {@code values[i]}.<br>
      * If there are more keys than values, left-over keys will map to a null
      * value, if underlying map allows this.
-     * 
+     *
      * @param <K>
      *            type of keys
      * @param <V>
@@ -331,23 +331,13 @@ public class UtilMap {
         return result;
     }
 
-    public static <K, V> void sort2(final Map<K, V> map, final Comparator<Map.Entry<K, V>> c) {
-        final List<Map.Entry<K, V>> list = new ArrayList<Map.Entry<K, V>>(map.entrySet());
-        Collections.sort(list, c);
-        map.clear();
-        for (final Map.Entry<K, V> entry : list) {
-            map.put(entry.getKey(), entry.getValue());
-        }
-    }
-
-    public static <K, V, L extends Collection<V>> void sort2(final MapCollection<K, V, L> map,
-            final Comparator<Map.Entry<K, L>> c) {
-        final List<Map.Entry<K, L>> list = new ArrayList<Map.Entry<K, L>>(map.entrySet());
-        Collections.sort(list, c);
-        map.clear();
-        for (final Map.Entry<K, L> entry : list) {
-            map.putAll(entry.getKey(), entry.getValue());
-        }
+    public static <K, V> Map<K, V> sortByKey(final Map<K, V> map) {
+        return sort(map, new Comparator<Entry<K, V>>() {
+            @SuppressWarnings("unchecked")
+            public int compare(final Entry<K, V> o1, final Entry<K, V> o2) {
+                return ((Comparable<K>) o1.getKey()).compareTo(o2.getKey());
+            }
+        });
     }
 
     public static <K, V> Map<K, V> sortByKey(final Map<K, V> map, final Comparator<? super K> c) {
@@ -368,19 +358,11 @@ public class UtilMap {
         }, factory);
     }
 
-    public static <K, V> void sortByKey2(final Map<K, V> map, final Comparator<? super K> c) {
-        sort2(map, new Comparator<Entry<K, V>>() {
+    public static <K, V> Map<K, V> sortByValue(final Map<K, V> map) {
+        return sort(map, new Comparator<Entry<K, V>>() {
+            @SuppressWarnings("unchecked")
             public int compare(final Entry<K, V> o1, final Entry<K, V> o2) {
-                return c.compare(o1.getKey(), o2.getKey());
-            }
-        });
-    }
-
-    public static <K, V, L extends Collection<V>> void sortByKey2(final MapCollection<K, V, L> map,
-            final Comparator<? super K> c) {
-        sort2(map, new Comparator<Entry<K, L>>() {
-            public int compare(final Entry<K, L> o1, final Entry<K, L> o2) {
-                return c.compare(o1.getKey(), o2.getKey());
+                return ((Comparable<V>) o1.getValue()).compareTo(o2.getValue());
             }
         });
     }
@@ -389,19 +371,6 @@ public class UtilMap {
         return sort(map, new Comparator<Entry<K, V>>() {
             public int compare(final Entry<K, V> o1, final Entry<K, V> o2) {
                 return c.compare(o1.getValue(), o2.getValue());
-            }
-        });
-    }
-
-    public static <K, V> void sortByValue2(final Map<K, V> map, final Comparator<? super V> c) {
-        sort2(map, new Comparator<Entry<K, V>>() {
-            @SuppressWarnings({ "rawtypes", "unchecked" })
-            public int compare(final Entry<K, V> o1, final Entry<K, V> o2) {
-                if (c == null) {
-                    return ((Comparable) o1.getValue()).compareTo((o2.getValue()));
-                } else {
-                    return c.compare(o1.getValue(), o2.getValue());
-                }
             }
         });
     }
@@ -447,7 +416,7 @@ public class UtilMap {
 
     /**
      * Reduce the number of elements in given {@link Map} to at most given size.
-     * 
+     *
      * @param <K>
      *            type of keys in given {@code Map}
      * @param <V>
