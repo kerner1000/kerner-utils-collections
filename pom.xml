@@ -152,5 +152,10 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.jranges</groupId>
+			<artifactId>jranges</artifactId>
+			<version>0.5.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 </project>
