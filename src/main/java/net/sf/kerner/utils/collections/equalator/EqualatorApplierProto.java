@@ -40,7 +40,7 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
 
     public boolean areEqual(final T o1, final Object o2) {
         switch (type) {
-            case ALL:
+            case AND:
                 for (final Equalator<T> e : equalators) {
                     if (e.areEqual(o1, o2)) {
                         // ok
@@ -49,7 +49,7 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
                     }
                 }
                 return true;
-            case ONE:
+            case OR:
                 for (final Equalator<T> e : equalators) {
                     if (e.areEqual(o1, o2)) {
                         return true;

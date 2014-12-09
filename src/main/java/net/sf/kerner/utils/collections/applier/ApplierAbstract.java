@@ -17,7 +17,7 @@ package net.sf.kerner.utils.collections.applier;
 
 public abstract class ApplierAbstract implements Applier {
 
-    public static TYPE DEFAULT_FILTER_TYPE = TYPE.ALL;
+    public static TYPE DEFAULT_FILTER_TYPE = TYPE.AND;
 
     protected TYPE type;
 

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,7 +56,7 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
 
     public synchronized boolean filter(final E e) {
         switch (type) {
-            case ALL:
+            case AND:
                 for (final Filter<E> f : filters) {
                     if (f.filter(e)) {
                         // take
@@ -65,7 +65,7 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
                     }
                 }
                 return true;
-            case ONE:
+            case OR:
                 for (final Filter<E> f : filters) {
                     if (f.filter(e)) {
                         return true;
