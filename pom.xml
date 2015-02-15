@@ -155,7 +155,7 @@
 		<dependency>
 			<groupId>net.sf.jranges</groupId>
 			<artifactId>jranges</artifactId>
-			<version>0.5.1-SNAPSHOT</version>
+			<version>0.6.0</version>
 		</dependency>
 	</dependencies>
 </project>
