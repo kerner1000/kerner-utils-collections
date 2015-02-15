@@ -15,7 +15,7 @@
  ******************************************************************************/
 package net.sf.kerner.utils.collections.trasformer;
 
-import net.sf.kerner.utils.collections.list.impl.AbstractTransformingListFactory;
+import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
 import net.sf.kerner.utils.pair.Pair;
 
 public class TransformerObjectPairToSecond<S> extends AbstractTransformingListFactory<Pair<?, S>, S> {

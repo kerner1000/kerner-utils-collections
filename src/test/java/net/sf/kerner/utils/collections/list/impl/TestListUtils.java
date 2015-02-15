@@ -22,6 +22,8 @@ import static org.junit.Assert.fail;
 import java.util.Arrays;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.list.UtilList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

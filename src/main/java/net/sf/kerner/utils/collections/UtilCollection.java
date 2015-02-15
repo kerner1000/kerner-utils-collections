@@ -32,10 +32,11 @@ import net.sf.kerner.utils.Util;
 import net.sf.kerner.utils.UtilString;
 import net.sf.kerner.utils.collections.equalator.EqualatorDefault;
 import net.sf.kerner.utils.collections.filter.Filter;
-import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.filter.FilterType;
+import net.sf.kerner.utils.collections.list.ArrayListFactory;
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
-import net.sf.kerner.utils.collections.map.collection.MapCollection;
+import net.sf.kerner.utils.collections.map.MapCollection;
 import net.sf.kerner.utils.equal.Equalator;
 import net.sf.kerner.utils.math.UtilMath;
 import net.sf.kerner.utils.pair.PairSame;
@@ -127,25 +128,6 @@ public class UtilCollection {
     }
 
     /**
-     * Check whether {@code c1} contains any element in {@code c2}.
-     *
-     * @param c1
-     *            {@link Collection} to check for containing elements
-     * @param c2
-     *            elements which are checked if they are contained by {@code c1}
-     * @return {@code true}, if any of {@code c2} is contained by {@code c1};
-     *         {@code false} otherwise
-     */
-    public static boolean containsAny(final Collection<?> c1, final Object... c2) {
-        for (final Object o : c2) {
-            if (c1.contains(o)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Checks whether two or more elements in {@code c} have the same hashCode.
      *
      * @see Object#hashCode()
@@ -181,6 +163,16 @@ public class UtilCollection {
             }
             return false;
         }
+    }
+
+    public static <T> boolean containsType(final Collection<?> c1, final Class<?> clazz) {
+        final FilterType f = new FilterType(clazz);
+        for (final Object o : c1) {
+            if (f.filter(o)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static <T> boolean equalsOne(final T o1, final Collection<? extends T> others) {
@@ -245,6 +237,9 @@ public class UtilCollection {
     public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection,
             final Filter<C> filter) {
         final List<C> result = UtilList.newList();
+        if (collection == null) {
+            throw new NullPointerException();
+        }
         synchronized (collection) {
             for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
                 final C next = i.next();
@@ -252,6 +247,9 @@ public class UtilCollection {
                     result.add(next);
                 }
             }
+        }
+        if (!result.isEmpty()) {
+            final int k = 0;
         }
         return result;
     }
@@ -617,6 +615,10 @@ public class UtilCollection {
             }
         }
         return copy;
+    }
+
+    public static <T> T select(final Collection<? extends T> c, final Selector<T> s) {
+        return s.select(c);
     }
 
     public static String toString(final Iterable<?> elements) {

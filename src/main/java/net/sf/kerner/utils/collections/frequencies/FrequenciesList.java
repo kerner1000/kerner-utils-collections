@@ -22,7 +22,7 @@ import java.util.ListIterator;
 
 import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.collections.list.FactoryList;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 
 public class FrequenciesList<T extends Frequency> implements Frequencies<T>, List<T> {
 

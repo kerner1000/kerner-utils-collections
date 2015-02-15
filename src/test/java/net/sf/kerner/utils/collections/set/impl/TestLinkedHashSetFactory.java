@@ -22,6 +22,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 
+import net.sf.kerner.utils.collections.set.FactoryLinkedHashSet;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

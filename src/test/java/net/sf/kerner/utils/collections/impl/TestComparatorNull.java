@@ -16,7 +16,6 @@
 package net.sf.kerner.utils.collections.impl;
 
 import static org.junit.Assert.assertEquals;
-
 import net.sf.kerner.utils.collections.ComparatorNull;
 
 import org.junit.After;

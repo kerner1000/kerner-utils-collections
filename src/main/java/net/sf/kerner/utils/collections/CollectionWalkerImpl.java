@@ -17,7 +17,7 @@ package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
 
-import net.sf.kerner.utils.collections.filter.impl.FilterVisitorApplierProto;
+import net.sf.kerner.utils.collections.filter.FilterVisitorApplierProto;
 
 public class CollectionWalkerImpl<E> extends FilterVisitorApplierProto<E> implements CollectionWalker<E> {
 

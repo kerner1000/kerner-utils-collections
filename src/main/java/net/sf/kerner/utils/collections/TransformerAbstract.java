@@ -17,7 +17,7 @@ package net.sf.kerner.utils.collections;
 
 import java.util.Collection;
 
-import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
+import net.sf.kerner.utils.collections.list.ArrayListFactory;
 import net.sf.kerner.utils.transformer.Transformer;
 
 public abstract class TransformerAbstract<T, V> implements Transformer<T, V>, TransformerCollection<T, V> {

@@ -18,8 +18,8 @@ package net.sf.kerner.utils.collections;
 import java.util.Collection;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.list.ArrayListFactory;
 import net.sf.kerner.utils.collections.list.FactoryList;
-import net.sf.kerner.utils.collections.list.impl.ArrayListFactory;
 import net.sf.kerner.utils.pair.KeyValue;
 import net.sf.kerner.utils.transformer.ViewKeyValueKey;
 

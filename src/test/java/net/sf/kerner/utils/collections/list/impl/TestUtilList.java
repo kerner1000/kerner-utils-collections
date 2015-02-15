@@ -20,6 +20,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.pair.PairSame;
 import net.sf.kerner.utils.pair.PairSameImpl;
 

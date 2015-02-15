@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 
-import net.sf.kerner.utils.collections.map.impl.UtilMap;
+import net.sf.kerner.utils.collections.map.UtilMap;
 import net.sf.kerner.utils.math.UtilMath;
 
 /**
@@ -106,7 +106,7 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
     }
 
     public int getMaxIndex() {
-        return (int) UtilMath.max(map.values());
+        return (int) UtilMath.getMax(map.values());
     }
 
     public int getSize() {

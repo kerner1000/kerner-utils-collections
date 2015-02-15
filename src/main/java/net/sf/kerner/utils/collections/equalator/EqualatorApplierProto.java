@@ -18,7 +18,7 @@ package net.sf.kerner.utils.collections.equalator;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.applier.ApplierAbstract;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.equal.Equalator;
 import net.sf.kerner.utils.pair.Pair;
 
@@ -40,7 +40,7 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
 
     public boolean areEqual(final T o1, final Object o2) {
         switch (type) {
-            case ALL:
+            case AND:
                 for (final Equalator<T> e : equalators) {
                     if (e.areEqual(o1, o2)) {
                         // ok
@@ -49,7 +49,7 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
                     }
                 }
                 return true;
-            case ONE:
+            case OR:
                 for (final Equalator<T> e : equalators) {
                     if (e.areEqual(o1, o2)) {
                         return true;
