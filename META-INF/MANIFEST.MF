@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Name: Kerner Utilities Collections
 Bundle-SymbolicName: net.sf.kerner-utils-collections
-Bundle-Version: 0.25.0
+Bundle-Version: 0.26.0
 Export-Package: net.sf.kerner.utils.collections;version="0.25.0",
  net.sf.kerner.utils.collections.applier;version="0.25.0",
  net.sf.kerner.utils.collections.comparator,
@@ -25,8 +25,8 @@ Export-Package: net.sf.kerner.utils.collections;version="0.25.0",
 Import-Package: net.sf.jranges.range;version="0.5.0",
  net.sf.jranges.range.doublerange;version="0.5.0",
  net.sf.jranges.range.doublerange.impl;version="0.5.0",
- net.sf.jranges.range.integer;version="0.5.0",
- net.sf.jranges.range.integer.impl;version="0.5.0",
+ net.sf.jranges.range.integerrange;version="0.5.0",
+ net.sf.jranges.range.integerrange.impl;version="0.5.0",
  net.sf.kerner.utils;version="0.18.4",
  net.sf.kerner.utils.comparator;version="0.18.4",
  net.sf.kerner.utils.counter;version="0.18.4",

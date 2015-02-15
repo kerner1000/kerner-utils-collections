@@ -24,21 +24,33 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public class PropertiesSorted implements SortedMap<Object, Object>, Serializable {
+public class PropertiesSorted implements SortedMap<String, Object>, Serializable {
 
     private static final long serialVersionUID = -7867760517665815796L;
 
-    private final SortedMap<Object, Object> delegate;
+    public static PropertiesSorted fromProperties(final Properties properties) {
+        final PropertiesSorted result = new PropertiesSorted();
+        for (final java.util.Map.Entry<Object, Object> e : properties.entrySet()) {
+            result.put(e.getKey().toString(), e.getValue());
+        }
+        return result;
+    }
+
+    private final SortedMap<String, Object> delegate;
 
     public PropertiesSorted() {
-        delegate = new TreeMap<Object, Object>();
+        delegate = new TreeMap<String, Object>();
     }
 
-    public PropertiesSorted(final Comparator<? super Object> c) {
-        delegate = new TreeMap<Object, Object>(c);
+    public PropertiesSorted(final Comparator<? super String> c) {
+        delegate = new TreeMap<String, Object>(c);
     }
 
-    public PropertiesSorted(final SortedMap<Object, Object> delegate) {
+    public PropertiesSorted(final Properties properties) {
+        delegate = fromProperties(properties);
+    }
+
+    public PropertiesSorted(final SortedMap<String, Object> delegate) {
         this.delegate = delegate;
     }
 
@@ -46,7 +58,7 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         delegate.clear();
     }
 
-    public Comparator<? super Object> comparator() {
+    public Comparator<? super String> comparator() {
         return delegate.comparator();
     }
 
@@ -58,7 +70,7 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         return delegate.containsValue(value);
     }
 
-    public Set<java.util.Map.Entry<Object, Object>> entrySet() {
+    public Set<java.util.Map.Entry<String, Object>> entrySet() {
         return delegate.entrySet();
     }
 
@@ -67,7 +79,7 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         return delegate.equals(o);
     }
 
-    public Object firstKey() {
+    public String firstKey() {
         return delegate.firstKey();
     }
 
@@ -75,20 +87,12 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         return delegate.get(key);
     }
 
-    public synchronized String getString(final Object key) {
-        final Object result = delegate.get(key);
-        if (result != null) {
-            return result.toString();
-        }
-        return null;
-    }
-
     @Override
     public int hashCode() {
         return delegate.hashCode();
     }
 
-    public SortedMap<Object, Object> headMap(final Object toKey) {
+    public SortedMap<String, Object> headMap(final String toKey) {
         return delegate.headMap(toKey);
     }
 
@@ -96,26 +100,20 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         return delegate.isEmpty();
     }
 
-    public Set<Object> keySet() {
+    public Set<String> keySet() {
         return delegate.keySet();
     }
 
-    public Object lastKey() {
+    public String lastKey() {
         return delegate.lastKey();
     }
 
-    public Object put(final Object key, final Object value) {
+    public Object put(final String key, final Object value) {
         return delegate.put(key, value);
     }
 
-    public void putAll(final Map<? extends Object, ? extends Object> m) {
+    public void putAll(final Map<? extends String, ? extends Object> m) {
         delegate.putAll(m);
-    }
-
-    public synchronized void putAll(final Properties p) {
-        for (final java.util.Map.Entry<Object, Object> e : p.entrySet()) {
-            put(e.getKey(), e.getValue());
-        }
     }
 
     public Object remove(final Object key) {
@@ -126,11 +124,11 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
         return delegate.size();
     }
 
-    public SortedMap<Object, Object> subMap(final Object fromKey, final Object toKey) {
+    public SortedMap<String, Object> subMap(final String fromKey, final String toKey) {
         return delegate.subMap(fromKey, toKey);
     }
 
-    public SortedMap<Object, Object> tailMap(final Object fromKey) {
+    public SortedMap<String, Object> tailMap(final String fromKey) {
         return delegate.tailMap(fromKey);
     }
 
@@ -148,4 +146,5 @@ public class PropertiesSorted implements SortedMap<Object, Object>, Serializable
     public Collection<Object> values() {
         return delegate.values();
     }
+
 }

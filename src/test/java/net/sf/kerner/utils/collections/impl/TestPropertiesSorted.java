@@ -54,8 +54,8 @@ public class TestPropertiesSorted {
         p.put("2", "zwei");
         p.put("3", "drei");
         p.put("1", "eins");
-        final Set<Object> s = p.keySet();
-        final Iterator<Object> it = s.iterator();
+        final Set<String> s = p.keySet();
+        final Iterator<String> it = s.iterator();
         assertEquals("1", it.next());
         assertEquals("2", it.next());
         assertEquals("3", it.next());
@@ -66,7 +66,7 @@ public class TestPropertiesSorted {
         p.put("2", "zwei");
         p.put("3", "drei");
         p.put("1", "eins");
-        final Iterator<Object> it = p.keySet().iterator();
+        final Iterator<String> it = p.keySet().iterator();
         assertEquals("1", it.next());
         assertEquals("2", it.next());
         assertEquals("3", it.next());

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,20 +27,20 @@ import java.util.Set;
  * <b>Example:</b><br>
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * TODO example
  * </pre>
- * 
- * 
- * 
+ *
+ *
+ *
  * </p>
- * 
- * 
+ *
+ *
  * <p>
  * last reviewed: 2013-08-07
  * </p>
- * 
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2013-08-07
  * @param <K>
@@ -60,7 +60,7 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
      * for a key {@code k} such that
      * {@code (key==null ? k==null : key.equals(k))}. (There can be at most one
      * such mapping.)
-     * 
+     *
      * @param key
      *            key whose presence in this map is to be tested
      * @return {@code true} if this map contains a mapping for the specified key
@@ -80,7 +80,7 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
      * {@code (value==null ? v==null : value.equals(v))}. This operation will
      * probably require time linear in the map size for most implementations of
      * the {@code Map} interface.
-     * 
+     *
      * @param value
      *            value whose presence in this map is to be tested
      * @return {@code true} if this map maps one or more keys to the specified
@@ -139,13 +139,13 @@ public interface MapCollection<K, V, L extends Collection<? extends V>> {
 
     /**
      * Removes all values from {@code k} which are equal to {@code v}.
-     * 
+     *
      */
     void removeValue(K k, V v);
 
     /**
      * Removes all values from all keys which are equal to {@code v}.
-     * 
+     *
      */
     void removeValue(V v);
 

@@ -237,6 +237,9 @@ public class UtilCollection {
     public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection,
             final Filter<C> filter) {
         final List<C> result = UtilList.newList();
+        if (collection == null) {
+            throw new NullPointerException();
+        }
         synchronized (collection) {
             for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
                 final C next = i.next();
@@ -244,6 +247,9 @@ public class UtilCollection {
                     result.add(next);
                 }
             }
+        }
+        if (!result.isEmpty()) {
+            final int k = 0;
         }
         return result;
     }
