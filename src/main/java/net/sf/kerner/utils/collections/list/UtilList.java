@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ import net.sf.kerner.utils.transformer.TransformerToStringDefault;
 
 /**
  * Utility class for {@link List} related stuff.
- * 
+ *
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
  * @version 2013-05-03
  */
@@ -228,7 +228,7 @@ public class UtilList {
      * at this position in both list elemnt is {@code null} or other list does
      * not have this position. </p> Resulting list size is always equal to size
      * of longer list.
-     * 
+     *
      * @param <C>
      * @param c1
      *            first list

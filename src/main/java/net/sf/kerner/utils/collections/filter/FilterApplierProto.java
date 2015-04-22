@@ -16,6 +16,7 @@
 package net.sf.kerner.utils.collections.filter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.applier.Applier;
@@ -52,6 +53,16 @@ public class FilterApplierProto<E> extends ApplierAbstract implements FilterAppl
 
     public synchronized void clear() {
         filters.clear();
+    }
+
+    public synchronized List<E> filter(final Collection<? extends E> elements) {
+        final List<E> result = UtilList.newList();
+        for (final E e : elements) {
+            if (filter(e)) {
+                result.add(e);
+            }
+        }
+        return result;
     }
 
     public synchronized boolean filter(final E e) {

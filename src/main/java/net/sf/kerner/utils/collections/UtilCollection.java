@@ -209,7 +209,9 @@ public class UtilCollection {
      *
      * @param collection
      * @param filter
+     * @deprecated
      */
+    @Deprecated
     public static <C> void filterCollectionRemove(final Collection<? extends C> collection,
             final Filter<C> filter) {
         synchronized (collection) {
@@ -233,7 +235,9 @@ public class UtilCollection {
      * @param filter
      *            {@link Filter} which is used for filtering
      * @return A new {@link Collection}, that contains all matching elements
+     * @deprecated
      */
+    @Deprecated
     public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection,
             final Filter<C> filter) {
         final List<C> result = UtilList.newList();
