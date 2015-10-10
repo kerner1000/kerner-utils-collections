@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.Enumeration;
 
-import net.sf.kerner.utils.collections.IteratorToEnumerationTransformer;
+import net.sf.kerner.utils.collections.TransformerIteratorToEnumeration;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,7 +31,7 @@ import org.junit.Test;
 public class TestIteratorToEnumerationTransformer {
 
     @SuppressWarnings("rawtypes")
-    private IteratorToEnumerationTransformer t;
+    private TransformerIteratorToEnumeration t;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -52,7 +52,7 @@ public class TestIteratorToEnumerationTransformer {
 
     @Test
     public final void testTransform01() {
-        t = new IteratorToEnumerationTransformer<String>();
+        t = new TransformerIteratorToEnumeration<String>();
         @SuppressWarnings("unchecked")
         Enumeration<String> e = t.transform(Arrays.asList("1", "2", "3").iterator());
         assertEquals("1", e.nextElement());

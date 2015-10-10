@@ -39,7 +39,7 @@ import net.sf.kerner.utils.transformer.Transformer;
  * @param <T>
  *            type of elements
  */
-public class IteratorToEnumerationTransformer<T> implements Transformer<Iterator<T>, Enumeration<T>> {
+public class TransformerIteratorToEnumeration<T> implements Transformer<Iterator<T>, Enumeration<T>> {
 
     /**
 	 * 
