@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Arrays;
 import java.util.Enumeration;
 
-import net.sf.kerner.utils.collections.TransformerIteratorToEnumeration;
+import net.sf.kerner.utils.collections.trasformer.TransformerIteratorToEnumeration;
 
 import org.junit.After;
 import org.junit.AfterClass;
