@@ -38,6 +38,7 @@ import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 import net.sf.kerner.utils.collections.map.MapCollection;
 import net.sf.kerner.utils.collections.trasformer.ToString;
+import net.sf.kerner.utils.collections.trasformer.TransformerIteratorToCollection;
 import net.sf.kerner.utils.equal.Equalator;
 import net.sf.kerner.utils.math.UtilMath;
 import net.sf.kerner.utils.pair.PairSame;
@@ -565,20 +566,23 @@ public class UtilCollection {
 		return result;
 	}
 
+	/**
+	 *
+	 * @Deprecated Use {@link TransformerIteratorToCollection} instead.
+	 */
 	public static <C> Collection<C> iteratorToCollection(
 			final Iterable<? extends C> iterable) {
-		return iteratorToCollection(iterable, new ArrayListFactory<C>());
+		return TransformerIteratorToCollection.transform(iterable);
 	}
 
+	/**
+	 *
+	 * @Deprecated Use {@link TransformerIteratorToCollection} instead.
+	 */
 	public static <C> Collection<C> iteratorToCollection(
 			final Iterable<? extends C> iterable,
 			final FactoryCollection<C> factory) {
-		final Collection<C> result = factory.createCollection();
-		final Iterator<? extends C> it = iterable.iterator();
-		while (it.hasNext()) {
-			result.add(it.next());
-		}
-		return result;
+		return TransformerIteratorToCollection.transform(iterable, factory);
 	}
 
 	public static <T> Collection<T> newCollection() {
