@@ -15,17 +15,21 @@
  ******************************************************************************/
 package net.sf.kerner.utils.collections.trasformer;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Iterator;
+import java.util.List;
 
 import net.sf.kerner.utils.transformer.Transformer;
 
-public class TransformerEnumerationToIterator<T> implements
-		Transformer<Enumeration<T>, Iterator<T>> {
+public class TransformerEnumerationToIterable<T> implements
+		Transformer<Enumeration<T>, Iterable<T>> {
 
-	public Iterator<T> transform(Enumeration<T> enumeration) {
-		return new TransformerEnumerationToIterable<T>().transform(enumeration)
-				.iterator();
+	public Iterable<T> transform(Enumeration<T> enumeration) {
+		final List<T> v = new ArrayList<T>();
+		while (enumeration.hasMoreElements()) {
+			v.add(enumeration.nextElement());
+		}
+		return v;
 	}
 
 }
