@@ -18,7 +18,7 @@ package net.sf.kerner.utils.collections.filter;
 import java.util.List;
 
 import net.sf.kerner.utils.collections.applier.Applier;
-import net.sf.kerner.utils.collections.visitor.VisitorApplierDefaultProto;
+import net.sf.kerner.utils.collections.visitor.VisitorApplierProto;
 import net.sf.kerner.utils.visitor.Visitor;
 import net.sf.kerner.utils.visitor.VisitorApplier;
 
@@ -27,7 +27,7 @@ VisitorApplier<E> {
 
 	private final FilterApplierProto<E> filterDelegate = new FilterApplierProto<E>();
 
-	private final VisitorApplierDefaultProto<E> visitorDelegate = new VisitorApplierDefaultProto<E>();
+	private final VisitorApplierProto<E> visitorDelegate = new VisitorApplierProto<E>();
 
 	public FilterVisitorApplierProto<E> addFilter(final Filter<E> filter) {
 		filterDelegate.addFilter(filter);

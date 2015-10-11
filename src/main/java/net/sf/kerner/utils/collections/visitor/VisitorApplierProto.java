@@ -21,7 +21,7 @@ import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.visitor.Visitor;
 import net.sf.kerner.utils.visitor.VisitorApplier;
 
-public class VisitorApplierDefaultProto<E> implements VisitorApplier<E> {
+public class VisitorApplierProto<E> implements VisitorApplier<E> {
 
 	protected final Collection<Visitor<E>> visitors = UtilCollection
 			.newCollection();
