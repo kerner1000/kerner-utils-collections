@@ -3,6 +3,7 @@ package net.sf.kerner.utils.collections.trasformer;
 import java.util.Iterator;
 import java.util.ListIterator;
 
+import net.sf.kerner.utils.UtilString;
 import net.sf.kerner.utils.collections.list.visitor.VisitorList;
 import net.sf.kerner.utils.transformer.TransformerToString;
 import net.sf.kerner.utils.transformer.TransformerToStringDefault;
@@ -24,30 +25,27 @@ public class ToString {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public synchronized <T> String toString(final Iterable<T> iterable) {
-		return toString(iterable,
-				(TransformerToString) new TransformerToStringDefault());
+		return toString(iterable, (TransformerToString) new TransformerToStringDefault());
 	}
 
-	public synchronized <T> String toString(final Iterable<T> iterable,
-			final TransformerToString<T> transformer) {
+	public synchronized <T> String toString(final Iterable<T> iterable, final TransformerToString<T> transformer) {
 		final StringBuilder sb = new StringBuilder();
 		final Iterator<T> it = iterable.iterator();
 		while (it.hasNext()) {
 			sb.append(transformer.transform(it.next()));
 			if (it.hasNext())
-				sb.append(getObjectSeparator());
+				sb.append(UtilString.NEW_LINE_STRING);
 		}
 		return sb.toString();
 	}
 
-	public synchronized <T> String toString(final ListIterator<T> it,
-			final VisitorList<String, T> visitor) {
+	public synchronized <T> String toString(final ListIterator<T> it, final VisitorList<String, T> visitor) {
 		final StringBuilder sb = new StringBuilder();
 		while (it.hasNext()) {
 			final int index = it.nextIndex();
 			sb.append(visitor.visit(it.next(), index));
 			if (it.hasNext())
-				sb.append(getObjectSeparator());
+				sb.append(UtilString.NEW_LINE_STRING);
 		}
 		return sb.toString();
 	}
