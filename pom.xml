@@ -18,7 +18,7 @@
         <developer>
             <id>kerner</id>
             <name>Alexander Kerner</name>
-            <email>alexanderkerner24@googlemail.com</email>
+            <email>ak@silico-sciences.com</email>
             <roles>
                 <role>Project Manager</role>
                 <role>Architect</role>
@@ -100,46 +100,9 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>set-osgi-version</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>parse-version</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>regex-property</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>regex-property</goal>
-                        </goals>
-                        <configuration>
-                            <name>hans</name>
-                            <value>${parsedVersion.osgiVersion}</value>
-                            <regex>SNAPSHOT</regex>
-                            <replacement>qualifier</replacement>
-                            <failIfNoMatch>false</failIfNoMatch>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.2</version>
-                <configuration>
-                    <archive>
-                        <manifestFile>META-INF/MANIFEST.MF</manifestFile>
-                        <manifestEntries>
-                            <Bundle-Description>${project.description}</Bundle-Description>
-                            <Implementation-Version>${project.version}</Implementation-Version>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -154,19 +117,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <archive>
-                        <manifestEntries>
-                            <Bundle-ManifestVersion>2</Bundle-ManifestVersion>
-                            <Bundle-Name>${project.name}</Bundle-Name>
-                            <Bundle-Description>${project.description}</Bundle-Description>
-                            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}.source</Bundle-SymbolicName>
-                            <Bundle-Vendor>${project.organization.name}</Bundle-Vendor>
-                            <Bundle-Version>${hans}</Bundle-Version>
-                            <Eclipse-SourceBundle>${project.groupId}.${project.artifactId};version="${hans}";roots:="."</Eclipse-SourceBundle>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -174,7 +124,7 @@
         <dependency>
             <groupId>net.sf.kerner-utils</groupId>
             <artifactId>kerner-utils</artifactId>
-            <version>1.2.4-SNAPSHOT</version>
+            <version>1.2.4</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -185,7 +135,7 @@
         <dependency>
             <groupId>net.sf.jranges</groupId>
             <artifactId>jranges</artifactId>
-            <version>0.6.1</version>
+            <version>0.7.0</version>
         </dependency>
     </dependencies>
 </project>
