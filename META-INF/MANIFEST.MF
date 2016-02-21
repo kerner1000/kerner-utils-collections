@@ -2,8 +2,8 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Name: Kerner Utilities Collections
-Bundle-SymbolicName: net.sf.kerner-utils-collections
-Bundle-Version: 1.1.2.qualifier
+Bundle-SymbolicName: net.sf.kerner.utils.collections
+Bundle-Version: 1.2.1.qualifier
 Export-Package: net.sf.kerner.utils.collections;version="1.1.2.qualifier",
  net.sf.kerner.utils.collections.applier;version="1.1.2.qualifier",
  net.sf.kerner.utils.collections.comparator;version="1.1.2.qualifier",
@@ -38,3 +38,4 @@ Import-Package: net.sf.jranges.range,
  net.sf.kerner.utils.transformer,
  net.sf.kerner.utils.visitor,
  org.junit;resolution:=optional
+Bundle-ActivationPolicy: lazy
