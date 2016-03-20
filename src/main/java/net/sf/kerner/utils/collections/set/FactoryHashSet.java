@@ -13,28 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.list;
+package net.sf.kerner.utils.collections.set;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V>
-        implements FactoryList<V> {
+import net.sf.kerner.utils.Factory;
 
-    public AbstractTransformingListFactory() {
-        super();
+/**
+ * 
+ * A {@link FactorySet} to create instances of {@link HashSet}.
+ * 
+ * 
+ * @param <E>
+ */
+public class FactoryHashSet<E> implements FactorySet<E>, Factory<Set<E>> {
+
+    /**
+     * 
+     */
+    public Set<E> create() {
+        return createCollection();
     }
 
-    public AbstractTransformingListFactory(final FactoryList<V> factory) {
-        super(factory);
+    /** 
+	 * 
+	 */
+    public Set<E> createCollection() {
+        return new HashSet<E>();
     }
 
-    public synchronized List<V> createCollection() {
-        return factory.createCollection();
-    }
-
-    public synchronized List<V> createCollection(final Collection<? extends V> template) {
-        return factory.createCollection(template);
+    /**
+	 * 
+	 */
+    public Set<E> createCollection(final Collection<? extends E> template) {
+        return new HashSet<E>(template);
     }
 
 }
