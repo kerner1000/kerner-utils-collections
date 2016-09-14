@@ -22,20 +22,33 @@ import java.util.Set;
 
 public class UtilSet {
 
+    public static <C> Set<C> append(final Iterable<? extends Collection<? extends C>> collections) {
+	return append(collections, new FactoryLinkedHashSet<C>());
+    }
+
+    public static <C> Set<C> append(final Iterable<? extends Collection<? extends C>> collections,
+	    final FactorySet<C> factorySet) {
+	final Set<C> result = factorySet.createCollection();
+	for (final Collection<? extends C> c : collections) {
+	    result.addAll(c);
+	}
+	return result;
+    }
+
     public static <T> T getFirstElement(final Set<T> set) {
-        return set.iterator().next();
+	return set.iterator().next();
     }
 
     public static <T> T getLastElement(final Set<T> set) {
-        return new ArrayList<T>(set).get(set.size() - 1);
+	return new ArrayList<T>(set).get(set.size() - 1);
     }
 
     public static <T> Set<T> newSet() {
-        return new LinkedHashSet<T>();
+	return new LinkedHashSet<T>();
     }
 
     public static <T> Set<T> newSet(final Collection<? extends T> col) {
-        return new LinkedHashSet<T>(col);
+	return new LinkedHashSet<T>(col);
     }
 
 }

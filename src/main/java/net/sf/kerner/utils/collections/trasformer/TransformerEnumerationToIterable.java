@@ -21,15 +21,14 @@ import java.util.List;
 
 import net.sf.kerner.utils.transformer.Transformer;
 
-public class TransformerEnumerationToIterable<T> implements
-		Transformer<Enumeration<T>, Iterable<T>> {
+public class TransformerEnumerationToIterable<T> implements Transformer<Enumeration<T>, Iterable<T>> {
 
-	public Iterable<T> transform(Enumeration<T> enumeration) {
-		final List<T> v = new ArrayList<T>();
-		while (enumeration.hasMoreElements()) {
-			v.add(enumeration.nextElement());
-		}
-		return v;
+    public Iterable<T> transform(Enumeration<T> enumeration) {
+	final List<T> v = new ArrayList<T>();
+	while (enumeration.hasMoreElements()) {
+	    v.add(enumeration.nextElement());
 	}
+	return v;
+    }
 
 }

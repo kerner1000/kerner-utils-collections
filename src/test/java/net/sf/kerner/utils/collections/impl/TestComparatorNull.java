@@ -16,13 +16,14 @@
 package net.sf.kerner.utils.collections.impl;
 
 import static org.junit.Assert.assertEquals;
-import net.sf.kerner.utils.collections.ComparatorNull;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import net.sf.kerner.utils.collections.ComparatorNull;
 
 public class TestComparatorNull {
 
@@ -38,7 +39,7 @@ public class TestComparatorNull {
 
     @Before
     public void setUp() throws Exception {
-        c = new ComparatorNull<Integer>();
+	c = new ComparatorNull<Integer>();
     }
 
     @After
@@ -47,34 +48,34 @@ public class TestComparatorNull {
 
     @Test
     public final void testCompare01() {
-        assertEquals(0, c.compare(null, null));
+	assertEquals(0, c.compare(null, null));
     }
 
     @Test
     public final void testCompare02() {
-        assertEquals(-1, c.compare(null, Integer.valueOf(2)));
+	assertEquals(-1, c.compare(null, Integer.valueOf(2)));
     }
 
     @Test
     public final void testCompare03() {
-        assertEquals(1, c.compare(Integer.valueOf(2), null));
+	assertEquals(1, c.compare(Integer.valueOf(2), null));
     }
 
     @Test
     public final void testCompare04() {
-        assertEquals(0, c.compare(Integer.valueOf(2), Integer.valueOf(2)));
+	assertEquals(0, c.compare(Integer.valueOf(2), Integer.valueOf(2)));
     }
 
     @Test(expected = ClassCastException.class)
     public final void testCompare05() {
-        ComparatorNull<Object> c = new ComparatorNull<Object>();
-        assertEquals(0, c.compare(new Object(), Integer.valueOf(2)));
+	ComparatorNull<Object> c = new ComparatorNull<Object>();
+	assertEquals(0, c.compare(new Object(), Integer.valueOf(2)));
     }
 
     @Test(expected = ClassCastException.class)
     public final void testCompare06() {
-        ComparatorNull<Object> c = new ComparatorNull<Object>();
-        assertEquals(0, c.compare(Integer.valueOf(2), new Object()));
+	ComparatorNull<Object> c = new ComparatorNull<Object>();
+	assertEquals(0, c.compare(Integer.valueOf(2), new Object()));
     }
 
 }

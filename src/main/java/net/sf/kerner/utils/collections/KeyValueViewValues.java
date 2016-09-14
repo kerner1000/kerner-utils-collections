@@ -28,19 +28,19 @@ public class KeyValueViewValues<V> extends ViewKeyValueValue<V> implements Trans
     private final FactoryList<V> factory;
 
     public KeyValueViewValues(FactoryList<V> factory) {
-        this.factory = factory;
+	this.factory = factory;
     }
 
     public KeyValueViewValues() {
-        this(new ArrayListFactory<V>());
+	this(new ArrayListFactory<V>());
     }
 
     public List<V> transformCollection(Collection<? extends KeyValue<?, V>> element) {
-        List<V> result = factory.createCollection();
-        for (KeyValue<?, V> e : element) {
-            result.add(transform(e));
-        }
-        return result;
+	List<V> result = factory.createCollection();
+	for (KeyValue<?, V> e : element) {
+	    result.add(transform(e));
+	}
+	return result;
     }
 
 }

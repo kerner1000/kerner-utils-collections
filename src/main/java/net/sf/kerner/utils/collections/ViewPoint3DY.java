@@ -23,18 +23,18 @@ import net.sf.kerner.utils.transformer.Transformer;
 public class ViewPoint3DY implements Transformer<Point3D, Double>, TransformerCollection<Point3D, Double> {
 
     public Double transform(final Point3D element) {
-        if (element == null) {
-            return null;
-        }
-        return element.getY();
+	if (element == null) {
+	    return null;
+	}
+	return element.getY();
     }
 
     public Collection<Double> transformCollection(final Collection<? extends Point3D> element) {
-        final Collection<Double> result = UtilCollection.newCollection();
-        for (final Point3D p : element) {
-            result.add(transform(p));
-        }
-        return result;
+	final Collection<Double> result = UtilCollection.newCollection();
+	for (final Point3D p : element) {
+	    result.add(transform(p));
+	}
+	return result;
     }
 
 }

@@ -15,7 +15,6 @@
  ******************************************************************************/
 package net.sf.kerner.utils.collections.list.visitor;
 
-
 /**
  * <p>
  * <b>Example:</b><br>

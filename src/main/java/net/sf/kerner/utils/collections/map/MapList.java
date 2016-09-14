@@ -21,37 +21,44 @@ import java.util.Map;
 
 import net.sf.kerner.utils.Factory;
 
+/**
+ *
+ * @Deprecated use {@link com.google.common.collect.Multimap} instead (<a href=
+ *             "http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/collect/Multimap.html">
+ *             Docs Guava</a>).
+ */
+@Deprecated
 public class MapList<K, V> extends MapCollectionAbstract<K, V, List<V>> {
 
     private final Factory<List<V>> factory;
 
     public MapList() {
-        this.factory = new Factory<List<V>>() {
+	this.factory = new Factory<List<V>>() {
 
-            public List<V> create() {
-                return new ArrayList<V>();
-            }
-        };
+	    public List<V> create() {
+		return new ArrayList<V>();
+	    }
+	};
     }
 
     public MapList(final Map<K, List<V>> map) {
-        super(map);
-        this.factory = new Factory<List<V>>() {
+	super(map);
+	this.factory = new Factory<List<V>>() {
 
-            public List<V> create() {
-                return new ArrayList<V>();
-            }
-        };
+	    public List<V> create() {
+		return new ArrayList<V>();
+	    }
+	};
     }
 
     public MapList(final Map<K, List<V>> map, final Factory<List<V>> factory) {
-        super(map);
-        this.factory = factory;
+	super(map);
+	this.factory = factory;
     }
 
     @Override
     protected Factory<List<V>> getFactoryCollection() {
-        return factory;
+	return factory;
     }
 
 }

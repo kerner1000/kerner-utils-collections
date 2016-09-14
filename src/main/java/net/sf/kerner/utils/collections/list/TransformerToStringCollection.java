@@ -28,23 +28,23 @@ public class TransformerToStringCollection<T> extends AbstractTransformingListFa
     private final TransformerToString<T> transformer;
 
     public TransformerToStringCollection() {
-        this(null);
+	this(null);
     }
 
     public TransformerToStringCollection(final TransformerToString<T> transformer) {
-        this.transformer = transformer;
+	this.transformer = transformer;
     }
 
     public String transform(final T arg0) {
-        if (transformer == null) {
-            return DEFAULT_TRANSFORMER.transform(arg0);
-        }
-        return transformer.transform(arg0);
+	if (transformer == null) {
+	    return DEFAULT_TRANSFORMER.transform(arg0);
+	}
+	return transformer.transform(arg0);
     }
 
     @Override
     public List<String> transformCollection(final Collection<? extends T> element) {
-        return super.transformCollection(element);
+	return super.transformCollection(element);
     }
 
 }

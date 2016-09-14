@@ -27,21 +27,21 @@ public class FilterEqual<T> implements Filter<T> {
     private final Equalator<T> equalator;
 
     public FilterEqual(final Collection<? extends T> elements, final Equalator<T> equalator) {
-        super();
-        this.elements = elements;
-        this.equalator = equalator;
+	super();
+	this.elements = elements;
+	this.equalator = equalator;
     }
 
     public boolean filter(final T e) {
-        for (final T o : elements) {
-            if (o.hashCode() == e.hashCode()) {
-                continue;
-            }
-            if (equalator.areEqual(e, o)) {
-                return true;
-            }
-        }
-        return false;
+	for (final T o : elements) {
+	    if (o.hashCode() == e.hashCode()) {
+		continue;
+	    }
+	    if (equalator.areEqual(e, o)) {
+		return true;
+	    }
+	}
+	return false;
     }
 
 }

@@ -19,24 +19,23 @@ import java.util.Collection;
 
 import net.sf.kerner.utils.collections.filter.FilterVisitorApplierProto;
 
-public class CollectionWalkerImpl<E> extends FilterVisitorApplierProto<E>
-		implements CollectionWalker<E> {
+public class CollectionWalkerImpl<E> extends FilterVisitorApplierProto<E> implements CollectionWalker<E> {
 
-	public void afterWalk() {
-		// do nothing by default
-	}
+    public void afterWalk() {
+	// do nothing by default
+    }
 
-	public void beforeWalk() {
-		// do nothing by default
-	}
+    public void beforeWalk() {
+	// do nothing by default
+    }
 
-	public void walk(final Collection<? extends E> list) {
-		beforeWalk();
-		for (final E e : list) {
-			if (filter(e)) {
-				transform(e);
-			}
-		}
-		afterWalk();
+    public void walk(final Collection<? extends E> list) {
+	beforeWalk();
+	for (final E e : list) {
+	    if (filter(e)) {
+		transform(e);
+	    }
 	}
+	afterWalk();
+    }
 }

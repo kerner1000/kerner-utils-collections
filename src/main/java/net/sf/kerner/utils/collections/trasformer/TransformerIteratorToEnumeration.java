@@ -39,17 +39,16 @@ import net.sf.kerner.utils.transformer.Transformer;
  * @param <T>
  *            type of elements
  */
-public class TransformerIteratorToEnumeration<T> implements
-		Transformer<Iterator<T>, Enumeration<T>> {
+public class TransformerIteratorToEnumeration<T> implements Transformer<Iterator<T>, Enumeration<T>> {
 
-	/**
-	 *
-	 */
-	public Enumeration<T> transform(Iterator<T> iterator) {
-		final Vector<T> v = new Vector<T>();
-		while (iterator.hasNext())
-			v.add(iterator.next());
-		return v.elements();
-	}
+    /**
+     *
+     */
+    public Enumeration<T> transform(Iterator<T> iterator) {
+	final Vector<T> v = new Vector<T>();
+	while (iterator.hasNext())
+	    v.add(iterator.next());
+	return v.elements();
+    }
 
 }

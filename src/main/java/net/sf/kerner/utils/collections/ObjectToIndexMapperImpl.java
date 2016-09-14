@@ -37,20 +37,20 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
     // Fields //
 
     /**
-	 * 
-	 */
+     * 
+     */
     protected final Map<T, Integer> map = new LinkedHashMap<T, Integer>();
 
     public ObjectToIndexMapperImpl(final List<? extends T> keys) {
-        final List<Integer> values = new ArrayList<Integer>();
-        for (int i = 0; i < keys.size(); i++) {
-            values.add(Integer.valueOf(i));
-        }
-        UtilMap.initMapWithValues(map, keys, values);
+	final List<Integer> values = new ArrayList<Integer>();
+	for (int i = 0; i < keys.size(); i++) {
+	    values.add(Integer.valueOf(i));
+	}
+	UtilMap.initMapWithValues(map, keys, values);
     }
 
     public ObjectToIndexMapperImpl(final T... keys) {
-        this(Arrays.asList(keys));
+	this(Arrays.asList(keys));
     }
 
     // Private //
@@ -63,65 +63,65 @@ public class ObjectToIndexMapperImpl<T> implements ObjectToIndexMapper<T> {
 
     @Override
     public String toString() {
-        return map.toString();
+	return map.toString();
     }
 
     // Implement //
 
     /**
-	 * 
-	 */
+     * 
+     */
     public int get(final T key) {
-        final Integer result = map.get(key);
-        if (result != null) {
-            return result;
-        } else
-            throw new NoSuchElementException("no such key [" + key + "]");
+	final Integer result = map.get(key);
+	if (result != null) {
+	    return result;
+	} else
+	    throw new NoSuchElementException("no such key [" + key + "]");
     }
 
     public Object getValue(final int index) {
-        if (index < 0)
-            throw new IllegalArgumentException("index [" + index + "]");
-        for (final Entry<T, Integer> e : map.entrySet()) {
-            if (e.getValue().equals(Integer.valueOf(index)))
-                return e.getKey();
-        }
-        throw new NoSuchElementException("no such index [" + index + "]");
+	if (index < 0)
+	    throw new IllegalArgumentException("index [" + index + "]");
+	for (final Entry<T, Integer> e : map.entrySet()) {
+	    if (e.getValue().equals(Integer.valueOf(index)))
+		return e.getKey();
+	}
+	throw new NoSuchElementException("no such index [" + index + "]");
     }
 
     public boolean containsKey(final T key) {
-        return map.containsKey(key);
+	return map.containsKey(key);
     }
 
     public boolean containsValue(final int index) {
-        return map.containsValue(Integer.valueOf(index));
+	return map.containsValue(Integer.valueOf(index));
     }
 
     public List<Integer> values() {
-        return new ArrayList<Integer>(map.values());
+	return new ArrayList<Integer>(map.values());
     }
 
     public List<T> keys() {
-        return new ArrayList<T>(map.keySet());
+	return new ArrayList<T>(map.keySet());
     }
 
     public int getMaxIndex() {
-        return (int) UtilMath.getMax(map.values());
+	return (int) UtilMath.getMax(map.values());
     }
 
     public int getSize() {
-        return map.values().size();
+	return map.values().size();
     }
 
     public boolean isEmpty() {
-        return getSize() == 0;
+	return getSize() == 0;
     }
 
     public void addMapping(final T key, final int value) {
-        map.put(key, value);
+	map.put(key, value);
     }
 
     public void addMapping(final T key) {
-        map.put(key, getMaxIndex() + 1);
+	map.put(key, getMaxIndex() + 1);
     }
 }

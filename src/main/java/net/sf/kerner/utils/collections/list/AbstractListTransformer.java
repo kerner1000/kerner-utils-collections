@@ -22,8 +22,8 @@ import java.util.List;
 
 import net.sf.kerner.utils.transformer.Transformer;
 
-public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T> implements
-        Transformer<T, V>, TransformerList<T, V> {
+public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
+	implements Transformer<T, V>, TransformerList<T, V> {
 
     protected final FactoryList<V> factory;
 
@@ -32,49 +32,49 @@ public abstract class AbstractListTransformer<T, V> extends ListWalkerDefault<T>
     protected volatile int currentIndex;
 
     public AbstractListTransformer() {
-        this(new ArrayListFactory<V>());
+	this(new ArrayListFactory<V>());
     }
 
     public AbstractListTransformer(final FactoryList<V> factory) {
-        this.factory = factory;
-        super.addVisitor(new DefaultListVisitorImpl<T>() {
-            @Override
-            public synchronized Void visit(final T element, final int index) {
-                setCurrentIndex(index);
-                result.add(transform(element));
-                return null;
-            }
-        });
+	this.factory = factory;
+	super.addVisitor(new DefaultListVisitorImpl<T>() {
+	    @Override
+	    public synchronized Void visit(final T element, final int index) {
+		setCurrentIndex(index);
+		result.add(transform(element));
+		return null;
+	    }
+	});
     }
 
     @Override
     public synchronized void beforeWalk() {
-        super.beforeWalk();
-        result = factory.createCollection();
+	super.beforeWalk();
+	result = factory.createCollection();
     }
 
     public synchronized List<V> getAgain() {
-        return Collections.unmodifiableList(result);
+	return Collections.unmodifiableList(result);
     }
 
     protected synchronized int getCurrentIndex() {
-        return currentIndex;
+	return currentIndex;
     }
 
     private synchronized void setCurrentIndex(final int currentIndex) {
-        this.currentIndex = currentIndex;
+	this.currentIndex = currentIndex;
     }
 
     /**
      * if {@code element == null}, empty list is returned.
      */
     public synchronized List<V> transformCollection(final Collection<? extends T> element) {
-        if (element != null)
-            if (element instanceof List)
-                walk((List<? extends T>) element);
-            else
-                walk(new ArrayList<T>(element));
-        return result;
+	if (element != null)
+	    if (element instanceof List)
+		walk((List<? extends T>) element);
+	    else
+		walk(new ArrayList<T>(element));
+	return result;
     }
 
 }

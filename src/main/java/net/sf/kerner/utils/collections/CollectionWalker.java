@@ -20,9 +20,8 @@ import java.util.Collection;
 import net.sf.kerner.utils.collections.filter.FilterApplier;
 import net.sf.kerner.utils.visitor.VisitorApplier;
 
-public interface CollectionWalker<E> extends Walker<E>, FilterApplier<E>,
-		VisitorApplier<E> {
+public interface CollectionWalker<E> extends Walker<E>, FilterApplier<E>, VisitorApplier<E> {
 
-	void walk(Collection<? extends E> list);
+    void walk(Collection<? extends E> list);
 
 }

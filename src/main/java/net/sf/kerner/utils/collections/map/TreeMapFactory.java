@@ -21,7 +21,7 @@ import java.util.TreeMap;
 public class TreeMapFactory<K, V> implements FactoryMap<K, V> {
 
     public Map<K, V> create() {
-        return new TreeMap<K, V>();
+	return new TreeMap<K, V>();
     }
 
 }

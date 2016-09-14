@@ -22,22 +22,22 @@ public class TestRangeScaler {
 
     @Before
     public void setUp() throws Exception {
-        rs = new RangeScaler();
+	rs = new RangeScaler();
     }
 
     @After
     public void tearDown() throws Exception {
-        rs = null;
+	rs = null;
     }
 
     @Test
     public final void testScale01() {
-        final double[] arr = new double[] { 2, 4, 8 };
-        final double[] exp = new double[] { 4, 8, 16 };
-        final double[] result = rs.scale(arr, 16);
-        assertEquals(exp.length, result.length);
-        for (int i = 0; i < exp.length; i++) {
-            assertEquals(exp[i], result[i], 0.0);
-        }
+	final double[] arr = new double[] { 2, 4, 8 };
+	final double[] exp = new double[] { 4, 8, 16 };
+	final double[] result = rs.scale(arr, 16);
+	assertEquals(exp.length, result.length);
+	for (int i = 0; i < exp.length; i++) {
+	    assertEquals(exp[i], result[i], 0.0);
+	}
     }
 }

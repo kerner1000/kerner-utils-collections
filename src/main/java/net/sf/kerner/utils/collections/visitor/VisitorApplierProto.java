@@ -18,27 +18,27 @@
 package net.sf.kerner.utils.collections.visitor;
 
 import java.util.Collection;
+
 import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.visitor.Visitor;
 import net.sf.kerner.utils.visitor.VisitorApplier;
 
 public class VisitorApplierProto<E> implements VisitorApplier<E> {
 
-    protected final Collection<Visitor<E>> visitors = UtilCollection
-            .newCollection();
+    protected final Collection<Visitor<E>> visitors = UtilCollection.newCollection();
 
     public synchronized void addVisitor(final Visitor<E> visitor) {
-        visitors.add(visitor);
+	visitors.add(visitor);
     }
 
     public synchronized void clearVisitors() {
-        visitors.clear();
+	visitors.clear();
     }
 
     public synchronized Void transform(final E e) {
-        for (final Visitor<E> v : visitors) {
-            v.transform(e);
-        }
-        return null;
+	for (final Visitor<E> v : visitors) {
+	    v.transform(e);
+	}
+	return null;
     }
 }

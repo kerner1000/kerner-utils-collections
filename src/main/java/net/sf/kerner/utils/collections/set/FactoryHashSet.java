@@ -13,15 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  ******************************************************************************/
-package net.sf.kerner.utils.collections.map;
+package net.sf.kerner.utils.collections.set;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
-public class FactoryLinkedHashMap<K, V> implements FactoryMap<K, V> {
+import net.sf.kerner.utils.Factory;
 
-    public Map<K, V> create() {
-	return new LinkedHashMap<K, V>();
+/**
+ * 
+ * A {@link FactorySet} to create instances of {@link HashSet}.
+ * 
+ * 
+ * @param <E>
+ */
+public class FactoryHashSet<E> implements FactorySet<E>, Factory<Set<E>> {
+
+    /**
+     * 
+     */
+    public Set<E> create() {
+	return createCollection();
+    }
+
+    /** 
+     * 
+     */
+    public Set<E> createCollection() {
+	return new HashSet<E>();
+    }
+
+    /**
+     * 
+     */
+    public Set<E> createCollection(final Collection<? extends E> template) {
+	return new HashSet<E>(template);
     }
 
 }

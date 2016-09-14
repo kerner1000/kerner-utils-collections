@@ -27,17 +27,17 @@ public class ExceptionRuntimeDuplicateElement extends RuntimeException {
     }
 
     public ExceptionRuntimeDuplicateElement(final String message) {
-        super(message);
+	super(message);
 
     }
 
     public ExceptionRuntimeDuplicateElement(final String message, final Throwable cause) {
-        super(message, cause);
+	super(message, cause);
 
     }
 
     public ExceptionRuntimeDuplicateElement(final Throwable cause) {
-        super(cause);
+	super(cause);
 
     }
 

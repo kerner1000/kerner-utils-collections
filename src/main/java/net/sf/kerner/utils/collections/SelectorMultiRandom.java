@@ -17,25 +17,25 @@ public class SelectorMultiRandom<T> implements SelectorMulti<T> {
     }
 
     public SelectorMultiRandom(double prop) {
-        this.prop = prop;
+	this.prop = prop;
     }
 
     public synchronized double getProp() {
-        return prop;
+	return prop;
     }
 
     public Collection<T> select(Collection<? extends T> elements) {
-        List<T> result = new ArrayList<T>();
-        for (T t : elements) {
-            if (UtilRandom.generateWithProbability(getProp())) {
-                result.add(t);
-            }
-        }
-        return result;
+	List<T> result = new ArrayList<T>();
+	for (T t : elements) {
+	    if (UtilRandom.generateWithProbability(getProp())) {
+		result.add(t);
+	    }
+	}
+	return result;
     }
 
     public synchronized void setProp(double prop) {
-        this.prop = prop;
+	this.prop = prop;
     }
 
 }

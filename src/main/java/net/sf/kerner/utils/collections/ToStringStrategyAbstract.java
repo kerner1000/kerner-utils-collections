@@ -27,17 +27,17 @@ public abstract class ToStringStrategyAbstract<T> implements Transformer<T, Stri
      *
      */
     public synchronized String getDelimiter() {
-        return delimiter;
+	return delimiter;
     }
 
     public abstract String getEmptyRow();
 
     public synchronized List<?> getPostfix() {
-        return postfix;
+	return postfix;
     }
 
     public synchronized List<?> getPrefix() {
-        return prefix;
+	return prefix;
     }
 
     /**
@@ -45,31 +45,31 @@ public abstract class ToStringStrategyAbstract<T> implements Transformer<T, Stri
      *
      */
     public synchronized String getSeparator() {
-        return separator;
+	return separator;
     }
 
     public synchronized void setDelimiter(final String delimiter) {
-        this.delimiter = delimiter;
+	this.delimiter = delimiter;
     }
 
     public synchronized void setPostfix(final List<?> postfix) {
-        this.postfix = postfix;
+	this.postfix = postfix;
     }
 
     public synchronized void setPrefix(final List<?> prefix) {
-        this.prefix = prefix;
+	this.prefix = prefix;
     }
 
     public synchronized void setSeparator(final String separator) {
-        this.separator = separator;
+	this.separator = separator;
     }
 
     public String toString(final Collection<? extends T> elements) {
-        return UtilCollection.toString(new ArrayList<T>(elements), this, separator);
+	return UtilCollection.toString(new ArrayList<T>(elements), this, separator);
     }
 
     public String toString(final T element) {
-        return transform(element);
+	return transform(element);
     }
 
 }

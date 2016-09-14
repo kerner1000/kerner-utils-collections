@@ -43,13 +43,13 @@ public class ComparatorInverter<T> implements Comparator<T> {
     protected final Comparator<T> c;
 
     public ComparatorInverter(final Comparator<T> c) {
-        Util.checkForNull(c);
-        this.c = c;
+	Util.checkForNull(c);
+	this.c = c;
     }
 
     public int compare(final T o1, final T o2) {
-        final int result = c.compare(o2, o1);
-        return result;
+	final int result = c.compare(o2, o1);
+	return result;
     }
 
 }

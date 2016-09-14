@@ -20,13 +20,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.Iterator;
 import java.util.Set;
 
-import net.sf.kerner.utils.collections.PropertiesSorted;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import net.sf.kerner.utils.collections.PropertiesSorted;
 
 public class TestPropertiesSorted {
 
@@ -42,7 +42,7 @@ public class TestPropertiesSorted {
 
     @Before
     public void setUp() throws Exception {
-        p = new PropertiesSorted();
+	p = new PropertiesSorted();
     }
 
     @After
@@ -51,25 +51,25 @@ public class TestPropertiesSorted {
 
     @Test
     public final void testKeys01() {
-        p.put("2", "zwei");
-        p.put("3", "drei");
-        p.put("1", "eins");
-        final Set<String> s = p.keySet();
-        final Iterator<String> it = s.iterator();
-        assertEquals("1", it.next());
-        assertEquals("2", it.next());
-        assertEquals("3", it.next());
+	p.put("2", "zwei");
+	p.put("3", "drei");
+	p.put("1", "eins");
+	final Set<String> s = p.keySet();
+	final Iterator<String> it = s.iterator();
+	assertEquals("1", it.next());
+	assertEquals("2", it.next());
+	assertEquals("3", it.next());
     }
 
     @Test
     public final void testKeySet01() {
-        p.put("2", "zwei");
-        p.put("3", "drei");
-        p.put("1", "eins");
-        final Iterator<String> it = p.keySet().iterator();
-        assertEquals("1", it.next());
-        assertEquals("2", it.next());
-        assertEquals("3", it.next());
+	p.put("2", "zwei");
+	p.put("3", "drei");
+	p.put("1", "eins");
+	final Iterator<String> it = p.keySet().iterator();
+	assertEquals("1", it.next());
+	assertEquals("2", it.next());
+	assertEquals("3", it.next());
     }
 
 }

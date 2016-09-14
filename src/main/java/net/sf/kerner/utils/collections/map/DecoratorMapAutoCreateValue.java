@@ -22,8 +22,8 @@ import java.util.Set;
 import net.sf.kerner.utils.Factory;
 
 /**
- * A {@link Map} decorator, that creates a value to a given key, if no such value is associated to a key, when trying to
- * get associated value for a key.
+ * A {@link Map} decorator, that creates a value to a given key, if no such
+ * value is associated to a key, when trying to get associated value for a key.
  * <p>
  * <b>Example:</b><br>
  * </p>
@@ -47,78 +47,78 @@ public class DecoratorMapAutoCreateValue<K, V> implements Map<K, V> {
     private final Factory<V> factory;
 
     public DecoratorMapAutoCreateValue(Map<K, V> decorated, Factory<V> factory) {
-        super();
-        this.decorated = decorated;
-        this.factory = factory;
+	super();
+	this.decorated = decorated;
+	this.factory = factory;
     }
 
     @SuppressWarnings("unchecked")
     public V get(Object key) {
-        if (decorated.containsKey(key)) {
-            // ok
-        } else {
-            decorated.put((K) key, factory.create());
-        }
-        return decorated.get(key);
+	if (decorated.containsKey(key)) {
+	    // ok
+	} else {
+	    decorated.put((K) key, factory.create());
+	}
+	return decorated.get(key);
     }
 
     // Delegate //
 
     @Override
     public String toString() {
-        return decorated.toString();
+	return decorated.toString();
     }
 
     public int size() {
-        return decorated.size();
+	return decorated.size();
     }
 
     public boolean isEmpty() {
-        return decorated.isEmpty();
+	return decorated.isEmpty();
     }
 
     public boolean containsKey(Object key) {
-        return decorated.containsKey(key);
+	return decorated.containsKey(key);
     }
 
     public boolean containsValue(Object value) {
-        return decorated.containsValue(value);
+	return decorated.containsValue(value);
     }
 
     public V put(K key, V value) {
-        return decorated.put(key, value);
+	return decorated.put(key, value);
     }
 
     public V remove(Object key) {
-        return decorated.remove(key);
+	return decorated.remove(key);
     }
 
     public void putAll(Map<? extends K, ? extends V> m) {
-        decorated.putAll(m);
+	decorated.putAll(m);
     }
 
     public void clear() {
-        decorated.clear();
+	decorated.clear();
     }
 
     public Set<K> keySet() {
-        return decorated.keySet();
+	return decorated.keySet();
     }
 
     public Collection<V> values() {
-        return decorated.values();
+	return decorated.values();
     }
 
     public Set<java.util.Map.Entry<K, V>> entrySet() {
-        return decorated.entrySet();
+	return decorated.entrySet();
     }
 
     public boolean equals(Object o) {
-        return decorated.equals(o);
+	return decorated.equals(o);
     }
 
     public int hashCode() {
-        return decorated.hashCode();
+	return decorated.hashCode();
     }
 
 }
