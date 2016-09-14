@@ -31,37 +31,37 @@ public class FilterVisitorListApplierProto<E> implements FilterApplier<E>, Visit
     private final VisitorApplierListDefault<E> visitorDelegate = new VisitorListApplierDefaultProto<E>();
 
     public FilterVisitorListApplierProto<E> addFilter(final Filter<E> filter) {
-        filterDelegate.addFilter(filter);
-        return this;
+	filterDelegate.addFilter(filter);
+	return this;
     }
 
     public void addVisitor(final VisitorList<Void, E> visitor) {
-        visitorDelegate.addVisitor(visitor);
+	visitorDelegate.addVisitor(visitor);
     }
 
     public void clear() {
-        filterDelegate.clear();
+	filterDelegate.clear();
     }
 
     public void clearVisitors() {
-        visitorDelegate.clearVisitors();
+	visitorDelegate.clearVisitors();
     }
 
     public boolean filter(final E e) {
-        return filterDelegate.filter(e);
+	return filterDelegate.filter(e);
     }
 
     public List<Filter<E>> getFilters() {
-        return filterDelegate.getFilters();
+	return filterDelegate.getFilters();
     }
 
     public boolean isEmpty() {
-        return filterDelegate.isEmpty();
+	return filterDelegate.isEmpty();
     }
 
     public void visit(final E e, final int index) {
-        if (filter(e)) {
-            visitorDelegate.visit(e, index);
-        }
+	if (filter(e)) {
+	    visitorDelegate.visit(e, index);
+	}
     }
 }

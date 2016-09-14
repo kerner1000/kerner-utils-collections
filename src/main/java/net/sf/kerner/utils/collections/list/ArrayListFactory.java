@@ -47,26 +47,26 @@ public class ArrayListFactory<E> implements FactoryList<E> {
     private final int size;
 
     public ArrayListFactory() {
-        this.size = -1;
+	this.size = -1;
     }
 
     public ArrayListFactory(final int size) {
-        this.size = size;
+	this.size = size;
     }
 
     public synchronized List<E> createCollection() {
-        if (size > -1) {
-            return new ArrayList<E>(size);
-        }
-        return new ArrayList<E>();
+	if (size > -1) {
+	    return new ArrayList<E>(size);
+	}
+	return new ArrayList<E>();
     }
 
     public synchronized List<E> createCollection(final Collection<? extends E> template) {
-        return new ArrayList<E>(template);
+	return new ArrayList<E>(template);
     }
 
     public synchronized int getSize() {
-        return size;
+	return size;
     }
 
 }

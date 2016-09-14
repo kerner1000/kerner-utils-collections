@@ -21,20 +21,20 @@ import java.util.Set;
 import net.sf.kerner.utils.collections.set.FactoryLinkedHashSet;
 import net.sf.kerner.utils.collections.set.TransformerSet;
 
-public class TransformerObjectToHashCode extends TransformerAbstract<Object, Integer> implements
-        TransformerSet<Object, Integer> {
+public class TransformerObjectToHashCode extends TransformerAbstract<Object, Integer>
+	implements TransformerSet<Object, Integer> {
 
     public TransformerObjectToHashCode() {
-        super(new FactoryLinkedHashSet<Integer>());
+	super(new FactoryLinkedHashSet<Integer>());
     }
 
     public Integer transform(final Object element) {
-        return element.hashCode();
+	return element.hashCode();
     }
 
     @Override
     public Set<Integer> transformCollection(final Collection<? extends Object> element) {
-        return (Set<Integer>) super.transformCollection(element);
+	return (Set<Integer>) super.transformCollection(element);
     }
 
 }

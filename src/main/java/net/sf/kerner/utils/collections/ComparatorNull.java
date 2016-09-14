@@ -18,17 +18,18 @@ package net.sf.kerner.utils.collections;
 import java.util.Comparator;
 
 /**
- * Prototype implementation for a {@link Comparator} which adds support for {@code null} values: </br>
+ * Prototype implementation for a {@link Comparator} which adds support for
+ * {@code null} values: </br>
  * 
  * <pre>
  * 
  * public int compare(T o1, T o2) {
  *     if (o1 == null &amp;&amp; o2 == null)
- *         return 0;
+ * 	return 0;
  *     if (o1 == null)
- *         return -1;
+ * 	return -1;
  *     if (o2 == null)
- *         return 1;
+ * 	return 1;
  *     return compareNonNull(o1, o2);
  * }
  * 
@@ -52,31 +53,32 @@ import java.util.Comparator;
 public class ComparatorNull<T> implements Comparator<T> {
 
     public final int compare(final T o1, final T o2) {
-        if (o1 == null && o2 == null)
-            return 0;
-        if (o1 == null)
-            return -1;
-        if (o2 == null)
-            return 1;
-        return compareNonNull(o1, o2);
+	if (o1 == null && o2 == null)
+	    return 0;
+	if (o1 == null)
+	    return -1;
+	if (o2 == null)
+	    return 1;
+	return compareNonNull(o1, o2);
     }
 
     /**
-     * Delegate method to compare objects in case both are not {@code null}. By default, this method returns
-     * {@code o1#compareTo(o2)}. Override if custom behavior is desired or objects do not implement {@link Comparable}.
+     * Delegate method to compare objects in case both are not {@code null}. By
+     * default, this method returns {@code o1#compareTo(o2)}. Override if custom
+     * behavior is desired or objects do not implement {@link Comparable}.
      * 
      * @param o1
      *            first object
      * @param o2
      *            second object
-     * @return a negative integer, zero, or a positive integer as the first argument is less than, equal to, or greater
-     *         than the second
+     * @return a negative integer, zero, or a positive integer as the first
+     *         argument is less than, equal to, or greater than the second
      * @throws ClassCastException
      *             if one or both objects do not implement comparable
      */
     @SuppressWarnings("unchecked")
     public int compareNonNull(T o1, T o2) throws ClassCastException {
-        return ((Comparable<T>) o1).compareTo(o2);
+	return ((Comparable<T>) o1).compareTo(o2);
     }
 
 }

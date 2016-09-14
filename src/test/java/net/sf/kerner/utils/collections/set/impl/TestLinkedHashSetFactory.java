@@ -22,13 +22,13 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 
-import net.sf.kerner.utils.collections.set.FactoryLinkedHashSet;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import net.sf.kerner.utils.collections.set.FactoryLinkedHashSet;
 
 public class TestLinkedHashSetFactory {
 
@@ -44,7 +44,7 @@ public class TestLinkedHashSetFactory {
 
     @Before
     public void setUp() throws Exception {
-        f = new FactoryLinkedHashSet<String>();
+	f = new FactoryLinkedHashSet<String>();
     }
 
     @After
@@ -53,17 +53,17 @@ public class TestLinkedHashSetFactory {
 
     @Test
     public final void testCreateCollection01() {
-        assertNotNull(f.createCollection());
+	assertNotNull(f.createCollection());
     }
 
     @Test
     public final void testCreateCollection02() {
-        assertTrue(f.createCollection() instanceof LinkedHashSet);
+	assertTrue(f.createCollection() instanceof LinkedHashSet);
     }
 
     @Test
     public final void testCreateCollection03() {
-        assertArrayEquals(f.createCollection(Arrays.asList("eins", "zwei")).toArray(),
-                new LinkedHashSet<String>(Arrays.asList("eins", "zwei")).toArray());
+	assertArrayEquals(f.createCollection(Arrays.asList("eins", "zwei")).toArray(),
+		new LinkedHashSet<String>(Arrays.asList("eins", "zwei")).toArray());
     }
 }

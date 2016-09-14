@@ -25,20 +25,20 @@ public abstract class TransformerAbstract<T, V> implements Transformer<T, V>, Tr
     protected final FactoryCollection<V> factoryCollection;
 
     public TransformerAbstract() {
-        super();
-        this.factoryCollection = new ArrayListFactory<V>();
+	super();
+	this.factoryCollection = new ArrayListFactory<V>();
     }
 
     public TransformerAbstract(final FactoryCollection<V> factoryCollection) {
-        super();
-        this.factoryCollection = factoryCollection;
+	super();
+	this.factoryCollection = factoryCollection;
     }
 
     public Collection<V> transformCollection(final Collection<? extends T> element) {
-        final Collection<V> result = factoryCollection.createCollection();
-        for (final T t : element) {
-            result.add(transform(t));
-        }
-        return result;
+	final Collection<V> result = factoryCollection.createCollection();
+	for (final T t : element) {
+	    result.add(transform(t));
+	}
+	return result;
     }
 }

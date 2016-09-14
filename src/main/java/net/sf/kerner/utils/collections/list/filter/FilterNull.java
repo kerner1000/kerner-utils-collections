@@ -18,11 +18,11 @@ package net.sf.kerner.utils.collections.list.filter;
 public class FilterNull<T> implements FilterList<T> {
 
     public boolean filter(final T element) {
-        return element != null;
+	return element != null;
     }
 
     public boolean filter(final T element, final int index) {
-        return element != null;
+	return element != null;
     }
 
 }

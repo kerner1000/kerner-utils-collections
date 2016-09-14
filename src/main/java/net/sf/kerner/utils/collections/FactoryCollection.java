@@ -18,8 +18,9 @@ package net.sf.kerner.utils.collections;
 import java.util.Collection;
 
 /**
- * A {@code FactoryCollection} provides factory methods to retrieve a new instance of all kind of direct and indirect
- * implementations of {@link Collection}.
+ * A {@code FactoryCollection} provides factory methods to retrieve a new
+ * instance of all kind of direct and indirect implementations of
+ * {@link Collection}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-04-16
@@ -36,7 +37,8 @@ public interface FactoryCollection<E> {
     Collection<E> createCollection();
 
     /**
-     * Get a new instance for specified {@code Collection} containing all given elements.
+     * Get a new instance for specified {@code Collection} containing all given
+     * elements.
      * 
      * @param elements
      *            that are contained in new collection

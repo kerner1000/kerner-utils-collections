@@ -16,6 +16,7 @@
 package net.sf.kerner.utils.collections.trasformer;
 
 import java.util.Collection;
+
 import net.sf.kerner.utils.collections.TransformerAbstract;
 import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.transformer.Transformer;
@@ -24,17 +25,17 @@ import net.sf.kerner.utils.transformer.Transformer;
  *
  * @author alex
  */
-public abstract class TransformerApplierProto<T, V> extends TransformerAbstract<T, V> implements TransformerApplier<T, V> {
+public abstract class TransformerApplierProto<T, V> extends TransformerAbstract<T, V>
+	implements TransformerApplier<T, V> {
 
-    protected final Collection<Transformer<T, V>> transformers = UtilCollection
-            .newCollection();
+    protected final Collection<Transformer<T, V>> transformers = UtilCollection.newCollection();
 
     public synchronized void addTransformer(final Transformer<T, V> transformer) {
-        transformers.add(transformer);
+	transformers.add(transformer);
     }
 
     public synchronized void clearTransformers() {
-        transformers.clear();
+	transformers.clear();
     }
 
 }

@@ -19,22 +19,22 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class AbstractTransformingListFactory<T, V> extends AbstractListTransformer<T, V>
-        implements FactoryList<V> {
+	implements FactoryList<V> {
 
     public AbstractTransformingListFactory() {
-        super();
+	super();
     }
 
     public AbstractTransformingListFactory(final FactoryList<V> factory) {
-        super(factory);
+	super(factory);
     }
 
     public synchronized List<V> createCollection() {
-        return factory.createCollection();
+	return factory.createCollection();
     }
 
     public synchronized List<V> createCollection(final Collection<? extends V> template) {
-        return factory.createCollection(template);
+	return factory.createCollection(template);
     }
 
 }

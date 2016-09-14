@@ -22,13 +22,13 @@ public abstract class ApplierAbstract implements Applier {
     protected TYPE type;
 
     public ApplierAbstract() {
-        super();
-        type = DEFAULT_FILTER_TYPE;
+	super();
+	type = DEFAULT_FILTER_TYPE;
     }
 
     public ApplierAbstract(final TYPE type) {
-        super();
-        this.type = type;
+	super();
+	this.type = type;
     }
 
 }

@@ -18,7 +18,7 @@ package net.sf.kerner.utils.collections.list;
 public class TransformerStringToDouble extends AbstractTransformingListFactory<String, Double> {
 
     public Double transform(final String element) {
-        return Double.parseDouble(element);
+	return Double.parseDouble(element);
     }
 
 }

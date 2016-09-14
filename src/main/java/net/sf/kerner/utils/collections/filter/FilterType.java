@@ -20,7 +20,7 @@ public class FilterType implements Filter<Object> {
     private final Class<?> clazz;
 
     public FilterType(final Class<?> clazz) {
-        this.clazz = clazz;
+	this.clazz = clazz;
     }
 
     /**
@@ -28,7 +28,7 @@ public class FilterType implements Filter<Object> {
      *         {@code false} otherwise
      */
     public boolean filter(final Object e) {
-        final boolean result = clazz.isInstance(e);
-        return result;
+	final boolean result = clazz.isInstance(e);
+	return result;
     }
 }

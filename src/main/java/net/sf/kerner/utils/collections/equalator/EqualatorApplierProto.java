@@ -27,52 +27,52 @@ public class EqualatorApplierProto<T> extends ApplierAbstract implements Equalat
     private final List<Equalator<T>> equalators = UtilList.newList();
 
     public EqualatorApplierProto() {
-        super();
+	super();
     }
 
     public EqualatorApplierProto(final TYPE type) {
-        super(type);
+	super(type);
     }
 
     public void addEqualator(final Equalator<T> equalator) {
-        this.equalators.add(equalator);
+	this.equalators.add(equalator);
     }
 
     public boolean areEqual(final T o1, final Object o2) {
-        switch (type) {
-            case AND:
-                for (final Equalator<T> e : equalators) {
-                    if (e.areEqual(o1, o2)) {
-                        // ok
-                    } else {
-                        return false;
-                    }
-                }
-                return true;
-            case OR:
-                for (final Equalator<T> e : equalators) {
-                    if (e.areEqual(o1, o2)) {
-                        return true;
-                    } else {
-                        // see what others say
-                    }
-                }
-                return false;
-            default:
-                throw new RuntimeException("unknown type " + type);
-        }
+	switch (type) {
+	case AND:
+	    for (final Equalator<T> e : equalators) {
+		if (e.areEqual(o1, o2)) {
+		    // ok
+		} else {
+		    return false;
+		}
+	    }
+	    return true;
+	case OR:
+	    for (final Equalator<T> e : equalators) {
+		if (e.areEqual(o1, o2)) {
+		    return true;
+		} else {
+		    // see what others say
+		}
+	    }
+	    return false;
+	default:
+	    throw new RuntimeException("unknown type " + type);
+	}
     }
 
     public void clear() {
-        this.equalators.clear();
+	this.equalators.clear();
     }
 
     public List<Equalator<T>> getEqualators() {
-        return this.equalators;
+	return this.equalators;
     }
 
     public Boolean transform(final Pair<T, Object> element) {
-        return Boolean.valueOf(areEqual(element.getFirst(), element.getSecond()));
+	return Boolean.valueOf(areEqual(element.getFirst(), element.getSecond()));
     }
 
 }

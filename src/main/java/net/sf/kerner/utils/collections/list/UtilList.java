@@ -64,6 +64,10 @@ public class UtilList {
 	return (List<L>) UtilCollection.append(c1, c2, new ArrayListFactory<L>());
     }
 
+    public static <C> List<C> append(Iterable<? extends Collection<? extends C>> collections) {
+	return (List<C>) UtilCollection.append(collections);
+    }
+
     @Deprecated
     public static <T> void append(final List<T> list, final int numElements, final T element) {
 	for (int i = 0; i < numElements; i++) {
@@ -100,9 +104,10 @@ public class UtilList {
     }
 
     /**
-     * 
+     *
      * @deprecated use CollectionCloner instead
      */
+    @Deprecated
     public static <T extends Cloneable<T>> List<T> clone(final List<T> list) {
 	final List<T> result = new ArrayList<T>();
 	for (final T t : list) {

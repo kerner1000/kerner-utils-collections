@@ -41,12 +41,12 @@ public class FilterInverter<E> implements Filter<E> {
     protected final Filter<E> filter;
 
     public FilterInverter(final Filter<E> filter) {
-        Util.checkForNull(filter);
-        this.filter = filter;
+	Util.checkForNull(filter);
+	this.filter = filter;
     }
 
     public boolean filter(final E element) {
-        return !filter.filter(element);
+	return !filter.filter(element);
     }
 
 }

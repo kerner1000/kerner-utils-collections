@@ -20,8 +20,8 @@ import java.util.Map;
 import net.sf.kerner.utils.Factory;
 
 /**
- * A {@code MapFactory} provides factory methods to retrieve all kind of direct and indirect implementations of
- * {@link java.util.Map Map}.
+ * A {@code MapFactory} provides factory methods to retrieve all kind of direct
+ * and indirect implementations of {@link java.util.Map Map}.
  * <p>
  * <b>Example:</b><br>
  * </p>

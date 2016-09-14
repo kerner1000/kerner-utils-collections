@@ -21,7 +21,7 @@ import net.sf.kerner.utils.pair.Pair;
 public class TransformerObjectPairToFirst<F> extends AbstractTransformingListFactory<Pair<F, ?>, F> {
 
     public F transform(final Pair<F, ?> element) {
-        return element.getFirst();
+	return element.getFirst();
     }
 
 }

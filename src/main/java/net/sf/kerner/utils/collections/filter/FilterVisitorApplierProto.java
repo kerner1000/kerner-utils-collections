@@ -22,54 +22,53 @@ import net.sf.kerner.utils.collections.visitor.VisitorApplierProto;
 import net.sf.kerner.utils.visitor.Visitor;
 import net.sf.kerner.utils.visitor.VisitorApplier;
 
-public class FilterVisitorApplierProto<E> implements FilterApplier<E>,
-VisitorApplier<E> {
+public class FilterVisitorApplierProto<E> implements FilterApplier<E>, VisitorApplier<E> {
 
-	private final FilterApplierProto<E> filterDelegate = new FilterApplierProto<E>();
+    private final FilterApplierProto<E> filterDelegate = new FilterApplierProto<E>();
 
-	private final VisitorApplierProto<E> visitorDelegate = new VisitorApplierProto<E>();
+    private final VisitorApplierProto<E> visitorDelegate = new VisitorApplierProto<E>();
 
-	public FilterVisitorApplierProto<E> addFilter(final Filter<E> filter) {
-		filterDelegate.addFilter(filter);
-		return this;
+    public FilterVisitorApplierProto<E> addFilter(final Filter<E> filter) {
+	filterDelegate.addFilter(filter);
+	return this;
+    }
+
+    public void addVisitor(final Visitor<E> visitor) {
+	visitorDelegate.addVisitor(visitor);
+    }
+
+    public void clear() {
+	filterDelegate.clear();
+    }
+
+    public void clearVisitors() {
+	visitorDelegate.clearVisitors();
+    }
+
+    public boolean filter(final E e) {
+	final boolean b = filterDelegate.filter(e);
+	if (b) {
+	    visitorDelegate.transform(e);
 	}
+	return b;
+    }
 
-	public void addVisitor(final Visitor<E> visitor) {
-		visitorDelegate.addVisitor(visitor);
-	}
+    public List<Filter<E>> getFilters() {
+	return filterDelegate.getFilters();
+    }
 
-	public void clear() {
-		filterDelegate.clear();
-	}
+    public boolean isEmpty() {
+	return filterDelegate.isEmpty();
+    }
 
-	public void clearVisitors() {
-		visitorDelegate.clearVisitors();
-	}
+    public void setFilterType(final Applier.TYPE filterType) {
+	this.filterDelegate.setFilterType(filterType);
+    }
 
-	public boolean filter(final E e) {
-		final boolean b = filterDelegate.filter(e);
-		if (b) {
-			visitorDelegate.transform(e);
-		}
-		return b;
+    public Void transform(final E e) {
+	if (filter(e)) {
+	    visitorDelegate.transform(e);
 	}
-
-	public List<Filter<E>> getFilters() {
-		return filterDelegate.getFilters();
-	}
-
-	public boolean isEmpty() {
-		return filterDelegate.isEmpty();
-	}
-
-	public void setFilterType(final Applier.TYPE filterType) {
-		this.filterDelegate.setFilterType(filterType);
-	}
-
-	public Void transform(final E e) {
-		if (filter(e)) {
-			visitorDelegate.transform(e);
-		}
-		return null;
-	}
+	return null;
+    }
 }

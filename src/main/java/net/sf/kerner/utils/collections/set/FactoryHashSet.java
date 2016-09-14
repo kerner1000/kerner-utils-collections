@@ -17,7 +17,6 @@ package net.sf.kerner.utils.collections.set;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 import net.sf.kerner.utils.Factory;
@@ -35,21 +34,21 @@ public class FactoryHashSet<E> implements FactorySet<E>, Factory<Set<E>> {
      * 
      */
     public Set<E> create() {
-        return createCollection();
+	return createCollection();
     }
 
     /** 
-	 * 
-	 */
+     * 
+     */
     public Set<E> createCollection() {
-        return new HashSet<E>();
+	return new HashSet<E>();
     }
 
     /**
-	 * 
-	 */
+     * 
+     */
     public Set<E> createCollection(final Collection<? extends E> template) {
-        return new HashSet<E>(template);
+	return new HashSet<E>(template);
     }
 
 }

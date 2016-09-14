@@ -16,20 +16,19 @@ public class FilterCollection {
      * @param collection
      * @param filter
      */
-    public static <C> void filterCollectionRemove(final Collection<? extends C> collection,
-            final Filter<C> filter) {
-        if (collection == null) {
-            throw new NullPointerException();
-        }
-        synchronized (collection) {
-            for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
-                if (filter.filter(i.next())) {
-                    // OK
-                } else {
-                    i.remove();
-                }
-            }
-        }
+    public static <C> void filterCollectionRemove(final Collection<? extends C> collection, final Filter<C> filter) {
+	if (collection == null) {
+	    throw new NullPointerException();
+	}
+	synchronized (collection) {
+	    for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
+		if (filter.filter(i.next())) {
+		    // OK
+		} else {
+		    i.remove();
+		}
+	    }
+	}
     }
 
     /**
@@ -43,21 +42,20 @@ public class FilterCollection {
      *            {@link Filter} which is used for filtering
      * @return A new {@link Collection}, that contains all matching elements
      */
-    public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection,
-            final Filter<C> filter) {
-        final List<C> result = UtilList.newList();
-        if (collection == null) {
-            throw new NullPointerException();
-        }
-        synchronized (collection) {
-            for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
-                final C next = i.next();
-                if (filter.filter(next)) {
-                    result.add(next);
-                }
-            }
-        }
-        return result;
+    public static <C> List<C> filterCollectionReturn(final Collection<? extends C> collection, final Filter<C> filter) {
+	final List<C> result = UtilList.newList();
+	if (collection == null) {
+	    throw new NullPointerException();
+	}
+	synchronized (collection) {
+	    for (final Iterator<? extends C> i = collection.iterator(); i.hasNext();) {
+		final C next = i.next();
+		if (filter.filter(next)) {
+		    result.add(next);
+		}
+	    }
+	}
+	return result;
     }
 
     private FilterCollection() {

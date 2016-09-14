@@ -23,7 +23,7 @@ public class TestMapCount {
 
     @Before
     public void setUp() throws Exception {
-        m = new MapCount<String>();
+	m = new MapCount<String>();
     }
 
     @After
@@ -32,34 +32,34 @@ public class TestMapCount {
 
     @Test
     public final void testGetHighest01() {
-        m.put("k1");
-        m.put("k1");
-        m.put("k2");
-        assertEquals("k1", m.getMax());
+	m.put("k1");
+	m.put("k1");
+	m.put("k2");
+	assertEquals("k1", m.getMax());
     }
 
     @Test
     public final void testGetLoweset01() {
-        m.put("k1");
-        m.put("k1");
-        m.put("k2");
-        assertEquals("k2", m.getMin());
+	m.put("k1");
+	m.put("k1");
+	m.put("k2");
+	assertEquals("k2", m.getMin());
     }
 
     @Test
     public final void testHasHighest01() {
-        m.put("k1");
-        m.put("k1");
-        m.put("k2");
-        assertTrue(m.hasHighest());
+	m.put("k1");
+	m.put("k1");
+	m.put("k2");
+	assertTrue(m.hasHighest());
     }
 
     @Test
     public final void testHasLowest01() {
-        m.put("k1");
-        m.put("k1");
-        m.put("k2");
-        assertTrue(m.hasLowest());
+	m.put("k1");
+	m.put("k1");
+	m.put("k2");
+	assertTrue(m.hasLowest());
     }
 
 }

@@ -51,21 +51,21 @@ public class FactoryLinkedHashSet<E> implements FactorySet<E>, Factory<Set<E>> {
      * 
      */
     public Set<E> create() {
-        return createCollection();
+	return createCollection();
     }
 
     /** 
-	 * 
-	 */
+     * 
+     */
     public Set<E> createCollection() {
-        return new LinkedHashSet<E>();
+	return new LinkedHashSet<E>();
     }
 
     /**
-	 * 
-	 */
+     * 
+     */
     public Set<E> createCollection(final Collection<? extends E> template) {
-        return new LinkedHashSet<E>(template);
+	return new LinkedHashSet<E>(template);
     }
 
 }

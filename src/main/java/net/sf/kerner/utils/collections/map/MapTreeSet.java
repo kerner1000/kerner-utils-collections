@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright (c) 2010-2014 Alexander Kerner. All rights reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,13 +15,21 @@
  ******************************************************************************/
 package net.sf.kerner.utils.collections.map;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.TreeSet;
 
-public class FactoryLinkedHashMap<K, V> implements FactoryMap<K, V> {
+import net.sf.kerner.utils.Factory;
 
-    public Map<K, V> create() {
-	return new LinkedHashMap<K, V>();
+public class MapTreeSet<K, V> extends MapCollectionAbstract<K, V, TreeSet<V>> {
+
+    private final Factory<TreeSet<V>> factory;
+
+    public MapTreeSet(final Factory<TreeSet<V>> factory) {
+	this.factory = factory;
+    }
+
+    @Override
+    protected Factory<TreeSet<V>> getFactoryCollection() {
+	return factory;
     }
 
 }

@@ -20,12 +20,10 @@ import java.util.Iterator;
 
 import net.sf.kerner.utils.transformer.Transformer;
 
-public class TransformerEnumerationToIterator<T> implements
-		Transformer<Enumeration<T>, Iterator<T>> {
+public class TransformerEnumerationToIterator<T> implements Transformer<Enumeration<T>, Iterator<T>> {
 
-	public Iterator<T> transform(Enumeration<T> enumeration) {
-		return new TransformerEnumerationToIterable<T>().transform(enumeration)
-				.iterator();
-	}
+    public Iterator<T> transform(Enumeration<T> enumeration) {
+	return new TransformerEnumerationToIterable<T>().transform(enumeration).iterator();
+    }
 
 }

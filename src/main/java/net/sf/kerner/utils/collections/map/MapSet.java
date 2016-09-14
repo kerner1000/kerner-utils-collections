@@ -26,33 +26,33 @@ public class MapSet<K, V> extends MapCollectionAbstract<K, V, Set<V>> {
     private final Factory<Set<V>> factory;
 
     public MapSet() {
-        this.factory = new FactoryLinkedHashSet<V>();
+	this.factory = new FactoryLinkedHashSet<V>();
     }
 
     public MapSet(final Map<K, Set<V>> map) {
-        super(map);
-        this.factory = new FactoryLinkedHashSet<V>();
+	super(map);
+	this.factory = new FactoryLinkedHashSet<V>();
     }
 
     public MapSet(final Map<K, Set<V>> map, final Factory<Set<V>> factory) {
-        super(map);
-        this.factory = factory;
+	super(map);
+	this.factory = factory;
     }
 
     public MapSet(final Map<K, Set<V>> map, final MapCollectionAbstract<K, V, Set<V>> template) {
-        super(map);
-        this.factory = new FactoryLinkedHashSet<V>();
-        putAll(template);
+	super(map);
+	this.factory = new FactoryLinkedHashSet<V>();
+	putAll(template);
     }
 
     public MapSet(final MapCollectionAbstract<K, V, Set<V>> template) {
-        this.factory = new FactoryLinkedHashSet<V>();
-        putAll(template);
+	this.factory = new FactoryLinkedHashSet<V>();
+	putAll(template);
     }
 
     @Override
     protected Factory<Set<V>> getFactoryCollection() {
-        return factory;
+	return factory;
     }
 
 }

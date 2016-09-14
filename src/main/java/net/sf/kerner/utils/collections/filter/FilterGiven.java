@@ -24,11 +24,11 @@ public class FilterGiven implements Filter<Object> {
     private final Set<Object> set;
 
     public FilterGiven(final Collection<Object> objects) {
-        set = new HashSet<Object>(objects);
+	set = new HashSet<Object>(objects);
     }
 
     public boolean filter(final Object e) {
-        return set.contains(e);
+	return set.contains(e);
     }
 
 }

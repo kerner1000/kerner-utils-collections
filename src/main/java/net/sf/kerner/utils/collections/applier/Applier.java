@@ -18,7 +18,7 @@ package net.sf.kerner.utils.collections.applier;
 public interface Applier {
 
     static enum TYPE {
-        AND, OR;
+	AND, OR;
     }
 
     void clear();
